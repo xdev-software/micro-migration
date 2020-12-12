@@ -40,5 +40,10 @@
 			<artifactId>storage.embedded.configuration</artifactId>
 			<version>04.00.00-MS-GA</version>
 		</dependency>
+		<dependency>
+			<groupId>one.microstream</groupId>
+			<artifactId>storage.embedded.configuration</artifactId>
+			<version>04.00.00-MS-GA</version>
+		</dependency>
 	</dependencies>
 </project>

@@ -23,156 +23,140 @@ import one.microstream.storage.types.StorageTypeDictionary;
 
 public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager  
 {
-	private final EmbeddedStorageManager nativeManager; 
+	private final EmbeddedStorageManager   nativeManager; 
+	private       MicroStreamVersionedRoot versionRoot  ;
 	
 	public MigrationEmbeddedStorageManager(EmbeddedStorageManager nativeManager)
 	{
 		this.nativeManager = nativeManager;
 	}
 
-	public EmbeddedStorageManager start() 
+	public MigrationEmbeddedStorageManager start() 
 	{
 		this.nativeManager.start();
-		if(!(this.nativeManager.root() instanceof MicroStreamVersionedRoot))
+		if(this.nativeManager.root() instanceof MicroStreamVersionedRoot)
+		{
+			this.versionRoot = (MicroStreamVersionedRoot)this.nativeManager.root();
+		}
+		else
 		{
 			//Build VersionedRoot around actual root, set by user.
-			MicroStreamVersionedRoot versionRoot = new MicroStreamVersionedRoot(this.nativeManager.root());
+			this.versionRoot = new MicroStreamVersionedRoot(this.nativeManager.root());
 			nativeManager.setRoot(versionRoot);
 		}
 		return this;
 	}
 
 	public Object root() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.versionRoot.getRoot();
 	}
 
 	public Object setRoot(Object newRoot) {
-		// TODO Auto-generated method stub
-		return null;
+		this.versionRoot.setRoot(newRoot);
+		return newRoot;
 	}
+	
+	////////////////////////////////////////////////////////////////
 	// Simply forward all the other methods
+	////////////////////////////////////////////////////////////////
 	
 	public StorageConfiguration configuration() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nativeManager.configuration();
 	}
 
 	public StorageTypeDictionary typeDictionary() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nativeManager.typeDictionary();
 	}
 
-	public boolean shutdown() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean shutdown() 
+	{
+		return this.nativeManager.shutdown();
 	}
 
 	public long storeRoot() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.nativeManager.storeRoot();
 	}
 
 	public StorageConnection createConnection() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nativeManager.createConnection();
 	}
 	
 
 	public PersistenceRootsView viewRoots() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nativeManager.viewRoots();
 	}
 
 	public Reference<Object> defaultRoot() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nativeManager.defaultRoot();
 	}
 
 	public Database database() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nativeManager.database();
 	}
 
 	public boolean isAcceptingTasks() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.nativeManager.isAcceptingTasks();
 	}
 
 	public boolean isRunning() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.nativeManager.isRunning();
 	}
 
 	public boolean isStartingUp() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.nativeManager.isStartingUp();
 	}
 
 	public boolean isShuttingDown() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.nativeManager.isShuttingDown();
 	}
 
 	public void checkAcceptingTasks() {
-		// TODO Auto-generated method stub
-		
+		this.nativeManager.checkAcceptingTasks();
 	}
 
 	public long initializationTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.nativeManager.initializationTime();
 	}
 
 	public long operationModeTime() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.nativeManager.operationModeTime();
 	}
 
 	public boolean isActive() {
-		// TODO Auto-generated method stub
-		return false;
+		return this.nativeManager.isActive();
 	}
 
 	public boolean issueGarbageCollection(long nanoTimeBudget) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.nativeManager.issueGarbageCollection(nanoTimeBudget);
 	}
 
 	public boolean issueFileCheck(long nanoTimeBudget) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.nativeManager.issueFileCheck(nanoTimeBudget);
 	}
 
 	public boolean issueCacheCheck(long nanoTimeBudget, StorageEntityCacheEvaluator entityEvaluator) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.nativeManager.issueCacheCheck(nanoTimeBudget, entityEvaluator);
 	}
 
 	public StorageRawFileStatistics createStorageStatistics() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nativeManager.createStorageStatistics();
 	}
 
 	public void exportChannels(StorageLiveFileProvider fileProvider, boolean performGarbageCollection) {
-		// TODO Auto-generated method stub
-		
+		this.nativeManager.exportChannels(fileProvider, performGarbageCollection);
 	}
 
 	public StorageEntityTypeExportStatistics exportTypes(StorageEntityTypeExportFileProvider exportFileProvider,
 			Predicate<? super StorageEntityTypeHandler> isExportType) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nativeManager.exportTypes(exportFileProvider, isExportType);
 	}
 
 	public void importFiles(XGettingEnum<AFile> importFiles) {
-		// TODO Auto-generated method stub
-		
+		this.nativeManager.importFiles(importFiles);
 	}
 
 	public PersistenceManager<Binary> persistenceManager() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nativeManager.persistenceManager();
 	}
 
 }
