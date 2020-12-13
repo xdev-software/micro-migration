@@ -12,6 +12,7 @@ import one.microstream.persistence.types.PersistenceManager;
 import one.microstream.persistence.types.PersistenceRootsView;
 import one.microstream.reference.Reference;
 import one.microstream.storage.types.Database;
+import one.microstream.storage.types.EmbeddedStorage;
 import one.microstream.storage.types.EmbeddedStorageManager;
 import one.microstream.storage.types.StorageConfiguration;
 import one.microstream.storage.types.StorageConnection;
@@ -23,6 +24,15 @@ import one.microstream.storage.types.StorageLiveFileProvider;
 import one.microstream.storage.types.StorageRawFileStatistics;
 import one.microstream.storage.types.StorageTypeDictionary;
 
+/**
+ * Wrapper class for the MicroStream {@link EmbeddedStorageManager} interface.
+ * <p>
+ * Basically it intercepts storing the root object and places a {@link MicroStreamVersionedRoot}
+ * in front of it. This means the datastore is then versioned.
+ * 
+ * @author Johannes Rabauer
+ * 
+ */
 public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager  
 {
 	private final EmbeddedStorageManager   nativeManager;

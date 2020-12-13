@@ -4,6 +4,16 @@ import java.util.Comparator;
 
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
 
+/**
+ * Interface for scripts to migrate / update datastores.
+ * <p>
+ * One script is supposed to bring a datastore from a lower version to the target version.
+ * After the {@link MicroMigrationScript#execute(Object, MigrationEmbeddedStorageManager)} method is called,
+ * the target version is reached.
+ * 
+ * @author Johannes Rabauer
+ *
+ */
 public interface MicroMigrationScript 
 {
 	public final static char VERSION_SEPERATOR = '_';

@@ -2,6 +2,12 @@ package de.johannes_rabauer.micromigration.version;
 
 import java.util.Comparator;
 
+/**
+ * Defines one version of the MicroStream datastore.
+ * 
+ * @author Johannes Rabauer
+ * 
+ */
 public class MicroMigrationVersion 
 {
 	private final int majorVersion;

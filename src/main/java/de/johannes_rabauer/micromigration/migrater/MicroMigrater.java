@@ -5,10 +5,18 @@ import java.util.TreeSet;
 import de.johannes_rabauer.micromigration.MicroMigrationScript;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import de.johannes_rabauer.micromigration.version.MicroStreamVersionedRoot;
+import one.microstream.storage.types.EmbeddedStorageManager;
 
+/**
+ * Executes all the available scripts to migrate the datastore to a certain version.
+ * 
+ * @author Johannes Rabauer
+ * 
+ */
 public interface MicroMigrater 
 {
-	public TreeSet<MicroMigrationScript> getSortedScripts();
+	public TreeSet<? extends MicroMigrationScript> getSortedScripts();
 	
 	public default MicroMigrationVersion migrateToNewest(
 		MicroMigrationVersion           fromVersion   ,
@@ -16,7 +24,7 @@ public interface MicroMigrater
 		Object                          root
 	)
 	{
-		TreeSet<MicroMigrationScript> sortedScripts = getSortedScripts();
+		TreeSet<? extends MicroMigrationScript> sortedScripts = getSortedScripts();
 		if(sortedScripts.size() > 0)
 		{
 			return migrateToVersion(

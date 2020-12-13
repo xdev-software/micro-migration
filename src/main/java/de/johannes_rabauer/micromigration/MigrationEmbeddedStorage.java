@@ -5,6 +5,13 @@ import one.microstream.storage.configuration.Configuration;
 import one.microstream.storage.types.EmbeddedStorage;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
+/**
+ * Wrapper class for the MicroStream {@link EmbeddedStorage} utility class.
+ * Produces {@link MigrationEmbeddedStorageManager} for updateable datastores.
+ * 
+ * @author Johannes Rabauer
+ * 
+ */
 public class MigrationEmbeddedStorage
 {
 	/**
