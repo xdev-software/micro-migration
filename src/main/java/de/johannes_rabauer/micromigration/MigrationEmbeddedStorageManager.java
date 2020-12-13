@@ -2,6 +2,8 @@ package de.johannes_rabauer.micromigration;
 
 import java.util.function.Predicate;
 
+import de.johannes_rabauer.micromigration.migrater.MicroMigrater;
+import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
 import de.johannes_rabauer.micromigration.version.MicroStreamVersionedRoot;
 import one.microstream.afs.AFile;
 import one.microstream.collections.types.XGettingEnum;
@@ -23,12 +25,17 @@ import one.microstream.storage.types.StorageTypeDictionary;
 
 public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager  
 {
-	private final EmbeddedStorageManager   nativeManager; 
+	private final EmbeddedStorageManager   nativeManager;
+	private final MicroMigrater            migrater     ;
 	private       MicroStreamVersionedRoot versionRoot  ;
 	
-	public MigrationEmbeddedStorageManager(EmbeddedStorageManager nativeManager)
+	public MigrationEmbeddedStorageManager(
+		EmbeddedStorageManager nativeManager,
+		MicroMigrater          migrater
+	)
 	{
 		this.nativeManager = nativeManager;
+		this.migrater      = migrater     ;
 	}
 
 	public MigrationEmbeddedStorageManager start() 
@@ -43,6 +50,18 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 			//Build VersionedRoot around actual root, set by user.
 			this.versionRoot = new MicroStreamVersionedRoot(this.nativeManager.root());
 			nativeManager.setRoot(versionRoot);
+		}
+		// Execute Updates
+		final MicroMigrationVersion versionAfterUpdate = migrater.migrateToNewest(
+			this.versionRoot.getVersion(),
+			this                         ,
+			this.versionRoot.getRoot()
+		);
+		//Update stored version, if needed
+		if(versionAfterUpdate != this.versionRoot.getVersion())
+		{
+			this.versionRoot.setVersion(versionAfterUpdate);
+			nativeManager.storeRoot();
 		}
 		return this;
 	}
@@ -86,6 +105,7 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 		return this.nativeManager.viewRoots();
 	}
 
+	@Deprecated
 	public Reference<Object> defaultRoot() {
 		return this.nativeManager.defaultRoot();
 	}

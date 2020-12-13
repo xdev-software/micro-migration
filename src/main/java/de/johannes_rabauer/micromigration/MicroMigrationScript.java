@@ -21,7 +21,10 @@ public interface MicroMigrationScript
 		return new MicroMigrationVersion(majorVersion);
 	}
 	
-	public void execute();
+	public void execute(
+		Object                          root          ,
+		MigrationEmbeddedStorageManager storageManager
+	);
 	
 	public static Comparator<MicroMigrationScript> COMPARATOR = new Comparator<MicroMigrationScript>() 
 	{

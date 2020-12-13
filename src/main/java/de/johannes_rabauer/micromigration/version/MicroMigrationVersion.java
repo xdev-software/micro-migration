@@ -2,8 +2,6 @@ package de.johannes_rabauer.micromigration.version;
 
 import java.util.Comparator;
 
-import de.johannes_rabauer.micromigration.MicroMigrationScript;
-
 public class MicroMigrationVersion 
 {
 	private final int majorVersion;
@@ -49,6 +47,11 @@ public class MicroMigrationVersion
 
 	public int getPatchVersion() {
 		return patchVersion;
+	}
+	
+	@Override
+	public String toString() {
+		return "v" + this.majorVersion + "." + this.minorVersion + "." + this.patchVersion;
 	}
 	
 	public static Comparator<MicroMigrationVersion> COMPARATOR = new Comparator<MicroMigrationVersion>() 
