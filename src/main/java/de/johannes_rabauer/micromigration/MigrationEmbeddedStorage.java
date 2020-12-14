@@ -3,7 +3,6 @@ package de.johannes_rabauer.micromigration;
 import de.johannes_rabauer.micromigration.migrater.MicroMigrater;
 import one.microstream.storage.configuration.Configuration;
 import one.microstream.storage.types.EmbeddedStorage;
-import one.microstream.storage.types.EmbeddedStorageManager;
 
 /**
  * Wrapper class for the MicroStream {@link EmbeddedStorage} utility class.

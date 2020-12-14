@@ -5,8 +5,6 @@ import java.util.TreeSet;
 import de.johannes_rabauer.micromigration.MicroMigrationScript;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
-import de.johannes_rabauer.micromigration.version.MicroStreamVersionedRoot;
-import one.microstream.storage.types.EmbeddedStorageManager;
 
 /**
  * Executes all the available scripts to migrate the datastore to a certain version.

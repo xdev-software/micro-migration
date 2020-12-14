@@ -12,7 +12,6 @@ import one.microstream.persistence.types.PersistenceManager;
 import one.microstream.persistence.types.PersistenceRootsView;
 import one.microstream.reference.Reference;
 import one.microstream.storage.types.Database;
-import one.microstream.storage.types.EmbeddedStorage;
 import one.microstream.storage.types.EmbeddedStorageManager;
 import one.microstream.storage.types.StorageConfiguration;
 import one.microstream.storage.types.StorageConnection;
