@@ -47,6 +47,7 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 		this.migrater      = migrater     ;
 	}
 
+	@Override
 	public MigrationEmbeddedStorageManager start() 
 	{
 		this.nativeManager.start();
@@ -74,11 +75,18 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 		}
 		return this;
 	}
+	
+	public MicroMigrationVersion getCurrentVersion()
+	{
+		return this.versionRoot.getVersion();
+	}
 
+	@Override
 	public Object root() {
 		return this.versionRoot.getRoot();
 	}
 
+	@Override
 	public Object setRoot(Object newRoot) {
 		this.versionRoot.setRoot(newRoot);
 		return newRoot;
@@ -88,102 +96,126 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 	// Simply forward all the other methods
 	////////////////////////////////////////////////////////////////
 	
+	@Override
 	public StorageConfiguration configuration() {
 		return this.nativeManager.configuration();
 	}
 
+	@Override
 	public StorageTypeDictionary typeDictionary() {
 		return this.nativeManager.typeDictionary();
 	}
 
+	@Override
 	public boolean shutdown() 
 	{
 		return this.nativeManager.shutdown();
 	}
 
+	@Override
 	public long storeRoot() {
 		return this.nativeManager.storeRoot();
 	}
 
+	@Override
 	public StorageConnection createConnection() {
 		return this.nativeManager.createConnection();
 	}
 	
 
+	@Override
 	public PersistenceRootsView viewRoots() {
 		return this.nativeManager.viewRoots();
 	}
 
+	@Override
 	@Deprecated
 	public Reference<Object> defaultRoot() {
 		return this.nativeManager.defaultRoot();
 	}
 
+	@Override
 	public Database database() {
 		return this.nativeManager.database();
 	}
 
+	@Override
 	public boolean isAcceptingTasks() {
 		return this.nativeManager.isAcceptingTasks();
 	}
 
+	@Override
 	public boolean isRunning() {
 		return this.nativeManager.isRunning();
 	}
 
+	@Override
 	public boolean isStartingUp() {
 		return this.nativeManager.isStartingUp();
 	}
 
+	@Override
 	public boolean isShuttingDown() {
 		return this.nativeManager.isShuttingDown();
 	}
 
+	@Override
 	public void checkAcceptingTasks() {
 		this.nativeManager.checkAcceptingTasks();
 	}
 
+	@Override
 	public long initializationTime() {
 		return this.nativeManager.initializationTime();
 	}
 
+	@Override
 	public long operationModeTime() {
 		return this.nativeManager.operationModeTime();
 	}
 
+	@Override
 	public boolean isActive() {
 		return this.nativeManager.isActive();
 	}
 
+	@Override
 	public boolean issueGarbageCollection(long nanoTimeBudget) {
 		return this.nativeManager.issueGarbageCollection(nanoTimeBudget);
 	}
 
+	@Override
 	public boolean issueFileCheck(long nanoTimeBudget) {
 		return this.nativeManager.issueFileCheck(nanoTimeBudget);
 	}
 
+	@Override
 	public boolean issueCacheCheck(long nanoTimeBudget, StorageEntityCacheEvaluator entityEvaluator) {
 		return this.nativeManager.issueCacheCheck(nanoTimeBudget, entityEvaluator);
 	}
 
+	@Override
 	public StorageRawFileStatistics createStorageStatistics() {
 		return this.nativeManager.createStorageStatistics();
 	}
 
+	@Override
 	public void exportChannels(StorageLiveFileProvider fileProvider, boolean performGarbageCollection) {
 		this.nativeManager.exportChannels(fileProvider, performGarbageCollection);
 	}
 
+	@Override
 	public StorageEntityTypeExportStatistics exportTypes(StorageEntityTypeExportFileProvider exportFileProvider,
 			Predicate<? super StorageEntityTypeHandler> isExportType) {
 		return this.nativeManager.exportTypes(exportFileProvider, isExportType);
 	}
 
+	@Override
 	public void importFiles(XGettingEnum<AFile> importFiles) {
 		this.nativeManager.importFiles(importFiles);
 	}
 
+	@Override
 	public PersistenceManager<Binary> persistenceManager() {
 		return this.nativeManager.persistenceManager();
 	}
