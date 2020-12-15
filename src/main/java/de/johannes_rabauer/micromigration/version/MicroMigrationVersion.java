@@ -78,4 +78,34 @@ public class MicroMigrationVersion
 			return Integer.compare(o1.patchVersion, o2.patchVersion);
 		}
 	};
+
+	@Override
+	public int hashCode() 
+	{
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + majorVersion;
+		result = prime * result + minorVersion;
+		result = prime * result + patchVersion;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) 
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MicroMigrationVersion other = (MicroMigrationVersion) obj;
+		if (majorVersion != other.majorVersion)
+			return false;
+		if (minorVersion != other.minorVersion)
+			return false;
+		if (patchVersion != other.patchVersion)
+			return false;
+		return true;
+	}
 }

@@ -21,7 +21,7 @@ class IntroduceMigrationOnExistingDatastore
 	final static String ROOT = "OriginalRoot";
 	
 	@Test
-	public void testMigration(@TempDir Path storageFolder) throws IOException 
+	public void testIntroducingMigrationOnExistingDatastore(@TempDir Path storageFolder) throws IOException 
 	{
 		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start(storageFolder))
 		{

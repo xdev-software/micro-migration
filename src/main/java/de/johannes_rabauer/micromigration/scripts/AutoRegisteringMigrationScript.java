@@ -1,4 +1,4 @@
-package de.johannes_rabauer.micromigration;
+package de.johannes_rabauer.micromigration.scripts;
 
 import de.johannes_rabauer.micromigration.migrater.AutoRegisteringMigrater;
 

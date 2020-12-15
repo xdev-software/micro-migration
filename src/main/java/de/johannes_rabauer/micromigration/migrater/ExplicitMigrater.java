@@ -2,7 +2,7 @@ package de.johannes_rabauer.micromigration.migrater;
 
 import java.util.TreeSet;
 
-import de.johannes_rabauer.micromigration.MicroMigrationScript;
+import de.johannes_rabauer.micromigration.scripts.MicroMigrationScript;
 
 /**
  * Executes all the available scripts to migrate the datastore to a certain version.

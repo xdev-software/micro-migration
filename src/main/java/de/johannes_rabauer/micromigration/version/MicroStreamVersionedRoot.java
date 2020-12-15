@@ -15,7 +15,7 @@ public class MicroStreamVersionedRoot
 	public MicroStreamVersionedRoot(Object actualRoot)
 	{
 		setRoot(actualRoot);
-		setVersion(new MicroMigrationVersion(0,1,0));
+		setVersion(new MicroMigrationVersion(0,0,0));
 	}
 	
 	public void setVersion(MicroMigrationVersion version)

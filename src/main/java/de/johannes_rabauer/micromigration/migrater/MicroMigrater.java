@@ -2,8 +2,8 @@ package de.johannes_rabauer.micromigration.migrater;
 
 import java.util.TreeSet;
 
-import de.johannes_rabauer.micromigration.MicroMigrationScript;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
+import de.johannes_rabauer.micromigration.scripts.MicroMigrationScript;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
 
 /**

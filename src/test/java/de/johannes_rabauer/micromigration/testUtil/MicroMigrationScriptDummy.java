@@ -1,7 +1,7 @@
 package de.johannes_rabauer.micromigration.testUtil;
 
-import de.johannes_rabauer.micromigration.MicroMigrationScript;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
+import de.johannes_rabauer.micromigration.scripts.MicroMigrationScript;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
 
 public class MicroMigrationScriptDummy implements MicroMigrationScript 

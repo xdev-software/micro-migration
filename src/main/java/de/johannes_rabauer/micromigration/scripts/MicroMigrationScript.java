@@ -1,7 +1,8 @@
-package de.johannes_rabauer.micromigration;
+package de.johannes_rabauer.micromigration.scripts;
 
 import java.util.Comparator;
 
+import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
 
 /**
