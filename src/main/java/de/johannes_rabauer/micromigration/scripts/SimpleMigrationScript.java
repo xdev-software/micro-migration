@@ -1,5 +1,6 @@
 package de.johannes_rabauer.micromigration.scripts;
 
+import java.util.Objects;
 import java.util.function.BiConsumer;
 
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
@@ -15,6 +16,8 @@ public class SimpleMigrationScript implements MicroMigrationScript
 		final BiConsumer<Object, MigrationEmbeddedStorageManager> consumer
 	)
 	{
+		Objects.requireNonNull(version);
+		Objects.requireNonNull(consumer);
 		this.version  = version ;
 		this.consumer = consumer;
 	}

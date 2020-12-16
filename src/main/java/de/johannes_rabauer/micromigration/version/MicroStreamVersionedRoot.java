@@ -1,5 +1,7 @@
 package de.johannes_rabauer.micromigration.version;
 
+import java.util.Objects;
+
 /**
  * This class is inserted as the root of the MicroStream datastore and contains only the 
  * current version and the actual root object.
@@ -20,6 +22,7 @@ public class MicroStreamVersionedRoot
 	
 	public void setVersion(MicroMigrationVersion version)
 	{
+		Objects.requireNonNull(version);
 		this.currentVersion = version;
 	}
 	

@@ -1,5 +1,6 @@
 package de.johannes_rabauer.micromigration;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import de.johannes_rabauer.micromigration.migrater.MicroMigrater;
@@ -38,15 +39,34 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 	private final MicroMigrater            migrater     ;
 	private       MicroStreamVersionedRoot versionRoot  ;
 	
+	/**
+	 * @param nativeManager which will be used as the underlying storage manager. 
+	 * Almost all methods are only rerouted to this native manager. 
+	 * Only {@link #start()}, {@link #root()} and {@link #setRoot(Object)} are intercepted 
+	 * and a {@link MicroStreamVersionedRoot} is placed between the requests.
+	 * @param migrater which is used as source for the migration scripts
+	 */
 	public MigrationEmbeddedStorageManager(
 		EmbeddedStorageManager nativeManager,
 		MicroMigrater          migrater
 	)
 	{
+		Objects.requireNonNull(nativeManager);
+		Objects.requireNonNull(migrater);
 		this.nativeManager = nativeManager;
 		this.migrater      = migrater     ;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * <p>
+	 * Checks if the root object is of the instance of {@link MicroStreamVersionedRoot}.
+	 * If it is not, the root will be replaced with the versioned root and the actual root object
+	 * will be put inside the versioned root.
+	 * <p>
+	 * After starting the storage manager, all the available update scripts are executed in order
+	 * until the newest version of the datastore is reached.
+	 */
 	@Override
 	public MigrationEmbeddedStorageManager start() 
 	{

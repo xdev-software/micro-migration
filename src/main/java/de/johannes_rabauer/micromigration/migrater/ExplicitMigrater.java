@@ -16,6 +16,9 @@ public class ExplicitMigrater implements MicroMigrater
 {
 	private final TreeSet<MicroMigrationScript> sortedScripts = new TreeSet<>(MicroMigrationScript.COMPARATOR);
 	
+	/**
+	 * @param scripts are all the scripts that are executed, if the current version is lower than this of the script
+	 */
 	public ExplicitMigrater(MicroMigrationScript ...scripts)
 	{
 		for (MicroMigrationScript script : scripts) 

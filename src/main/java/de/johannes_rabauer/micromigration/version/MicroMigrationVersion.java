@@ -59,25 +59,6 @@ public class MicroMigrationVersion
 	public String toString() {
 		return "v" + this.majorVersion + "." + this.minorVersion + "." + this.patchVersion;
 	}
-	
-	public static Comparator<MicroMigrationVersion> COMPARATOR = new Comparator<MicroMigrationVersion>() 
-	{
-		@Override
-		public int compare(MicroMigrationVersion o1, MicroMigrationVersion o2) 
-		{
-			int majorVersionCompare = Integer.compare(o1.majorVersion, o2.majorVersion);
-			if(majorVersionCompare != 0)
-			{
-				return majorVersionCompare;
-			}
-			int minorVersionCompare = Integer.compare(o1.minorVersion, o2.minorVersion);
-			if(minorVersionCompare != 0)
-			{
-				return minorVersionCompare;
-			}
-			return Integer.compare(o1.patchVersion, o2.patchVersion);
-		}
-	};
 
 	@Override
 	public int hashCode() 
@@ -108,4 +89,23 @@ public class MicroMigrationVersion
 			return false;
 		return true;
 	}
+	
+	public static Comparator<MicroMigrationVersion> COMPARATOR = new Comparator<MicroMigrationVersion>() 
+	{
+		@Override
+		public int compare(MicroMigrationVersion o1, MicroMigrationVersion o2) 
+		{
+			int majorVersionCompare = Integer.compare(o1.majorVersion, o2.majorVersion);
+			if(majorVersionCompare != 0)
+			{
+				return majorVersionCompare;
+			}
+			int minorVersionCompare = Integer.compare(o1.minorVersion, o2.minorVersion);
+			if(minorVersionCompare != 0)
+			{
+				return minorVersionCompare;
+			}
+			return Integer.compare(o1.patchVersion, o2.patchVersion);
+		}
+	};
 }
