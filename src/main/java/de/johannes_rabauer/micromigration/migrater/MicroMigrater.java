@@ -30,7 +30,7 @@ public interface MicroMigrater
 	 * @param fromVersion is the current version of the datastore. 
 	 * Scripts for lower versions then the fromVersion are not executed.
 	 * 
-	 * @param storageManager is relayed to the scripts {@link MicroMigrationScript#execute(Object, MigrationEmbeddedStorageManager)}
+	 * @param storageManager is relayed to the scripts {@link MicroMigrationScript#execute(Object, EmbeddedStorageManager)}
 	 * method. This way the script can call {@link EmbeddedStorageManager#store(Object)} or another method on the storage manager.
 	 * 
 	 * @param root is relayed to the scripts {@link MicroMigrationScript#execute(Object, MigrationEmbeddedStorageManager)}
@@ -39,9 +39,9 @@ public interface MicroMigrater
 	 * @return the target version of the last executed script
 	 */
 	public default MicroMigrationVersion migrateToNewest(
-		MicroMigrationVersion           fromVersion   ,
-		MigrationEmbeddedStorageManager storageManager,
-		Object                          root
+		MicroMigrationVersion  fromVersion   ,
+		EmbeddedStorageManager storageManager,
+		Object                 root
 	)
 	{
 		TreeSet<? extends MicroMigrationScript> sortedScripts = getSortedScripts();
@@ -73,7 +73,7 @@ public interface MicroMigrater
 	 * @param targetVersion is the highest allowed script version. 
 	 * Scripts which have a higher version won't be exectued.
 	 * 
-	 * @param storageManager is relayed to the scripts {@link MicroMigrationScript#execute(Object, MigrationEmbeddedStorageManager)}
+	 * @param storageManager is relayed to the scripts {@link MicroMigrationScript#execute(Object, EmbeddedStorageManager)}
 	 * method. This way the script can call {@link EmbeddedStorageManager#store(Object)} or another method on the storage manager.
 	 * 
 	 * @param root is relayed to the scripts {@link MicroMigrationScript#execute(Object, MigrationEmbeddedStorageManager)}
@@ -83,10 +83,10 @@ public interface MicroMigrater
 	 */
 	public default MicroMigrationVersion migrateToVersion
 	(
-		MicroMigrationVersion           fromVersion   ,
-		MicroMigrationVersion           targetVersion ,
-		MigrationEmbeddedStorageManager storageManager,
-		Object                          root
+		MicroMigrationVersion  fromVersion   ,
+		MicroMigrationVersion  targetVersion ,
+		EmbeddedStorageManager storageManager,
+		Object                 root
 	)
 	{
 		MicroMigrationVersion updateVersionWhichWasExecuted = fromVersion;

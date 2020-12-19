@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import one.microstream.storage.types.EmbeddedStorageManager;
 
 /**
  * Interface for scripts to migrate / update datastores.
@@ -30,8 +31,8 @@ public interface MicroMigrationScript
 	 * @param storageManager for storing-calls or other usage
 	 */
 	public void execute(
-		Object                          root          ,
-		MigrationEmbeddedStorageManager storageManager
+		Object                 root          ,
+		EmbeddedStorageManager storageManager
 	);
 	
 	public static Comparator<MicroMigrationScript> COMPARATOR = new Comparator<MicroMigrationScript>() 

@@ -19,9 +19,9 @@ import one.microstream.storage.types.EmbeddedStorageManager;
 class IntroduceMigrationOnExistingDatastore 
 {
 	final static String ROOT = "OriginalRoot";
-	
+
 	@Test
-	public void testIntroducingMigrationOnExistingDatastore(@TempDir Path storageFolder) throws IOException 
+	public void testIntroducingMigrationOnExistingDatastore_MigrationEmbeddedStorageManager(@TempDir Path storageFolder) throws IOException 
 	{
 		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start(storageFolder))
 		{
@@ -37,6 +37,27 @@ class IntroduceMigrationOnExistingDatastore
 			assertEquals(ROOT, migrationStorageManager.root());
 			assertEquals(1, migrationStorageManager.getCurrentVersion().getMajorVersion());
 		}
+	}
+	
+	@Test
+	public void testIntroducingMigrationOnExistingDatastore_StandaloneMicroMigrationManager(@TempDir Path storageFolder) throws IOException 
+	{
+		//TODO
+//		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start(storageFolder))
+//		{
+//			storageManager.setRoot(ROOT);
+//			storageManager.storeRoot();
+//		}
+//		
+//		final ExplicitMigrater migrater = new ExplicitMigrater(
+//				new MicroMigrationScriptDummy(new MicroMigrationVersion(1))
+//		);
+//		final StandaloneMicroMigrationManager standaloneMigrationManager = new StandaloneMicroMigrationManager(currentVersionGetter, currentVersionSetter, currentVersionStorer, migrater, storageManager)
+//		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
+//		{
+//			assertEquals(ROOT, migrationStorageManager.root());
+//			assertEquals(1, migrationStorageManager.getCurrentVersion().getMajorVersion());
+//		}
 	}
 
 }

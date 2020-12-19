@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import one.microstream.storage.types.EmbeddedStorageManager;
 
 class ReflectiveVersionMigrationScriptTest 
 {
@@ -129,7 +129,7 @@ class ReflectiveVersionMigrationScriptTest
 	public static class ReflectiveVersionMigrationScriptDummy extends ReflectiveVersionMigrationScript
 	{
 		@Override
-		public void execute(Object root, MigrationEmbeddedStorageManager storageManager) {
+		public void execute(Object root, EmbeddedStorageManager storageManager) {
 			//Dummy
 		}
 	}
