@@ -12,6 +12,7 @@ import one.microstream.persistence.binary.types.Binary;
 import one.microstream.persistence.types.PersistenceManager;
 import one.microstream.persistence.types.PersistenceRootsView;
 import one.microstream.reference.Reference;
+import one.microstream.storage.exceptions.StorageException;
 import one.microstream.storage.types.Database;
 import one.microstream.storage.types.EmbeddedStorageManager;
 import one.microstream.storage.types.StorageConfiguration;
@@ -130,6 +131,12 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 	public boolean shutdown() 
 	{
 		return this.nativeManager.shutdown();
+	}
+
+	@Override 
+	public void close() throws StorageException 
+	{
+		this.nativeManager.close();
 	}
 
 	@Override
