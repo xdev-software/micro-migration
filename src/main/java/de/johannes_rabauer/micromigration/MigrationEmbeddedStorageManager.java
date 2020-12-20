@@ -5,7 +5,8 @@ import java.util.function.Predicate;
 
 import de.johannes_rabauer.micromigration.migrater.MicroMigrater;
 import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
-import de.johannes_rabauer.micromigration.version.MicroStreamVersionedRoot;
+import de.johannes_rabauer.micromigration.version.Versioned;
+import de.johannes_rabauer.micromigration.version.VersionedRoot;
 import one.microstream.afs.AFile;
 import one.microstream.collections.types.XGettingEnum;
 import one.microstream.persistence.binary.types.Binary;
@@ -28,7 +29,7 @@ import one.microstream.storage.types.StorageTypeDictionary;
 /**
  * Wrapper class for the MicroStream {@link EmbeddedStorageManager} interface.
  * <p>
- * Basically it intercepts storing the root object and places a {@link MicroStreamVersionedRoot}
+ * Basically it intercepts storing the root object and places a {@link Versioned}
  * in front of it. This means the datastore is then versioned.
  * 
  * @author Johannes Rabauer
@@ -36,15 +37,15 @@ import one.microstream.storage.types.StorageTypeDictionary;
  */
 public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager  
 {
-	private final EmbeddedStorageManager   nativeManager;
-	private final MicroMigrater            migrater     ;
-	private       MicroStreamVersionedRoot versionRoot  ;
+	private final EmbeddedStorageManager nativeManager;
+	private final MicroMigrater          migrater     ;
+	private       VersionedRoot          versionRoot  ;
 	
 	/**
 	 * @param nativeManager which will be used as the underlying storage manager. 
 	 * Almost all methods are only rerouted to this native manager. 
 	 * Only {@link #start()}, {@link #root()} and {@link #setRoot(Object)} are intercepted 
-	 * and a {@link MicroStreamVersionedRoot} is placed between the requests.
+	 * and a {@link Versioned} is placed between the requests.
 	 * @param migrater which is used as source for the migration scripts
 	 */
 	public MigrationEmbeddedStorageManager(
@@ -61,7 +62,7 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 	/**
 	 * {@inheritDoc}
 	 * <p>
-	 * Checks if the root object is of the instance of {@link MicroStreamVersionedRoot}.
+	 * Checks if the root object is of the instance of {@link Versioned}.
 	 * If it is not, the root will be replaced with the versioned root and the actual root object
 	 * will be put inside the versioned root.
 	 * <p>
@@ -72,28 +73,23 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 	public MigrationEmbeddedStorageManager start() 
 	{
 		this.nativeManager.start();
-		if(this.nativeManager.root() instanceof MicroStreamVersionedRoot)
+		if(this.nativeManager.root() instanceof VersionedRoot)
 		{
-			this.versionRoot = (MicroStreamVersionedRoot)this.nativeManager.root();
+			this.versionRoot = (VersionedRoot)this.nativeManager.root();
 		}
 		else
 		{
 			//Build VersionedRoot around actual root, set by user.
-			this.versionRoot = new MicroStreamVersionedRoot(this.nativeManager.root());
+			this.versionRoot = new VersionedRoot(this.nativeManager.root());
 			nativeManager.setRoot(versionRoot);
-		}
-		// Execute Updates
-		final MicroMigrationVersion versionAfterUpdate = migrater.migrateToNewest(
-			this.versionRoot.getVersion(),
-			this                         ,
-			this.versionRoot.getRoot()
-		);
-		//Update stored version, if needed
-		if(versionAfterUpdate != this.versionRoot.getVersion())
-		{
-			this.versionRoot.setVersion(versionAfterUpdate);
 			nativeManager.storeRoot();
 		}
+		new MigrationManager(
+			this.versionRoot, 
+			migrater, 
+			this
+		)
+		.migrate(this.versionRoot.getRoot());
 		return this;
 	}
 	
@@ -111,6 +107,11 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 	public Object setRoot(Object newRoot) {
 		this.versionRoot.setRoot(newRoot);
 		return newRoot;
+	}
+
+	@Override
+	public long storeRoot() {
+		return this.nativeManager.store(this.versionRoot);
 	}
 	
 	////////////////////////////////////////////////////////////////
@@ -137,11 +138,6 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 	public void close() throws StorageException 
 	{
 		this.nativeManager.close();
-	}
-
-	@Override
-	public long storeRoot() {
-		return this.nativeManager.storeRoot();
 	}
 
 	@Override

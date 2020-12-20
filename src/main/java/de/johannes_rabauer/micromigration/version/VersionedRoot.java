@@ -9,23 +9,25 @@ import java.util.Objects;
  * @author Johannes Rabauer
  * 
  */
-public class MicroStreamVersionedRoot 
+public class VersionedRoot implements Versioned 
 {
 	private MicroMigrationVersion currentVersion;
 	private Object                actualRoot    ;
 	
-	public MicroStreamVersionedRoot(Object actualRoot)
+	public VersionedRoot(Object actualRoot)
 	{
-		setRoot(actualRoot);
-		setVersion(new MicroMigrationVersion(0,0,0));
+		this.actualRoot     = actualRoot                      ;
+		this.currentVersion = new MicroMigrationVersion(0,0,0);
 	}
 	
+	@Override
 	public void setVersion(MicroMigrationVersion version)
 	{
 		Objects.requireNonNull(version);
 		this.currentVersion = version;
 	}
 	
+	@Override
 	public MicroMigrationVersion getVersion()
 	{
 		return this.currentVersion;

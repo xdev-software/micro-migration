@@ -1,5 +1,6 @@
 package de.johannes_rabauer.micromigration.migrater;
 
+import java.util.Objects;
 import java.util.TreeSet;
 
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
@@ -44,6 +45,8 @@ public interface MicroMigrater
 		Object                 root
 	)
 	{
+		Objects.requireNonNull(fromVersion);
+		Objects.requireNonNull(storageManager);
 		TreeSet<? extends MicroMigrationScript> sortedScripts = getSortedScripts();
 		if(sortedScripts.size() > 0)
 		{
@@ -89,6 +92,9 @@ public interface MicroMigrater
 		Object                 root
 	)
 	{
+		Objects.requireNonNull(fromVersion);
+		Objects.requireNonNull(targetVersion);
+		Objects.requireNonNull(storageManager);
 		MicroMigrationVersion updateVersionWhichWasExecuted = fromVersion;
 		for (MicroMigrationScript script : this.getSortedScripts()) 
 		{

@@ -35,9 +35,9 @@ public class StoreStuffInMigrationStorageManager
 				new MicroMigrationVersion(1), 
 				(root, storage) -> {}
 		);
-		final ExplicitMigrater secondMigrater = new ExplicitMigrater(script);
+		final ExplicitMigrater migrater = new ExplicitMigrater(script);
 		//Create new store and change stored object
-		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, secondMigrater))
+		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
 		{
 			migrationStorageManager.setRoot(new RootClass());
 			migrationStorageManager.storeRoot();
@@ -48,7 +48,7 @@ public class StoreStuffInMigrationStorageManager
 			assertEquals(1, storedRoot.child.i);
 		}
 		//Check if stored object is correct
-		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, secondMigrater))
+		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
 		{
 			final RootClass storedRoot = ((RootClass)migrationStorageManager.root());
 			assertNotNull(storedRoot);
