@@ -12,9 +12,9 @@ import org.junit.jupiter.api.io.TempDir;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
-import de.johannes_rabauer.micromigration.scripts.MicroMigrationScript;
+import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.scripts.SimpleMigrationScript;
-import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
 public class StoreStuffInMigrationStorageManager 
 {	
@@ -31,8 +31,8 @@ public class StoreStuffInMigrationStorageManager
 	@Test
 	public void testStoringSomethingAfterUpdating(@TempDir Path storageFolder) throws IOException 
 	{
-		final MicroMigrationScript script = new SimpleMigrationScript(
-				new MicroMigrationVersion(1), 
+		final MigrationScript script = new SimpleMigrationScript(
+				new MigrationVersion(1), 
 				(root, storage) -> {}
 		);
 		final ExplicitMigrater migrater = new ExplicitMigrater(script);

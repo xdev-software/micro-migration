@@ -8,13 +8,13 @@ import java.util.Comparator;
  * @author Johannes Rabauer
  * 
  */
-public class MicroMigrationVersion 
+public class MigrationVersion 
 {
 	private final int majorVersion;
 	private final int minorVersion;
 	private final int patchVersion;
 	
-	public MicroMigrationVersion
+	public MigrationVersion
 	(
 		int majorVersion
 	)
@@ -22,7 +22,7 @@ public class MicroMigrationVersion
 		this(majorVersion, 0);
 	}	
 	
-	public MicroMigrationVersion
+	public MigrationVersion
 	(
 		int majorVersion,
 		int minorVersion
@@ -31,7 +31,7 @@ public class MicroMigrationVersion
 		this(majorVersion, minorVersion, 0);		
 	}	
 	
-	public MicroMigrationVersion
+	public MigrationVersion
 	(
 		int majorVersion,
 		int minorVersion,
@@ -80,7 +80,7 @@ public class MicroMigrationVersion
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MicroMigrationVersion other = (MicroMigrationVersion) obj;
+		MigrationVersion other = (MigrationVersion) obj;
 		if (majorVersion != other.majorVersion)
 			return false;
 		if (minorVersion != other.minorVersion)
@@ -90,10 +90,10 @@ public class MicroMigrationVersion
 		return true;
 	}
 	
-	public static Comparator<MicroMigrationVersion> COMPARATOR = new Comparator<MicroMigrationVersion>() 
+	public static Comparator<MigrationVersion> COMPARATOR = new Comparator<MigrationVersion>() 
 	{
 		@Override
-		public int compare(MicroMigrationVersion o1, MicroMigrationVersion o2) 
+		public int compare(MigrationVersion o1, MigrationVersion o2) 
 		{
 			int majorVersionCompare = Integer.compare(o1.majorVersion, o2.majorVersion);
 			if(majorVersionCompare != 0)

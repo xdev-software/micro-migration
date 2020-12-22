@@ -3,25 +3,25 @@ package de.johannes_rabauer.micromigration.scripts;
 import java.util.Comparator;
 
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
-import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
 /**
  * Interface for scripts to migrate / update datastores.
  * <p>
  * One script is supposed to bring a datastore from a lower version to the target version.
- * After the {@link MicroMigrationScript#execute(Object, MigrationEmbeddedStorageManager)} method is called,
+ * After the {@link MigrationScript#execute(Object, MigrationEmbeddedStorageManager)} method is called,
  * the target version is reached.
  * 
  * @author Johannes Rabauer
  *
  */
-public interface MicroMigrationScript 
+public interface MigrationScript 
 {	
 	/**
 	 * @return the version of the datastore after this script is executed.
 	 */
-	public MicroMigrationVersion getTargetVersion();
+	public MigrationVersion getTargetVersion();
 	
 	/**
 	 * Execute logic to migrate the given datastore to a newer version of the store.
@@ -35,11 +35,11 @@ public interface MicroMigrationScript
 		EmbeddedStorageManager storageManager
 	);
 	
-	public static Comparator<MicroMigrationScript> COMPARATOR = new Comparator<MicroMigrationScript>() 
+	public static Comparator<MigrationScript> COMPARATOR = new Comparator<MigrationScript>() 
 	{
 		@Override
-		public int compare(MicroMigrationScript o1, MicroMigrationScript o2) {
-			return MicroMigrationVersion.COMPARATOR.compare(o1.getTargetVersion(), o2.getTargetVersion());
+		public int compare(MigrationScript o1, MigrationScript o2) {
+			return MigrationVersion.COMPARATOR.compare(o1.getTargetVersion(), o2.getTargetVersion());
 		}
 	};
 }

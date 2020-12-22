@@ -1,6 +1,6 @@
 package de.johannes_rabauer.micromigration.scripts;
 
-import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
 /**
  * Script which creates the target version of the script through the class name.
@@ -22,13 +22,13 @@ import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
  * @author Johannes Rabauer
  *
  */
-public abstract class ReflectiveVersionMigrationScript implements  MicroMigrationScript 
+public abstract class ReflectiveVersionMigrationScript implements  MigrationScript 
 {
 	private final static char   PREFIX                     = 'v';
 	private final static String VERSION_SEPERATOR          = "_";
 	private final static String WRONG_FORMAT_ERROR_MESSAGE = "Script has invalid class name. Either rename the class to a valid script class name, or implement method getTargetVersion().";
 
-    private final MicroMigrationVersion version;
+    private final MigrationVersion version;
     
     /**
      * @throws Error if the class name has the wrong format
@@ -38,7 +38,7 @@ public abstract class ReflectiveVersionMigrationScript implements  MicroMigratio
     	this.version = createTargetVersionFromClassName();
 	}
     
-    private MicroMigrationVersion createTargetVersionFromClassName()
+    private MigrationVersion createTargetVersionFromClassName()
     {
 		final String implementationClassName = this.getClass().getSimpleName();
 		if(PREFIX != implementationClassName.charAt(0))
@@ -56,15 +56,15 @@ public abstract class ReflectiveVersionMigrationScript implements  MicroMigratio
 			int majorVersion = Integer.parseInt(classNameParts[0]);
 			if(classNameParts.length == 2)
 			{
-				return new MicroMigrationVersion(majorVersion);				
+				return new MigrationVersion(majorVersion);				
 			}
 			int minorVersion = Integer.parseInt(classNameParts[1]);
 			if(classNameParts.length == 3)
 			{
-				return new MicroMigrationVersion(majorVersion, minorVersion);				
+				return new MigrationVersion(majorVersion, minorVersion);				
 			}
 			int patchVersion = Integer.parseInt(classNameParts[2]);
-			return new MicroMigrationVersion(majorVersion, minorVersion, patchVersion);	
+			return new MigrationVersion(majorVersion, minorVersion, patchVersion);	
 		}
 		catch (NumberFormatException e)
 		{
@@ -73,7 +73,7 @@ public abstract class ReflectiveVersionMigrationScript implements  MicroMigratio
     }
     
 	@Override
-	public MicroMigrationVersion getTargetVersion()
+	public MigrationVersion getTargetVersion()
 	{
 		return this.version;
 	}

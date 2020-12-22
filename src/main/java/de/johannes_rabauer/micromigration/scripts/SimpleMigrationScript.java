@@ -3,7 +3,7 @@ package de.johannes_rabauer.micromigration.scripts;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 
-import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
 /**
@@ -13,9 +13,9 @@ import one.microstream.storage.types.EmbeddedStorageManager;
  * @author Johannes Rabauer
  *
  */
-public class SimpleMigrationScript implements MicroMigrationScript 
+public class SimpleMigrationScript implements MigrationScript 
 {
-	private final MicroMigrationVersion                      version;
+	private final MigrationVersion                      version;
 	private final BiConsumer<Object, EmbeddedStorageManager> consumer;
 	
 	/**
@@ -23,7 +23,7 @@ public class SimpleMigrationScript implements MicroMigrationScript
 	 * @param consumer which is executed to reach the given datastore version
 	 */
 	public SimpleMigrationScript(
-		final MicroMigrationVersion                      version,
+		final MigrationVersion                      version,
 		final BiConsumer<Object, EmbeddedStorageManager> consumer
 	)
 	{
@@ -34,7 +34,7 @@ public class SimpleMigrationScript implements MicroMigrationScript
 	}
 	
 	@Override
-	public MicroMigrationVersion getTargetVersion()
+	public MigrationVersion getTargetVersion()
 	{
 		return this.version;
 	}

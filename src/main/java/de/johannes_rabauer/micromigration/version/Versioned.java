@@ -1,14 +1,15 @@
 package de.johannes_rabauer.micromigration.version;
 
+import de.johannes_rabauer.micromigration.MigrationManager;
+
 /**
- * This class is inserted as the root of the MicroStream datastore and contains only the 
- * current version and the actual root object.
+ * Interface used by the {@link MigrationManager} for easier versioning of objects.
  * 
  * @author Johannes Rabauer
  * 
  */
 public interface Versioned 
 {
-	public void setVersion(MicroMigrationVersion version);
-	public MicroMigrationVersion getVersion();
+	public void setVersion(MigrationVersion version);
+	public MigrationVersion getVersion();
 }

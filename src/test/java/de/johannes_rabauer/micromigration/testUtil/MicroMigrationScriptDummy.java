@@ -1,20 +1,20 @@
 package de.johannes_rabauer.micromigration.testUtil;
 
-import de.johannes_rabauer.micromigration.scripts.MicroMigrationScript;
-import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import de.johannes_rabauer.micromigration.scripts.MigrationScript;
+import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
-public class MicroMigrationScriptDummy implements MicroMigrationScript 
+public class MicroMigrationScriptDummy implements MigrationScript 
 {
-	private final MicroMigrationVersion version;
+	private final MigrationVersion version;
 	
-	public MicroMigrationScriptDummy(MicroMigrationVersion version)
+	public MicroMigrationScriptDummy(MigrationVersion version)
 	{
 		this.version = version;
 	}
 
 	@Override
-	public MicroMigrationVersion getTargetVersion()
+	public MigrationVersion getTargetVersion()
 	{
 		return this.version;
 	}

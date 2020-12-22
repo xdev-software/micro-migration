@@ -12,7 +12,7 @@ import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
 import de.johannes_rabauer.micromigration.testUtil.MicroMigrationScriptDummy;
-import de.johannes_rabauer.micromigration.version.MicroMigrationVersion;
+import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import one.microstream.storage.types.EmbeddedStorage;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
@@ -30,7 +30,7 @@ class IntroduceMigrationOnExistingDatastore
 		}
 		
 		final ExplicitMigrater migrater = new ExplicitMigrater(
-				new MicroMigrationScriptDummy(new MicroMigrationVersion(1))
+				new MicroMigrationScriptDummy(new MigrationVersion(1))
 		);
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
 		{

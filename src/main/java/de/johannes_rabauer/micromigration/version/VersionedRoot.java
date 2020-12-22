@@ -11,24 +11,24 @@ import java.util.Objects;
  */
 public class VersionedRoot implements Versioned 
 {
-	private MicroMigrationVersion currentVersion;
+	private MigrationVersion currentVersion;
 	private Object                actualRoot    ;
 	
 	public VersionedRoot(Object actualRoot)
 	{
 		this.actualRoot     = actualRoot                      ;
-		this.currentVersion = new MicroMigrationVersion(0,0,0);
+		this.currentVersion = new MigrationVersion(0,0,0);
 	}
 	
 	@Override
-	public void setVersion(MicroMigrationVersion version)
+	public void setVersion(MigrationVersion version)
 	{
 		Objects.requireNonNull(version);
 		this.currentVersion = version;
 	}
 	
 	@Override
-	public MicroMigrationVersion getVersion()
+	public MigrationVersion getVersion()
 	{
 		return this.currentVersion;
 	}

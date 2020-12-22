@@ -3,42 +3,43 @@ package de.johannes_rabauer.micromigration.version;
 import java.util.Objects;
 
 /**
- * This class is inserted as the root of the MicroStream datastore and contains only the 
- * current version and the actual root object.
+ * Simple container to hold a specific object and a correlating version for it. 
+ * 
+ * @param <T> type of the object that's contained
  * 
  * @author Johannes Rabauer
  * 
  */
-public class VersionedObject implements Versioned 
+public class VersionedObject<T> implements Versioned 
 {
-	private MicroMigrationVersion currentVersion;
-	private Object                actualObject    ;
+	private MigrationVersion currentVersion;
+	private T                actualObject  ;
 	
-	public VersionedObject(Object actualObject)
+	public VersionedObject(T actualObject)
 	{
-		this.actualObject   = actualObject                    ;
-		this.currentVersion = new MicroMigrationVersion(0,0,0);
+		this.actualObject   = actualObject               ;
+		this.currentVersion = new MigrationVersion(0,0,0);
 	}
 	
 	@Override
-	public void setVersion(MicroMigrationVersion version)
+	public void setVersion(MigrationVersion version)
 	{
 		Objects.requireNonNull(version);
 		this.currentVersion = version;
 	}
 	
 	@Override
-	public MicroMigrationVersion getVersion()
+	public MigrationVersion getVersion()
 	{
 		return this.currentVersion;
 	}
 	
-	public void setObject(Object actualObject)
+	public void setObject(T actualObject)
 	{
 		this.actualObject = actualObject;
 	}
 	
-	public Object getObject()
+	public T getObject()
 	{
 		return this.actualObject;
 	}
