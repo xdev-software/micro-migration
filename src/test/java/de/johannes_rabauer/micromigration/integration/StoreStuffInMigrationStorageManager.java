@@ -13,7 +13,7 @@ import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
-import de.johannes_rabauer.micromigration.scripts.SimpleMigrationScript;
+import de.johannes_rabauer.micromigration.scripts.SimpleTypedMigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
 public class StoreStuffInMigrationStorageManager 
@@ -31,9 +31,9 @@ public class StoreStuffInMigrationStorageManager
 	@Test
 	public void testStoringSomethingAfterUpdating(@TempDir Path storageFolder) throws IOException 
 	{
-		final MigrationScript script = new SimpleMigrationScript(
+		final MigrationScript<Object> script = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
-				(root, storage) -> {}
+				(context) -> {}
 		);
 		final ExplicitMigrater migrater = new ExplicitMigrater(script);
 		//Create new store and change stored object

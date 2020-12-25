@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
-import one.microstream.storage.types.EmbeddedStorageManager;
 
 /**
  * Interface for scripts to migrate / update datastores.
@@ -16,7 +15,7 @@ import one.microstream.storage.types.EmbeddedStorageManager;
  * @author Johannes Rabauer
  *
  */
-public interface MigrationScript 
+public interface MigrationScript<T>
 {	
 	/**
 	 * @return the version of the datastore after this script is executed.
@@ -27,18 +26,14 @@ public interface MigrationScript
 	 * Execute logic to migrate the given datastore to a newer version of the store.
 	 * After executing the {@link #getTargetVersion()} is reached.
 	 * 
-	 * @param root which is the current root object. Must be cast to the desired class.
-	 * @param storageManager for storing-calls or other usage
+	 * @param context that holds necessary data for the migration
 	 */
-	public void execute(
-		Object                 root          ,
-		EmbeddedStorageManager storageManager
-	);
+	public void migrate(Context<T> context);
 	
-	public static Comparator<MigrationScript> COMPARATOR = new Comparator<MigrationScript>() 
+	public static Comparator<MigrationScript<?>> COMPARATOR = new Comparator<MigrationScript<?>>() 
 	{
 		@Override
-		public int compare(MigrationScript o1, MigrationScript o2) {
+		public int compare(MigrationScript<?> o1, MigrationScript<?> o2) {
 			return MigrationVersion.COMPARATOR.compare(o1.getTargetVersion(), o2.getTargetVersion());
 		}
 	};

@@ -13,7 +13,7 @@ import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.MigrationManager;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
-import de.johannes_rabauer.micromigration.scripts.SimpleMigrationScript;
+import de.johannes_rabauer.micromigration.scripts.SimpleTypedMigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import de.johannes_rabauer.micromigration.version.Versioned;
 import de.johannes_rabauer.micromigration.version.VersionedObject;
@@ -37,10 +37,9 @@ class MigrationScriptAfterScript
 		
 		
 		//Run with one migration script		
-		final MigrationScript firstScript = new SimpleMigrationScript(
+		final MigrationScript<Integer> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
-				(root, storage) -> 
-				storage.setRoot(1)
+				(context) -> context.getStorageManager().setRoot(1)
 		);
 		final ExplicitMigrater secondMigrater = new ExplicitMigrater(firstScript);
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, secondMigrater))
@@ -51,9 +50,9 @@ class MigrationScriptAfterScript
 
 		
 		//Run with two migration scripts	
-		final MigrationScript secondScript = new SimpleMigrationScript(
+		final MigrationScript<Integer> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2), 
-				(root, storage) -> storage.setRoot(2)
+				(context) -> context.getStorageManager().setRoot(2)
 		);
 		final ExplicitMigrater thirdMigrater = new ExplicitMigrater(firstScript, secondScript);
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, thirdMigrater))
@@ -69,18 +68,18 @@ class MigrationScriptAfterScript
 		//First run without any migration script
 		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
 		{
-			VersionedObject firstRoot = new VersionedObject(0);
+			VersionedObject<Integer> firstRoot = new VersionedObject<>(0);
 			storageManager.setRoot(firstRoot);
 			storageManager.storeRoot();
-			assertEquals(0, firstRoot.getObject());
+			assertEquals(Integer.valueOf(0), firstRoot.getObject());
 			assertEquals(new MigrationVersion(0,0,0), firstRoot.getVersion());
 		}
 		
 		
 		//Run with one migration script		
-		final MigrationScript firstScript = new SimpleMigrationScript(
+		final MigrationScript<VersionedObject<Integer>> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
-				(root, storage) -> ((VersionedObject)root).setObject(1)
+				(context) -> context.getMigratingObject().setObject(1)
 		);
 		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
 		{
@@ -90,16 +89,16 @@ class MigrationScriptAfterScript
 				storageManager
 			)
 			.migrate(storageManager.root());
-			VersionedObject currentRoot = (VersionedObject)storageManager.root();
-			assertEquals(1, currentRoot.getObject());
+			VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
+			assertEquals(Integer.valueOf(1), currentRoot.getObject());
 			assertEquals(new MigrationVersion(1,0,0), currentRoot.getVersion());
 		}
 
 		
 		//Run with two migration scripts	
-		final MigrationScript secondScript = new SimpleMigrationScript(
+		final MigrationScript<VersionedObject<Integer>> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2), 
-				(root, storage) -> ((VersionedObject)root).setObject(2)
+				(context) -> context.getMigratingObject().setObject(2)
 		);
 		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
 		{
@@ -109,8 +108,8 @@ class MigrationScriptAfterScript
 				storageManager
 			)
 			.migrate(storageManager.root());
-			VersionedObject currentRoot = (VersionedObject)storageManager.root();
-			assertEquals(2, currentRoot.getObject());
+			VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
+			assertEquals(Integer.valueOf(2), currentRoot.getObject());
 			assertEquals(new MigrationVersion(2,0,0), currentRoot.getVersion());
 		}
 	}

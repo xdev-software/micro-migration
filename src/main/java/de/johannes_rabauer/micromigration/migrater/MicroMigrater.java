@@ -1,6 +1,5 @@
 package de.johannes_rabauer.micromigration.migrater;
 
-import java.util.Objects;
 import java.util.TreeSet;
 
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
@@ -16,7 +15,7 @@ import one.microstream.storage.types.EmbeddedStorageManager;
  */
 public interface MicroMigrater 
 {
-	public TreeSet<? extends MigrationScript> getSortedScripts();
+	public TreeSet<? extends MigrationScript<?>> getSortedScripts();
 	
 	/**
 	 * Executes all the scripts that are available to the migrater.
@@ -39,26 +38,11 @@ public interface MicroMigrater
 	 * 
 	 * @return the target version of the last executed script
 	 */
-	public default MigrationVersion migrateToNewest(
-		MigrationVersion  fromVersion   ,
+	public MigrationVersion migrateToNewest(
+		MigrationVersion       fromVersion   ,
 		EmbeddedStorageManager storageManager,
 		Object                 root
-	)
-	{
-		Objects.requireNonNull(fromVersion);
-		Objects.requireNonNull(storageManager);
-		TreeSet<? extends MigrationScript> sortedScripts = getSortedScripts();
-		if(sortedScripts.size() > 0)
-		{
-			return migrateToVersion(
-				fromVersion                                 , 
-				getSortedScripts().last().getTargetVersion(),
-				storageManager                              ,
-				root
-			);
-		}
-		return fromVersion;
-	}	
+	);
 	
 	/**
 	 * Executes all the scripts that are available to the migrater until the given targetVersion is reached.
@@ -79,34 +63,16 @@ public interface MicroMigrater
 	 * @param storageManager is relayed to the scripts {@link MigrationScript#execute(Object, EmbeddedStorageManager)}
 	 * method. This way the script can call {@link EmbeddedStorageManager#store(Object)} or another method on the storage manager.
 	 * 
-	 * @param root is relayed to the scripts {@link MigrationScript#execute(Object, MigrationEmbeddedStorageManager)}
-	 * method. This way the script can change something within the root object.
+	 * @param objectToMigrate is relayed to the scripts {@link MigrationScript#execute(Object, MigrationEmbeddedStorageManager)}
+	 * method. This way the script can change something within the object to migrate.
 	 * 
 	 * @return the target version of the last executed script
 	 */
-	public default MigrationVersion migrateToVersion
+	public MigrationVersion migrateToVersion
 	(
-		MigrationVersion  fromVersion   ,
-		MigrationVersion  targetVersion ,
-		EmbeddedStorageManager storageManager,
-		Object                 root
-	)
-	{
-		Objects.requireNonNull(fromVersion);
-		Objects.requireNonNull(targetVersion);
-		Objects.requireNonNull(storageManager);
-		MigrationVersion updateVersionWhichWasExecuted = fromVersion;
-		for (MigrationScript script : this.getSortedScripts()) 
-		{
-			if(MigrationVersion.COMPARATOR.compare(fromVersion, script.getTargetVersion()) < 0)
-			{
-				if(MigrationVersion.COMPARATOR.compare(script.getTargetVersion(), targetVersion) <= 0)
-				{
-					script.execute(root, storageManager);
-					updateVersionWhichWasExecuted = script.getTargetVersion();
-				}
-			}
-		}
-		return updateVersionWhichWasExecuted;
-	}
+		MigrationVersion       fromVersion    ,
+		MigrationVersion       targetVersion  ,
+		EmbeddedStorageManager storageManager ,
+		Object                 objectToMigrate
+	);
 }

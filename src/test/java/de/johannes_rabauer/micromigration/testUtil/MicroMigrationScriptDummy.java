@@ -1,10 +1,10 @@
 package de.johannes_rabauer.micromigration.testUtil;
 
+import de.johannes_rabauer.micromigration.scripts.Context;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
-import one.microstream.storage.types.EmbeddedStorageManager;
 
-public class MicroMigrationScriptDummy implements MigrationScript 
+public class MicroMigrationScriptDummy implements MigrationScript<Object>
 {
 	private final MigrationVersion version;
 	
@@ -18,10 +18,9 @@ public class MicroMigrationScriptDummy implements MigrationScript
 	{
 		return this.version;
 	}
-	
+
 	@Override
-	public void execute(Object root, EmbeddedStorageManager storageManager) {
+	public void migrate(Context<Object> context) {
 		// Don't do anything.
 	}
-
 }

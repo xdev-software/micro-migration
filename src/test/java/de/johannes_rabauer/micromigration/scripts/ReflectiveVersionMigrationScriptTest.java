@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
-import one.microstream.storage.types.EmbeddedStorageManager;
 
 class ReflectiveVersionMigrationScriptTest 
 {
@@ -126,10 +125,10 @@ class ReflectiveVersionMigrationScriptTest
 	}
 
 
-	public static class ReflectiveVersionMigrationScriptDummy extends ReflectiveVersionMigrationScript
+	public static class ReflectiveVersionMigrationScriptDummy extends ReflectiveVersionMigrationScript<Object>
 	{
 		@Override
-		public void execute(Object root, EmbeddedStorageManager storageManager) {
+		public void migrate(Context<Object> context) {
 			//Dummy
 		}
 	}

@@ -12,23 +12,23 @@ import de.johannes_rabauer.micromigration.scripts.MigrationScript;
  * @author Johannes Rabauer
  * 
  */
-public class ExplicitMigrater implements MicroMigrater
+public class ExplicitMigrater extends AbstractMigrater
 {
-	private final TreeSet<MigrationScript> sortedScripts = new TreeSet<>(MigrationScript.COMPARATOR);
+	private final TreeSet<MigrationScript<?>> sortedScripts = new TreeSet<>(MigrationScript.COMPARATOR);
 	
 	/**
 	 * @param scripts are all the scripts that are executed, if the current version is lower than this of the script
 	 */
-	public ExplicitMigrater(MigrationScript ...scripts)
+	public ExplicitMigrater(MigrationScript<?> ...scripts)
 	{
-		for (MigrationScript script : scripts) 
+		for (MigrationScript<?> script : scripts) 
 		{
 			this.sortedScripts.add(script);
 		}
 	}
 
 	@Override
-	public TreeSet<MigrationScript> getSortedScripts() {
+	public TreeSet<MigrationScript<?>> getSortedScripts() {
 		return this.sortedScripts;
 	}
 }
