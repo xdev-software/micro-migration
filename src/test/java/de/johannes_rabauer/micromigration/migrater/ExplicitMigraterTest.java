@@ -22,8 +22,8 @@ class ExplicitMigraterTest
 			new MicroMigrationScriptDummy(new MigrationVersion(1)),
 			new MicroMigrationScriptDummy(new MigrationVersion(2))
 		);
-		assertEquals(1, migrater.getSortedScripts().first().getTargetVersion().getMajorVersion());
-		assertEquals(2, migrater.getSortedScripts().last().getTargetVersion().getMajorVersion());
+		assertEquals(1, migrater.getSortedScripts().first().getTargetVersion().getVersions()[0]);
+		assertEquals(2, migrater.getSortedScripts().last().getTargetVersion().getVersions()[0]);
 	}	
 	
 	@Test
@@ -32,8 +32,8 @@ class ExplicitMigraterTest
 			new MicroMigrationScriptDummy(new MigrationVersion(2)),
 			new MicroMigrationScriptDummy(new MigrationVersion(1))
 		);
-		assertEquals(1, migrater.getSortedScripts().first().getTargetVersion().getMajorVersion());
-		assertEquals(2, migrater.getSortedScripts().last().getTargetVersion().getMajorVersion());
+		assertEquals(1, migrater.getSortedScripts().first().getTargetVersion().getVersions()[0]);
+		assertEquals(2, migrater.getSortedScripts().last().getTargetVersion().getVersions()[0]);
 	}
 
 }

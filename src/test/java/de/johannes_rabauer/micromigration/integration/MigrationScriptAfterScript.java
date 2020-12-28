@@ -32,7 +32,7 @@ class MigrationScriptAfterScript
 			migrationStorageManager.setRoot(0);
 			migrationStorageManager.storeRoot();
 			assertEquals(0, migrationStorageManager.root());
-			assertEquals(new MigrationVersion(0,0,0), migrationStorageManager.getCurrentVersion());
+			assertEquals(new MigrationVersion(0), migrationStorageManager.getCurrentVersion());
 		}
 		
 		
@@ -45,7 +45,7 @@ class MigrationScriptAfterScript
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, secondMigrater))
 		{
 			assertEquals(1, migrationStorageManager.root());
-			assertEquals(new MigrationVersion(1,0,0), migrationStorageManager.getCurrentVersion());
+			assertEquals(new MigrationVersion(1), migrationStorageManager.getCurrentVersion());
 		}
 
 		
@@ -58,7 +58,7 @@ class MigrationScriptAfterScript
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, thirdMigrater))
 		{
 			assertEquals(2, migrationStorageManager.root());
-			assertEquals(new MigrationVersion(2,0,0), migrationStorageManager.getCurrentVersion());
+			assertEquals(new MigrationVersion(2), migrationStorageManager.getCurrentVersion());
 		}
 	}
 	
@@ -72,7 +72,7 @@ class MigrationScriptAfterScript
 			storageManager.setRoot(firstRoot);
 			storageManager.storeRoot();
 			assertEquals(Integer.valueOf(0), firstRoot.getObject());
-			assertEquals(new MigrationVersion(0,0,0), firstRoot.getVersion());
+			assertEquals(new MigrationVersion(0), firstRoot.getVersion());
 		}
 		
 		
@@ -91,7 +91,7 @@ class MigrationScriptAfterScript
 			.migrate(storageManager.root());
 			VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
 			assertEquals(Integer.valueOf(1), currentRoot.getObject());
-			assertEquals(new MigrationVersion(1,0,0), currentRoot.getVersion());
+			assertEquals(new MigrationVersion(1), currentRoot.getVersion());
 		}
 
 		
@@ -110,7 +110,7 @@ class MigrationScriptAfterScript
 			.migrate(storageManager.root());
 			VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
 			assertEquals(Integer.valueOf(2), currentRoot.getObject());
-			assertEquals(new MigrationVersion(2,0,0), currentRoot.getVersion());
+			assertEquals(new MigrationVersion(2), currentRoot.getVersion());
 		}
 	}
 	

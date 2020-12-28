@@ -1,6 +1,8 @@
 package de.johannes_rabauer.micromigration.version;
 
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  * Defines one version of the MicroStream datastore.
@@ -10,64 +12,60 @@ import java.util.Comparator;
  */
 public class MigrationVersion 
 {
-	private final int majorVersion;
-	private final int minorVersion;
-	private final int patchVersion;
+	private final int[] versions;
 	
-	public MigrationVersion
-	(
-		int majorVersion
-	)
+	public MigrationVersion(int... versions)
 	{
-		this(majorVersion, 0);
+		if(versions == null || versions.length == 0)
+		{
+			this.versions = new int[] {0};
+		}
+		else
+		{
+			this.versions = versions;
+		}
 	}	
 	
-	public MigrationVersion
-	(
-		int majorVersion,
-		int minorVersion
-	)
+	public MigrationVersion(List<Integer> versionsAsList)
 	{
-		this(majorVersion, minorVersion, 0);		
-	}	
-	
-	public MigrationVersion
-	(
-		int majorVersion,
-		int minorVersion,
-		int patchVersion
-	)
+		if(versionsAsList == null || versionsAsList.size() == 0)
+		{
+			this.versions = new int[] {0};
+		}
+		else
+		{
+			int[] versionsAsArray = new int[versionsAsList.size()];
+			for(int i = 0; i < versionsAsArray.length; i++)
+			{
+				versionsAsArray[i] = versionsAsList.get(i);
+			}
+			this.versions = versionsAsArray;
+		}
+	}
+
+	public int[] getVersions() 
 	{
-		this.majorVersion = majorVersion;
-		this.minorVersion = minorVersion;
-		this.patchVersion = patchVersion;
-	}
-
-	public int getMajorVersion() {
-		return majorVersion;
-	}
-
-	public int getMinorVersion() {
-		return minorVersion;
-	}
-
-	public int getPatchVersion() {
-		return patchVersion;
+		return this.versions;
 	}
 	
 	@Override
-	public String toString() {
-		return "v" + this.majorVersion + "." + this.minorVersion + "." + this.patchVersion;
+	public String toString() 
+	{
+		final StringBuilder sb = new StringBuilder("v");
+		for (int version : versions) 
+		{
+			sb.append(version).append(".");
+		}
+		sb.deleteCharAt(sb.length()-1);
+		return sb.toString();
 	}
-
+	
 	@Override
 	public int hashCode() 
 	{
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + majorVersion;
-		result = prime * result + minorVersion;
-		result = prime * result + patchVersion;
+		result = prime * result + Arrays.hashCode(versions);
 		return result;
 	}
 
@@ -81,31 +79,17 @@ public class MigrationVersion
 		if (getClass() != obj.getClass())
 			return false;
 		MigrationVersion other = (MigrationVersion) obj;
-		if (majorVersion != other.majorVersion)
-			return false;
-		if (minorVersion != other.minorVersion)
-			return false;
-		if (patchVersion != other.patchVersion)
+		if (!Arrays.equals(versions, other.versions))
 			return false;
 		return true;
 	}
-	
+
 	public static Comparator<MigrationVersion> COMPARATOR = new Comparator<MigrationVersion>() 
 	{
 		@Override
 		public int compare(MigrationVersion o1, MigrationVersion o2) 
 		{
-			int majorVersionCompare = Integer.compare(o1.majorVersion, o2.majorVersion);
-			if(majorVersionCompare != 0)
-			{
-				return majorVersionCompare;
-			}
-			int minorVersionCompare = Integer.compare(o1.minorVersion, o2.minorVersion);
-			if(minorVersionCompare != 0)
-			{
-				return minorVersionCompare;
-			}
-			return Integer.compare(o1.patchVersion, o2.patchVersion);
+			return Arrays.compare(o1.versions, o2.versions);
 		}
 	};
 }

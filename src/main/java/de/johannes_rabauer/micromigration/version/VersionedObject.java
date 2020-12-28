@@ -18,7 +18,7 @@ public class VersionedObject<T> implements Versioned
 	public VersionedObject(T actualObject)
 	{
 		this.actualObject   = actualObject               ;
-		this.currentVersion = new MigrationVersion(0,0,0);
+		this.currentVersion = new MigrationVersion(0);
 	}
 	
 	@Override

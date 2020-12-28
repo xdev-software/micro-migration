@@ -12,12 +12,12 @@ import java.util.Objects;
 public class VersionedRoot implements Versioned 
 {
 	private MigrationVersion currentVersion;
-	private Object                actualRoot    ;
+	private Object           actualRoot    ;
 	
 	public VersionedRoot(Object actualRoot)
 	{
-		this.actualRoot     = actualRoot                      ;
-		this.currentVersion = new MigrationVersion(0,0,0);
+		this.actualRoot     = actualRoot             ;
+		this.currentVersion = new MigrationVersion(0);
 	}
 	
 	@Override

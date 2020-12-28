@@ -14,14 +14,14 @@ class ReflectiveVersionMigrationScriptTest
 	@Test
 	void testCorrectName_v1_CorrectClassName() 
 	{
-		assertEquals(new MigrationVersion(1, 0, 0), new v1_CorrectClassName().getTargetVersion());
+		assertEquals(new MigrationVersion(1), new v1_CorrectClassName().getTargetVersion());
 	}
 
 	public static class v1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy{}
 	@Test
 	void testCorrectName_v1_1_CorrectClassName() 
 	{
-		assertEquals(new MigrationVersion(1, 1, 0), new v1_1_CorrectClassName().getTargetVersion());
+		assertEquals(new MigrationVersion(1, 1), new v1_1_CorrectClassName().getTargetVersion());
 	}
 
 	public static class v1_1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy{}

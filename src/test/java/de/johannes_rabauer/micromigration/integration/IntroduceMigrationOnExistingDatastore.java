@@ -35,7 +35,7 @@ class IntroduceMigrationOnExistingDatastore
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
 		{
 			assertEquals(ROOT, migrationStorageManager.root());
-			assertEquals(1, migrationStorageManager.getCurrentVersion().getMajorVersion());
+			assertEquals(1, migrationStorageManager.getCurrentVersion().getVersions()[0]);
 		}
 	}
 }

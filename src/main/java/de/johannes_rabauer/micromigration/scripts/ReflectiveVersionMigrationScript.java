@@ -1,5 +1,7 @@
 package de.johannes_rabauer.micromigration.scripts;
 
+import java.util.ArrayList;
+
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
 /**
@@ -53,18 +55,12 @@ public abstract class ReflectiveVersionMigrationScript<T> implements  MigrationS
 		}
 		try
 		{
-			int majorVersion = Integer.parseInt(classNameParts[0]);
-			if(classNameParts.length == 2)
+			final ArrayList<Integer> versionNumbers = new ArrayList<>();
+			for(int i = 0; i < classNameParts.length - 1; i++)
 			{
-				return new MigrationVersion(majorVersion);				
+				versionNumbers.add(Integer.parseInt(classNameParts[i]));
 			}
-			int minorVersion = Integer.parseInt(classNameParts[1]);
-			if(classNameParts.length == 3)
-			{
-				return new MigrationVersion(majorVersion, minorVersion);				
-			}
-			int patchVersion = Integer.parseInt(classNameParts[2]);
-			return new MigrationVersion(majorVersion, minorVersion, patchVersion);	
+			return new MigrationVersion(versionNumbers);	
 		}
 		catch (NumberFormatException e)
 		{
