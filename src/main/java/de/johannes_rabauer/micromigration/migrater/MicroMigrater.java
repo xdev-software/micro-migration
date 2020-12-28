@@ -15,6 +15,9 @@ import one.microstream.storage.types.EmbeddedStorageManager;
  */
 public interface MicroMigrater 
 {
+	/**
+	 * @return all the contained {@link MigrationScript}s, sorted by their {@link MigrationVersion} ascending.
+	 */
 	public TreeSet<? extends MigrationScript<?>> getSortedScripts();
 	
 	/**

@@ -5,7 +5,7 @@ import java.util.TreeSet;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 
 /**
- * Executes all the available scripts to migrate the datastore to a certain version.
+ * Contains all the available scripts to migrate the datastore to a certain version.
  * <p>
  * This class needs explicit scripts which are then included in the migration process.
  * 
