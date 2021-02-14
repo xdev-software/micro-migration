@@ -2,14 +2,13 @@ package de.johannes_rabauer.micromigration.scripts;
 
 import java.util.Comparator;
 
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
 /**
  * Interface for scripts to migrate / update datastores.
  * <p>
  * One script is supposed to bring a datastore from a lower version to the target version.
- * After the {@link MigrationScript#execute(Object, MigrationEmbeddedStorageManager)} method is called,
+ * After the {@link MigrationScript#migrate(de.johannes_rabauer.micromigration.scripts.Context)} method is called,
  * the target version is reached.
  * 
  * @author Johannes Rabauer

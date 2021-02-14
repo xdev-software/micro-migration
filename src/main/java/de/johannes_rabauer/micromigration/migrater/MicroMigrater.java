@@ -2,7 +2,6 @@ package de.johannes_rabauer.micromigration.migrater;
 
 import java.util.TreeSet;
 
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import one.microstream.storage.types.EmbeddedStorageManager;
@@ -33,10 +32,10 @@ public interface MicroMigrater
 	 * @param fromVersion is the current version of the datastore. 
 	 * Scripts for lower versions then the fromVersion are not executed.
 	 * 
-	 * @param storageManager is relayed to the scripts {@link MigrationScript#execute(Object, EmbeddedStorageManager)}
+	 * @param storageManager is relayed to the scripts {@link MigrationScript#migrate(de.johannes_rabauer.micromigration.scripts.Context)}
 	 * method. This way the script can call {@link EmbeddedStorageManager#store(Object)} or another method on the storage manager.
 	 * 
-	 * @param root is relayed to the scripts {@link MigrationScript#execute(Object, MigrationEmbeddedStorageManager)}
+	 * @param root is relayed to the scripts {@link MigrationScript#migrate(de.johannes_rabauer.micromigration.scripts.Context)}
 	 * method. This way the script can change something within the root object.
 	 * 
 	 * @return the target version of the last executed script
@@ -63,10 +62,10 @@ public interface MicroMigrater
 	 * @param targetVersion is the highest allowed script version. 
 	 * Scripts which have a higher version won't be exectued.
 	 * 
-	 * @param storageManager is relayed to the scripts {@link MigrationScript#execute(Object, EmbeddedStorageManager)}
+	 * @param storageManager is relayed to the scripts {@link MigrationScript#migrate(de.johannes_rabauer.micromigration.scripts.Context)}
 	 * method. This way the script can call {@link EmbeddedStorageManager#store(Object)} or another method on the storage manager.
 	 * 
-	 * @param objectToMigrate is relayed to the scripts {@link MigrationScript#execute(Object, MigrationEmbeddedStorageManager)}
+	 * @param objectToMigrate is relayed to the scripts {@link MigrationScript#migrate(de.johannes_rabauer.micromigration.scripts.Context)}
 	 * method. This way the script can change something within the object to migrate.
 	 * 
 	 * @return the target version of the last executed script
