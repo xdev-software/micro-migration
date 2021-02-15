@@ -1,5 +1,6 @@
 package de.johannes_rabauer.micromigration.migrater;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
@@ -46,7 +47,7 @@ class ExplicitMigraterTest
 		assertEquals(2, migrater.getSortedScripts().last().getTargetVersion().getVersions()[0]);
 	}	
 	
-	@Test
+	@Test 
 	void testWrongTypedVersionedScript(@TempDir Path storageFolder) 
 	{		
 		try(final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(storageFolder, new ExplicitMigrater()))

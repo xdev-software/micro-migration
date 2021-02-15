@@ -1,7 +1,7 @@
 package de.johannes_rabauer.micromigration.integration;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,7 +16,7 @@ import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.scripts.SimpleTypedMigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
-public class StoreStuffInMigrationStorageManager 
+class StoreStuffInMigrationStorageManagerTest 
 {	
 	private static class RootClass
 	{
@@ -29,11 +29,11 @@ public class StoreStuffInMigrationStorageManager
 	}
 	
 	@Test
-	public void testStoringSomethingAfterUpdating(@TempDir Path storageFolder) throws IOException 
+	void testStoringSomethingAfterUpdating(@TempDir Path storageFolder) throws IOException 
 	{
 		final MigrationScript<Object> script = new SimpleTypedMigrationScript<>(
-				new MigrationVersion(1), 
-				(context) -> {}
+			new MigrationVersion(1), 
+			(context) -> {}
 		);
 		final ExplicitMigrater migrater = new ExplicitMigrater(script);
 		//Create new store and change stored object

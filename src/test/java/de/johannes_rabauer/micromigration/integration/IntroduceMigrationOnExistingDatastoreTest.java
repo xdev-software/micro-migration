@@ -1,6 +1,6 @@
 package de.johannes_rabauer.micromigration.integration;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,12 +16,12 @@ import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import one.microstream.storage.types.EmbeddedStorage;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
-class IntroduceMigrationOnExistingDatastore 
+class IntroduceMigrationOnExistingDatastoreTest 
 {
 	final static String ROOT = "OriginalRoot";
 
 	@Test
-	public void testIntroducingMigrationOnExistingDatastore_MigrationEmbeddedStorageManager(@TempDir Path storageFolder) throws IOException 
+	void testIntroducingMigrationOnExistingDatastore_MigrationEmbeddedStorageManager(@TempDir Path storageFolder) throws IOException 
 	{
 		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start(storageFolder))
 		{

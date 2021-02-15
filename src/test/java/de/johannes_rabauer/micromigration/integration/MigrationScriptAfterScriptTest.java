@@ -1,6 +1,6 @@
 package de.johannes_rabauer.micromigration.integration;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -20,10 +20,10 @@ import de.johannes_rabauer.micromigration.version.VersionedObject;
 import one.microstream.storage.configuration.Configuration;
 import one.microstream.storage.types.EmbeddedStorageManager;
 
-class MigrationScriptAfterScript 
+class MigrationScriptAfterScriptTest 
 {
 	@Test
-	public void testMigrationWithThreeDifferenMigrater_MigrationEmbeddedStorageManager(@TempDir Path storageFolder) throws IOException 
+	void testMigrationWithThreeDifferenMigrater_MigrationEmbeddedStorageManager(@TempDir Path storageFolder) throws IOException 
 	{
 		//First run without any migration script
 		final ExplicitMigrater firstMigrater = new ExplicitMigrater();
@@ -63,7 +63,7 @@ class MigrationScriptAfterScript
 	}
 	
 	@Test
-	public void testMigrationWithThreeDifferenMigrater_StandaloneMicroMigrationManager(@TempDir Path storageFolder) throws IOException 
+	void testMigrationWithThreeDifferenMigrater_StandaloneMicroMigrationManager(@TempDir Path storageFolder) throws IOException 
 	{
 		//First run without any migration script
 		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
@@ -89,6 +89,7 @@ class MigrationScriptAfterScript
 				storageManager
 			)
 			.migrate(storageManager.root());
+			@SuppressWarnings("unchecked")
 			VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
 			assertEquals(Integer.valueOf(1), currentRoot.getObject());
 			assertEquals(new MigrationVersion(1), currentRoot.getVersion());
@@ -108,6 +109,7 @@ class MigrationScriptAfterScript
 				storageManager
 			)
 			.migrate(storageManager.root());
+			@SuppressWarnings("unchecked")
 			VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
 			assertEquals(Integer.valueOf(2), currentRoot.getObject());
 			assertEquals(new MigrationVersion(2), currentRoot.getVersion());
