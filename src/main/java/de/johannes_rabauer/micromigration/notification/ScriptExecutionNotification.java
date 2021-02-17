@@ -1,6 +1,6 @@
 package de.johannes_rabauer.micromigration.notification;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import de.johannes_rabauer.micromigration.migrater.MicroMigrater;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
@@ -17,15 +17,15 @@ public class ScriptExecutionNotification
 	private MigrationScript<?> executedScript;
 	private MigrationVersion   sourceVersion ;
 	private MigrationVersion   targetVersion ;
-	private LocalDate          startDate     ;
-	private LocalDate          endDate       ;
+	private LocalDateTime      startDate     ;
+	private LocalDateTime      endDate       ;
 	
 	public ScriptExecutionNotification(
 		MigrationScript<?> executedScript,
 		MigrationVersion   sourceVersion , 
 		MigrationVersion   targetVersion ,
-		LocalDate          startDate     , 
-		LocalDate          endDate
+		LocalDateTime      startDate     , 
+		LocalDateTime      endDate
 	) 
 	{
 		super();
@@ -51,12 +51,12 @@ public class ScriptExecutionNotification
 		return targetVersion;
 	}
 
-	public LocalDate getStartDate() 
+	public LocalDateTime getStartDate() 
 	{
 		return startDate;
 	}
 
-	public LocalDate getEndDate() 
+	public LocalDateTime getEndDate() 
 	{
 		return endDate;
 	}

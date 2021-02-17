@@ -1,6 +1,6 @@
 package de.johannes_rabauer.micromigration.migrater;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.TreeSet;
 import java.util.function.Consumer;
@@ -67,11 +67,11 @@ public abstract class AbstractMigrater implements MicroMigrater
 			{
 				if(MigrationVersion.COMPARATOR.compare(script.getTargetVersion(), targetVersion) <= 0)
 				{
-					LocalDate startDate = null;
+					LocalDateTime startDate = null;
 					MigrationVersion versionBeforeUpdate = updateVersionWhichWasExecuted;
 					if(this.notificationConsumer != null)
 					{
-						startDate = LocalDate.now();
+						startDate = LocalDateTime.now();
 					}
 					updateVersionWhichWasExecuted = migrateWithScript(script, storageManager, objectToMigrate);
 					if(this.notificationConsumer != null)
@@ -82,7 +82,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 								versionBeforeUpdate          , 
 								updateVersionWhichWasExecuted, 
 								startDate                    , 
-								LocalDate.now()
+								LocalDateTime.now()
 							)								
 						);
 					}
