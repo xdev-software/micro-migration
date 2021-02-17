@@ -1,9 +1,11 @@
 package de.johannes_rabauer.micromigration.integration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -59,6 +61,30 @@ class MigrationScriptAfterScriptTest
 		{
 			assertEquals(2, migrationStorageManager.root());
 			assertEquals(new MigrationVersion(2), migrationStorageManager.getCurrentVersion());
+		}
+	}
+	
+	@Test
+	void testMigrationWithScriptExecutionNotification(@TempDir Path storageFolder) throws IOException 
+	{
+		final MigrationScript<Integer> firstScript = new SimpleTypedMigrationScript<>(
+				new MigrationVersion(1), 
+				(context) -> context.getStorageManager().setRoot(1)
+		);
+		final ExplicitMigrater migrater = new ExplicitMigrater(firstScript);
+		final AtomicBoolean notificationReceived = new AtomicBoolean(false);
+		migrater.setNotificationConsumer(
+			notification -> 
+			{
+				assertEquals(firstScript, notification.getExecutedScript());
+				assertEquals(new MigrationVersion(0), notification.getSourceVersion());
+				assertEquals(new MigrationVersion(1), notification.getTargetVersion());
+				notificationReceived.set(true);
+			}
+		);
+		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
+		{
+			assertTrue(notificationReceived.get());
 		}
 	}
 	
