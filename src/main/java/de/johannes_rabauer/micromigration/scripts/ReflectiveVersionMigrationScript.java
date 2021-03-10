@@ -11,13 +11,16 @@ import de.johannes_rabauer.micromigration.version.MigrationVersion;
  * <code>
  * vM_Classname<br>
  * vM_m_Classname<br>
- * vM_m_p_Classname<br>
+ * vM_m_m_Classname<br>
  * </code>
  * Where <code>v</code> is short for version and is a constant (just a char),<br>
  * <code>M</code> is a integer for the major version,<br>
- * <code>m</code> is a integer for the minor version,<br>
- * <code>p</code> is a integer for the patch version and<br>
- * <code>Classname</code> is a custom String that the user can choose.
+ * <code>m</code> is a integer for the minor version<br>
+ * <code>Classname</code> is a custom String that the user can choose.<br>
+ * This scheme can basically be extended infinetly. For example: <code>v1_1_2_2_MyUpdateScript</code>
+ * <p>
+ * Therefore the character <code>_</code> can only be used as a seperator of versions
+ * and may not be used for other purposes.
  * <p>
  * If the class name has the wrong format, an {@link Error} is thrown.
  * 
