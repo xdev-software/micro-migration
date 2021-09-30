@@ -9,7 +9,7 @@ import de.johannes_rabauer.micromigration.notification.ScriptExecutionNotificati
 import de.johannes_rabauer.micromigration.scripts.Context;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
-import one.microstream.storage.types.EmbeddedStorageManager;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 public abstract class AbstractMigrater implements MicroMigrater
 {	

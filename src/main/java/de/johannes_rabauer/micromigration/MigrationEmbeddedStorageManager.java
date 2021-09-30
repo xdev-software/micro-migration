@@ -7,15 +7,16 @@ import de.johannes_rabauer.micromigration.migrater.MicroMigrater;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import de.johannes_rabauer.micromigration.version.Versioned;
 import de.johannes_rabauer.micromigration.version.VersionedRoot;
-import one.microstream.afs.AFile;
+import one.microstream.afs.types.AFile;
 import one.microstream.collections.types.XGettingEnum;
 import one.microstream.persistence.binary.types.Binary;
 import one.microstream.persistence.types.PersistenceManager;
 import one.microstream.persistence.types.PersistenceRootsView;
+import one.microstream.persistence.types.PersistenceTypeDictionaryExporter;
 import one.microstream.reference.Reference;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import one.microstream.storage.exceptions.StorageException;
 import one.microstream.storage.types.Database;
-import one.microstream.storage.types.EmbeddedStorageManager;
 import one.microstream.storage.types.StorageConfiguration;
 import one.microstream.storage.types.StorageConnection;
 import one.microstream.storage.types.StorageEntityCacheEvaluator;
@@ -264,5 +265,11 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 	public PersistenceManager<Binary> persistenceManager() 
 	{
 		return this.nativeManager.persistenceManager();
+	}
+
+	@Override
+	public void issueFullBackup(StorageLiveFileProvider targetFileProvider,
+			PersistenceTypeDictionaryExporter typeDictionaryExporter) {
+		this.nativeManager.issueFullBackup(targetFileProvider, typeDictionaryExporter);
 	}
 }

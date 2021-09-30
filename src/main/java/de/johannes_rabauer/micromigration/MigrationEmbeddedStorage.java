@@ -4,9 +4,13 @@ import java.nio.file.Path;
 import java.util.Objects;
 
 import de.johannes_rabauer.micromigration.migrater.MicroMigrater;
-import one.microstream.storage.configuration.Configuration;
-import one.microstream.storage.types.EmbeddedStorage;
-import one.microstream.storage.types.EmbeddedStorageManager;
+import one.microstream.afs.nio.types.NioFileSystem;
+import one.microstream.configuration.types.Configuration;
+import one.microstream.storage.embedded.types.EmbeddedStorage;
+import one.microstream.storage.embedded.types.EmbeddedStorageFoundation;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import one.microstream.storage.types.Storage;
+import one.microstream.storage.types.StorageConfiguration;
 
 /**
  * Provides static utility calls to create the {@link MigrationEmbeddedStorageManager} for
@@ -19,7 +23,7 @@ public class MigrationEmbeddedStorage
 {
 	/**
 	 * Creates a {@link MigrationEmbeddedStorageManager} with the given {@link MicroMigrater}.
-	 * Uses the MicroStream {@link Configuration#Default()} configuration for the actual
+	 * Uses the MicroStream {@link EmbeddedStorageFoundation.New()} configuration for the actual
 	 * {@link EmbeddedStorageManager}.
 	 * <p>Warning "resource" is suppressed because it is used and closed in the {@link MigrationEmbeddedStorageManager}.
 	 * 
@@ -31,16 +35,14 @@ public class MigrationEmbeddedStorage
 	{
 		Objects.requireNonNull(migrater);
 		return new MigrationEmbeddedStorageManager(
-			Configuration.Default()
-			    .createEmbeddedStorageFoundation()
-			    .createEmbeddedStorageManager(),
+			createStorageManager(),
 			migrater
 		).start();
 	}
 	
 	/**
 	 * Creates a {@link MigrationEmbeddedStorageManager} with the given {@link MicroMigrater}.
-	 * Uses the MicroStream {@link Configuration#Default()} configuration for the actual
+	 * Uses the MicroStream {@link EmbeddedStorageFoundation.New()} configuration for the actual
 	 * {@link EmbeddedStorageManager}.
 	 * <p>Warning "resource" is suppressed because it is used and closed in the {@link MigrationEmbeddedStorageManager}.
 	 * 
@@ -56,12 +58,35 @@ public class MigrationEmbeddedStorage
 	{
 		Objects.requireNonNull(migrater);
 		Objects.requireNonNull(storageDirectory);
+		
 		return new MigrationEmbeddedStorageManager(
-			Configuration.Default()
-				.setBaseDirectory(storageDirectory.toAbsolutePath().toString())
-			    .createEmbeddedStorageFoundation()
-			    .createEmbeddedStorageManager(),
+			createStorageManager(storageDirectory),
 			migrater
 		).start();
+	}
+	
+	private static EmbeddedStorageManager createStorageManager(Path storageDirectory)
+	{
+		NioFileSystem fileSystem = NioFileSystem.New();
+		return EmbeddedStorageFoundation.New()
+			.setConfiguration(
+				StorageConfiguration.Builder()
+					.setStorageFileProvider(
+						Storage.FileProviderBuilder(fileSystem)
+							.setDirectory(fileSystem.ensureDirectoryPath(storageDirectory.toAbsolutePath().toString()))
+							.createFileProvider()
+					)
+					.createConfiguration()
+			)
+			.createEmbeddedStorageManager();	
+	}
+	
+	private static EmbeddedStorageManager createStorageManager()
+	{
+		return EmbeddedStorageFoundation.New()
+			.setConfiguration(
+				StorageConfiguration.Builder().createConfiguration()
+			)
+			.createEmbeddedStorageManager();	
 	}
 }

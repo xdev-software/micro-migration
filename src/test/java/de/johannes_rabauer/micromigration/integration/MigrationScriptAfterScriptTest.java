@@ -19,8 +19,8 @@ import de.johannes_rabauer.micromigration.scripts.SimpleTypedMigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import de.johannes_rabauer.micromigration.version.Versioned;
 import de.johannes_rabauer.micromigration.version.VersionedObject;
-import one.microstream.storage.configuration.Configuration;
-import one.microstream.storage.types.EmbeddedStorageManager;
+import one.microstream.storage.embedded.types.EmbeddedStorage;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 class MigrationScriptAfterScriptTest 
 {
@@ -144,11 +144,7 @@ class MigrationScriptAfterScriptTest
 	
 	private EmbeddedStorageManager startEmbeddedStorageManagerWithPath(Path storageFolder)
 	{
-		return Configuration.Default()
-					.setBaseDirectory(storageFolder.toAbsolutePath().toString())
-				    .createEmbeddedStorageFoundation()
-				    .createEmbeddedStorageManager()
-				    .start();
+		return EmbeddedStorage.start(storageFolder);
 	}
 
 }

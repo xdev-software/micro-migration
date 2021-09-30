@@ -1,6 +1,6 @@
 package de.johannes_rabauer.micromigration.scripts;
 
-import one.microstream.storage.types.EmbeddedStorageManager;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 /**
  * Container that holds necessary information for the execution of an {@link MigrationScript}

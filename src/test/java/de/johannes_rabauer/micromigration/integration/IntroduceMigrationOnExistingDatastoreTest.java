@@ -13,8 +13,8 @@ import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
 import de.johannes_rabauer.micromigration.testUtil.MicroMigrationScriptDummy;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
-import one.microstream.storage.types.EmbeddedStorage;
-import one.microstream.storage.types.EmbeddedStorageManager;
+import one.microstream.storage.embedded.types.EmbeddedStorage;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 class IntroduceMigrationOnExistingDatastoreTest 
 {

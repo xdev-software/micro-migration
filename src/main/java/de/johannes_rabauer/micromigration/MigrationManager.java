@@ -8,7 +8,7 @@ import de.johannes_rabauer.micromigration.migrater.MicroMigrater;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import de.johannes_rabauer.micromigration.version.Versioned;
-import one.microstream.storage.types.EmbeddedStorageManager;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 /**
  * Manages a given object and keeps the version for it.
