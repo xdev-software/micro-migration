@@ -3,7 +3,6 @@ package de.johannes_rabauer.micromigration.migrater;
 import java.util.TreeSet;
 
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
-import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
 /**
  * Contains all the available scripts to migrate the datastore to a certain version.
@@ -26,18 +25,7 @@ public class ExplicitMigrater extends AbstractMigrater
 	{
 		for (MigrationScript<?> script : scripts) 
 		{
-			for (MigrationScript<?> alreadyRegisteredScript : this.sortedScripts) 
-			{
-				if(MigrationVersion.COMPARATOR.compare(alreadyRegisteredScript.getTargetVersion(), script.getTargetVersion()) == 0)
-				{
-					//Two scripts with the same version are not allowed to get registered.
-					throw new VersionAlreadyRegisteredException(
-							alreadyRegisteredScript.getTargetVersion(),
-							alreadyRegisteredScript,
-							script
-					);
-				}
-			}
+			checkIfVersionIsAlreadyRegistered(script);
 			this.sortedScripts.add(script);
 		}
 	}

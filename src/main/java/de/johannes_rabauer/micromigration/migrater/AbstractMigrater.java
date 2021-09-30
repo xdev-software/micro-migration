@@ -103,5 +103,28 @@ public abstract class AbstractMigrater implements MicroMigrater
 		script.migrate(new Context<>(castedObjectToMigrate, storageManager));
 		return script.getTargetVersion();
 	}
+	
+	/**
+	 * Checks if the given {@link MigrationScript} is not already registered in the 
+	 * {@link #getSortedScripts()}.
+	 * @throws {@link VersionAlreadyRegisteredException} if script is already registered.
+	 * @param scriptToCheck. It's target version is checked, if it is not already registered.
+	 */
+	protected void checkIfVersionIsAlreadyRegistered(MigrationScript<?> scriptToCheck)
+	{
+		//Check if same version is not already registered
+		for (MigrationScript<?> alreadyRegisteredScript : this.getSortedScripts()) 
+		{
+			if(MigrationVersion.COMPARATOR.compare(alreadyRegisteredScript.getTargetVersion(), scriptToCheck.getTargetVersion()) == 0)
+			{
+				//Two scripts with the same version are not allowed to get registered.
+				throw new VersionAlreadyRegisteredException(
+						alreadyRegisteredScript.getTargetVersion(),
+						alreadyRegisteredScript,
+						scriptToCheck
+				);
+			}
+		}
+	}
 
 }
