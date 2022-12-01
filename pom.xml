@@ -6,6 +6,34 @@
 	<artifactId>micro-migration</artifactId>
 	<version>0.0.2</version>
 	<name>MicroMigration</name>
+
+	<url>https://github.com/xdev-software/micro-migration</url>
+	<scm>
+		<url>https://github.com/xdev-software/micro-migration</url>
+		<connection>https://github.com/xdev-software/micro-migration.git</connection>
+	</scm>
+
+	<organization>
+		<name>XDEV Software GmbH</name>
+		<url>https://xdev.software</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>XDEV Software GmbH</name>
+			<organization>XDEV Software GmbH</organization>
+			<url>https://xdev.software</url>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
 	<description>Migration Lib for MicroStream</description>
 
 	<!-- Build plugin to force Maven JDK 1.8 compliance -->
@@ -94,4 +122,66 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>3.4.1</version>
+						<executions>
+							<execution>
+								<id>attach-javadoc</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>3.2.1</version>
+						<executions>
+							<execution>
+								<id>attach-source</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.jreleaser</groupId>
+						<artifactId>jreleaser-maven-plugin</artifactId>
+						<version>1.3.1</version>
+						<configuration>
+							<jreleaser>
+								<signing>
+									<active>ALWAYS</active>
+									<armored>true</armored>
+								</signing>
+								<deploy>
+									<maven>
+										<nexus2>
+											<maven-central>
+												<active>ALWAYS</active>
+												<url>https://s01.oss.sonatype.org/service/local</url>;
+												<closeRepository>false</closeRepository>
+												<releaseRepository>false</releaseRepository>
+												<stagingRepositories>target/staging-deploy</stagingRepositories>
+											</maven-central>
+										</nexus2>
+									</maven>
+								</deploy>
+							</jreleaser>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
