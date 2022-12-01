@@ -1,9 +1,9 @@
 package de.johannes_rabauer.micromigration.version;
 
-import de.johannes_rabauer.micromigration.MigrationManager;
+import de.johannes_rabauer.micromigration.microstream.v5.MigrationManagerV5;
 
 /**
- * Interface used by the {@link MigrationManager} for easier versioning of objects.
+ * Interface used by the {@link MigrationManagerV5} for easier versioning of objects.
  * 
  * @author Johannes Rabauer
  * 

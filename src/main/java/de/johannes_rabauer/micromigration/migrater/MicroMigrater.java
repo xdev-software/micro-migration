@@ -2,6 +2,7 @@ package de.johannes_rabauer.micromigration.migrater;
 
 import java.util.TreeSet;
 
+import de.johannes_rabauer.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.scripts.Context;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
@@ -18,7 +19,7 @@ public interface MicroMigrater
 	/**
 	 * @return all the contained {@link MigrationScript}s, sorted by their {@link MigrationVersion} ascending.
 	 */
-	public TreeSet<? extends MigrationScript<?>> getSortedScripts();
+	public TreeSet<? extends MigrationScript<?,?>> getSortedScripts();
 	
 	/**
 	 * Executes all the scripts that are available to the migrater.
@@ -34,7 +35,7 @@ public interface MicroMigrater
 	 * Scripts for lower versions then the fromVersion are not executed.
 	 * 
 	 * @param storageManager is relayed to the scripts {@link MigrationScript#migrate(Context)}
-	 * method. This way the script can call {@link EmbeddedStorageManager#store(Object)} or another method on the storage manager.
+	 * method. This way the script can call {@link VersionAgnosticEmbeddedStorageManager#store(Object)} or another method on the storage manager.
 	 * 
 	 * @param root is relayed to the scripts {@link MigrationScript#migrate(Context)}
 	 * method. This way the script can change something within the root object.
@@ -42,9 +43,9 @@ public interface MicroMigrater
 	 * @return the target version of the last executed script
 	 */
 	public MigrationVersion migrateToNewest(
-		MigrationVersion       fromVersion   ,
-		EmbeddedStorageManager storageManager,
-		Object                 root
+		MigrationVersion                      fromVersion   ,
+		VersionAgnosticEmbeddedStorageManager storageManager,
+		Object                                root
 	);
 	
 	/**
@@ -73,9 +74,9 @@ public interface MicroMigrater
 	 */
 	public MigrationVersion migrateToVersion
 	(
-		MigrationVersion       fromVersion    ,
-		MigrationVersion       targetVersion  ,
-		EmbeddedStorageManager storageManager ,
-		Object                 objectToMigrate
+		MigrationVersion                      fromVersion    ,
+		MigrationVersion                      targetVersion  ,
+		VersionAgnosticEmbeddedStorageManager storageManager ,
+		Object                                objectToMigrate
 	);
 }

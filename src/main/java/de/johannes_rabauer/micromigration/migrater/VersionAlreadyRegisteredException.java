@@ -11,13 +11,13 @@ public class VersionAlreadyRegisteredException extends Error
 	private static final long serialVersionUID = 2153008832167067975L;
 	
 	private MigrationVersion alreadyRegisteredVersion;
-	private MigrationScript<?> alreadyRegisteredScript ;
-	private MigrationScript<?> newScriptToRegister     ;
+	private MigrationScript<?,?> alreadyRegisteredScript ;
+	private MigrationScript<?,?> newScriptToRegister     ;
 	
 	public VersionAlreadyRegisteredException(
 		MigrationVersion   alreadyRegisteredVersion,
-		MigrationScript<?> alreadyRegisteredScript , 
-		MigrationScript<?> newScriptToRegister
+		MigrationScript<?,?> alreadyRegisteredScript ,
+		MigrationScript<?,?> newScriptToRegister
 	) 
 	{
 		super("Version " + alreadyRegisteredVersion.toString() + " is already registered. Versions must be unique within the migrater.");
@@ -31,12 +31,12 @@ public class VersionAlreadyRegisteredException extends Error
 		return alreadyRegisteredVersion;
 	}
 
-	public MigrationScript<?> getAlreadyRegisteredScript() 
+	public MigrationScript<?,?> getAlreadyRegisteredScript()
 	{
 		return alreadyRegisteredScript;
 	}
 
-	public MigrationScript<?> getNewScriptToRegister() 
+	public MigrationScript<?,?> getNewScriptToRegister()
 	{
 		return newScriptToRegister;
 	}

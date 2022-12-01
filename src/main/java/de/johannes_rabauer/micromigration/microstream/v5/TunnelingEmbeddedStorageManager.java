@@ -1,8 +1,6 @@
-package de.johannes_rabauer.micromigration;
+package de.johannes_rabauer.micromigration.microstream.v5;
 
-import java.util.Objects;
-import java.util.function.Predicate;
-
+import de.johannes_rabauer.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.migrater.MicroMigrater;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import de.johannes_rabauer.micromigration.version.Versioned;
@@ -27,206 +25,170 @@ import one.microstream.storage.types.StorageLiveFileProvider;
 import one.microstream.storage.types.StorageRawFileStatistics;
 import one.microstream.storage.types.StorageTypeDictionary;
 
+import java.util.Objects;
+import java.util.function.Predicate;
+
 
 /**
- * Wrapper class for the MicroStream {@link EmbeddedStorageManager} interface.
+ * Wrapper class for the MicroStream {@link VersionAgnosticEmbeddedStorageManager} interface.
  * <p>
  * Basically it intercepts storing the root object and places a {@link Versioned}
  * in front of it. This means the root object of the datastore is then versioned.<br>
- * Internally uses the {@link MigrationManager} to do the actual migration.
+ * Internally uses the {@link MigrationManagerV5} to do the actual migration.
  * 
  * @author Johannes Rabauer
  * 
  */
-public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager  
+public class TunnelingEmbeddedStorageManager implements EmbeddedStorageManager, VersionAgnosticEmbeddedStorageManager<EmbeddedStorageManager>
 {
-	private final EmbeddedStorageManager nativeManager;
-	private final MicroMigrater migrater     ;
-	private VersionedRoot versionRoot  ;
-	
+	protected final EmbeddedStorageManager nativeManager;
+
 	/**
-	 * @param nativeManager which will be used as the underlying storage manager. 
-	 * Almost all methods are only rerouted to this native manager. 
-	 * Only {@link #start()}, {@link #root()} and {@link #setRoot(Object)} are intercepted 
+	 * @param nativeManager which will be used as the underlying storage manager.
+	 * All methods are only rerouted to this native manager.
+	 * Only {@link #start()}, {@link #root()} and {@link #setRoot(Object)} are intercepted
 	 * and a {@link Versioned} is placed between the requests.
-	 * @param migrater which is used as source for the migration scripts
 	 */
-	public MigrationEmbeddedStorageManager(
-		EmbeddedStorageManager nativeManager,
-		MicroMigrater          migrater
+	public TunnelingEmbeddedStorageManager(
+		EmbeddedStorageManager nativeManager
 	)
 	{
 		Objects.requireNonNull(nativeManager);
-		Objects.requireNonNull(migrater);
 		this.nativeManager = nativeManager;
-		this.migrater      = migrater     ;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * <p>
-	 * Checks if the root object is of the instance of {@link Versioned}.
-	 * If it is not, the root will be replaced with the versioned root and the actual root object
-	 * will be put inside the versioned root.
-	 * <p>
-	 * After starting the storage manager, all the available update scripts are executed in order
-	 * until the newest version of the datastore is reached.
-	 */
+	////////////////////////////////////////////////////////////////
+	// Simply forward all the methods
+	////////////////////////////////////////////////////////////////
+
 	@Override
-	public MigrationEmbeddedStorageManager start() 
+	public TunnelingEmbeddedStorageManager start()
 	{
 		this.nativeManager.start();
-		if(this.nativeManager.root() instanceof VersionedRoot)
-		{
-			this.versionRoot = (VersionedRoot)this.nativeManager.root();
-		}
-		else
-		{
-			//Build VersionedRoot around actual root, set by user.
-			this.versionRoot = new VersionedRoot(this.nativeManager.root());
-			nativeManager.setRoot(versionRoot);
-			nativeManager.storeRoot();
-		}
-		new MigrationManager(
-			this.versionRoot, 
-			migrater, 
-			this
-		)
-		.migrate(this.versionRoot.getRoot());
 		return this;
-	}
-	
-	public MigrationVersion getCurrentVersion()
-	{
-		return this.versionRoot.getVersion();
 	}
 
 	@Override
 	public Object root() {
-		return this.versionRoot.getRoot();
+		return this.nativeManager.root();
 	}
 
 	@Override
 	public Object setRoot(Object newRoot) {
-		this.versionRoot.setRoot(newRoot);
-		return newRoot;
+		return this.nativeManager.setRoot(newRoot);
 	}
 
 	@Override
 	public long storeRoot() {
-		return this.nativeManager.store(this.versionRoot);
+		return this.nativeManager.storeRoot();
 	}
-	
-	////////////////////////////////////////////////////////////////
-	// Simply forward all the other methods
-	////////////////////////////////////////////////////////////////
-	
+
 	@Override
-	public StorageConfiguration configuration() 
+	public StorageConfiguration configuration()
 	{
 		return this.nativeManager.configuration();
 	}
 
 	@Override
-	public StorageTypeDictionary typeDictionary() 
+	public StorageTypeDictionary typeDictionary()
 	{
 		return this.nativeManager.typeDictionary();
 	}
 
 	@Override
-	public boolean shutdown() 
+	public boolean shutdown()
 	{
 		return this.nativeManager.shutdown();
 	}
 
-	@Override 
-	public void close() throws StorageException 
+	@Override
+	public void close() throws StorageException
 	{
 		this.nativeManager.close();
 	}
 
 	@Override
-	public StorageConnection createConnection() 
+	public StorageConnection createConnection()
 	{
 		return this.nativeManager.createConnection();
 	}
-	
+
 
 	@Override
-	public PersistenceRootsView viewRoots() 
+	public PersistenceRootsView viewRoots()
 	{
 		return this.nativeManager.viewRoots();
 	}
 
 	@Override
 	@Deprecated
-	public Reference<Object> defaultRoot() 
+	public Reference<Object> defaultRoot()
 	{
 		return this.nativeManager.defaultRoot();
 	}
 
 	@Override
-	public Database database() 
+	public Database database()
 	{
 		return this.nativeManager.database();
 	}
 
 	@Override
-	public boolean isAcceptingTasks() 
+	public boolean isAcceptingTasks()
 	{
 		return this.nativeManager.isAcceptingTasks();
 	}
 
 	@Override
-	public boolean isRunning() 
+	public boolean isRunning()
 	{
 		return this.nativeManager.isRunning();
 	}
 
 	@Override
-	public boolean isStartingUp() 
+	public boolean isStartingUp()
 	{
 		return this.nativeManager.isStartingUp();
 	}
 
 	@Override
-	public boolean isShuttingDown() 
+	public boolean isShuttingDown()
 	{
 		return this.nativeManager.isShuttingDown();
 	}
 
 	@Override
-	public void checkAcceptingTasks() 
+	public void checkAcceptingTasks()
 	{
 		this.nativeManager.checkAcceptingTasks();
 	}
 
 	@Override
-	public long initializationTime() 
+	public long initializationTime()
 	{
 		return this.nativeManager.initializationTime();
 	}
 
 	@Override
-	public long operationModeTime() 
+	public long operationModeTime()
 	{
 		return this.nativeManager.operationModeTime();
 	}
 
 	@Override
-	public boolean isActive() 
+	public boolean isActive()
 	{
 		return this.nativeManager.isActive();
 	}
 
 	@Override
-	public boolean issueGarbageCollection(long nanoTimeBudget) 
+	public boolean issueGarbageCollection(long nanoTimeBudget)
 	{
 		return this.nativeManager.issueGarbageCollection(nanoTimeBudget);
 	}
 
 	@Override
-	public boolean issueFileCheck(long nanoTimeBudget) 
+	public boolean issueFileCheck(long nanoTimeBudget)
 	{
 		return this.nativeManager.issueFileCheck(nanoTimeBudget);
 	}
@@ -238,39 +200,52 @@ public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager
 	}
 
 	@Override
-	public StorageRawFileStatistics createStorageStatistics() 
+	public StorageRawFileStatistics createStorageStatistics()
 	{
 		return this.nativeManager.createStorageStatistics();
 	}
 
 	@Override
-	public void exportChannels(StorageLiveFileProvider fileProvider, boolean performGarbageCollection) 
+	public void exportChannels(StorageLiveFileProvider fileProvider, boolean performGarbageCollection)
 	{
 		this.nativeManager.exportChannels(fileProvider, performGarbageCollection);
 	}
 
 	@Override
-	public StorageEntityTypeExportStatistics exportTypes(StorageEntityTypeExportFileProvider exportFileProvider,
-			Predicate<? super StorageEntityTypeHandler> isExportType) 
+	public StorageEntityTypeExportStatistics exportTypes(
+		StorageEntityTypeExportFileProvider exportFileProvider,
+		Predicate<? super StorageEntityTypeHandler> isExportType)
 	{
 		return this.nativeManager.exportTypes(exportFileProvider, isExportType);
 	}
 
 	@Override
-	public void importFiles(XGettingEnum<AFile> importFiles) 
+	public void importFiles(XGettingEnum<AFile> importFiles)
 	{
 		this.nativeManager.importFiles(importFiles);
 	}
 
 	@Override
-	public PersistenceManager<Binary> persistenceManager() 
+	public PersistenceManager<Binary> persistenceManager()
 	{
 		return this.nativeManager.persistenceManager();
 	}
 
 	@Override
+	public long store(Object instance)
+	{
+		return EmbeddedStorageManager.super.store(instance);
+	}
+
+	@Override public EmbeddedStorageManager getNativeStorageManager()
+	{
+		return this.nativeManager;
+	}
+
+	@Override
 	public void issueFullBackup(StorageLiveFileProvider targetFileProvider,
-			PersistenceTypeDictionaryExporter typeDictionaryExporter) {
+		PersistenceTypeDictionaryExporter typeDictionaryExporter) {
 		this.nativeManager.issueFullBackup(targetFileProvider, typeDictionaryExporter);
 	}
-}
+	
+	}

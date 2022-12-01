@@ -1,4 +1,4 @@
-package de.johannes_rabauer.micromigration;
+package de.johannes_rabauer.micromigration.microstream.v5;
 
 import java.nio.file.Path;
 import java.util.Objects;
@@ -24,7 +24,7 @@ public class MigrationEmbeddedStorage
 {
 	/**
 	 * Creates a {@link MigrationEmbeddedStorageManager} with the given {@link MicroMigrater}.
-	 * Uses the MicroStream {@link EmbeddedStorageFoundation.New()} configuration for the actual
+	 * Uses the MicroStream {@link EmbeddedStorageFoundation#New()} configuration for the actual
 	 * {@link EmbeddedStorageManager}.
 	 * <p>Warning "resource" is suppressed because it is used and closed in the {@link MigrationEmbeddedStorageManager}.
 	 * 
@@ -43,11 +43,11 @@ public class MigrationEmbeddedStorage
 	
 	/**
 	 * Creates a {@link MigrationEmbeddedStorageManager} with the given {@link MicroMigrater}.
-	 * Uses the MicroStream {@link EmbeddedStorageFoundation.New()} configuration for the actual
+	 * Uses the MicroStream {@link EmbeddedStorageFoundation#New()} configuration for the actual
 	 * {@link EmbeddedStorageManager}.
 	 * <p>Warning "resource" is suppressed because it is used and closed in the {@link MigrationEmbeddedStorageManager}.
 	 * 
-	 * @param storageDirectory is used as the base directory for the datastore {@link Configuration#setBaseDirectory(String)}
+	 * @param storageDirectory is used as the base directory for the datastore
 	 * @param migrater which is used as source for the migration scripts
 	 * @return the created storage manager with the given migrater
 	 */

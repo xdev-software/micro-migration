@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 
+import de.johannes_rabauer.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.notification.ScriptExecutionNotification;
 import de.johannes_rabauer.micromigration.scripts.Context;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
@@ -27,15 +28,15 @@ public abstract class AbstractMigrater implements MicroMigrater
 	
 	@Override
 	public MigrationVersion migrateToNewest(
-		MigrationVersion       fromVersion   ,
-		EmbeddedStorageManager storageManager,
-		Object                 root
+		MigrationVersion                      fromVersion   ,
+		VersionAgnosticEmbeddedStorageManager storageManager,
+		Object                                root
 	)
 	{
 		Objects.requireNonNull(fromVersion);
 		Objects.requireNonNull(storageManager);
 		
-		TreeSet<? extends MigrationScript<?>> sortedScripts = getSortedScripts();
+		TreeSet<? extends MigrationScript<?,?>> sortedScripts = getSortedScripts();
 		if(sortedScripts.size() > 0)
 		{
 			return migrateToVersion(
@@ -51,10 +52,10 @@ public abstract class AbstractMigrater implements MicroMigrater
 	@Override
 	public MigrationVersion migrateToVersion
 	(
-		MigrationVersion       fromVersion    ,
-		MigrationVersion       targetVersion  ,
-		EmbeddedStorageManager storageManager ,
-		Object                 objectToMigrate
+		MigrationVersion                      fromVersion    ,
+		MigrationVersion                      targetVersion  ,
+		VersionAgnosticEmbeddedStorageManager storageManager ,
+		Object                                objectToMigrate
 	)
 	{
 		Objects.requireNonNull(fromVersion);
@@ -62,7 +63,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 		Objects.requireNonNull(storageManager);
 		
 		MigrationVersion updateVersionWhichWasExecuted = fromVersion;
-		for (MigrationScript<?> script : this.getSortedScripts()) 
+		for (MigrationScript<?,?> script : this.getSortedScripts())
 		{
 			if(MigrationVersion.COMPARATOR.compare(fromVersion, script.getTargetVersion()) < 0)
 			{
@@ -94,10 +95,10 @@ public abstract class AbstractMigrater implements MicroMigrater
 	}
 	
 	@SuppressWarnings("unchecked")
-	private <T> MigrationVersion migrateWithScript(
-		MigrationScript<T>     script         ,
-		EmbeddedStorageManager storageManager ,
-		Object                 objectToMigrate
+	private <T,E> MigrationVersion migrateWithScript(
+		MigrationScript<T,E>                    script         ,
+		VersionAgnosticEmbeddedStorageManager storageManager ,
+		Object                                objectToMigrate
 	)
 	{
 		T castedObjectToMigrate = (T) objectToMigrate;
@@ -111,10 +112,10 @@ public abstract class AbstractMigrater implements MicroMigrater
 	 * @throws {@link VersionAlreadyRegisteredException} if script is already registered.
 	 * @param scriptToCheck. It's target version is checked, if it is not already registered.
 	 */
-	protected void checkIfVersionIsAlreadyRegistered(MigrationScript<?> scriptToCheck)
+	protected void checkIfVersionIsAlreadyRegistered(MigrationScript<?,?> scriptToCheck)
 	{
 		//Check if same version is not already registered
-		for (MigrationScript<?> alreadyRegisteredScript : this.getSortedScripts()) 
+		for (MigrationScript<?,?> alreadyRegisteredScript : this.getSortedScripts())
 		{
 			if(MigrationVersion.COMPARATOR.compare(alreadyRegisteredScript.getTargetVersion(), scriptToCheck.getTargetVersion()) == 0)
 			{

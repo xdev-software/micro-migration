@@ -28,7 +28,7 @@ import de.johannes_rabauer.micromigration.version.MigrationVersion;
  * @author Johannes Rabauer
  *
  */
-public abstract class ReflectiveVersionMigrationScript<T> implements  MigrationScript<T>
+public abstract class ReflectiveVersionMigrationScript<T,E> implements  MigrationScript<T,E>
 {
 	private final static char   PREFIX                     = 'v';
 	private final static String VERSION_SEPERATOR          = "_";

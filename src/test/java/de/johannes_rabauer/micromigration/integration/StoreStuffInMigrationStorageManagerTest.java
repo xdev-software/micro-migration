@@ -6,12 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
+import de.johannes_rabauer.micromigration.microstream.v5.MigrationEmbeddedStorage;
+import de.johannes_rabauer.micromigration.microstream.v5.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.scripts.SimpleTypedMigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -31,7 +32,7 @@ class StoreStuffInMigrationStorageManagerTest
 	@Test
 	void testStoringSomethingAfterUpdating(@TempDir Path storageFolder) throws IOException 
 	{
-		final MigrationScript<Object> script = new SimpleTypedMigrationScript<>(
+		final MigrationScript<Object, EmbeddedStorageManager> script = new SimpleTypedMigrationScript<>(
 			new MigrationVersion(1),
 			(context) -> {}
 		);

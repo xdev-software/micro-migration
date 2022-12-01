@@ -1,5 +1,6 @@
 package de.johannes_rabauer.micromigration.scripts;
 
+import de.johannes_rabauer.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 /**
@@ -7,19 +8,19 @@ import one.microstream.storage.embedded.types.EmbeddedStorageManager;
  * 
  * @author Johannes Rabauer
  */
-public class Context<T>
+public class Context<T, E>
 {
-	private final T                      migratingObject;
-	private final EmbeddedStorageManager storageManager ;
+	private final T migratingObject;
+	private final E storageManager ;
 	
 	public Context(
-		final T                      migratingObject, 
-		final EmbeddedStorageManager storageManager
+		final T                                     migratingObject,
+		final VersionAgnosticEmbeddedStorageManager<E> storageManager
 	) 
 	{
 		super();
 		this.migratingObject = migratingObject;
-		this.storageManager  = storageManager ;
+		this.storageManager  = storageManager.getNativeStorageManager();
 	}
 
 	/**
@@ -33,7 +34,7 @@ public class Context<T>
 	/**
 	 * @return the responsible storage manager for the migrating object
 	 */
-	public EmbeddedStorageManager getStorageManager() 
+	public E getStorageManager()
 	{
 		return storageManager;
 	}

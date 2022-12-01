@@ -12,11 +12,11 @@ import de.johannes_rabauer.micromigration.version.MigrationVersion;
  * @author Johannes Rabauer
  *
  */
-public class SimpleMigrationScript extends SimpleTypedMigrationScript<Object>
+public class SimpleMigrationScript extends SimpleTypedMigrationScript<Object,Object>
 {
 	public SimpleMigrationScript(
 		final MigrationVersion version ,
-		final Consumer<Context<Object>> consumer
+		final Consumer<Context<Object,Object>> consumer
 	) 
 	{
 		super(version, consumer);

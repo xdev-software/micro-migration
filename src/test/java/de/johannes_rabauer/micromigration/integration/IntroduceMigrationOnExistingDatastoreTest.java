@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
+import de.johannes_rabauer.micromigration.microstream.v5.MigrationEmbeddedStorage;
+import de.johannes_rabauer.micromigration.microstream.v5.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
 import de.johannes_rabauer.micromigration.testUtil.MicroMigrationScriptDummy;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;

@@ -15,7 +15,7 @@ import de.johannes_rabauer.micromigration.version.MigrationVersion;
  * @author Johannes Rabauer
  *
  */
-public interface MigrationScript<T>
+public interface MigrationScript<T, E>
 {	
 	/**
 	 * @return the version of the datastore after this script is executed.
@@ -28,12 +28,12 @@ public interface MigrationScript<T>
 	 * 
 	 * @param context that holds necessary data for the migration
 	 */
-	public void migrate(Context<T> context);
+	public void migrate(Context<T, E> context);
 	
-	public static Comparator<MigrationScript<?>> COMPARATOR = new Comparator<MigrationScript<?>>() 
+	public static Comparator<MigrationScript<?, ?>> COMPARATOR = new Comparator<MigrationScript<?,?>>()
 	{
 		@Override
-		public int compare(MigrationScript<?> o1, MigrationScript<?> o2) {
+		public int compare(MigrationScript<?, ?> o1, MigrationScript<?, ?> o2) {
 			return MigrationVersion.COMPARATOR.compare(o1.getTargetVersion(), o2.getTargetVersion());
 		}
 	};

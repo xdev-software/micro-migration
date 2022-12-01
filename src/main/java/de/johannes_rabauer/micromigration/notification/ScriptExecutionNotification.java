@@ -14,18 +14,18 @@ import de.johannes_rabauer.micromigration.version.MigrationVersion;
  */
 public class ScriptExecutionNotification 
 {
-	private MigrationScript<?> executedScript;
-	private MigrationVersion   sourceVersion ;
-	private MigrationVersion   targetVersion ;
-	private LocalDateTime      startDate     ;
-	private LocalDateTime      endDate       ;
+	private MigrationScript<?,?> executedScript;
+	private MigrationVersion     sourceVersion ;
+	private MigrationVersion     targetVersion ;
+	private LocalDateTime        startDate     ;
+	private LocalDateTime        endDate       ;
 	
 	public ScriptExecutionNotification(
-		MigrationScript<?> executedScript,
-		MigrationVersion   sourceVersion , 
-		MigrationVersion   targetVersion ,
-		LocalDateTime      startDate     , 
-		LocalDateTime      endDate
+		MigrationScript<?,?> executedScript,
+		MigrationVersion     sourceVersion ,
+		MigrationVersion     targetVersion ,
+		LocalDateTime        startDate     ,
+		LocalDateTime        endDate
 	) 
 	{
 		super();
@@ -36,7 +36,7 @@ public class ScriptExecutionNotification
 		this.endDate        = endDate       ;
 	}
 
-	public MigrationScript<?> getExecutedScript() 
+	public MigrationScript<?,?> getExecutedScript()
 	{
 		return executedScript;
 	}

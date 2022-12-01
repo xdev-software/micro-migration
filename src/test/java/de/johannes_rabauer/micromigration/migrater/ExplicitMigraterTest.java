@@ -6,12 +6,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.nio.file.Path;
 
 import de.johannes_rabauer.micromigration.testUtil.MicroMigrationScriptDummy;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
-import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
+import de.johannes_rabauer.micromigration.microstream.v5.MigrationEmbeddedStorage;
+import de.johannes_rabauer.micromigration.microstream.v5.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.scripts.SimpleTypedMigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
@@ -57,7 +58,7 @@ class ExplicitMigraterTest
 			storageManager.storeRoot();
 		}
 		final ExplicitMigrater migrater = new ExplicitMigrater(
-			new SimpleTypedMigrationScript<Double>(
+			new SimpleTypedMigrationScript<Double, EmbeddedStorageManager>(
 				new MigrationVersion(1),
 				(context) -> {
 					context.getStorageManager().setRoot(context.getMigratingObject() + 1);

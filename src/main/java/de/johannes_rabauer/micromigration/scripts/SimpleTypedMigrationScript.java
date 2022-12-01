@@ -13,10 +13,10 @@ import de.johannes_rabauer.micromigration.version.MigrationVersion;
  * @author Johannes Rabauer
  *
  */
-public class SimpleTypedMigrationScript<T> implements MigrationScript<T>
+public class SimpleTypedMigrationScript<T,E> implements MigrationScript<T,E>
 {
 	private final MigrationVersion version ;
-	private final Consumer<Context<T>> consumer;
+	private final Consumer<Context<T,E>> consumer;
 	
 	/**
 	 * @param version of the datastore after this script is executed
@@ -24,7 +24,7 @@ public class SimpleTypedMigrationScript<T> implements MigrationScript<T>
 	 */
 	public SimpleTypedMigrationScript(
 		final MigrationVersion     version ,
-		final Consumer<Context<T>> consumer      
+		final Consumer<Context<T,E>> consumer
 	)
 	{
 		Objects.requireNonNull(version );
@@ -40,7 +40,7 @@ public class SimpleTypedMigrationScript<T> implements MigrationScript<T>
 	}
 	
 	@Override
-	public void migrate(Context<T> context)
+	public void migrate(Context<T,E> context)
 	{
 		this.consumer.accept(context);
 	}
