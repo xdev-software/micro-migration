@@ -104,6 +104,6 @@ The `ReflectiveMigrater` will search for any implementations of `MicroMigrationS
 This way scripts can simply be placed in the same package and on startup of the application all scripts are loaded in.
 
 ```java
-final ReflectiveMigrater migrater = new ReflectiveMigrater("de.johannes_rabauer.micromigration.examples.reflective.scripts");
+final ReflectiveMigrater migrater = new ReflectiveMigrater("software.xdev.micromigration.examples.reflective.scripts");
 ```
 Since the `ReflectiveMigrater` uses the [Reflections library](https://github.com/ronmamo/reflections) it is extracted to its [own repository](https://github.com/JohannesRabauer/micro-migration-reflection).
