@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
+
 /**
  * Script which creates the target version of the script through the class name.
  * <p>

@@ -5,18 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
 import de.johannes_rabauer.micromigration.testUtil.MicroMigrationScriptDummy;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
-class IntroduceMigrationOnExistingDatastoreTest 
+
+class IntroduceMigrationOnExistingDatastoreTest
 {
 	final static String ROOT = "OriginalRoot";
 
@@ -35,7 +37,7 @@ class IntroduceMigrationOnExistingDatastoreTest
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
 		{
 			assertEquals(ROOT, migrationStorageManager.root());
-			assertEquals(1, migrationStorageManager.getCurrentVersion().getVersions()[0]);
+			Assertions.assertEquals(1, migrationStorageManager.getCurrentVersion().getVersions()[0]);
 		}
 	}
 }

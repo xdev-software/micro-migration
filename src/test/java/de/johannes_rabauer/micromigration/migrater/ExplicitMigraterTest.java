@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
 
+import de.johannes_rabauer.micromigration.testUtil.MicroMigrationScriptDummy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -12,10 +13,10 @@ import org.junit.jupiter.api.io.TempDir;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.scripts.SimpleTypedMigrationScript;
-import de.johannes_rabauer.micromigration.testUtil.MicroMigrationScriptDummy;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
-class ExplicitMigraterTest 
+
+class ExplicitMigraterTest
 {
 	
 	@Test

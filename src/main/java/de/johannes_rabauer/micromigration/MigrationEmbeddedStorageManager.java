@@ -27,6 +27,7 @@ import one.microstream.storage.types.StorageLiveFileProvider;
 import one.microstream.storage.types.StorageRawFileStatistics;
 import one.microstream.storage.types.StorageTypeDictionary;
 
+
 /**
  * Wrapper class for the MicroStream {@link EmbeddedStorageManager} interface.
  * <p>
@@ -40,8 +41,8 @@ import one.microstream.storage.types.StorageTypeDictionary;
 public class MigrationEmbeddedStorageManager implements EmbeddedStorageManager  
 {
 	private final EmbeddedStorageManager nativeManager;
-	private final MicroMigrater          migrater     ;
-	private       VersionedRoot          versionRoot  ;
+	private final MicroMigrater migrater     ;
+	private VersionedRoot versionRoot  ;
 	
 	/**
 	 * @param nativeManager which will be used as the underlying storage manager. 

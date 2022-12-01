@@ -12,6 +12,7 @@ import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import one.microstream.storage.types.Storage;
 import one.microstream.storage.types.StorageConfiguration;
 
+
 /**
  * Provides static utility calls to create the {@link MigrationEmbeddedStorageManager} for
  * updateable datastores. Basically a wrapper for the utility class {@link EmbeddedStorage}.

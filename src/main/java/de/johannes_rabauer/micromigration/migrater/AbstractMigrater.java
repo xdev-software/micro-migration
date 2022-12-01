@@ -11,6 +11,7 @@ import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
+
 public abstract class AbstractMigrater implements MicroMigrater
 {	
 	private Consumer<ScriptExecutionNotification> notificationConsumer = null;

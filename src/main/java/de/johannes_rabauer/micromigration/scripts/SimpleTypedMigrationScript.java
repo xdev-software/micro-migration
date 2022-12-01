@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 
+
 /**
  * Provides a simple way to create a migration script with the necessary version
  * and {@link Consumer}.
@@ -14,7 +15,7 @@ import de.johannes_rabauer.micromigration.version.MigrationVersion;
  */
 public class SimpleTypedMigrationScript<T> implements MigrationScript<T>
 {
-	private final MigrationVersion     version ;
+	private final MigrationVersion version ;
 	private final Consumer<Context<T>> consumer;
 	
 	/**

@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.migrater.ExplicitMigrater;
@@ -15,14 +11,18 @@ import de.johannes_rabauer.micromigration.migrater.VersionAlreadyRegisteredExcep
 import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.scripts.SimpleTypedMigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
-class MultipleScriptsTest 
+
+class MultipleScriptsTest
 {
 	@Test
 	void testMigrationWithTwoScriptsAtOnce_MigrationEmbeddedStorageManager(@TempDir Path storageFolder)
 	{
 		final MigrationScript<Integer> firstScript = new SimpleTypedMigrationScript<>(
-				new MigrationVersion(1), 
+				new MigrationVersion(1),
 				(context) -> context.getStorageManager().setRoot(1)
 		);
 		final MigrationScript<Integer> secondScript = new SimpleTypedMigrationScript<>(
@@ -33,7 +33,7 @@ class MultipleScriptsTest
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
 		{
 			assertEquals(2, migrationStorageManager.root());
-			assertEquals(new MigrationVersion(2), migrationStorageManager.getCurrentVersion());
+			Assertions.assertEquals(new MigrationVersion(2), migrationStorageManager.getCurrentVersion());
 		}
 	}
 	
@@ -48,7 +48,7 @@ class MultipleScriptsTest
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(2)
 		);
-		Assertions.assertThrows(VersionAlreadyRegisteredException.class, () -> 
+		Assertions.assertThrows(VersionAlreadyRegisteredException.class, () ->
 			new ExplicitMigrater(firstScript, secondScript)
 		);
 	}

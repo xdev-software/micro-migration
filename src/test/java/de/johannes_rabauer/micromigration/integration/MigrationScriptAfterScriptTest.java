@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorage;
 import de.johannes_rabauer.micromigration.MigrationEmbeddedStorageManager;
 import de.johannes_rabauer.micromigration.MigrationManager;
@@ -19,6 +16,10 @@ import de.johannes_rabauer.micromigration.scripts.SimpleTypedMigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import de.johannes_rabauer.micromigration.version.Versioned;
 import de.johannes_rabauer.micromigration.version.VersionedObject;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
@@ -34,7 +35,7 @@ class MigrationScriptAfterScriptTest
 			migrationStorageManager.setRoot(0);
 			migrationStorageManager.storeRoot();
 			assertEquals(0, migrationStorageManager.root());
-			assertEquals(new MigrationVersion(0), migrationStorageManager.getCurrentVersion());
+			Assertions.assertEquals(new MigrationVersion(0), migrationStorageManager.getCurrentVersion());
 		}
 		
 		
@@ -47,7 +48,7 @@ class MigrationScriptAfterScriptTest
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, secondMigrater))
 		{
 			assertEquals(1, migrationStorageManager.root());
-			assertEquals(new MigrationVersion(1), migrationStorageManager.getCurrentVersion());
+			Assertions.assertEquals(new MigrationVersion(1), migrationStorageManager.getCurrentVersion());
 		}
 
 		
@@ -60,7 +61,7 @@ class MigrationScriptAfterScriptTest
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, thirdMigrater))
 		{
 			assertEquals(2, migrationStorageManager.root());
-			assertEquals(new MigrationVersion(2), migrationStorageManager.getCurrentVersion());
+			Assertions.assertEquals(new MigrationVersion(2), migrationStorageManager.getCurrentVersion());
 		}
 	}
 	
@@ -76,9 +77,9 @@ class MigrationScriptAfterScriptTest
 		migrater.setNotificationConsumer(
 			notification -> 
 			{
-				assertEquals(firstScript, notification.getExecutedScript());
-				assertEquals(new MigrationVersion(0), notification.getSourceVersion());
-				assertEquals(new MigrationVersion(1), notification.getTargetVersion());
+				Assertions.assertEquals(firstScript, notification.getExecutedScript());
+				Assertions.assertEquals(new MigrationVersion(0), notification.getSourceVersion());
+				Assertions.assertEquals(new MigrationVersion(1), notification.getTargetVersion());
 				notificationReceived.set(true);
 			}
 		);
@@ -110,7 +111,7 @@ class MigrationScriptAfterScriptTest
 		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
 		{
 			new MigrationManager(
-				(Versioned) storageManager.root(), 
+				(Versioned) storageManager.root(),
 				new ExplicitMigrater(firstScript), 
 				storageManager
 			)

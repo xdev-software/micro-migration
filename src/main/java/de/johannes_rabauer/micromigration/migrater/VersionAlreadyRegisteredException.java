@@ -2,14 +2,15 @@ package de.johannes_rabauer.micromigration.migrater;
 
 import java.util.Objects;
 
-import de.johannes_rabauer.micromigration.scripts.MigrationScript;
 import de.johannes_rabauer.micromigration.version.MigrationVersion;
+import de.johannes_rabauer.micromigration.scripts.MigrationScript;
+
 
 public class VersionAlreadyRegisteredException extends Error
 {
 	private static final long serialVersionUID = 2153008832167067975L;
 	
-	private MigrationVersion   alreadyRegisteredVersion;
+	private MigrationVersion alreadyRegisteredVersion;
 	private MigrationScript<?> alreadyRegisteredScript ;
 	private MigrationScript<?> newScriptToRegister     ;
 	

@@ -10,6 +10,7 @@ import de.johannes_rabauer.micromigration.version.MigrationVersion;
 import de.johannes_rabauer.micromigration.version.Versioned;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
+
 /**
  * Manages a given object and keeps the version for it.
  * <p>
@@ -25,7 +26,7 @@ public class MigrationManager
 	private final Supplier<MigrationVersion> currentVersionGetter;
 	private final Consumer<MigrationVersion> currentVersionSetter;
 	private final Consumer<MigrationVersion> currentVersionStorer;
-	private final MicroMigrater              migrater            ;
+	private final MicroMigrater migrater            ;
 	private final EmbeddedStorageManager     storageManager      ;
 
 	/**
