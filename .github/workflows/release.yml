@@ -20,4 +20,4 @@ jobs:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           JRELEASER_GPG_SECRET_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           JRELEASER_GITHUB_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
-        run: ./mvnw -pl core -Prelease deploy jreleaser:deploy -DaltDeploymentRepository=local::file:./target/staging-deploy
+        run: mvn -pl core -Prelease deploy jreleaser:deploy -DaltDeploymentRepository=local::file:./target/staging-deploy
