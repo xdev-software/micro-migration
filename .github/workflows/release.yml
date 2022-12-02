@@ -1,0 +1,23 @@
+name: Publish package to the Maven Central Repository
+on:
+  push:
+    tags:
+      - core-v*
+  pull_request:
+    branches: [ main ]
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '9'
+          distribution: 'adopt'
+      - name: Publish package
+        env:
+          JRELEASER_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+          JRELEASER_GPG_SECRET_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          JRELEASER_GITHUB_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+        run: ./mvnw -pl core -Prelease deploy jreleaser:deploy -DaltDeploymentRepository=local::file:./target/staging-deploy
