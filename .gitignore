@@ -136,3 +136,5 @@ $RECYCLE.BIN/
 
 #MicroStream Datastore default directory
 /storage/
+
+.idea
