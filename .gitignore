@@ -137,4 +137,6 @@ $RECYCLE.BIN/
 #MicroStream Datastore default directory
 /storage/
 
+#IntelliJ
 .idea
+*.iml
