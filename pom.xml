@@ -90,7 +90,7 @@
               <execution>
                 <id>attach-javadoc</id>
                 <goals>
-                  <goal>jar</goal>
+                  <goal>aggregate</goal>
                 </goals>
               </execution>
             </executions>
@@ -103,7 +103,7 @@
               <execution>
                 <id>attach-source</id>
                 <goals>
-                  <goal>jar</goal>
+                  <goal>aggregate</goal>
                 </goals>
               </execution>
             </executions>
