@@ -1,7 +1,6 @@
 [![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration-core)](https://mvnrepository.com/artifact/software.xdev/micro-migration-core)
 [![Build](https://img.shields.io/github/workflow/status/xdev-software/micro-migration/Check%20Build/main)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Amain)
 [![javadoc core](https://javadoc.io/badge2/software.xdev/micro-migration-core/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-core)
-[![javadoc reflection](https://javadoc.io/badge2/software.xdev/micro-migration-reflection/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-reflection)
 
 # Micro migration
 When you think about default database setup, you probably imagine something like this:
@@ -29,6 +28,19 @@ the version, suited to the current code.
 
 ![Migrate datastore to new version](./docs/MigrationSequence_4.png "Migrate datastore to new version")
 
+## Usage
+
+### Maven
+
+Simply add the dependency to your `pom.xml`:
+```
+<dependency>
+    <groupId>software.xdev</groupId>
+    <artifactId>micro-migration-core</artifactId>
+    <version>0.0.2</version>
+</dependency>
+```
+
 ## Approaches
 There are two possible usages with the Micro migration library:
 
@@ -37,8 +49,8 @@ It can be used on a brand new datastore or introduced later, after a MicroStream
 Only the storage manager (`MigrationEmbeddedStorageManager`) knows about the versioning. 
 The rest of application does not know about the version and can have no regards about it.
 
-### `MigrationEmbeddedStorageManager`
-Extensive examples can be found in its [own repository](https://github.com/JohannesRabauer/micro-migration-examples).
+### MigrationEmbeddedStorageManager
+Extensive examples can be found in its own [own module](https://github.com/xdev-software/micro-migration/tree/main/examples).
 A simple example where scripts need to be registered in the `ExplicitMigrater`:
 
 ```java
@@ -70,7 +82,7 @@ public class UpdateToV1_0 implements MigrationScript<Object>
 }
 ```
 
-### `MigrationManager`
+### MigrationManager
 Although the approach with the `MigrationEmbeddedStorageManager` is pretty easy to handle, it is intrusive
 in the way, that it replaces the root entry point of the MicroStream datastore and inserts its own `VersionedRoot` as root. Some users might find this too entrusive.
 
@@ -90,7 +102,7 @@ public static void main(String[] args)
 ```
 
 ## Migrater
-### `ExplicitMigrater`
+### ExplicitMigrater
 Scripts for the migrations must be registered in a `MicroMigrater`. 
 The simplest way for this is to use the `ExplicitMigrater` and just put the scripts in the constructor.
 A downside of this method is that you need to register all scripts (new or old) manually in the constructor.
@@ -102,7 +114,7 @@ final ExplicitMigrater migrater = new ExplicitMigrater(
 );
 ```
 
-### `ReflectiveMigrater`
+### ReflectiveMigrater
 For a more convenient usage the `ReflectiveMigrater` was built. 
 You simply instanciate a object of this class with the package name of your `MicroMigrationScript`s.
 The `ReflectiveMigrater` will search for any implementations of `MicroMigrationScript` in the given package.
@@ -111,4 +123,13 @@ This way scripts can simply be placed in the same package and on startup of the 
 ```java
 final ReflectiveMigrater migrater = new ReflectiveMigrater("software.xdev.micromigration.examples.reflective.scripts");
 ```
-Since the `ReflectiveMigrater` uses the [Reflections library](https://github.com/ronmamo/reflections) it is extracted to its [own repository](https://github.com/JohannesRabauer/micro-migration-reflection).
+Since the `ReflectiveMigrater` uses the [Reflections library](https://github.com/ronmamo/reflections) it is extracted to its [own module](https://github.com/xdev-software/micro-migration/tree/main/reflection).
+
+To use this, you need to add the following dependency to your `pom.xml`:
+```
+<dependency>
+    <groupId>software.xdev</groupId>
+    <artifactId>micro-migration-reflection</artifactId>
+    <version>0.0.2</version>
+</dependency>
+```

@@ -10,7 +10,7 @@ This is the most straight forward approach to use migration scripts.
 In package `software.xdev.micromigration.examples.reflective` a migrater which finds it's scripts through reflection is used.
 So here all `MicroMigrationScript`s in the defined  `software.xdev.micromigration.examples.reflective.scripts` package are used.
 
-Since the `ReflectiveMigrater` uses the [Reflections library](https://github.com/ronmamo/reflections) it is extracted to its [own repository](https://github.com/JohannesRabauer/micro-migration-reflection).
+Since the `ReflectiveMigrater` uses the [Reflections library](https://github.com/ronmamo/reflections) it is extracted to its [own module](https://github.com/xdev-software/micro-migration/tree/main/reflection).
 
 ## Practical examples
 The package `software.xdev.micromigration.examples.practical.embedded` contains examples
