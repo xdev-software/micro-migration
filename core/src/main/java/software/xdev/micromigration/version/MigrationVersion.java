@@ -84,12 +84,5 @@ public class MigrationVersion
 		return true;
 	}
 
-	public static Comparator<MigrationVersion> COMPARATOR = new Comparator<MigrationVersion>() 
-	{
-		@Override
-		public int compare(MigrationVersion o1, MigrationVersion o2) 
-		{
-			return Arrays.compare(o1.versions, o2.versions);
-		}
-	};
+	public static Comparator<MigrationVersion> COMPARATOR = Comparator.comparing(MigrationVersion::getVersions, (o1, o2) ->  Arrays.compare(o1,o2));
 }

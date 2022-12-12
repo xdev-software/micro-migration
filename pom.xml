@@ -40,9 +40,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <!-- "Why only version 8?" - Because MicroStream is supporting Java 8 as lowest version:
+    <!-- "Why only version 9?" - Because MicroStream is supporting Java 8 as lowest version,
+    but we are using some functionality from Java 9:
     https://docs.microstream.one/manual/intro/system-requirements.html -->
-    <java.version>8</java.version>
+    <java.version>9</java.version>
     <revision>0.0.2</revision>
   </properties>
 
