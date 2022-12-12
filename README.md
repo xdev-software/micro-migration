@@ -1,6 +1,7 @@
 [![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration-core)](https://mvnrepository.com/artifact/software.xdev/micro-migration-core)
 [![Build](https://img.shields.io/github/workflow/status/xdev-software/micro-migration/Check%20Build/main)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Amain)
 [![javadoc core](https://javadoc.io/badge2/software.xdev/micro-migration-core/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-core)
+[![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6816/badge)](https://bestpractices.coreinfrastructure.org/projects/6816)
 
 # Micro migration
 When you think about default database setup, you probably imagine something like this:
