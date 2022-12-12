@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <version>0.0.2</version>
+  <version>${revision}</version>
   <groupId>software.xdev</groupId>
   <artifactId>micro-migration</artifactId>
   <name>MicroMigration</name>
@@ -40,6 +40,10 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- "Why only version 8?" - Because MicroStream is supporting Java 8 as lowest version:
+    https://docs.microstream.one/manual/intro/system-requirements.html -->
+    <java.version>8</java.version>
+    <revision>0.0.2</revision>
   </properties>
 
   <modules>
@@ -70,8 +74,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.0</version>
         <configuration>
-          <source>9</source>
-          <target>9</target>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
