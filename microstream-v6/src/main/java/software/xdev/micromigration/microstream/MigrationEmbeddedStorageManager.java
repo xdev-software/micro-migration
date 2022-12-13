@@ -1,4 +1,4 @@
-package software.xdev.micromigration.microstream.v5;
+package software.xdev.micromigration.microstream;
 
 import java.util.Objects;
 
@@ -15,7 +15,7 @@ import one.microstream.storage.embedded.types.EmbeddedStorageManager;
  * <p>
  * Basically it intercepts storing the root object and places a {@link Versioned}
  * in front of it. This means the root object of the datastore is then versioned.<br>
- * Internally uses the {@link MigrationManagerV5} to do the actual migration.
+ * Internally uses the {@link MigrationManager} to do the actual migration.
  * 
  * @author Johannes Rabauer
  * 
@@ -67,7 +67,7 @@ public class MigrationEmbeddedStorageManager extends TunnelingEmbeddedStorageMan
 			nativeManager.setRoot(versionRoot);
 			nativeManager.storeRoot();
 		}
-		new MigrationManagerV5(
+		new MigrationManager(
 			this.versionRoot, 
 			migrater, 
 			this

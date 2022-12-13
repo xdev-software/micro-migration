@@ -3,14 +3,14 @@ package software.xdev.micromigration.examples.practical.migrationManager;
 import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
 import software.xdev.micromigration.examples.practical.v0.Customer;
 import software.xdev.micromigration.examples.practical.v1AndHigher.Address;
-import software.xdev.micromigration.microstream.v5.MigrationScriptV5;
+import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.VersionedObject;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 
-public class UpdateToV1_0 implements MigrationScriptV5<VersionedObject<Object>>
+public class UpdateToV1_0 implements MigrationScript<VersionedObject<Object>>
 {
 	@Override
 	public MigrationVersion getTargetVersion()

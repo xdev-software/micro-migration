@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.nio.file.Path;
 
-import software.xdev.micromigration.microstream.v5.MigrationEmbeddedStorage;
-import software.xdev.micromigration.microstream.v5.MigrationEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.migrater.VersionAlreadyRegisteredException;
 import software.xdev.micromigration.scripts.MigrationScript;

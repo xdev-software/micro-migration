@@ -6,7 +6,7 @@
     <artifactId>micro-migration-examples</artifactId>
     <version>${revision}</version>
     <name>MicroMigration-Examples</name>
-    <description>Examples for the MicroMigration-Library</description>
+    <description>Examples for the MicroMigration-Library with MicroStream v7</description>
 
     <parent>
         <groupId>software.xdev</groupId>
@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>software.xdev</groupId>
-            <artifactId>micro-migration-microstream-v5</artifactId>
+            <artifactId>micro-migration-microstream-v7</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>

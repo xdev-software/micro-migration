@@ -2,13 +2,13 @@ package software.xdev.micromigration.examples.practical.embedded;
 
 import software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch;
 import software.xdev.micromigration.examples.practical.v1AndHigher.Customer;
-import software.xdev.micromigration.microstream.v5.MigrationScriptV5;
+import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 
-public class UpdateToV2_0 implements MigrationScriptV5<BusinessBranch>
+public class UpdateToV2_0 implements MigrationScript<BusinessBranch>
 {
 	@Override
 	public MigrationVersion getTargetVersion() 

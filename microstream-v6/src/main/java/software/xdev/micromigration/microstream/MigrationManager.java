@@ -1,10 +1,9 @@
-package software.xdev.micromigration.microstream.v5;
+package software.xdev.micromigration.microstream;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import software.xdev.micromigration.MigrationManager;
 import software.xdev.micromigration.migrater.MicroMigrater;
 import software.xdev.micromigration.scripts.MigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
@@ -22,7 +21,7 @@ import one.microstream.storage.embedded.types.EmbeddedStorageManager;
  * @author Johannes Rabauer
  *
  */
-public class MigrationManagerV5 implements MigrationManager
+public class MigrationManager implements software.xdev.micromigration.MigrationManager
 {
 	private final Supplier<MigrationVersion> currentVersionGetter;
 	private final Consumer<MigrationVersion> currentVersionSetter;
@@ -31,7 +30,7 @@ public class MigrationManagerV5 implements MigrationManager
 	private final EmbeddedStorageManager     storageManager      ;
 
 	/**
-	 * Much more complicated constructor than {@link MigrationManagerV5#MigrationManagerV5(Versioned, MicroMigrater, EmbeddedStorageManager)}.
+	 * Much more complicated constructor than {@link MigrationManager#MigrationManager(Versioned, MicroMigrater, EmbeddedStorageManager)}.
 	 * 
 	 * @param currentVersionGetter which supplies the current version of the object to update.
 	 * @param currentVersionSetter which sets the new version of the object in some membervariable. This Consumer is not supposed to store the version, but only save it in some membervariable to be stored after.
@@ -39,7 +38,7 @@ public class MigrationManagerV5 implements MigrationManager
 	 * @param migrater does the actual migration with the given {@link MigrationScript}
 	 * @param storageManager for the {@link MigrationScript}s to use. Is not used for the storing of the new version.
 	 */
-	public MigrationManagerV5
+	public MigrationManager
 	(
 		final Supplier<MigrationVersion> currentVersionGetter,
 		final Consumer<MigrationVersion> currentVersionSetter,
@@ -68,7 +67,7 @@ public class MigrationManagerV5 implements MigrationManager
 	 * @param migrater does the actual migration with the given {@link MigrationScript}
 	 * @param storageManager for the {@link MigrationScript}s to use. Is not used for the storing of the new version.
 	 */
-	public MigrationManagerV5
+	public MigrationManager
 	(
 		final Versioned              versionedObject,
 		final MicroMigrater          migrater       ,

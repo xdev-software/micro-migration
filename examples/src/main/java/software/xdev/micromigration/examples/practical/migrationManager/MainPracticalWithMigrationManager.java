@@ -1,6 +1,6 @@
 package software.xdev.micromigration.examples.practical.migrationManager;
 
-import software.xdev.micromigration.microstream.v5.MigrationManagerV5;
+import software.xdev.micromigration.microstream.MigrationManager;
 import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
 import software.xdev.micromigration.examples.practical.v0.Customer;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
@@ -44,7 +44,7 @@ public class MainPracticalWithMigrationManager
 		{
 			final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
 			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
-			new MigrationManagerV5(versionedBranch, migraterWithV1, storageManager)
+			new MigrationManager(versionedBranch, migraterWithV1, storageManager)
 				.migrate(versionedBranch);
 			System.out.println(storageManager.root().toString());
 		}
@@ -55,7 +55,7 @@ public class MainPracticalWithMigrationManager
 		{
 			final ExplicitMigrater migraterWithV2 = new ExplicitMigrater(new UpdateToV1_0(), new UpdateToV2_0());
 			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
-			new MigrationManagerV5(versionedBranch, migraterWithV2, storageManager)
+			new MigrationManager(versionedBranch, migraterWithV2, storageManager)
 				.migrate(versionedBranch);
 			System.out.println(storageManager.root().toString());
 		}

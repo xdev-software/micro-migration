@@ -7,9 +7,9 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import software.xdev.micromigration.microstream.v5.MigrationEmbeddedStorage;
-import software.xdev.micromigration.microstream.v5.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.microstream.v5.MigrationManagerV5;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.MigrationManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.scripts.MigrationScript;
 import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
@@ -110,7 +110,7 @@ class MigrationScriptAfterScriptTest
 		);
 		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
 		{
-			new MigrationManagerV5(
+			new MigrationManager(
 				(Versioned) storageManager.root(),
 				new ExplicitMigrater(firstScript),
 				storageManager
@@ -130,7 +130,7 @@ class MigrationScriptAfterScriptTest
 		);
 		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
 		{
-			new MigrationManagerV5(
+			new MigrationManager(
 				(Versioned) storageManager.root(), 
 				new ExplicitMigrater(firstScript, secondScript),
 				storageManager

@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import software.xdev.micromigration.microstream.v5.MigrationEmbeddedStorage;
-import software.xdev.micromigration.microstream.v5.MigrationEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 

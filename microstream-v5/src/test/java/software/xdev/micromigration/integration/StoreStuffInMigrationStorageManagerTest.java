@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.io.IOException;
 import java.nio.file.Path;
 
-import software.xdev.micromigration.microstream.v5.MigrationEmbeddedStorage;
-import software.xdev.micromigration.microstream.v5.MigrationEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.scripts.MigrationScript;
 import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;

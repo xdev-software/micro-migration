@@ -1,4 +1,4 @@
-package software.xdev.micromigration.microstream.v5;
+package software.xdev.micromigration.microstream;
 
 import java.nio.file.Path;
 import java.util.Objects;
