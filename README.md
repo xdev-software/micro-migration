@@ -134,3 +134,10 @@ To use this, you need to add the following dependency to your `pom.xml`:
     <version>0.0.2</version>
 </dependency>
 ```
+
+# Links
+- [Javadoc](https://javadoc.io/doc/software.xdev/micro-migration-core/latest/index.html)
+- [MvnRepository](https://mvnrepository.com/artifact/software.xdev/micro-migration-core)
+
+# Contributing
+We would love your input in any way. More about contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
