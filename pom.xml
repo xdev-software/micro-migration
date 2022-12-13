@@ -44,7 +44,7 @@
     but we are using some functionality from Java 9:
     https://docs.microstream.one/manual/intro/system-requirements.html -->
     <java.version>9</java.version>
-    <revision>0.0.2</revision>
+    <revision>0.0.3</revision>
   </properties>
 
   <modules>
@@ -52,6 +52,8 @@
     <module>reflection</module>
     <module>examples</module>
     <module>microstream-v5</module>
+    <module>microstream-v6</module>
+    <module>microstream-v7</module>
   </modules>
 
   <dependencies>
