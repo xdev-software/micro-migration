@@ -6,7 +6,6 @@ import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticE
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.MigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 
 /**
@@ -66,7 +65,7 @@ public interface MicroMigrater
 	 * Scripts which have a higher version won't be exectued.
 	 * 
 	 * @param storageManager is relayed to the scripts {@link MigrationScript#migrate(Context)}
-	 * method. This way the script can call {@link EmbeddedStorageManager#store(Object)} or another method on the storage manager.
+	 * method. This way the script can call EmbeddedStorageManager#store or another method on the storage manager.
 	 * 
 	 * @param objectToMigrate is relayed to the scripts {@link MigrationScript#migrate(Context)}
 	 * method. This way the script can change something within the object to migrate.

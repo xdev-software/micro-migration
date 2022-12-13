@@ -3,8 +3,10 @@ package software.xdev.micromigration.version;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import software.xdev.micromigration.version.MigrationVersion;
 
-class MigrationVersionTest 
+
+class MigrationVersionTest
 {
 
 	@Test

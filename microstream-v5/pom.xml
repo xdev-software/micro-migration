@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
-    <artifactId>micro-migration-reflection</artifactId>
+    <artifactId>micro-migration-microstream-v5</artifactId>
     <version>${revision}</version>
-    <name>MicroMigration-Reflection</name>
-    <description>Provides a migrater based on reflection</description>
+    <name>MicroMigration-for-MicroStreamV5</name>
+    <description>Provides the micro migration support for MicroStream version 5</description>
 
     <properties>
         <microstream.version>05.00.02-MS-GA</microstream.version>
@@ -25,21 +25,14 @@
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>0.10.2</version>
-        </dependency>
-        <dependency>
             <groupId>one.microstream</groupId>
             <artifactId>microstream-storage-embedded</artifactId>
             <version>${microstream.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>one.microstream</groupId>
             <artifactId>microstream-configuration</artifactId>
             <version>${microstream.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>software.xdev</groupId>
-            <artifactId>micro-migration-core</artifactId>
+            <artifactId>micro-migration-microstream-v5</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>

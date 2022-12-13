@@ -2,10 +2,11 @@ package software.xdev.micromigration.scripts;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import software.xdev.micromigration.scripts.Context;
+import software.xdev.micromigration.scripts.ReflectiveVersionMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
 class ReflectiveVersionMigrationScriptTest 
@@ -15,42 +16,42 @@ class ReflectiveVersionMigrationScriptTest
 	@Test
 	void testCorrectName_v1_CorrectClassName() 
 	{
-		assertEquals(new MigrationVersion(1), new v1_CorrectClassName().getTargetVersion());
+		Assertions.assertEquals(new MigrationVersion(1), new v1_CorrectClassName().getTargetVersion());
 	}
 
 	public static class v1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy{}
 	@Test
 	void testCorrectName_v1_1_CorrectClassName() 
 	{
-		assertEquals(new MigrationVersion(1, 1), new v1_1_CorrectClassName().getTargetVersion());
+		Assertions.assertEquals(new MigrationVersion(1, 1), new v1_1_CorrectClassName().getTargetVersion());
 	}
 
 	public static class v1_1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy{}
 	@Test
 	void testCorrectName_v1_1_1_CorrectClassName() 
 	{
-		assertEquals(new MigrationVersion(1, 1, 1), new v1_1_1_CorrectClassName().getTargetVersion());
+		Assertions.assertEquals(new MigrationVersion(1, 1, 1), new v1_1_1_CorrectClassName().getTargetVersion());
 	}
 
 	public static class v10_1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy{}
 	@Test
 	void testCorrectName_v10_1_1_CorrectClassName() 
 	{
-		assertEquals(new MigrationVersion(10, 1, 1), new v10_1_1_CorrectClassName().getTargetVersion());
+		Assertions.assertEquals(new MigrationVersion(10, 1, 1), new v10_1_1_CorrectClassName().getTargetVersion());
 	}
 
 	public static class v10_10_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy{}
 	@Test
 	void testCorrectName_v10_10_1_CorrectClassName() 
 	{
-		assertEquals(new MigrationVersion(10, 10, 1), new v10_10_1_CorrectClassName().getTargetVersion());
+		Assertions.assertEquals(new MigrationVersion(10, 10, 1), new v10_10_1_CorrectClassName().getTargetVersion());
 	}
 
 	public static class v10_10_10_CorrectClassName extends ReflectiveVersionMigrationScriptDummy{}
 	@Test
 	void testCorrectName_v10_10_10_CorrectClassName() 
 	{
-		assertEquals(new MigrationVersion(10, 10, 10), new v10_10_10_CorrectClassName().getTargetVersion());
+		Assertions.assertEquals(new MigrationVersion(10, 10, 10), new v10_10_10_CorrectClassName().getTargetVersion());
 	}
 
 	public static class a1_InvalidClassName extends ReflectiveVersionMigrationScriptDummy {	}
@@ -126,10 +127,10 @@ class ReflectiveVersionMigrationScriptTest
 	}
 
 
-	public static class ReflectiveVersionMigrationScriptDummy extends ReflectiveVersionMigrationScript<Object, EmbeddedStorageManager>
+	public static class ReflectiveVersionMigrationScriptDummy extends ReflectiveVersionMigrationScript<Object, Object>
 	{
 		@Override
-		public void migrate(Context<Object, EmbeddedStorageManager> context) {
+		public void migrate(Context<Object, Object> context) {
 			//Dummy
 		}
 	}
