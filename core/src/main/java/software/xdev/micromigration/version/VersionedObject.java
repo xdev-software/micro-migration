@@ -14,7 +14,10 @@ public class VersionedObject<T> implements Versioned
 {
 	private MigrationVersion currentVersion;
 	private T                actualObject  ;
-	
+
+	/**
+	 * @param actualObject set the actual object which is versioned
+	 */
 	public VersionedObject(T actualObject)
 	{
 		this.actualObject   = actualObject               ;
@@ -33,12 +36,18 @@ public class VersionedObject<T> implements Versioned
 	{
 		return this.currentVersion;
 	}
-	
+
+	/**
+	 * @param actualObject which is versioned
+	 */
 	public void setObject(T actualObject)
 	{
 		this.actualObject = actualObject;
 	}
-	
+
+	/**
+	 * @return the actual object which is versioned
+	 */
 	public T getObject()
 	{
 		return this.actualObject;

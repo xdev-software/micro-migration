@@ -19,7 +19,7 @@ public class ExplicitMigrater extends AbstractMigrater
 	/**
 	 * @param scripts are all the scripts that are executed, if the current version is lower than this of the script<br>
 	 * Versions of the scripts must be unique. That means that no version is allowed multiple times in the migrater.
-	 * @throws VersionAlreadyRegisteredException 
+	 * @throws VersionAlreadyRegisteredException if two scripts have the same version
 	 */
 	public ExplicitMigrater(MigrationScript<?,?> ...scripts) throws VersionAlreadyRegisteredException
 	{
