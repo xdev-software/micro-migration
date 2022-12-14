@@ -10,8 +10,8 @@
 
     <parent>
         <groupId>software.xdev</groupId>
-        <version>${revision}</version>
         <artifactId>micro-migration</artifactId>
+        <version>${revision}</version>
     </parent>
 
     <build>
