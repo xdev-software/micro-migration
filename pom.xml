@@ -91,9 +91,6 @@
             <source>${java.version}</source>
             <encoding>UTF-8</encoding>
             <detectJavaApiLink>false</detectJavaApiLink>
-            <!-- Don't throw ERRORs during build -->
-            <additionalOptions>-Xdoclint:none</additionalOptions>
-            <additionalJOption>-Xdoclint:none</additionalJOption>
           </configuration>
           <executions>
             <execution>
