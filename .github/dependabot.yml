@@ -32,3 +32,7 @@ updates:
   ignore:
   - dependency-name: "one.microstream:microstream-storage-embedded"
   - dependency-name: "one.microstream:microstream-storage-configuration"
+- package-ecosystem: maven
+  directory: "/microstream-v7"
+  schedule:
+    interval: "weekly"
