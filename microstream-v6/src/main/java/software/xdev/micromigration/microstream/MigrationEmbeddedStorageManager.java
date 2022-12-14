@@ -75,7 +75,10 @@ public class MigrationEmbeddedStorageManager extends TunnelingEmbeddedStorageMan
 		.migrate(this.versionRoot.getRoot());
 		return this;
 	}
-	
+
+	/**
+	 * @return current version that's managed
+	 */
 	public MigrationVersion getCurrentVersion()
 	{
 		return this.versionRoot.getVersion();
