@@ -36,9 +36,9 @@ the version, suited to the current code.
 Simply add the dependency to your `pom.xml`:
 ```
 <dependency>
-    <groupId>software.xdev</groupId>
-    <artifactId>micro-migration-core</artifactId>
-    <version>0.0.2</version>
+	<groupId>software.xdev</groupId>
+	<artifactId>micro-migration-microstream-v7</artifactId>
+	<version>0.0.3</version>
 </dependency>
 ```
 
@@ -57,10 +57,10 @@ A simple example where scripts need to be registered in the `ExplicitMigrater`:
 ```java
 public static void main(String[] args) 
 {
-    ExplicitMigrater migrater = new ExplicitMigrater(new UpdateToV1_0());
-    MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migrater);
-    //Do some business logic
-    storageManager.shutdown();
+	ExplicitMigrater migrater = new ExplicitMigrater(new UpdateToV1_0());
+	MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migrater);
+	//Do some business logic
+	storageManager.shutdown();
 }
 ```
 
@@ -110,8 +110,8 @@ A downside of this method is that you need to register all scripts (new or old) 
 
 ```java
 final ExplicitMigrater migrater = new ExplicitMigrater(
-    new UpdateToV1_0(),
-    new UpdateToV1_1()
+	new UpdateToV1_0(),
+	new UpdateToV1_1()
 );
 ```
 
@@ -129,11 +129,41 @@ Since the `ReflectiveMigrater` uses the [Reflections library](https://github.com
 To use this, you need to add the following dependency to your `pom.xml`:
 ```
 <dependency>
-    <groupId>software.xdev</groupId>
-    <artifactId>micro-migration-reflection</artifactId>
-    <version>0.0.2</version>
+	<groupId>software.xdev</groupId>
+	<artifactId>micro-migration-reflection</artifactId>
+	<version>0.0.3</version>
 </dependency>
 ```
+
+## Supported MicroStream versions
+Micro migration currently supports the following MicroStream versions:
+| MicroStream Version  | Micro migration artifact Id |
+| --- | --- |
+| 05.00.02-MS-GA  | micro-migration-microstream-v5  |
+| 06.01.00-MS-GA  | micro-migration-microstream-v6  |
+| 07.01.00-MS-GA  | micro-migration-microstream-v7  |
+
+If you are using a different, not listed version of MicroStream, this shouldn't be a problem. 
+Usually you can simply use the closest Micro migration version (f.e. you are using MicroStream `07.00.00-MS-GA`, 
+then use `micro-migration-microstream-v7`) and exclude the dependent version of MicroStream vom Micro migration:
+```
+<dependency>
+	<groupId>software.xdev</groupId>
+	<artifactId>micro-migration-microstream-v7</artifactId>
+	<version>0.0.3</version>
+	<exclusions>
+		<exclusion>
+			<groupId>one.microstream</groupId>
+			<artifactId>microstream-storage-embedded</artifactId>
+		</exclusion>
+		<exclusion>
+			<groupId>one.microstream</groupId>
+			<artifactId>microstream-configuration</artifactId>
+		</exclusion>
+	</exclusions>
+</dependency>
+```
+Since there is rarely a breaking change, this works 90% of times.
 
 # Links
 - [Javadoc](https://javadoc.io/doc/software.xdev/micro-migration-core/latest/index.html)
