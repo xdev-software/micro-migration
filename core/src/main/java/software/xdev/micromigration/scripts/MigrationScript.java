@@ -20,7 +20,7 @@ public interface MigrationScript<T, E>
 	/**
 	 * @return the version of the datastore after this script is executed.
 	 */
-	public MigrationVersion getTargetVersion();
+	MigrationVersion getTargetVersion();
 	
 	/**
 	 * Execute logic to migrate the given datastore to a newer version of the store.
@@ -28,13 +28,11 @@ public interface MigrationScript<T, E>
 	 * 
 	 * @param context that holds necessary data for the migration
 	 */
-	public void migrate(Context<T, E> context);
-	
-	public static Comparator<MigrationScript<?, ?>> COMPARATOR = new Comparator<MigrationScript<?,?>>()
-	{
-		@Override
-		public int compare(MigrationScript<?, ?> o1, MigrationScript<?, ?> o2) {
-			return MigrationVersion.COMPARATOR.compare(o1.getTargetVersion(), o2.getTargetVersion());
-		}
-	};
+	void migrate(Context<T, E> context);
+
+	/**
+	 * Provides a {@link Comparator} that compares the {@link #getTargetVersion()} of the given scripts
+	 */
+	Comparator<MigrationScript<?, ?>> COMPARATOR =
+		(o1, o2) -> MigrationVersion.COMPARATOR.compare(o1.getTargetVersion(), o2.getTargetVersion());
 }

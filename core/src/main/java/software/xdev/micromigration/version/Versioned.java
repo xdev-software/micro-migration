@@ -8,6 +8,14 @@ package software.xdev.micromigration.version;
  */
 public interface Versioned 
 {
-	public void setVersion(MigrationVersion version);
-	public MigrationVersion getVersion();
+	/**
+	 * @param version to set the current version of the object
+	 */
+	void setVersion(MigrationVersion version);
+
+	/**
+	 *
+	 * @return the current version of the object
+	 */
+	MigrationVersion getVersion();
 }

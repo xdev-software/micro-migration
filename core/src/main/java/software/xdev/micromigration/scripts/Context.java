@@ -12,9 +12,13 @@ public class Context<T, E>
 {
 	private final T migratingObject;
 	private final E storageManager ;
-	
+
+	/**
+	 * @param migratingObject that must be migrated to a new version
+	 * @param storageManager where the migratingObject is stored
+	 */
 	public Context(
-		final T                                     migratingObject,
+		final T                                        migratingObject,
 		final VersionAgnosticEmbeddedStorageManager<E> storageManager
 	) 
 	{

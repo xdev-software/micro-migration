@@ -12,6 +12,12 @@ import software.xdev.micromigration.scripts.MigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
 
+/**
+ * Provides the basic functionality to apply {@link MigrationScript}s to
+ * a datastore.
+ *
+ * @author Johannes Rabauer
+ */
 public abstract class AbstractMigrater implements MicroMigrater
 {	
 	private Consumer<ScriptExecutionNotification> notificationConsumer = null;
@@ -108,7 +114,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 	/**
 	 * Checks if the given {@link MigrationScript} is not already registered in the 
 	 * {@link #getSortedScripts()}.
-	 * @throws {@link VersionAlreadyRegisteredException} if script is already registered.
+	 * @throws VersionAlreadyRegisteredException if script is already registered.
 	 * @param scriptToCheck It's target version is checked, if it is not already registered.
 	 */
 	protected void checkIfVersionIsAlreadyRegistered(MigrationScript<?,?> scriptToCheck)

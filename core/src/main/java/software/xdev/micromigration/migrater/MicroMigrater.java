@@ -19,7 +19,7 @@ public interface MicroMigrater
 	/**
 	 * @return all the contained {@link MigrationScript}s, sorted by their {@link MigrationVersion} ascending.
 	 */
-	public TreeSet<? extends MigrationScript<?,?>> getSortedScripts();
+	TreeSet<? extends MigrationScript<?,?>> getSortedScripts();
 	
 	/**
 	 * Executes all the scripts that are available to the migrater.
@@ -42,7 +42,7 @@ public interface MicroMigrater
 	 * 
 	 * @return the target version of the last executed script
 	 */
-	public MigrationVersion migrateToNewest(
+	MigrationVersion migrateToNewest(
 		MigrationVersion                      fromVersion   ,
 		VersionAgnosticEmbeddedStorageManager storageManager,
 		Object                                root
@@ -72,7 +72,7 @@ public interface MicroMigrater
 	 * 
 	 * @return the target version of the last executed script
 	 */
-	public MigrationVersion migrateToVersion
+	MigrationVersion migrateToVersion
 	(
 		MigrationVersion                      fromVersion    ,
 		MigrationVersion                      targetVersion  ,

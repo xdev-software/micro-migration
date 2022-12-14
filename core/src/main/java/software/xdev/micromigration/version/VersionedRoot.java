@@ -13,7 +13,10 @@ public class VersionedRoot implements Versioned
 {
 	private MigrationVersion currentVersion;
 	private Object           actualRoot    ;
-	
+
+	/**
+	 * @param actualRoot which is stored in the datastore and defined by the user
+	 */
 	public VersionedRoot(Object actualRoot)
 	{
 		this.actualRoot     = actualRoot             ;
@@ -32,12 +35,18 @@ public class VersionedRoot implements Versioned
 	{
 		return this.currentVersion;
 	}
-	
+
+	/**
+	 * @param actualRoot which is stored in the datastore and defined by the user
+	 */
 	public void setRoot(Object actualRoot)
 	{
 		this.actualRoot = actualRoot;
 	}
-	
+
+	/**
+	 * @return the actual root, that's defined by the user
+	 */
 	public Object getRoot()
 	{
 		return this.actualRoot;

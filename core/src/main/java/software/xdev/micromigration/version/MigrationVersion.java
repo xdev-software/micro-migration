@@ -13,7 +13,10 @@ import java.util.List;
 public class MigrationVersion 
 {
 	private final int[] versions;
-	
+
+	/**
+	 * @param versions as integers. For example 1.0.2 would be an array of [1,0,2]
+	 */
 	public MigrationVersion(int... versions)
 	{
 		if(versions == null || versions.length == 0)
@@ -24,8 +27,11 @@ public class MigrationVersion
 		{
 			this.versions = versions;
 		}
-	}	
-	
+	}
+
+	/**
+	 * @param versionsAsList as integers. For example 1.0.2 would be a list of [1,0,2]
+	 */
 	public MigrationVersion(List<Integer> versionsAsList)
 	{
 		if(versionsAsList == null || versionsAsList.size() == 0)
@@ -43,6 +49,9 @@ public class MigrationVersion
 		}
 	}
 
+	/**
+	 * @return versions as an array of integers. For example 1.0.2 would be an array of [1,0,2]
+	 */
 	public int[] getVersions() 
 	{
 		return this.versions;
@@ -79,10 +88,12 @@ public class MigrationVersion
 		if (getClass() != obj.getClass())
 			return false;
 		MigrationVersion other = (MigrationVersion) obj;
-		if (!Arrays.equals(versions, other.versions))
-			return false;
-		return true;
+		return Arrays.equals(versions, other.versions);
 	}
 
-	public static Comparator<MigrationVersion> COMPARATOR = Comparator.comparing(MigrationVersion::getVersions, (o1, o2) ->  Arrays.compare(o1,o2));
+	/**
+	 * Provides a {@link Comparator} that compares the {@link #getVersions()} of the given versions
+	 */
+	public static Comparator<MigrationVersion> COMPARATOR =
+		Comparator.comparing(MigrationVersion::getVersions, (o1, o2) ->  Arrays.compare(o1,o2));
 }

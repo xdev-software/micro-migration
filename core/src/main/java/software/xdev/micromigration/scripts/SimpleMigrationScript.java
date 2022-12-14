@@ -14,11 +14,15 @@ import software.xdev.micromigration.version.MigrationVersion;
  */
 public class SimpleMigrationScript extends SimpleTypedMigrationScript<Object,Object>
 {
+	/**
+	 * @param targetVersion to which the script is updating the object
+	 * @param consumer which consumes the object and updates it to the target version
+	 */
 	public SimpleMigrationScript(
-		final MigrationVersion version ,
+		final MigrationVersion targetVersion ,
 		final Consumer<Context<Object,Object>> consumer
 	) 
 	{
-		super(version, consumer);
+		super(targetVersion, consumer);
 	}
 }

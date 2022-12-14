@@ -21,7 +21,7 @@ class StoreStuffInMigrationStorageManagerTest
 {	
 	private static class RootClass
 	{
-		private ChildClass child = new ChildClass();
+		private final ChildClass child = new ChildClass();
 	}
 	
 	private static class ChildClass

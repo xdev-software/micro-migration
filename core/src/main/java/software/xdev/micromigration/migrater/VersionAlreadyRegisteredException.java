@@ -6,16 +6,36 @@ import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.scripts.MigrationScript;
 
 
+/**
+ * Exception that should be used if two scripts with the same version exist.
+ * @author Johannes Rabauer
+ */
 public class VersionAlreadyRegisteredException extends Error
 {
 	private static final long serialVersionUID = 2153008832167067975L;
-	
-	private MigrationVersion alreadyRegisteredVersion;
-	private MigrationScript<?,?> alreadyRegisteredScript ;
-	private MigrationScript<?,?> newScriptToRegister     ;
-	
+
+	/**
+	 * The already registered script with the same version
+	 */
+	private final MigrationVersion     alreadyRegisteredVersion;
+	/**
+	 * The version of the already registered script
+	 */
+	private final MigrationScript<?,?> alreadyRegisteredScript ;
+	/**
+	 * The script with the same version as {@link #alreadyRegisteredScript},
+	 * which should be registered as well
+	 */
+	private final MigrationScript<?,?> newScriptToRegister     ;
+
+	/**
+	 * @param alreadyRegisteredVersion The version of the already registered script
+	 * @param alreadyRegisteredScript The already registered script with the same version
+	 * @param newScriptToRegister The script with the same version as alreadyRegisteredScript,
+	 * which should be registered as well
+	 */
 	public VersionAlreadyRegisteredException(
-		MigrationVersion   alreadyRegisteredVersion,
+		MigrationVersion     alreadyRegisteredVersion,
 		MigrationScript<?,?> alreadyRegisteredScript ,
 		MigrationScript<?,?> newScriptToRegister
 	) 
@@ -26,16 +46,26 @@ public class VersionAlreadyRegisteredException extends Error
 		this.newScriptToRegister      = Objects.requireNonNull(newScriptToRegister)     ;
 	}
 
+	/**
+	 * @return the version of the already registered script
+	 */
 	public MigrationVersion getAlreadyRegisteredVersion() 
 	{
 		return alreadyRegisteredVersion;
 	}
 
+	/**
+	 * @return the already registered script with the same version
+	 */
 	public MigrationScript<?,?> getAlreadyRegisteredScript()
 	{
 		return alreadyRegisteredScript;
 	}
 
+	/**
+	 * @return the script with the same version as {@link #getAlreadyRegisteredScript()},
+	 * which should be registered as well
+	 */
 	public MigrationScript<?,?> getNewScriptToRegister()
 	{
 		return newScriptToRegister;
