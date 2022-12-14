@@ -38,6 +38,9 @@ import java.util.function.Predicate;
  */
 public class TunnelingEmbeddedStorageManager implements EmbeddedStorageManager, VersionAgnosticEmbeddedStorageManager<EmbeddedStorageManager>
 {
+	/**
+	 * The underlying, actual MicroStream EmbeddedStorageManager
+	 */
 	protected final EmbeddedStorageManager nativeManager;
 
 	/**

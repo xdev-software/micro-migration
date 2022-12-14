@@ -13,8 +13,8 @@ package software.xdev.micromigration;
 public interface MigrationManager
 {
 	/**
-	 * Migrates the given object to the newest possible version, defined by the {@link MicroMigrater}.
-	 * @param objectToMigrate is given to the {@link MicroMigrater} for migrating upon
+	 * Migrates the given object to the newest possible version, defined by the {@link software.xdev.micromigration.migrater.MicroMigrater}.
+	 * @param objectToMigrate is given to the {@link software.xdev.micromigration.migrater.MicroMigrater} for migrating upon
 	 */
 	public void migrate(Object objectToMigrate);
 }
