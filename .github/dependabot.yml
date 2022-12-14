@@ -1,0 +1,24 @@
+version: 1
+updates:
+- package-ecosystem: maven
+  directory: "/core"
+- package-ecosystem: maven
+  directory: "/examples"
+- package-ecosystem: maven
+  directory: "/reflection"
+  # Ignore the version, because it is only used for testing
+  ignore:
+  - dependency-name: "one.microstream:microstream-storage-embedded"
+  - dependency-name: "one.microstream:microstream-storage-configuration"
+- package-ecosystem: maven
+  directory: "/microstream-v5"
+  # Ignore the version, because this is supposed to be for old MicroStream versions
+  ignore:
+  - dependency-name: "one.microstream:microstream-storage-embedded"
+  - dependency-name: "one.microstream:microstream-storage-configuration"
+- package-ecosystem: maven
+  directory: "/microstream-v6"
+  # Ignore the version, because this is supposed to be for old MicroStream versions
+  ignore:
+  - dependency-name: "one.microstream:microstream-storage-embedded"
+  - dependency-name: "one.microstream:microstream-storage-configuration"
