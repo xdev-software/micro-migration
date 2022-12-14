@@ -34,7 +34,7 @@ the version, suited to the current code.
 ### Maven
 
 Simply add the dependency to your `pom.xml`:
-```
+```xml
 <dependency>
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-microstream-v7</artifactId>
@@ -55,8 +55,7 @@ Extensive examples can be found in its own [own module](https://github.com/xdev-
 A simple example where scripts need to be registered in the `ExplicitMigrater`:
 
 ```java
-public static void main(String[] args) 
-{
+public static void main(String[] args){
 	ExplicitMigrater migrater = new ExplicitMigrater(new UpdateToV1_0());
 	MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migrater);
 	//Do some business logic
@@ -75,8 +74,7 @@ public class UpdateToV1_0 implements MigrationScript<Object>
 	}
 	
 	@Override
-	public void migrate(Context<String> context) 
-	{
+	public void migrate(Context<String, EmbeddedStorageManager> context){
 		//Logic of the update
 		context.getStorageManager().setRoot("Update 1.0");
 	}
@@ -91,8 +89,7 @@ That's why a second approach can be used, where the `MigrationManager` is used. 
 the `MigrationEmbeddedStorageManager`. 
 
 ```java
-public static void main(String[] args) 
-{
+public static void main(String[] args){
 	ExplicitMigrater migrater = new ExplicitMigrater(new UpdateToV1_0());
 	EmbeddedStorageManager storageManager = EmbeddedStorage.start();
 		VersionedObject<Object> versionedRoot =(VersionedObject<Object>)storageManager.root();
@@ -127,7 +124,7 @@ final ReflectiveMigrater migrater = new ReflectiveMigrater("software.xdev.microm
 Since the `ReflectiveMigrater` uses the [Reflections library](https://github.com/ronmamo/reflections) it is extracted to its [own module](https://github.com/xdev-software/micro-migration/tree/main/reflection).
 
 To use this, you need to add the following dependency to your `pom.xml`:
-```
+```xml
 <dependency>
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-reflection</artifactId>
@@ -146,7 +143,7 @@ Micro migration currently supports the following MicroStream versions:
 If you are using a different, not listed version of MicroStream, this shouldn't be a problem. 
 Usually you can simply use the closest Micro migration version (f.e. you are using MicroStream `07.00.00-MS-GA`, 
 then use `micro-migration-microstream-v7`) and exclude the dependent version of MicroStream vom Micro migration:
-```
+```xml
 <dependency>
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-microstream-v7</artifactId>
