@@ -8,7 +8,7 @@ import one.microstream.storage.embedded.types.EmbeddedStorageManager;
  * Interface for scripts to migrate / update datastores.
  * <p>
  * One script is supposed to bring a datastore from a lower version to the target version.
- * After the {@link MigrationScript#migrate(Context)} method is called,
+ * After the {@link software.xdev.micromigration.scripts.MigrationScript#migrate(Context)} method is called,
  * the target version is reached.
  * 
  * @author Johannes Rabauer

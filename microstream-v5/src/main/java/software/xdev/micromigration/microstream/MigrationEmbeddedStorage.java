@@ -5,7 +5,6 @@ import java.util.Objects;
 
 import software.xdev.micromigration.migrater.MicroMigrater;
 import one.microstream.afs.nio.types.NioFileSystem;
-import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.embedded.types.EmbeddedStorageFoundation;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import one.microstream.storage.types.Storage;
@@ -13,8 +12,8 @@ import one.microstream.storage.types.StorageConfiguration;
 
 
 /**
- * Provides static utility calls to create the {@link MigrationEmbeddedStorageManager} for
- * updateable datastores. Basically a wrapper for the utility class {@link EmbeddedStorage}.
+ * Provides static utility calls to create the {@link software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager} for
+ * updateable datastores. Basically a wrapper for the utility class {@link one.microstream.storage.embedded.types.EmbeddedStorage}.
  * 
  * @author Johannes Rabauer
  * 

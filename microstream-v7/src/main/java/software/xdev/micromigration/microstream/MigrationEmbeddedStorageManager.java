@@ -11,11 +11,11 @@ import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 
 /**
- * Wrapper class for the MicroStream {@link VersionAgnosticEmbeddedStorageManager} interface.
+ * Wrapper class for the MicroStream {@link software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager} interface.
  * <p>
- * Basically it intercepts storing the root object and places a {@link Versioned}
+ * Basically it intercepts storing the root object and places a {@link software.xdev.micromigration.version.Versioned}
  * in front of it. This means the root object of the datastore is then versioned.<br>
- * Internally uses the {@link MigrationManager} to do the actual migration.
+ * Internally uses the {@link software.xdev.micromigration.microstream.MigrationManager} to do the actual migration.
  * 
  * @author Johannes Rabauer
  * 

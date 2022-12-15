@@ -27,14 +27,14 @@ import java.util.function.Predicate;
 
 
 /**
- * Wrapper class for the MicroStream {@link VersionAgnosticEmbeddedStorageManager} interface.
+ * Wrapper class for the MicroStream {@link software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager} interface.
  * <p>
  * Basically it intercepts storing the root object and places a {@link Versioned}
  * in front of it. This means the root object of the datastore is then versioned.<br>
  * Internally uses the {@link MigrationManager} to do the actual migration.
- * 
+ *
  * @author Johannes Rabauer
- * 
+ *
  */
 public class TunnelingEmbeddedStorageManager implements EmbeddedStorageManager, VersionAgnosticEmbeddedStorageManager<EmbeddedStorageManager>
 {
