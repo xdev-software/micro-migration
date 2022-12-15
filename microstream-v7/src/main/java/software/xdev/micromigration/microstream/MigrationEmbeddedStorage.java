@@ -13,11 +13,11 @@ import one.microstream.storage.types.StorageConfiguration;
 
 
 /**
- * Provides static utility calls to create the {@link MigrationEmbeddedStorageManager} for
- * updateable datastores. Basically a wrapper for the utility class {@link EmbeddedStorage}.
- * 
+ * Provides static utility calls to create the {@link software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager} for
+ * updateable datastores. Basically a wrapper for the utility class {@link one.microstream.storage.embedded.types.EmbeddedStorage}.
+ *
  * @author Johannes Rabauer
- * 
+ *
  */
 public class MigrationEmbeddedStorage
 {

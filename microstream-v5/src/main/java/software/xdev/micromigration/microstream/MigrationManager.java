@@ -15,7 +15,7 @@ import one.microstream.storage.embedded.types.EmbeddedStorageManager;
  * Manages a given object and keeps the version for it.
  * <p>
  * Can be used to keep the version of the MicroStream-Root-Object to keep the whole
- * datastore versioned. Since it is not integrated like the {@link MigrationEmbeddedStorageManager}
+ * datastore versioned. Since it is not integrated like the {@link software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager}
  * multiple versioned objects can be used in one datastore.
  * 
  * @author Johannes Rabauer
