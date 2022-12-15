@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-core</artifactId>
-    <version>0.0.4</version>
+    <version>${revision}</version>
     <name>MicroMigration-Core</name>
     <description>Migration Lib for MicroStream</description>
 
     <parent>
         <groupId>software.xdev</groupId>
         <artifactId>micro-migration</artifactId>
-        <version>0.0.4</version>
+        <version>${revision}</version>
     </parent>
 
     <build>

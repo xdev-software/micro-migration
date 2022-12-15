@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-reflection</artifactId>
-    <version>0.0.4</version>
+    <version>${revision}</version>
     <name>MicroMigration-Reflection</name>
     <description>Provides a migrater based on reflection</description>
 
@@ -14,7 +14,7 @@
 
     <parent>
         <groupId>software.xdev</groupId>
-        <version>0.0.4</version>
+        <version>${revision}</version>
         <artifactId>micro-migration</artifactId>
     </parent>
 
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>software.xdev</groupId>
             <artifactId>micro-migration-core</artifactId>
-            <version>0.0.4</version>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>
