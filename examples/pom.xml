@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-examples</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <name>MicroMigration-Examples</name>
     <description>Examples for the MicroMigration-Library with MicroStream v7</description>
 
     <parent>
         <groupId>software.xdev</groupId>
-        <version>0.0.3</version>
+        <version>0.0.4</version>
         <artifactId>micro-migration</artifactId>
     </parent>
 
@@ -18,12 +18,12 @@
         <dependency>
             <groupId>software.xdev</groupId>
             <artifactId>micro-migration-microstream-v7</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
         </dependency>
         <dependency>
             <groupId>software.xdev</groupId>
             <artifactId>micro-migration-reflection</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
         </dependency>
     </dependencies>
 </project>

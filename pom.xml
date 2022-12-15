@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <version>0.0.3</version>
+  <version>0.0.4</version>
   <groupId>software.xdev</groupId>
   <artifactId>micro-migration</artifactId>
   <name>MicroMigration</name>
@@ -45,7 +45,7 @@
     but we are using some functionality from Java 9:
     https://docs.microstream.one/manual/intro/system-requirements.html -->
     <java.version>9</java.version>
-    <revision>0.0.3</revision>
+    <revision>0.0.4</revision>
   </properties>
 
   <modules>
