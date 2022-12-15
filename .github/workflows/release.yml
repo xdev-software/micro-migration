@@ -1,6 +1,7 @@
 name: Publish package to the Maven Central Repository
 on:
   push:
+    branches: [ main ]
     tags:
       - v*
 jobs:
@@ -16,8 +17,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      - name: Build project
-        run: mvn -B -Prelease clean install
       - name: Publish
         env:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
