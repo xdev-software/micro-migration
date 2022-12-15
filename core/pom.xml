@@ -11,7 +11,7 @@
     <parent>
         <groupId>software.xdev</groupId>
         <artifactId>micro-migration</artifactId>
-        <version>${revision}</version>
+        <version>0.0.5</version>
     </parent>
 
     <build>
