@@ -8,6 +8,7 @@
   <groupId>software.xdev</groupId>
   <artifactId>micro-migration</artifactId>
   <name>MicroMigration</name>
+  <description>Multimodule project for Micro Migration</description>
   <packaging>pom</packaging>
 
 

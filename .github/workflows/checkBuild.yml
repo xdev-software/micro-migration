@@ -58,7 +58,7 @@ jobs:
         name: jars-java-${{ matrix.java }}
         path: target/*.jar
         
-  publish:
+  publish dry run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -72,7 +72,7 @@ jobs:
           distribution: 'temurin'
       - name: Build project
         run: mvn -B -Prelease clean install
-      - name: Publish 'core'
+      - name: Publish project
         env:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.MAVEN_GPG_PUBLIC_KEY }}
