@@ -51,7 +51,6 @@
   <modules>
     <module>core</module>
     <module>reflection</module>
-    <module>examples</module>
     <module>microstream-v5</module>
     <module>microstream-v6</module>
     <module>microstream-v7</module>

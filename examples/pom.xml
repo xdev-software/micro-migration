@@ -26,20 +26,4 @@
             <version>0.0.4</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.jreleaser</groupId>
-                <artifactId>jreleaser-maven-plugin</artifactId>
-                <configuration>
-                    <jreleaser>
-                        <config>
-                            <skip>true</skip>
-                        </config>
-                    </jreleaser>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
