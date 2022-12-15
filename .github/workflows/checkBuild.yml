@@ -58,7 +58,7 @@ jobs:
         name: jars-java-${{ matrix.java }}
         path: target/*.jar
         
-  publish dry run:
+  publish-dry-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
