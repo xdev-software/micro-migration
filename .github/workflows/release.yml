@@ -16,8 +16,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      - name: Build project
-        run: mvn -B -Prelease clean install
       - name: Publish
         env:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
@@ -26,4 +24,4 @@ jobs:
           JRELEASER_GITHUB_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
           JRELEASER_NEXUS2_MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           JRELEASER_NEXUS2_MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-        run: mvn -B -Prelease deploy org.jreleaser:jreleaser-maven-plugin:deploy -DaltDeploymentRepository=local::default::file:./target/staging-deploy
+        run: mvn -B -Prelease org.jreleaser:jreleaser-maven-plugin:deploy

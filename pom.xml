@@ -144,7 +144,6 @@
       </plugins>
     </pluginManagement>
 
-
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -196,4 +195,18 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.jreleaser</groupId>
+            <artifactId>jreleaser-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 </project>
