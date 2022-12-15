@@ -34,9 +34,9 @@
                 <artifactId>jreleaser-maven-plugin</artifactId>
                 <configuration>
                     <jreleaser>
-                        <deploy>
+                        <config>
                             <skip>true</skip>
-                        </deploy>
+                        </config>
                     </jreleaser>
                 </configuration>
             </plugin>
