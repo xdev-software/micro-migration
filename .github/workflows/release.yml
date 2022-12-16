@@ -36,7 +36,7 @@ jobs:
     - name: Get version
       id: version
       run: |
-       echo "::set-output name=release::$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)"
+       echo "release=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_OUTPUT
   
     - name: Commit and Push
       run: |
