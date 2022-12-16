@@ -35,6 +35,9 @@ jobs:
     - name: Build with Maven
       run: mvn -B clean verify
       
+    - name: Build examples with Maven
+      run: mvn -B -pl examples clean verify
+      
     - name: Check for uncommited changes
       run: |
         if [[ "$(git status --porcelain)" != "" ]]; then
@@ -70,8 +73,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-      - name: Build with Maven
-        run: mvn -B clean install
       - name: Publish project
         env:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
