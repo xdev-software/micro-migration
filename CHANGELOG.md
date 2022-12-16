@@ -1,3 +1,6 @@
+## 0.0.6
+* Tried a new release-action...again.
+
 ## 0.0.5
 * Tried a new release-action.
 
