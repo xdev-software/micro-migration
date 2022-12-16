@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-microstream-v7</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.4-SNAPSHOT</version>
     <name>MicroMigration-for-MicroStreamV7</name>
     <description>Provides the micro migration support for MicroStream version 7</description>
 
@@ -14,15 +14,15 @@
 
     <parent>
         <groupId>software.xdev</groupId>
-        <version>0.0.4</version>
         <artifactId>micro-migration</artifactId>
+        <version>0.0.4-SNAPSHOT</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>software.xdev</groupId>
             <artifactId>micro-migration-core</artifactId>
-            <version>0.0.4</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>one.microstream</groupId>

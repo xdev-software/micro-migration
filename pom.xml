@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <version>0.0.4</version>
+  <version>0.0.4-SNAPSHOT</version>
   <groupId>software.xdev</groupId>
   <artifactId>micro-migration</artifactId>
   <name>MicroMigration</name>
@@ -45,7 +45,6 @@
     but we are using some functionality from Java 9:
     https://docs.microstream.one/manual/intro/system-requirements.html -->
     <java.version>9</java.version>
-    <revision>0.0.4</revision>
   </properties>
 
   <modules>
@@ -82,7 +81,6 @@
             <encoding>UTF-8</encoding>
           </configuration>
         </plugin>
-        <!-- Release-Plugins -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
@@ -129,9 +127,9 @@
                   <nexus2>
                     <maven-central>
                       <active>ALWAYS</active>
-                      <url>https://s01.oss.sonatype.org/service/local</url>;
-                      <closeRepository>false</closeRepository>
-                      <releaseRepository>false</releaseRepository>
+                      <url>https://s01.oss.sonatype.org/service/local</url>
+                      <closeRepository>true</closeRepository>
+                      <releaseRepository>true</releaseRepository>
                       <stagingRepositories>target/staging-deploy</stagingRepositories>
                     </maven-central>
                   </nexus2>
@@ -158,40 +156,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
       </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <source>${java.version}</source>
-          <encoding>UTF-8</encoding>
-          <detectJavaApiLink>false</detectJavaApiLink>
-          <!-- Don't throw ERRORs during build -->
-          <additionalOptions>-Xdoclint:none</additionalOptions>
-          <additionalJOption>-Xdoclint:none</additionalJOption>
-        </configuration>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>aggregate-jar</goal>
-            </goals>
-            <phase>package</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-source</id>
-            <goals>
-              <goal>aggregate</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
@@ -203,6 +167,39 @@
           <plugin>
             <groupId>org.jreleaser</groupId>
             <artifactId>jreleaser-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <source>${java.version}</source>
+              <encoding>UTF-8</encoding>
+              <detectJavaApiLink>false</detectJavaApiLink>
+              <!-- Don't throw ERRORs during build -->
+              <additionalOptions>-Xdoclint:none</additionalOptions>
+              <additionalJOption>-Xdoclint:none</additionalJOption>
+            </configuration>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>aggregate-jar</goal>
+                </goals>
+                <phase>package</phase>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-source</id>
+                <goals>
+                  <goal>aggregate</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
