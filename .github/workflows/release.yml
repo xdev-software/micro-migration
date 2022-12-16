@@ -30,9 +30,6 @@ jobs:
         
     - name: Un-SNAP 
       run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-    - name: Un-SNAP examples
-      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-      working-directory: examples
   
     - name: Get version
       id: version
@@ -102,12 +99,7 @@ jobs:
         
     - name: Inc Version and SNAP root
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-              
-    - name: Inc Version and SNAP root from examples
-      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-      working-directory: examples
-        
-
+       
     - name: Git Commit and Push
       run: |
         git add -A
