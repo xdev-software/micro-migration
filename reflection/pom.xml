@@ -14,15 +14,15 @@
 
     <parent>
         <groupId>software.xdev</groupId>
-        <version>${revision}</version>
         <artifactId>micro-migration</artifactId>
+        <version>${revision}</version>
     </parent>
 
     <dependencies>
         <dependency>
             <groupId>software.xdev</groupId>
             <artifactId>micro-migration-core</artifactId>
-            <version>${revision}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>

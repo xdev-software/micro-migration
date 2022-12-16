@@ -22,7 +22,7 @@
         <dependency>
             <groupId>software.xdev</groupId>
             <artifactId>micro-migration-core</artifactId>
-            <version>${revision}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>one.microstream</groupId>

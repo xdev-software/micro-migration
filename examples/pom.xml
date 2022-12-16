@@ -18,12 +18,12 @@
         <dependency>
             <groupId>software.xdev</groupId>
             <artifactId>micro-migration-microstream-v7</artifactId>
-            <version>${revision}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>software.xdev</groupId>
             <artifactId>micro-migration-reflection</artifactId>
-            <version>${revision}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
