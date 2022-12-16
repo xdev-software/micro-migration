@@ -71,6 +71,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+        # This might seem strange, but in order to see the Version update from the previous step,
+        # we must pull this change from git.
+      - name: Init Git and pull
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git pull
       - name: Set up Java
         uses: actions/setup-java@v3
         with:

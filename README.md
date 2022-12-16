@@ -1,5 +1,5 @@
-[![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration-core)](https://mvnrepository.com/artifact/software.xdev/micro-migration-core)
-[![Build](https://img.shields.io/github/workflow/status/xdev-software/micro-migration/Check%20Build/main)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Amain)
+[![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration)](https://central.sonatype.dev/artifact/software.xdev/micro-migration/0.0.4/versions)
+[![Build](https://img.shields.io/github/workflow/status/xdev-software/micro-migration/Check%20Build/main)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 [![javadoc core](https://javadoc.io/badge2/software.xdev/micro-migration-core/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-core)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6816/badge)](https://bestpractices.coreinfrastructure.org/projects/6816)
 
@@ -136,9 +136,9 @@ To use this, you need to add the following dependency to your `pom.xml`:
 Micro migration currently supports the following MicroStream versions:
 | MicroStream Version  | Micro migration artifact Id |
 | --- | --- |
-| 05.00.02-MS-GA  | micro-migration-microstream-v5  |
-| 06.01.00-MS-GA  | micro-migration-microstream-v6  |
-| 07.01.00-MS-GA  | micro-migration-microstream-v7  |
+| [05.00.02-MS-GA](https://central.sonatype.dev/artifact/one.microstream/microstream-storage/05.00.02-MS-GA)  | micro-migration-microstream-v5  |
+| [06.01.00-MS-GA](https://central.sonatype.dev/artifact/one.microstream/microstream-storage/06.01.00-MS-GA)  | micro-migration-microstream-v6  |
+| [07.01.00-MS-GA](https://central.sonatype.dev/artifact/one.microstream/microstream-storage/07.01.00-MS-GA)  | micro-migration-microstream-v7  |
 
 If you are using a different, not listed version of MicroStream, this shouldn't be a problem. 
 Usually you can simply use the closest Micro migration version (f.e. you are using MicroStream `07.00.00-MS-GA`, 
@@ -164,7 +164,7 @@ Since there is rarely a breaking change, this works 90% of times.
 
 # Links
 - [Javadoc](https://javadoc.io/doc/software.xdev/micro-migration-core/latest/index.html)
-- [MvnRepository](https://mvnrepository.com/artifact/software.xdev/micro-migration-core)
+- [Maven central repository](https://central.sonatype.dev/artifact/software.xdev/micro-migration/0.0.4/version)
 
 # Contributing
 We would love your input in any way. More about contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
