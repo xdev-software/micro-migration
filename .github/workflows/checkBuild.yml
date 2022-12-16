@@ -7,7 +7,7 @@ on:
     paths-ignore: 
       - '**.md'
   pull_request:
-    branches: [ main, develop ]
+    branches: [ develop ]
     paths-ignore: 
       - '**.md'
 
@@ -34,9 +34,6 @@ jobs:
       
     - name: Build with Maven
       run: mvn -B clean verify
-      
-    - name: Build examples with Maven
-      run: mvn -B -pl examples clean verify
       
     - name: Check for uncommited changes
       run: |

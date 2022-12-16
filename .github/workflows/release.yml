@@ -8,8 +8,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
@@ -32,8 +30,6 @@ jobs:
         
     - name: Un-SNAP 
       run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
-    - name: Un-SNAP examples
-      run: mvn -B -pl examples versions:set -DremoveSnapshot -DgenerateBackupPoms=false
   
     - name: Get version
       id: version
@@ -103,10 +99,7 @@ jobs:
         
     - name: Inc Version and SNAP root
       run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-              
-    - name: Inc Version and SNAP root from examples
-      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-
+       
     - name: Git Commit and Push
       run: |
         git add -A
