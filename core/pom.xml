@@ -12,7 +12,6 @@
         <groupId>software.xdev</groupId>
         <artifactId>micro-migration</artifactId>
         <version>${revision}</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <build>

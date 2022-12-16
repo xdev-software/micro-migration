@@ -70,6 +70,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+      - name: Build with Maven
+        run: mvn -B clean install
       - name: Publish project
         env:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
