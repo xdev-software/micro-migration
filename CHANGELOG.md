@@ -1,3 +1,6 @@
+## 0.0.5
+* Tried a new release-action.
+
 ## 0.0.4
 * Fixed setup. 0.0.3 was not working with the release setup.
 
