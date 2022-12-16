@@ -36,7 +36,8 @@ jobs:
       run: mvn -B clean verify
       
     - name: Build examples with Maven
-      run: mvn -B -pl examples clean verify
+      run: mvn -B clean verify
+      working-directory: examples
       
     - name: Check for uncommited changes
       run: |
