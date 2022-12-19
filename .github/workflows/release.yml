@@ -13,6 +13,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+          cache: 'maven'
       - name: Build with Maven
         run: mvn -B clean verify
   prepare_release:
@@ -83,6 +84,7 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+          cache: 'maven'
       - name: Publish
         env:
           JRELEASER_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
