@@ -1,7 +1,9 @@
+![License](https://img.shields.io/github/license/xdev-software/micro-migration)
 [![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration)](https://central.sonatype.dev/artifact/software.xdev/micro-migration/0.0.4/versions)
-[![Build](https://img.shields.io/github/workflow/status/xdev-software/micro-migration/Check%20Build/main)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
+[![Build](https://img.shields.io/github/workflow/status/xdev-software/micro-migration/Check%20Build/develop)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 [![javadoc core](https://javadoc.io/badge2/software.xdev/micro-migration-core/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-core)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6816/badge)](https://bestpractices.coreinfrastructure.org/projects/6816)
+![Twitter Follow](https://img.shields.io/twitter/follow/XDEVSoftware)
 
 # Micro migration
 When you think about default database setup, you probably imagine something like this:
