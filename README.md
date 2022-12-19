@@ -6,6 +6,10 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/XDEVSoftware)](https://twitter.com/XDEVSoftware)
 
 # Micro migration
+Tiny java library to migrate MicroStream datastores. 
+Applies migration scripts on the datastores to keep them up to date.
+
+## Intro
 When you think about default database setup, you probably imagine something like this:
 
 ![Imaginative system layout](./docs/MigrationSequence_1.png "Imaginative system layout")
