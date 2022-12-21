@@ -32,7 +32,7 @@ public class MainPracticalWithMigrationManager
 		//V0.0
 		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
-			VersionedObject<BusinessBranch> versionedBranch = new VersionedObject<>(createDummyBranch());
+			VersionedObject<BusinessBranch> versionedBranch = new VersionedObject<>(BusinessBranch.createDummyBranch());
 			storageManager.setRoot(versionedBranch);
 			storageManager.storeRoot();
 			System.out.println(storageManager.root().toString());
@@ -59,23 +59,5 @@ public class MainPracticalWithMigrationManager
 				.migrate(versionedBranch);
 			System.out.println(storageManager.root().toString());
 		}
-	}
-	
-	private static BusinessBranch createDummyBranch()
-	{
-		BusinessBranch branch = new BusinessBranch();
-		Customer customer1 = new Customer();
-		customer1.name   = "Mick Fleetwood";
-		customer1.number = 1;
-		customer1.street = "Fleetwood Street";
-		customer1.city   = "Redruth";
-		branch.customers.add(customer1);
-		Customer customer2 = new Customer();
-		customer2.name   = "Lindsey Buckingham";
-		customer2.number = 2;
-		customer2.street = "Mac Street";
-		customer2.city   = "Palo Alto";
-		branch.customers.add(customer2);
-		return branch;
 	}
 }
