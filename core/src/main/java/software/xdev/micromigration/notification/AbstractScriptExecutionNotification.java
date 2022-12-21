@@ -1,33 +1,31 @@
 package software.xdev.micromigration.notification;
 
-import java.time.LocalDateTime;
-
 import software.xdev.micromigration.migrater.MicroMigrater;
 import software.xdev.micromigration.scripts.MigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
+
+import java.time.LocalDateTime;
+
 
 /**
  * Contains data about the execution of a script by a {@link MicroMigrater}.
  * 
  * @author Johannes Rabauer
  */
-public class ScriptExecutionNotification 
+public abstract class AbstractScriptExecutionNotification
 {
-	private final MigrationScript<?,?> executedScript;
 	private final MigrationVersion     sourceVersion ;
 	private final MigrationVersion     targetVersion ;
 	private final LocalDateTime        startDate     ;
 	private final LocalDateTime        endDate       ;
 
 	/**
-	 * @param executedScript script that was executed
 	 * @param sourceVersion original version of the object before executing the script
 	 * @param targetVersion version of the object after executing the script
 	 * @param startDate time when the script was started
 	 * @param endDate time when the script has finished
 	 */
-	public ScriptExecutionNotification(
-		MigrationScript<?,?> executedScript,
+	public AbstractScriptExecutionNotification(
 		MigrationVersion     sourceVersion ,
 		MigrationVersion     targetVersion ,
 		LocalDateTime        startDate     ,
@@ -35,19 +33,10 @@ public class ScriptExecutionNotification
 	) 
 	{
 		super();
-		this.executedScript = executedScript;
 		this.sourceVersion  = sourceVersion ;
 		this.targetVersion  = targetVersion ;
 		this.startDate      = startDate     ;
 		this.endDate        = endDate       ;
-	}
-
-	/**
-	 * @return the script that was executed
-	 */
-	public MigrationScript<?,?> getExecutedScript()
-	{
-		return executedScript;
 	}
 
 	/**

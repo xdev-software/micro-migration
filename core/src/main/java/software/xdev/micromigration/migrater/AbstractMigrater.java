@@ -6,7 +6,7 @@ import java.util.TreeSet;
 import java.util.function.Consumer;
 
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
-import software.xdev.micromigration.notification.ScriptExecutionNotification;
+import software.xdev.micromigration.notification.ScriptExecutionNotificationWithScriptReference;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.MigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
@@ -20,13 +20,13 @@ import software.xdev.micromigration.version.MigrationVersion;
  */
 public abstract class AbstractMigrater implements MicroMigrater
 {	
-	private Consumer<ScriptExecutionNotification> notificationConsumer = null;
+	private Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer = null;
 	
 	/**
 	 * Registers a callback to take action when a script is executed.
 	 * @param notificationConsumer is executed when a script is used from this migrater.
 	 */
-	public void setNotificationConsumer(Consumer<ScriptExecutionNotification> notificationConsumer)
+	public void setNotificationConsumer(Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer)
 	{
 		this.notificationConsumer = notificationConsumer;
 	}
@@ -84,7 +84,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 					if(this.notificationConsumer != null)
 					{
 						this.notificationConsumer.accept(
-							new ScriptExecutionNotification(
+							new ScriptExecutionNotificationWithScriptReference(
 								script                       ,
 								versionBeforeUpdate          , 
 								updateVersionWhichWasExecuted, 
