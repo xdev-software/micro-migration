@@ -14,7 +14,7 @@ import software.xdev.micromigration.version.Versioned;
  * 
  */
  public interface VersionAgnosticTunnelingEmbeddedStorageManager<T>
-	extends VersionAgnosticEmbeddedStorageManager<T>, AutoCloseable
+	extends AutoCloseable
 {
 	T start();
 	Object root();

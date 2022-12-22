@@ -1,6 +1,5 @@
 package software.xdev.micromigration.migrater;
 
-import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
