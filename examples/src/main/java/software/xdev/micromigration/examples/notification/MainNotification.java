@@ -1,9 +1,5 @@
 package software.xdev.micromigration.examples.notification;
 
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
@@ -24,7 +20,7 @@ public class MainNotification
 		final ExplicitMigrater migrater = new ExplicitMigrater(
 				new MainNotification.UpdateToV1_0()
 		);
-		migrater.setNotificationConsumer(
+		migrater.registerNotificationConsumer(
 			scriptExecutionNotification -> System.out.println("Script " + scriptExecutionNotification.getExecutedScript().getClass().getSimpleName() + " executed.")
 		);
 		final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migrater);
@@ -37,7 +33,8 @@ public class MainNotification
 		storageManager.shutdown();
 	}
 
-	static class UpdateToV1_0 implements MigrationScript<String>
+	static class UpdateToV1_0 implements
+		software.xdev.micromigration.scripts.VersionAgnosticMigrationScript<String, MigrationEmbeddedStorageManager>
 	{
 		@Override
 		public MigrationVersion getTargetVersion()
@@ -46,7 +43,7 @@ public class MainNotification
 		}
 
 		@Override
-		public void migrate(Context<String, EmbeddedStorageManager> context)
+		public void migrate(Context<String, MigrationEmbeddedStorageManager> context)
 		{
 			context.getStorageManager().setRoot("Hello World! @ " + new Date() + " Update 1.0");
 		}

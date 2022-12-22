@@ -1,8 +1,11 @@
 package software.xdev.micromigration.notification;
 
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
+
+
 /**
  * Same as {@link ScriptExecutionNotificationWithScriptReference} but instead of referencing
- * the {@link software.xdev.micromigration.scripts.MigrationScript} directly, only the name of the script is
+ * the {@link VersionAgnosticMigrationScript} directly, only the name of the script is
  * extracted through the class name.
  * <p>
  * <i>"Why?!"</i> - If you want to persist say a history of your applied scripts in your database and

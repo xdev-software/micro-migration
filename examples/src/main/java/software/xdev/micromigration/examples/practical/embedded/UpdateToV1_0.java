@@ -1,15 +1,14 @@
 package software.xdev.micromigration.examples.practical.embedded;
 
 import software.xdev.micromigration.examples.practical.v1AndHigher.Address;
-import software.xdev.micromigration.microstream.MigrationScript;
-import software.xdev.micromigration.scripts.Context;
-import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch;
 import software.xdev.micromigration.examples.practical.v1AndHigher.Customer;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import software.xdev.micromigration.scripts.Context;
+import software.xdev.micromigration.version.MigrationVersion;
 
 
-public class UpdateToV1_0 implements MigrationScript<software.xdev.micromigration.examples.practical.v0.BusinessBranch>
+public class UpdateToV1_0 implements
+	software.xdev.micromigration.scripts.VersionAgnosticMigrationScript<software.xdev.micromigration.examples.practical.v0.BusinessBranch, software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager>
 {
 	@Override
 	public MigrationVersion getTargetVersion() 
@@ -18,7 +17,7 @@ public class UpdateToV1_0 implements MigrationScript<software.xdev.micromigratio
 	}
 	
 	@Override
-	public void migrate(Context<software.xdev.micromigration.examples.practical.v0.BusinessBranch, EmbeddedStorageManager> context)
+	public void migrate(Context<software.xdev.micromigration.examples.practical.v0.BusinessBranch, MigrationEmbeddedStorageManager> context)
 	{
 		System.out.println("Executing Script for v1.0...");
 		software.xdev.micromigration.examples.practical.v0.BusinessBranch oldBranch = context.getMigratingObject();

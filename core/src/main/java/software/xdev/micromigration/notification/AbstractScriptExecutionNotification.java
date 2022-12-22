@@ -1,7 +1,6 @@
 package software.xdev.micromigration.notification;
 
 import software.xdev.micromigration.migrater.MicroMigrater;
-import software.xdev.micromigration.scripts.MigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
 import java.time.LocalDateTime;

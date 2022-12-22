@@ -1,21 +1,19 @@
 package software.xdev.micromigration.integration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
+import one.microstream.storage.embedded.types.EmbeddedStorage;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.testUtil.MicroMigrationScriptDummy;
 import software.xdev.micromigration.version.MigrationVersion;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
-import one.microstream.storage.embedded.types.EmbeddedStorage;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import java.io.IOException;
+import java.nio.file.Path;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class IntroduceMigrationOnExistingDatastoreTest
@@ -37,7 +35,7 @@ class IntroduceMigrationOnExistingDatastoreTest
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
 		{
 			assertEquals(ROOT, migrationStorageManager.root());
-			Assertions.assertEquals(1, migrationStorageManager.getCurrentVersion().getVersions()[0]);
+			assertEquals(1, migrationStorageManager.getCurrentVersion().getVersions()[0]);
 		}
 	}
 }

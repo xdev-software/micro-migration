@@ -1,11 +1,11 @@
 package software.xdev.micromigration.migrater;
 
-import java.util.TreeSet;
-
-import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
-import software.xdev.micromigration.scripts.MigrationScript;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
+
+import java.util.TreeSet;
 
 
 /**
@@ -14,12 +14,12 @@ import software.xdev.micromigration.version.MigrationVersion;
  * @author Johannes Rabauer
  * 
  */
-public interface MicroMigrater 
+public interface MicroMigrater
 {
 	/**
-	 * @return all the contained {@link MigrationScript}s, sorted by their {@link MigrationVersion} ascending.
+	 * @return all the contained {@link VersionAgnosticMigrationScript}s, sorted by their {@link MigrationVersion} ascending.
 	 */
-	TreeSet<? extends MigrationScript<?,?>> getSortedScripts();
+	TreeSet<? extends VersionAgnosticMigrationScript<?,?>> getSortedScripts();
 	
 	/**
 	 * Executes all the scripts that are available to the migrater.
@@ -34,18 +34,20 @@ public interface MicroMigrater
 	 * @param fromVersion is the current version of the datastore. 
 	 * Scripts for lower versions then the fromVersion are not executed.
 	 * 
-	 * @param storageManager is relayed to the scripts {@link MigrationScript#migrate(Context)}
-	 * method. This way the script can call {@link VersionAgnosticEmbeddedStorageManager#store(Object)} or another method on the storage manager.
+	 * @param storageManager is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
+	 * method. This way the script can call {@link VersionAgnosticMigrationEmbeddedStorageManager#store(Object)} or another method on the storage manager.
 	 * 
-	 * @param root is relayed to the scripts {@link MigrationScript#migrate(Context)}
+	 * @param root is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
 	 * method. This way the script can change something within the root object.
+	 *
+	 * @param <E> the {@link VersionAgnosticMigrationEmbeddedStorageManager} which contains the migrating object
 	 * 
 	 * @return the target version of the last executed script
 	 */
-	MigrationVersion migrateToNewest(
-		MigrationVersion                      fromVersion   ,
-		VersionAgnosticEmbeddedStorageManager storageManager,
-		Object                                root
+	<E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToNewest(
+		MigrationVersion fromVersion   ,
+		E                storageManager,
+		Object           root
 	);
 	
 	/**
@@ -64,19 +66,21 @@ public interface MicroMigrater
 	 * @param targetVersion is the highest allowed script version. 
 	 * Scripts which have a higher version won't be exectued.
 	 * 
-	 * @param storageManager is relayed to the scripts {@link MigrationScript#migrate(Context)}
+	 * @param storageManager is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
 	 * method. This way the script can call EmbeddedStorageManager#store or another method on the storage manager.
 	 * 
-	 * @param objectToMigrate is relayed to the scripts {@link MigrationScript#migrate(Context)}
+	 * @param objectToMigrate is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
 	 * method. This way the script can change something within the object to migrate.
+	 *
+	 * @param <E> the {@link VersionAgnosticMigrationEmbeddedStorageManager} which contains the migrating object
 	 * 
 	 * @return the target version of the last executed script
 	 */
-	MigrationVersion migrateToVersion
+	<E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToVersion
 	(
-		MigrationVersion                      fromVersion    ,
-		MigrationVersion                      targetVersion  ,
-		VersionAgnosticEmbeddedStorageManager storageManager ,
-		Object                                objectToMigrate
+		MigrationVersion fromVersion    ,
+		MigrationVersion targetVersion  ,
+		E                storageManager ,
+		Object           objectToMigrate
 	);
 }

@@ -1,10 +1,10 @@
 package software.xdev.micromigration.notification;
 
-import java.time.LocalDateTime;
-
 import software.xdev.micromigration.migrater.MicroMigrater;
-import software.xdev.micromigration.scripts.MigrationScript;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
+
+import java.time.LocalDateTime;
 
 /**
  * Contains data about the execution of a script by a {@link MicroMigrater}.
@@ -13,7 +13,7 @@ import software.xdev.micromigration.version.MigrationVersion;
  */
 public class ScriptExecutionNotificationWithScriptReference extends AbstractScriptExecutionNotification
 {
-	private final MigrationScript<?,?> executedScript;
+	private final VersionAgnosticMigrationScript<?,?> executedScript;
 
 	/**
 	 * @param executedScript script that was executed
@@ -23,7 +23,7 @@ public class ScriptExecutionNotificationWithScriptReference extends AbstractScri
 	 * @param endDate time when the script has finished
 	 */
 	public ScriptExecutionNotificationWithScriptReference(
-		MigrationScript<?,?> executedScript,
+		VersionAgnosticMigrationScript<?,?> executedScript,
 		MigrationVersion     sourceVersion ,
 		MigrationVersion     targetVersion ,
 		LocalDateTime        startDate     ,
@@ -42,7 +42,7 @@ public class ScriptExecutionNotificationWithScriptReference extends AbstractScri
 	/**
 	 * @return the script that was executed
 	 */
-	public MigrationScript<?,?> getExecutedScript()
+	public VersionAgnosticMigrationScript<?,?> getExecutedScript()
 	{
 		return executedScript;
 	}
