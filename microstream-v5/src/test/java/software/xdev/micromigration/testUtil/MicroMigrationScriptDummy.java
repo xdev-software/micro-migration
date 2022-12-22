@@ -1,12 +1,12 @@
 package software.xdev.micromigration.testUtil;
 
-import software.xdev.micromigration.scripts.Context;
-import software.xdev.micromigration.scripts.MigrationScript;
-import software.xdev.micromigration.version.MigrationVersion;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import software.xdev.micromigration.scripts.Context;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
+import software.xdev.micromigration.version.MigrationVersion;
 
 
-public class MicroMigrationScriptDummy implements MigrationScript<Object, EmbeddedStorageManager>
+public class MicroMigrationScriptDummy implements VersionAgnosticMigrationScript<Object, EmbeddedStorageManager>
 {
 	private final MigrationVersion version;
 	

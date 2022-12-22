@@ -1,9 +1,9 @@
 package software.xdev.micromigration.migrater;
 
-import java.util.Objects;
-
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
-import software.xdev.micromigration.scripts.MigrationScript;
+
+import java.util.Objects;
 
 
 /**
@@ -21,12 +21,12 @@ public class VersionAlreadyRegisteredException extends Error
 	/**
 	 * The version of the already registered script
 	 */
-	private final MigrationScript<?,?> alreadyRegisteredScript ;
+	private final VersionAgnosticMigrationScript<?,?> alreadyRegisteredScript ;
 	/**
 	 * The script with the same version as {@link #alreadyRegisteredScript},
 	 * which should be registered as well
 	 */
-	private final MigrationScript<?,?> newScriptToRegister     ;
+	private final VersionAgnosticMigrationScript<?,?> newScriptToRegister     ;
 
 	/**
 	 * @param alreadyRegisteredVersion The version of the already registered script
@@ -36,8 +36,8 @@ public class VersionAlreadyRegisteredException extends Error
 	 */
 	public VersionAlreadyRegisteredException(
 		MigrationVersion     alreadyRegisteredVersion,
-		MigrationScript<?,?> alreadyRegisteredScript ,
-		MigrationScript<?,?> newScriptToRegister
+		VersionAgnosticMigrationScript<?,?> alreadyRegisteredScript ,
+		VersionAgnosticMigrationScript<?,?> newScriptToRegister
 	) 
 	{
 		super("Version " + alreadyRegisteredVersion.toString() + " is already registered. Versions must be unique within the migrater.");
@@ -57,7 +57,7 @@ public class VersionAlreadyRegisteredException extends Error
 	/**
 	 * @return the already registered script with the same version
 	 */
-	public MigrationScript<?,?> getAlreadyRegisteredScript()
+	public VersionAgnosticMigrationScript<?,?> getAlreadyRegisteredScript()
 	{
 		return alreadyRegisteredScript;
 	}
@@ -66,7 +66,7 @@ public class VersionAlreadyRegisteredException extends Error
 	 * @return the script with the same version as {@link #getAlreadyRegisteredScript()},
 	 * which should be registered as well
 	 */
-	public MigrationScript<?,?> getNewScriptToRegister()
+	public VersionAgnosticMigrationScript<?,?> getNewScriptToRegister()
 	{
 		return newScriptToRegister;
 	}

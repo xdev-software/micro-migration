@@ -4,7 +4,7 @@ import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticE
 
 
 /**
- * Container that holds necessary information for the execution of an {@link MigrationScript}
+ * Container that holds necessary information for the execution of an {@link VersionAgnosticMigrationScript}
  * 
  * @author Johannes Rabauer
  */

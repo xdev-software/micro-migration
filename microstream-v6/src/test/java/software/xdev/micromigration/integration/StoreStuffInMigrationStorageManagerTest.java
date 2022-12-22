@@ -1,20 +1,18 @@
 package software.xdev.micromigration.integration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+import software.xdev.micromigration.migrater.ExplicitMigrater;
+import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
+import software.xdev.micromigration.version.MigrationVersion;
 
 import java.io.IOException;
 import java.nio.file.Path;
 
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.migrater.ExplicitMigrater;
-import software.xdev.micromigration.scripts.MigrationScript;
-import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
-import software.xdev.micromigration.version.MigrationVersion;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 class StoreStuffInMigrationStorageManagerTest
@@ -32,7 +30,7 @@ class StoreStuffInMigrationStorageManagerTest
 	@Test
 	void testStoringSomethingAfterUpdating(@TempDir Path storageFolder) throws IOException 
 	{
-		final MigrationScript<Object, EmbeddedStorageManager> script = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Object, EmbeddedStorageManager> script = new SimpleTypedMigrationScript<>(
 			new MigrationVersion(1),
 			(context) -> {}
 		);

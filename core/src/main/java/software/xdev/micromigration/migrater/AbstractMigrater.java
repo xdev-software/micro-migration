@@ -1,34 +1,36 @@
 package software.xdev.micromigration.migrater;
 
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
+import software.xdev.micromigration.notification.ScriptExecutionNotificationWithScriptReference;
+import software.xdev.micromigration.scripts.Context;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
+import software.xdev.micromigration.version.MigrationVersion;
+
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 
-import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
-import software.xdev.micromigration.notification.ScriptExecutionNotificationWithScriptReference;
-import software.xdev.micromigration.scripts.Context;
-import software.xdev.micromigration.scripts.MigrationScript;
-import software.xdev.micromigration.version.MigrationVersion;
-
 
 /**
- * Provides the basic functionality to apply {@link MigrationScript}s to
+ * Provides the basic functionality to apply {@link VersionAgnosticMigrationScript}s to
  * a datastore.
  *
  * @author Johannes Rabauer
  */
 public abstract class AbstractMigrater implements MicroMigrater
 {	
-	private Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer = null;
+	private List<Consumer<ScriptExecutionNotificationWithScriptReference>> notificationConsumers = new ArrayList<>();
 	
 	/**
 	 * Registers a callback to take action when a script is executed.
 	 * @param notificationConsumer is executed when a script is used from this migrater.
 	 */
-	public void setNotificationConsumer(Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer)
+	public void registerNotificationConsumer(Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer)
 	{
-		this.notificationConsumer = notificationConsumer;
+		this.notificationConsumers.add(notificationConsumer);
 	}
 	
 	@Override
@@ -41,7 +43,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 		Objects.requireNonNull(fromVersion);
 		Objects.requireNonNull(storageManager);
 		
-		TreeSet<? extends MigrationScript<?,?>> sortedScripts = getSortedScripts();
+		TreeSet<? extends VersionAgnosticMigrationScript<?,?>> sortedScripts = getSortedScripts();
 		if(sortedScripts.size() > 0)
 		{
 			return migrateToVersion(
@@ -68,7 +70,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 		Objects.requireNonNull(storageManager);
 		
 		MigrationVersion updateVersionWhichWasExecuted = fromVersion;
-		for (MigrationScript<?,?> script : this.getSortedScripts())
+		for (VersionAgnosticMigrationScript<?,?> script : this.getSortedScripts())
 		{
 			if(MigrationVersion.COMPARATOR.compare(fromVersion, script.getTargetVersion()) < 0)
 			{
@@ -76,22 +78,22 @@ public abstract class AbstractMigrater implements MicroMigrater
 				{
 					LocalDateTime startDate = null;
 					MigrationVersion versionBeforeUpdate = updateVersionWhichWasExecuted;
-					if(this.notificationConsumer != null)
+					if(!this.notificationConsumers.isEmpty())
 					{
 						startDate = LocalDateTime.now();
 					}
 					updateVersionWhichWasExecuted = migrateWithScript(script, storageManager, objectToMigrate);
-					if(this.notificationConsumer != null)
+					if(!this.notificationConsumers.isEmpty())
 					{
-						this.notificationConsumer.accept(
+						ScriptExecutionNotificationWithScriptReference scriptNotification =
 							new ScriptExecutionNotificationWithScriptReference(
-								script                       ,
-								versionBeforeUpdate          , 
-								updateVersionWhichWasExecuted, 
-								startDate                    , 
+								script,
+								versionBeforeUpdate,
+								updateVersionWhichWasExecuted,
+								startDate,
 								LocalDateTime.now()
-							)								
-						);
+							);
+						this.notificationConsumers.forEach(consumer -> consumer.accept(scriptNotification));
 					}
 				}
 			}
@@ -101,7 +103,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 	
 	@SuppressWarnings("unchecked")
 	private <T,E> MigrationVersion migrateWithScript(
-		MigrationScript<T,E>                    script         ,
+		VersionAgnosticMigrationScript<T,E> script         ,
 		VersionAgnosticEmbeddedStorageManager storageManager ,
 		Object                                objectToMigrate
 	)
@@ -112,15 +114,15 @@ public abstract class AbstractMigrater implements MicroMigrater
 	}
 	
 	/**
-	 * Checks if the given {@link MigrationScript} is not already registered in the 
+	 * Checks if the given {@link VersionAgnosticMigrationScript} is not already registered in the
 	 * {@link #getSortedScripts()}.
 	 * @throws VersionAlreadyRegisteredException if script is already registered.
 	 * @param scriptToCheck It's target version is checked, if it is not already registered.
 	 */
-	protected void checkIfVersionIsAlreadyRegistered(MigrationScript<?,?> scriptToCheck)
+	protected void checkIfVersionIsAlreadyRegistered(VersionAgnosticMigrationScript<?,?> scriptToCheck)
 	{
 		//Check if same version is not already registered
-		for (MigrationScript<?,?> alreadyRegisteredScript : this.getSortedScripts())
+		for (VersionAgnosticMigrationScript<?,?> alreadyRegisteredScript : this.getSortedScripts())
 		{
 			if(MigrationVersion.COMPARATOR.compare(alreadyRegisteredScript.getTargetVersion(), scriptToCheck.getTargetVersion()) == 0)
 			{

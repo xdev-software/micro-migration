@@ -1,14 +1,13 @@
-package software.xdev.micromigration.microstream;
+package software.xdev.micromigration.microstream.versionagnostic;
+
+import software.xdev.micromigration.migrater.MicroMigrater;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
+import software.xdev.micromigration.version.MigrationVersion;
+import software.xdev.micromigration.version.Versioned;
 
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
-
-import software.xdev.micromigration.migrater.MicroMigrater;
-import software.xdev.micromigration.scripts.MigrationScript;
-import software.xdev.micromigration.version.MigrationVersion;
-import software.xdev.micromigration.version.Versioned;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 
 /**
@@ -21,30 +20,30 @@ import one.microstream.storage.embedded.types.EmbeddedStorageManager;
  * @author Johannes Rabauer
  *
  */
-public class MigrationManager implements software.xdev.micromigration.MigrationManager
+public class VersionAgnosticMigrationManager<T>
 {
 	private final Supplier<MigrationVersion> currentVersionGetter;
 	private final Consumer<MigrationVersion> currentVersionSetter;
 	private final Consumer<MigrationVersion> currentVersionStorer;
 	private final MicroMigrater migrater            ;
-	private final EmbeddedStorageManager     storageManager      ;
+	private final VersionAgnosticTunnelingEmbeddedStorageManager<T> storageManager      ;
 
 	/**
-	 * Much more complicated constructor than {@link MigrationManager#MigrationManager(Versioned, MicroMigrater, EmbeddedStorageManager)}.
+	 * Much more complicated constructor than {@link VersionAgnosticMigrationManager#MigrationManager(Versioned, MicroMigrater, EmbeddedStorageManager)}.
 	 * 
 	 * @param currentVersionGetter which supplies the current version of the object to update.
 	 * @param currentVersionSetter which sets the new version of the object in some membervariable. This Consumer is not supposed to store the version, but only save it in some membervariable to be stored after.
 	 * @param currentVersionStorer which is supposed to store the new version of the object somewhere in the datastore.
-	 * @param migrater does the actual migration with the given {@link MigrationScript}
-	 * @param storageManager for the {@link MigrationScript}s to use. Is not used for the storing of the new version.
+	 * @param migrater does the actual migration with the given {@link VersionAgnosticMigrationScript}
+	 * @param storageManager for the {@link VersionAgnosticMigrationScript}s to use. Is not used for the storing of the new version.
 	 */
-	public MigrationManager
+	public VersionAgnosticMigrationManager
 	(
 		final Supplier<MigrationVersion> currentVersionGetter,
 		final Consumer<MigrationVersion> currentVersionSetter,
 		final Consumer<MigrationVersion> currentVersionStorer,
 		final MicroMigrater              migrater            ,
-		final EmbeddedStorageManager     storageManager
+		final VersionAgnosticTunnelingEmbeddedStorageManager<T>     storageManager
 	) 
 	{
 		Objects.requireNonNull(currentVersionGetter);
@@ -63,15 +62,15 @@ public class MigrationManager implements software.xdev.micromigration.MigrationM
 	 * Simple Constructor.
 	 * 
 	 * @param versionedObject which provides getter and setter for the current version. 
-	 * This object will be stored after the {@link MigrationScript}s are executed.
-	 * @param migrater does the actual migration with the given {@link MigrationScript}
-	 * @param storageManager for the {@link MigrationScript}s to use. Is not used for the storing of the new version.
+	 * This object will be stored after the {@link VersionAgnosticMigrationScript}s are executed.
+	 * @param migrater does the actual migration with the given {@link VersionAgnosticMigrationScript}
+	 * @param storageManager for the {@link VersionAgnosticMigrationScript}s to use. Is not used for the storing of the new version.
 	 */
-	public MigrationManager
+	public VersionAgnosticMigrationManager
 	(
 		final Versioned              versionedObject,
 		final MicroMigrater          migrater       ,
-		final EmbeddedStorageManager storageManager
+		final VersionAgnosticTunnelingEmbeddedStorageManager<T> storageManager
 	) 
 	{
 		this(
@@ -94,7 +93,7 @@ public class MigrationManager implements software.xdev.micromigration.MigrationM
 		// Execute Updates
 		final MigrationVersion versionAfterUpdate = this.migrater.migrateToNewest(
 			versionBeforeUpdate,
-			new TunnelingEmbeddedStorageManager(this.storageManager),
+			this.storageManager,
 			objectToMigrate
 		);
 		//Update stored version, if needed

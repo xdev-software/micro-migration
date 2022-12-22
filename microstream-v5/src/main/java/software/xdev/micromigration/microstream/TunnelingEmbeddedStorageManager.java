@@ -1,7 +1,5 @@
 package software.xdev.micromigration.microstream;
 
-import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
-import software.xdev.micromigration.version.Versioned;
 import one.microstream.afs.types.AFile;
 import one.microstream.collections.types.XGettingEnum;
 import one.microstream.persistence.binary.types.Binary;
@@ -21,6 +19,8 @@ import one.microstream.storage.types.StorageEntityTypeHandler;
 import one.microstream.storage.types.StorageLiveFileProvider;
 import one.microstream.storage.types.StorageRawFileStatistics;
 import one.microstream.storage.types.StorageTypeDictionary;
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticTunnelingEmbeddedStorageManager;
+import software.xdev.micromigration.version.Versioned;
 
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -36,7 +36,10 @@ import java.util.function.Predicate;
  * @author Johannes Rabauer
  * 
  */
-public class TunnelingEmbeddedStorageManager implements EmbeddedStorageManager, VersionAgnosticEmbeddedStorageManager<EmbeddedStorageManager>
+public class TunnelingEmbeddedStorageManager
+	implements
+		EmbeddedStorageManager,
+		VersionAgnosticTunnelingEmbeddedStorageManager<EmbeddedStorageManager>
 {
 	/**
 	 * The underlying, actual MicroStream EmbeddedStorageManager

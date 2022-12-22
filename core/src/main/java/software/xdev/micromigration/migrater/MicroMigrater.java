@@ -1,11 +1,11 @@
 package software.xdev.micromigration.migrater;
 
-import java.util.TreeSet;
-
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
-import software.xdev.micromigration.scripts.MigrationScript;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
+
+import java.util.TreeSet;
 
 
 /**
@@ -17,9 +17,9 @@ import software.xdev.micromigration.version.MigrationVersion;
 public interface MicroMigrater 
 {
 	/**
-	 * @return all the contained {@link MigrationScript}s, sorted by their {@link MigrationVersion} ascending.
+	 * @return all the contained {@link VersionAgnosticMigrationScript}s, sorted by their {@link MigrationVersion} ascending.
 	 */
-	TreeSet<? extends MigrationScript<?,?>> getSortedScripts();
+	TreeSet<? extends VersionAgnosticMigrationScript<?,?>> getSortedScripts();
 	
 	/**
 	 * Executes all the scripts that are available to the migrater.
@@ -34,10 +34,10 @@ public interface MicroMigrater
 	 * @param fromVersion is the current version of the datastore. 
 	 * Scripts for lower versions then the fromVersion are not executed.
 	 * 
-	 * @param storageManager is relayed to the scripts {@link MigrationScript#migrate(Context)}
+	 * @param storageManager is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
 	 * method. This way the script can call {@link VersionAgnosticEmbeddedStorageManager#store(Object)} or another method on the storage manager.
 	 * 
-	 * @param root is relayed to the scripts {@link MigrationScript#migrate(Context)}
+	 * @param root is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
 	 * method. This way the script can change something within the root object.
 	 * 
 	 * @return the target version of the last executed script
@@ -64,10 +64,10 @@ public interface MicroMigrater
 	 * @param targetVersion is the highest allowed script version. 
 	 * Scripts which have a higher version won't be exectued.
 	 * 
-	 * @param storageManager is relayed to the scripts {@link MigrationScript#migrate(Context)}
+	 * @param storageManager is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
 	 * method. This way the script can call EmbeddedStorageManager#store or another method on the storage manager.
 	 * 
-	 * @param objectToMigrate is relayed to the scripts {@link MigrationScript#migrate(Context)}
+	 * @param objectToMigrate is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
 	 * method. This way the script can change something within the object to migrate.
 	 * 
 	 * @return the target version of the last executed script

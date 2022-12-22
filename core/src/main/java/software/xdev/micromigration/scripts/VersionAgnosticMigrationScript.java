@@ -1,21 +1,21 @@
 package software.xdev.micromigration.scripts;
 
-import java.util.Comparator;
-
 import software.xdev.micromigration.version.MigrationVersion;
+
+import java.util.Comparator;
 
 
 /**
  * Interface for scripts to migrate / update datastores.
  * <p>
  * One script is supposed to bring a datastore from a lower version to the target version.
- * After the {@link MigrationScript#migrate(Context)} method is called,
+ * After the {@link VersionAgnosticMigrationScript#migrate(Context)} method is called,
  * the target version is reached.
  * 
  * @author Johannes Rabauer
  *
  */
-public interface MigrationScript<T, E>
+public interface VersionAgnosticMigrationScript<T, E>
 {	
 	/**
 	 * @return the version of the datastore after this script is executed.
@@ -33,6 +33,6 @@ public interface MigrationScript<T, E>
 	/**
 	 * Provides a {@link Comparator} that compares the {@link #getTargetVersion()} of the given scripts
 	 */
-	Comparator<MigrationScript<?, ?>> COMPARATOR =
+	Comparator<VersionAgnosticMigrationScript<?, ?>> COMPARATOR =
 		(o1, o2) -> MigrationVersion.COMPARATOR.compare(o1.getTargetVersion(), o2.getTargetVersion());
 }

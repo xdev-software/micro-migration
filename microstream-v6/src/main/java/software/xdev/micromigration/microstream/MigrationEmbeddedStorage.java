@@ -1,23 +1,22 @@
 package software.xdev.micromigration.microstream;
 
-import java.nio.file.Path;
-import java.util.Objects;
-
-import software.xdev.micromigration.migrater.MicroMigrater;
 import one.microstream.afs.nio.types.NioFileSystem;
-import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.embedded.types.EmbeddedStorageFoundation;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import one.microstream.storage.types.Storage;
 import one.microstream.storage.types.StorageConfiguration;
+import software.xdev.micromigration.migrater.MicroMigrater;
+
+import java.nio.file.Path;
+import java.util.Objects;
 
 
 /**
- * Provides static utility calls to create the {@link software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager} for
+ * Provides static utility calls to create the {@link MigrationEmbeddedStorageManager} for
  * updateable datastores. Basically a wrapper for the utility class {@link one.microstream.storage.embedded.types.EmbeddedStorage}.
- *
+ * 
  * @author Johannes Rabauer
- *
+ * 
  */
 public class MigrationEmbeddedStorage
 {
@@ -30,7 +29,6 @@ public class MigrationEmbeddedStorage
 	 * @param migrater which is used as source for the migration scripts
 	 * @return the created storage manager with the given migrater
 	 */
-	@SuppressWarnings("resource")
 	public static final MigrationEmbeddedStorageManager start(MicroMigrater migrater)
 	{
 		Objects.requireNonNull(migrater);

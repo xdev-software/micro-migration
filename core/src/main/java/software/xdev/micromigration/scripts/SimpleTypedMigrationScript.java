@@ -1,9 +1,9 @@
 package software.xdev.micromigration.scripts;
 
+import software.xdev.micromigration.version.MigrationVersion;
+
 import java.util.Objects;
 import java.util.function.Consumer;
-
-import software.xdev.micromigration.version.MigrationVersion;
 
 
 /**
@@ -13,7 +13,7 @@ import software.xdev.micromigration.version.MigrationVersion;
  * @author Johannes Rabauer
  *
  */
-public class SimpleTypedMigrationScript<T,E> implements MigrationScript<T,E>
+public class SimpleTypedMigrationScript<T,E> implements VersionAgnosticMigrationScript<T,E>
 {
 	private final MigrationVersion version ;
 	private final Consumer<Context<T,E>> consumer;
