@@ -1,10 +1,13 @@
 package software.xdev.micromigration.microstream.versionagnostic;
 
 import software.xdev.micromigration.migrater.MicroMigrater;
+import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.Versioned;
 import software.xdev.micromigration.version.VersionedRoot;
+import software.xdev.micromigration.version.VersionedRootWithHistory;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -28,7 +31,7 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	implements AutoCloseable
 {
 	private final MicroMigrater migrater     ;
-	private VersionedRoot versionRoot  ;
+	private VersionedRootWithHistory versionRoot  ;
 
 	private VersionAgnosticTunnelingEmbeddedStorageManager<E> tunnelingManager;
 
@@ -68,14 +71,14 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	public T start()
 	{
 		this.tunnelingManager.start();
-		if(this.tunnelingManager.root() instanceof VersionedRoot)
+		if(this.tunnelingManager.root() instanceof VersionedRootWithHistory)
 		{
-			this.versionRoot = (VersionedRoot)this.tunnelingManager.root();
+			this.versionRoot = (VersionedRootWithHistory)this.tunnelingManager.root();
 		}
 		else
 		{
-			//Build VersionedRoot around actual root, set by user.
-			this.versionRoot = new VersionedRoot(this.tunnelingManager.root());
+			//Build VersionedRootWithHistory around actual root, set by user.
+			this.versionRoot = new VersionedRootWithHistory(this.tunnelingManager.root());
 			this.tunnelingManager.setRoot(versionRoot);
 			this.tunnelingManager.storeRoot();
 		}
@@ -101,6 +104,13 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	 */
 	public Object root() {
 		return this.versionRoot.getRoot();
+	}
+
+	/**
+	 * @return the actual root object
+	 */
+	public List<ScriptExecutionNotificationWithoutScriptReference> getMigrationHistory() {
+		return this.versionRoot.getMigrationHistory();
 	}
 
 	/**

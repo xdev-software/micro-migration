@@ -23,11 +23,7 @@ import java.util.function.Consumer;
 public abstract class AbstractMigrater implements MicroMigrater
 {	
 	private List<Consumer<ScriptExecutionNotificationWithScriptReference>> notificationConsumers = new ArrayList<>();
-	
-	/**
-	 * Registers a callback to take action when a script is executed.
-	 * @param notificationConsumer is executed when a script is used from this migrater.
-	 */
+
 	public void registerNotificationConsumer(Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer)
 	{
 		this.notificationConsumers.add(notificationConsumer);

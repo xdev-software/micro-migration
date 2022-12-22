@@ -1,9 +1,11 @@
 package software.xdev.micromigration.microstream.versionagnostic;
 
 import software.xdev.micromigration.migrater.MicroMigrater;
+import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.Versioned;
+import software.xdev.micromigration.version.VersionedAndKeeperOfHistory;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -84,6 +86,27 @@ public class VersionAgnosticMigrationManager<T>
 			storageManager
 		);
 		Objects.requireNonNull(versionedObject);
+	}
+
+	public VersionAgnosticMigrationManager
+		(
+			final VersionedAndKeeperOfHistory                          versionedObject,
+			final MicroMigrater                                        migrater       ,
+			final VersionAgnosticMigrationEmbeddedStorageManager<?, T> storageManager
+		)
+	{
+		this(
+			(       ) -> versionedObject.getVersion()         ,
+			(version) -> versionedObject.setVersion(version)  ,
+			(version) -> storageManager.store(versionedObject),
+			migrater                                          ,
+			storageManager
+		);
+		Objects.requireNonNull(versionedObject);
+		migrater.registerNotificationConsumer(
+			executedScript ->
+				versionedObject.addExecutedScript(new ScriptExecutionNotificationWithoutScriptReference(executedScript))
+		);
 	}
 
 	/**

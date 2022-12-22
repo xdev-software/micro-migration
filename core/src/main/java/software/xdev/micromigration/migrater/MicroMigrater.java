@@ -1,11 +1,13 @@
 package software.xdev.micromigration.migrater;
 
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
+import software.xdev.micromigration.notification.ScriptExecutionNotificationWithScriptReference;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
 import java.util.TreeSet;
+import java.util.function.Consumer;
 
 
 /**
@@ -83,4 +85,11 @@ public interface MicroMigrater
 		E                storageManager ,
 		Object           objectToMigrate
 	);
+
+	/**
+	 * Registers a callback to take action when a script is executed.
+	 * @param notificationConsumer is executed when a script is used from this migrater.
+	 */
+	public void registerNotificationConsumer(
+		Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer);
 }
