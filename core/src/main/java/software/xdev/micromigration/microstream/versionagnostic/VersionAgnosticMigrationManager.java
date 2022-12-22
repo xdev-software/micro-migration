@@ -13,23 +13,26 @@ import java.util.function.Supplier;
 /**
  * Manages a given object and keeps the version for it.
  * <p>
- * Can be used to keep the version of the MicroStream-Root-Object to keep the whole
- * datastore versioned. Since it is not integrated like the {@link software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager}
- * multiple versioned objects can be used in one datastore.
- * 
+ * Can be used to keep the version of the MicroStream-Root-Object and therefor keep the whole
+ * datastore versioned.
+ * <p>
+ * {@code VersionAgnostic} because it should be independent from the actual MicroStream implementation used.
+ *
+ * @param <T> The actually used MicroStream EmbeddedStorageManager
+ *
  * @author Johannes Rabauer
  *
  */
 public class VersionAgnosticMigrationManager<T>
 {
-	private final Supplier<MigrationVersion> currentVersionGetter;
-	private final Consumer<MigrationVersion> currentVersionSetter;
-	private final Consumer<MigrationVersion> currentVersionStorer;
-	private final MicroMigrater migrater            ;
+	private final Supplier<MigrationVersion>                           currentVersionGetter;
+	private final Consumer<MigrationVersion>                           currentVersionSetter;
+	private final Consumer<MigrationVersion>                           currentVersionStorer;
+	private final MicroMigrater                                        migrater            ;
 	private final VersionAgnosticMigrationEmbeddedStorageManager<?, T> storageManager      ;
 
 	/**
-	 * Much more complicated constructor than {@link VersionAgnosticMigrationManager#MigrationManager(Versioned, MicroMigrater, EmbeddedStorageManager)}.
+	 * Much more complicated constructor than {@link VersionAgnosticMigrationManager(Versioned, MicroMigrater, VersionAgnosticMigrationEmbeddedStorageManager)}.
 	 * 
 	 * @param currentVersionGetter which supplies the current version of the object to update.
 	 * @param currentVersionSetter which sets the new version of the object in some membervariable. This Consumer is not supposed to store the version, but only save it in some membervariable to be stored after.
@@ -39,11 +42,11 @@ public class VersionAgnosticMigrationManager<T>
 	 */
 	public VersionAgnosticMigrationManager
 	(
-		final Supplier<MigrationVersion> currentVersionGetter,
-		final Consumer<MigrationVersion> currentVersionSetter,
-		final Consumer<MigrationVersion> currentVersionStorer,
-		final MicroMigrater              migrater            ,
-		final VersionAgnosticMigrationEmbeddedStorageManager<?, T>     storageManager
+		final Supplier<MigrationVersion>                           currentVersionGetter,
+		final Consumer<MigrationVersion>                           currentVersionSetter,
+		final Consumer<MigrationVersion>                           currentVersionStorer,
+		final MicroMigrater                                        migrater            ,
+		final VersionAgnosticMigrationEmbeddedStorageManager<?, T> storageManager
 	) 
 	{
 		Objects.requireNonNull(currentVersionGetter);
@@ -54,8 +57,8 @@ public class VersionAgnosticMigrationManager<T>
 		this.currentVersionGetter = currentVersionGetter;
 		this.currentVersionSetter = currentVersionSetter;
 		this.currentVersionStorer = currentVersionStorer;
-		this.migrater = migrater;
-		this.storageManager = storageManager;
+		this.migrater             = migrater;
+		this.storageManager       = storageManager;
 	}
 	
 	/**
@@ -68,8 +71,8 @@ public class VersionAgnosticMigrationManager<T>
 	 */
 	public VersionAgnosticMigrationManager
 	(
-		final Versioned              versionedObject,
-		final MicroMigrater          migrater       ,
+		final Versioned                                            versionedObject,
+		final MicroMigrater                                        migrater       ,
 		final VersionAgnosticMigrationEmbeddedStorageManager<?, T> storageManager
 	) 
 	{

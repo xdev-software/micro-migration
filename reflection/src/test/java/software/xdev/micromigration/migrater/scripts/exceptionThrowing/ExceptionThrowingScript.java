@@ -1,12 +1,12 @@
 package software.xdev.micromigration.migrater.scripts.exceptionThrowing;
 
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 
 
-public class ExceptionThrowingScript implements MigrationScript<Object>
+public class ExceptionThrowingScript implements
+	software.xdev.micromigration.scripts.VersionAgnosticMigrationScript<Object, MigrationEmbeddedStorageManager>
 {
 	public ExceptionThrowingScript() throws Exception
 	{

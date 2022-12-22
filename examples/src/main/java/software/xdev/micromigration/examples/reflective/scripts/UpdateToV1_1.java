@@ -1,14 +1,13 @@
 package software.xdev.micromigration.examples.reflective.scripts;
 
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 
 import java.util.Date;
 
 
-public class UpdateToV1_1 implements MigrationScript<String>
+public class UpdateToV1_1 implements
+	software.xdev.micromigration.scripts.VersionAgnosticMigrationScript<String, software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager>
 {
 	@Override
 	public MigrationVersion getTargetVersion()

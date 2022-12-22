@@ -1,12 +1,12 @@
 package software.xdev.micromigration.migrater.scripts.moreClassesIncludingValid;
 
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 
 
-public class ValidScript implements MigrationScript<Object>
+public class ValidScript implements
+	software.xdev.micromigration.scripts.VersionAgnosticMigrationScript<Object, software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager>
 {
 	@Override
 	public MigrationVersion getTargetVersion() 

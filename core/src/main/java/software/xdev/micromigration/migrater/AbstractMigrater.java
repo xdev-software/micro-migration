@@ -35,9 +35,9 @@ public abstract class AbstractMigrater implements MicroMigrater
 	
 	@Override
 	public <E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToNewest(
-		MigrationVersion                      fromVersion   ,
-		E storageManager,
-		Object                                root
+		MigrationVersion fromVersion   ,
+		E                storageManager,
+		Object           root
 	)
 	{
 		Objects.requireNonNull(fromVersion);
@@ -60,10 +60,10 @@ public abstract class AbstractMigrater implements MicroMigrater
 	@Override
 	public <E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToVersion
 	(
-		MigrationVersion                      fromVersion    ,
-		MigrationVersion                      targetVersion  ,
-		E storageManager ,
-		Object                                objectToMigrate
+		MigrationVersion fromVersion    ,
+		MigrationVersion targetVersion  ,
+		E                storageManager ,
+		Object           objectToMigrate
 	)
 	{
 		Objects.requireNonNull(fromVersion);
@@ -106,8 +106,8 @@ public abstract class AbstractMigrater implements MicroMigrater
 	@SuppressWarnings("unchecked")
 	private <T,E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateWithScript(
 		VersionAgnosticMigrationScript<T,E> script         ,
-		E storageManager ,
-		Object                                objectToMigrate
+		E                                   storageManager ,
+		Object                              objectToMigrate
 	)
 	{
 		T castedObjectToMigrate = (T) objectToMigrate;
@@ -137,5 +137,4 @@ public abstract class AbstractMigrater implements MicroMigrater
 			}
 		}
 	}
-
 }

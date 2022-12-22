@@ -17,7 +17,7 @@ public class VersionAlreadyRegisteredException extends Error
 	/**
 	 * The already registered script with the same version
 	 */
-	private final MigrationVersion     alreadyRegisteredVersion;
+	private final MigrationVersion alreadyRegisteredVersion;
 	/**
 	 * The version of the already registered script
 	 */
@@ -35,7 +35,7 @@ public class VersionAlreadyRegisteredException extends Error
 	 * which should be registered as well
 	 */
 	public VersionAlreadyRegisteredException(
-		MigrationVersion     alreadyRegisteredVersion,
+		MigrationVersion                    alreadyRegisteredVersion,
 		VersionAgnosticMigrationScript<?,?> alreadyRegisteredScript ,
 		VersionAgnosticMigrationScript<?,?> newScriptToRegister
 	) 

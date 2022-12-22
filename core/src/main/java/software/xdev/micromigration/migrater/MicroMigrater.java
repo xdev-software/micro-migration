@@ -35,17 +35,19 @@ public interface MicroMigrater
 	 * Scripts for lower versions then the fromVersion are not executed.
 	 * 
 	 * @param storageManager is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
-	 * method. This way the script can call {@link VersionAgnosticEmbeddedStorageManager#store(Object)} or another method on the storage manager.
+	 * method. This way the script can call {@link VersionAgnosticMigrationEmbeddedStorageManager#store(Object)} or another method on the storage manager.
 	 * 
 	 * @param root is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
 	 * method. This way the script can change something within the root object.
+	 *
+	 * @param <E> the {@link VersionAgnosticMigrationEmbeddedStorageManager} which contains the migrating object
 	 * 
 	 * @return the target version of the last executed script
 	 */
 	<E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToNewest(
-		MigrationVersion                      fromVersion   ,
-		E storageManager,
-		Object                                root
+		MigrationVersion fromVersion   ,
+		E                storageManager,
+		Object           root
 	);
 	
 	/**
@@ -69,14 +71,16 @@ public interface MicroMigrater
 	 * 
 	 * @param objectToMigrate is relayed to the scripts {@link VersionAgnosticMigrationScript#migrate(Context)}
 	 * method. This way the script can change something within the object to migrate.
+	 *
+	 * @param <E> the {@link VersionAgnosticMigrationEmbeddedStorageManager} which contains the migrating object
 	 * 
 	 * @return the target version of the last executed script
 	 */
 	<E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToVersion
 	(
-		MigrationVersion                      fromVersion    ,
-		MigrationVersion                      targetVersion  ,
-		E storageManager ,
-		Object                                objectToMigrate
+		MigrationVersion fromVersion    ,
+		MigrationVersion targetVersion  ,
+		E                storageManager ,
+		Object           objectToMigrate
 	);
 }

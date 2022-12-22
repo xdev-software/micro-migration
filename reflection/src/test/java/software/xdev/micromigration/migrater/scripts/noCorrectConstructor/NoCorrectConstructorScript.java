@@ -1,12 +1,12 @@
 package software.xdev.micromigration.migrater.scripts.noCorrectConstructor;
 
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 
 
-public class NoCorrectConstructorScript implements MigrationScript<Object>
+public class NoCorrectConstructorScript implements
+	software.xdev.micromigration.scripts.VersionAgnosticMigrationScript<Object, MigrationEmbeddedStorageManager>
 {
 	private final String argument;
 	

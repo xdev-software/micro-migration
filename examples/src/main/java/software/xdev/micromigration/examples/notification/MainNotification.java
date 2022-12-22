@@ -1,8 +1,5 @@
 package software.xdev.micromigration.examples.notification;
 
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
@@ -36,7 +33,8 @@ public class MainNotification
 		storageManager.shutdown();
 	}
 
-	static class UpdateToV1_0 implements MigrationScript<String>
+	static class UpdateToV1_0 implements
+		software.xdev.micromigration.scripts.VersionAgnosticMigrationScript<String, MigrationEmbeddedStorageManager>
 	{
 		@Override
 		public MigrationVersion getTargetVersion()
