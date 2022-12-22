@@ -1,6 +1,7 @@
 package software.xdev.micromigration.migrater;
 
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
@@ -14,7 +15,7 @@ import java.util.TreeSet;
  * @author Johannes Rabauer
  * 
  */
-public interface MicroMigrater 
+public interface MicroMigrater
 {
 	/**
 	 * @return all the contained {@link VersionAgnosticMigrationScript}s, sorted by their {@link MigrationVersion} ascending.
@@ -42,9 +43,9 @@ public interface MicroMigrater
 	 * 
 	 * @return the target version of the last executed script
 	 */
-	MigrationVersion migrateToNewest(
+	<E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToNewest(
 		MigrationVersion                      fromVersion   ,
-		VersionAgnosticEmbeddedStorageManager storageManager,
+		E storageManager,
 		Object                                root
 	);
 	
@@ -72,11 +73,11 @@ public interface MicroMigrater
 	 * 
 	 * @return the target version of the last executed script
 	 */
-	MigrationVersion migrateToVersion
+	<E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToVersion
 	(
 		MigrationVersion                      fromVersion    ,
 		MigrationVersion                      targetVersion  ,
-		VersionAgnosticEmbeddedStorageManager storageManager ,
+		E storageManager ,
 		Object                                objectToMigrate
 	);
 }

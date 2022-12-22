@@ -1,5 +1,6 @@
 package software.xdev.micromigration.scripts;
 
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.version.MigrationVersion;
 
 import java.util.Comparator;
@@ -15,7 +16,7 @@ import java.util.Comparator;
  * @author Johannes Rabauer
  *
  */
-public interface VersionAgnosticMigrationScript<T, E>
+public interface VersionAgnosticMigrationScript<T, E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>>
 {	
 	/**
 	 * @return the version of the datastore after this script is executed.

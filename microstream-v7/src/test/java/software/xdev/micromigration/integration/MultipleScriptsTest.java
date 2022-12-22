@@ -1,6 +1,5 @@
 package software.xdev.micromigration.integration;
 
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -22,11 +21,11 @@ class MultipleScriptsTest
 	@Test
 	void testMigrationWithTwoScriptsAtOnce_MigrationEmbeddedStorageManager(@TempDir Path storageFolder)
 	{
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
 				(context) -> context.getStorageManager().setRoot(1)
 		);
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2), 
 				(context) -> context.getStorageManager().setRoot(2)
 		);
@@ -41,11 +40,11 @@ class MultipleScriptsTest
 	@Test
 	void testMigrationWithTwoScriptsWithSameVersion(@TempDir Path storageFolder)
 	{
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(1)
 		);
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(2)
 		);
@@ -57,15 +56,15 @@ class MultipleScriptsTest
 	@Test
 	void testMigrationWithThreeScriptsWithSameVersion(@TempDir Path storageFolder)
 	{
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(1)
 		);
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2), 
 				(context) -> context.getStorageManager().setRoot(2)
 		);
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> thirdScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> thirdScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(3)
 		);

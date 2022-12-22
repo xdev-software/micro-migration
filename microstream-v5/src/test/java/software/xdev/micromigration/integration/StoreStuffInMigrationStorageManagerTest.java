@@ -1,6 +1,5 @@
 package software.xdev.micromigration.integration;
 
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
@@ -32,7 +31,7 @@ class StoreStuffInMigrationStorageManagerTest
 	@Test
 	void testStoringSomethingAfterUpdating(@TempDir Path storageFolder) throws IOException 
 	{
-		final VersionAgnosticMigrationScript<Object, EmbeddedStorageManager> script = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Object, MigrationEmbeddedStorageManager> script = new SimpleTypedMigrationScript<>(
 			new MigrationVersion(1),
 			(context) -> {}
 		);

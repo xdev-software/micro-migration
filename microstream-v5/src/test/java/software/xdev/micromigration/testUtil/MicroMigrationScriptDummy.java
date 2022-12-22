@@ -1,12 +1,12 @@
 package software.xdev.micromigration.testUtil;
 
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
 
-public class MicroMigrationScriptDummy implements VersionAgnosticMigrationScript<Object, EmbeddedStorageManager>
+public class MicroMigrationScriptDummy implements VersionAgnosticMigrationScript<Object, MigrationEmbeddedStorageManager>
 {
 	private final MigrationVersion version;
 	
@@ -22,7 +22,7 @@ public class MicroMigrationScriptDummy implements VersionAgnosticMigrationScript
 	}
 
 	@Override
-	public void migrate(Context<Object, EmbeddedStorageManager> context) {
+	public void migrate(Context<Object, MigrationEmbeddedStorageManager> context) {
 		// Don't do anything.
 	}
 }

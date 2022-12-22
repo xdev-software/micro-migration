@@ -74,7 +74,7 @@ public class VersionAgnosticMigrationEmbeddedStorageManager<SELF, TUNNELINGMANAG
 		new VersionAgnosticMigrationManager(
 			this.versionRoot,
 			migrater,
-			this.tunnelingManager
+			this
 		)
 		.migrate(this.versionRoot.getRoot());
 		return (SELF)this;
@@ -104,6 +104,10 @@ public class VersionAgnosticMigrationEmbeddedStorageManager<SELF, TUNNELINGMANAG
 
 	public long store(Object objectToStore) {
 		return this.tunnelingManager.store(objectToStore);
+	}
+
+	public boolean shutdown(){
+		return this.tunnelingManager.shutdown();
 	}
 
 	@Override public void close()

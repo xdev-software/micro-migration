@@ -30,15 +30,9 @@
             <version>0.10.2</version>
         </dependency>
         <dependency>
-            <groupId>one.microstream</groupId>
-            <artifactId>microstream-storage-embedded</artifactId>
-            <version>${microstream.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>one.microstream</groupId>
-            <artifactId>microstream-configuration</artifactId>
-            <version>${microstream.version}</version>
+            <groupId>software.xdev</groupId>
+            <artifactId>micro-migration-microstream-v7</artifactId>
+            <version>${project.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

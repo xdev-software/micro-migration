@@ -26,7 +26,7 @@ public class VersionAgnosticMigrationManager<T>
 	private final Consumer<MigrationVersion> currentVersionSetter;
 	private final Consumer<MigrationVersion> currentVersionStorer;
 	private final MicroMigrater migrater            ;
-	private final VersionAgnosticTunnelingEmbeddedStorageManager<T> storageManager      ;
+	private final VersionAgnosticMigrationEmbeddedStorageManager<?, T> storageManager      ;
 
 	/**
 	 * Much more complicated constructor than {@link VersionAgnosticMigrationManager#MigrationManager(Versioned, MicroMigrater, EmbeddedStorageManager)}.
@@ -43,7 +43,7 @@ public class VersionAgnosticMigrationManager<T>
 		final Consumer<MigrationVersion> currentVersionSetter,
 		final Consumer<MigrationVersion> currentVersionStorer,
 		final MicroMigrater              migrater            ,
-		final VersionAgnosticTunnelingEmbeddedStorageManager<T>     storageManager
+		final VersionAgnosticMigrationEmbeddedStorageManager<?, T>     storageManager
 	) 
 	{
 		Objects.requireNonNull(currentVersionGetter);
@@ -70,7 +70,7 @@ public class VersionAgnosticMigrationManager<T>
 	(
 		final Versioned              versionedObject,
 		final MicroMigrater          migrater       ,
-		final VersionAgnosticTunnelingEmbeddedStorageManager<T> storageManager
+		final VersionAgnosticMigrationEmbeddedStorageManager<?, T> storageManager
 	) 
 	{
 		this(

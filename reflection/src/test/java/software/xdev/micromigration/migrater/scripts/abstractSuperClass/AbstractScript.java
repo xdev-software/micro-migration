@@ -1,11 +1,10 @@
 package software.xdev.micromigration.migrater.scripts.abstractSuperClass;
 
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
-import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
+import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
 
-public abstract class AbstractScript implements VersionAgnosticMigrationScript<Object, EmbeddedStorageManager>
+public abstract class AbstractScript implements MigrationScript<Object>
 {
 	@Override
 	public MigrationVersion getTargetVersion() 

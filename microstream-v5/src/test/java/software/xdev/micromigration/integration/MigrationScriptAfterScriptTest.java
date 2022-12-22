@@ -103,7 +103,7 @@ class MigrationScriptAfterScriptTest
 		
 		
 		//Run with one migration script		
-		final VersionAgnosticMigrationScript<VersionedObject<Integer>, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<VersionedObject<Integer>, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getMigratingObject().setObject(1)
 		);
@@ -123,7 +123,7 @@ class MigrationScriptAfterScriptTest
 
 		
 		//Run with two migration scripts	
-		final VersionAgnosticMigrationScript<VersionedObject<Integer>, EmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<VersionedObject<Integer>, MigrationEmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2), 
 				(context) -> context.getMigratingObject().setObject(2)
 		);

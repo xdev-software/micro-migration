@@ -1,12 +1,12 @@
 package software.xdev.micromigration.migrater.scripts.noCorrectConstructor;
 
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
-import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
 
-public class NoCorrectConstructorScript implements VersionAgnosticMigrationScript<Object, EmbeddedStorageManager>
+public class NoCorrectConstructorScript implements MigrationScript<Object>
 {
 	private final String argument;
 	
@@ -22,7 +22,7 @@ public class NoCorrectConstructorScript implements VersionAgnosticMigrationScrip
 	}
 
 	@Override
-	public void migrate(Context<Object, EmbeddedStorageManager> context)
+	public void migrate(Context<Object, MigrationEmbeddedStorageManager> context)
 	{
 		System.out.println(this.argument);
 	}

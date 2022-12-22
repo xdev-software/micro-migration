@@ -1,6 +1,5 @@
 package software.xdev.micromigration.microstream;
 
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 
@@ -15,5 +14,5 @@ import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
  * @author Johannes Rabauer
  *
  */
-public interface MigrationScript<T> extends VersionAgnosticMigrationScript<T, EmbeddedStorageManager>
+public interface MigrationScript<T> extends VersionAgnosticMigrationScript<T, MigrationEmbeddedStorageManager>
 {}

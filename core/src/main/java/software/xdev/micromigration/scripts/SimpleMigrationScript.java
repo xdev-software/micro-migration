@@ -1,8 +1,9 @@
 package software.xdev.micromigration.scripts;
 
-import java.util.function.Consumer;
-
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.version.MigrationVersion;
+
+import java.util.function.Consumer;
 
 
 /**
@@ -12,7 +13,7 @@ import software.xdev.micromigration.version.MigrationVersion;
  * @author Johannes Rabauer
  *
  */
-public class SimpleMigrationScript extends SimpleTypedMigrationScript<Object,Object>
+public class SimpleMigrationScript<E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> extends SimpleTypedMigrationScript<Object,E>
 {
 	/**
 	 * @param targetVersion to which the script is updating the object
@@ -20,7 +21,7 @@ public class SimpleMigrationScript extends SimpleTypedMigrationScript<Object,Obj
 	 */
 	public SimpleMigrationScript(
 		final MigrationVersion targetVersion ,
-		final Consumer<Context<Object,Object>> consumer
+		final Consumer<Context<Object,E>> consumer
 	) 
 	{
 		super(targetVersion, consumer);

@@ -5,6 +5,9 @@ import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.MigrationManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
@@ -36,7 +39,7 @@ class MigrationScriptAfterScriptTest
 		
 		
 		//Run with one migration script		
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(1)
 		);
@@ -49,7 +52,7 @@ class MigrationScriptAfterScriptTest
 
 		
 		//Run with two migration scripts	
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2), 
 				(context) -> context.getStorageManager().setRoot(2)
 		);
@@ -64,7 +67,7 @@ class MigrationScriptAfterScriptTest
 	@Test
 	void testMigrationWithScriptExecutionNotification(@TempDir Path storageFolder) throws IOException 
 	{
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(1)
 		);
@@ -100,7 +103,7 @@ class MigrationScriptAfterScriptTest
 		
 		
 		//Run with one migration script		
-		final VersionAgnosticMigrationScript<VersionedObject<Integer>, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<VersionedObject<Integer>, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getMigratingObject().setObject(1)
 		);
@@ -120,7 +123,7 @@ class MigrationScriptAfterScriptTest
 
 		
 		//Run with two migration scripts	
-		final VersionAgnosticMigrationScript<VersionedObject<Integer>, EmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<VersionedObject<Integer>, MigrationEmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2), 
 				(context) -> context.getMigratingObject().setObject(2)
 		);

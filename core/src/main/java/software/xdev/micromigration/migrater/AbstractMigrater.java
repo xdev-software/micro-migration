@@ -1,6 +1,6 @@
 package software.xdev.micromigration.migrater;
 
-import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.notification.ScriptExecutionNotificationWithScriptReference;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
@@ -34,9 +34,9 @@ public abstract class AbstractMigrater implements MicroMigrater
 	}
 	
 	@Override
-	public MigrationVersion migrateToNewest(
+	public <E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToNewest(
 		MigrationVersion                      fromVersion   ,
-		VersionAgnosticEmbeddedStorageManager storageManager,
+		E storageManager,
 		Object                                root
 	)
 	{
@@ -54,14 +54,15 @@ public abstract class AbstractMigrater implements MicroMigrater
 			);
 		}
 		return fromVersion;
-	}	
-	
+	}
+
+	@SuppressWarnings("unchecked")
 	@Override
-	public MigrationVersion migrateToVersion
+	public <E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToVersion
 	(
 		MigrationVersion                      fromVersion    ,
 		MigrationVersion                      targetVersion  ,
-		VersionAgnosticEmbeddedStorageManager storageManager ,
+		E storageManager ,
 		Object                                objectToMigrate
 	)
 	{
@@ -72,6 +73,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 		MigrationVersion updateVersionWhichWasExecuted = fromVersion;
 		for (VersionAgnosticMigrationScript<?,?> script : this.getSortedScripts())
 		{
+			VersionAgnosticMigrationScript<?,E> castedScript = (VersionAgnosticMigrationScript<?,E>)script;
 			if(MigrationVersion.COMPARATOR.compare(fromVersion, script.getTargetVersion()) < 0)
 			{
 				if(MigrationVersion.COMPARATOR.compare(script.getTargetVersion(), targetVersion) <= 0)
@@ -82,7 +84,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 					{
 						startDate = LocalDateTime.now();
 					}
-					updateVersionWhichWasExecuted = migrateWithScript(script, storageManager, objectToMigrate);
+					updateVersionWhichWasExecuted = migrateWithScript(castedScript, storageManager, objectToMigrate);
 					if(!this.notificationConsumers.isEmpty())
 					{
 						ScriptExecutionNotificationWithScriptReference scriptNotification =
@@ -102,9 +104,9 @@ public abstract class AbstractMigrater implements MicroMigrater
 	}
 	
 	@SuppressWarnings("unchecked")
-	private <T,E> MigrationVersion migrateWithScript(
+	private <T,E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateWithScript(
 		VersionAgnosticMigrationScript<T,E> script         ,
-		VersionAgnosticEmbeddedStorageManager storageManager ,
+		E storageManager ,
 		Object                                objectToMigrate
 	)
 	{

@@ -1,9 +1,10 @@
 package software.xdev.micromigration.integration;
 
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.migrater.VersionAlreadyRegisteredException;
 import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
@@ -12,17 +13,19 @@ import software.xdev.micromigration.version.MigrationVersion;
 
 import java.nio.file.Path;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 class MultipleScriptsTest
 {
 	@Test
 	void testMigrationWithTwoScriptsAtOnce_MigrationEmbeddedStorageManager(@TempDir Path storageFolder)
 	{
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
 				(context) -> context.getStorageManager().setRoot(1)
 		);
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2), 
 				(context) -> context.getStorageManager().setRoot(2)
 		);
@@ -30,18 +33,18 @@ class MultipleScriptsTest
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(storageFolder, migrater))
 		{
 			assertEquals(2, migrationStorageManager.root());
-			Assertions.assertEquals(new MigrationVersion(2), migrationStorageManager.getCurrentVersion());
+			assertEquals(new MigrationVersion(2), migrationStorageManager.getCurrentVersion());
 		}
 	}
 	
 	@Test
 	void testMigrationWithTwoScriptsWithSameVersion(@TempDir Path storageFolder)
 	{
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(1)
 		);
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(2)
 		);
@@ -53,15 +56,15 @@ class MultipleScriptsTest
 	@Test
 	void testMigrationWithThreeScriptsWithSameVersion(@TempDir Path storageFolder)
 	{
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(1)
 		);
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2), 
 				(context) -> context.getStorageManager().setRoot(2)
 		);
-		final VersionAgnosticMigrationScript<Integer, EmbeddedStorageManager> thirdScript = new SimpleTypedMigrationScript<>(
+		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> thirdScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
 				(context) -> context.getStorageManager().setRoot(3)
 		);

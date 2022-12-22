@@ -1,12 +1,8 @@
 package software.xdev.micromigration.scripts;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import software.xdev.micromigration.scripts.Context;
-import software.xdev.micromigration.scripts.ReflectiveVersionMigrationScript;
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.version.MigrationVersion;
 
 class ReflectiveVersionMigrationScriptTest 
@@ -127,10 +123,10 @@ class ReflectiveVersionMigrationScriptTest
 	}
 
 
-	public static class ReflectiveVersionMigrationScriptDummy extends ReflectiveVersionMigrationScript<Object, Object>
+	public static class ReflectiveVersionMigrationScriptDummy extends ReflectiveVersionMigrationScript<Object, VersionAgnosticMigrationEmbeddedStorageManager<Object,Object>>
 	{
 		@Override
-		public void migrate(Context<Object, Object> context) {
+		public void migrate(Context<Object, VersionAgnosticMigrationEmbeddedStorageManager<Object,Object>> context) {
 			//Dummy
 		}
 	}

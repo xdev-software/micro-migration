@@ -1,5 +1,6 @@
 package software.xdev.micromigration.scripts;
 
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.version.MigrationVersion;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
  * @author Johannes Rabauer
  *
  */
-public abstract class ReflectiveVersionMigrationScript<T,E> implements VersionAgnosticMigrationScript<T,E>
+public abstract class ReflectiveVersionMigrationScript<T,E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> implements VersionAgnosticMigrationScript<T,E>
 {
 	private final static char   PREFIX                     = 'v';
 	private final static String VERSION_SEPERATOR          = "_";

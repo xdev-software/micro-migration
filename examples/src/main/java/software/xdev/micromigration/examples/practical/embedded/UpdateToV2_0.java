@@ -2,10 +2,10 @@ package software.xdev.micromigration.examples.practical.embedded;
 
 import software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch;
 import software.xdev.micromigration.examples.practical.v1AndHigher.Customer;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 
 
 public class UpdateToV2_0 implements MigrationScript<BusinessBranch>
@@ -17,7 +17,7 @@ public class UpdateToV2_0 implements MigrationScript<BusinessBranch>
 	}
 	
 	@Override
-	public void migrate(Context<BusinessBranch, EmbeddedStorageManager> context)
+	public void migrate(Context<BusinessBranch, MigrationEmbeddedStorageManager> context)
 	{
 		System.out.println("Executing Script for v2.0...");
 		final BusinessBranch branch = context.getMigratingObject();
