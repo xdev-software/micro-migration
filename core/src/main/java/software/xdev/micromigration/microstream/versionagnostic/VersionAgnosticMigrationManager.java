@@ -88,6 +88,14 @@ public class VersionAgnosticMigrationManager<T>
 		Objects.requireNonNull(versionedObject);
 	}
 
+	/**
+	 * Simple Constructor.
+	 *
+	 * @param versionedObject which provides getter and setter for the current version.
+	 * This object will be stored after the {@link VersionAgnosticMigrationScript}s are executed.
+	 * @param migrater does the actual migration with the given {@link VersionAgnosticMigrationScript}
+	 * @param storageManager for the {@link VersionAgnosticMigrationScript}s to use. Is not used for the storing of the new version.
+	 */
 	public VersionAgnosticMigrationManager
 		(
 			final VersionedAndKeeperOfHistory                          versionedObject,

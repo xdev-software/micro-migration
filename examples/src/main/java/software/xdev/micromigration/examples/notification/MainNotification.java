@@ -1,5 +1,7 @@
 package software.xdev.micromigration.examples.notification;
 
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
@@ -9,7 +11,7 @@ import java.util.Date;
 
 /**
  * Shows the basic registration of migration notifications
- * ({@link software.xdev.micromigration.notification.ScriptExecutionNotification}).
+ * ({@link ScriptExecutionNotification}).
  *
  * @author Johannes Rabauer
  */

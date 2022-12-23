@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-examples</artifactId>
-    <version>0.0.7</version>
+    <version>0.0.7-SNAPSHOT</version>
     <name>MicroMigration-Examples</name>
     <description>Examples for the MicroMigration-Library with MicroStream v7</description>
 
     <parent>
         <groupId>software.xdev</groupId>
-        <version>0.0.7</version>
+        <version>0.0.7-SNAPSHOT</version>
         <artifactId>micro-migration</artifactId>
     </parent>
 
@@ -26,4 +26,23 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

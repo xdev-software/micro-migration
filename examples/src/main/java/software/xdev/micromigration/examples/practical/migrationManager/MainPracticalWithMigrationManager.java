@@ -3,6 +3,7 @@ package software.xdev.micromigration.examples.practical.migrationManager;
 import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
+import software.xdev.micromigration.microstream.MigrationManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.version.VersionedObject;
 

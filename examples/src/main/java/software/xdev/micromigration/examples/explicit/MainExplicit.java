@@ -2,13 +2,16 @@ package software.xdev.micromigration.examples.explicit;
 
 import software.xdev.micromigration.examples.explicit.scripts.UpdateToV1_0;
 import software.xdev.micromigration.examples.explicit.scripts.UpdateToV1_1;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
+import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 
 import java.util.Date;
 
 /**
  * The most basic usage of micro migration.
- * Here two {@link software.xdev.micromigration.scripts.MigrationScript}s are explicitly registered
+ * Here two {@link MigrationScript}s are explicitly registered
  * and subsequently executed. Easy.
  *
  * @author Johannes Rabauer

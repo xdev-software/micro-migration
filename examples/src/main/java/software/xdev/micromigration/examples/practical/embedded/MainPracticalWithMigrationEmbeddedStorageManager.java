@@ -1,6 +1,8 @@
 package software.xdev.micromigration.examples.practical.embedded;
 
 import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
+import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 
 
@@ -16,7 +18,7 @@ import software.xdev.micromigration.migrater.ExplicitMigrater;
  * @author Johannes Rabauer
  *
  */
-public class MainPracticalWithMigrationEmbeddedStorageManager 
+public class MainPracticalWithMigrationEmbeddedStorageManager
 {
 	public static void main(String[] args) 
 	{
