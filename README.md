@@ -44,7 +44,7 @@ Simply add the dependency to your `pom.xml`:
 <dependency>
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-microstream-v7</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 </dependency>
 ```
 
@@ -134,7 +134,7 @@ To use this, you need to add the following dependency to your `pom.xml`:
 <dependency>
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-reflection</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 </dependency>
 ```
 
@@ -153,7 +153,7 @@ then use `micro-migration-microstream-v7`) and exclude the dependent version of 
 <dependency>
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-microstream-v7</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<exclusions>
 		<exclusion>
 			<groupId>one.microstream</groupId>
