@@ -1,7 +1,7 @@
 package software.xdev.micromigration.migrater;
 
 import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
+import org.reflections.scanners.Scanners;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
@@ -36,7 +36,7 @@ public class ReflectiveMigrater extends AbstractMigrater
 		Reflections reflections = new Reflections(
 			new ConfigurationBuilder()
 				.setUrls(ClasspathHelper.forPackage(packagePath))
-				.setScanners(new SubTypesScanner())
+				.setScanners(Scanners.SubTypes)
 				//I don't get why you have to filter again, but if you don't, super-packages will get included
 				.filterInputsBy(new FilterBuilder().includePackage(packagePath))
 		);
