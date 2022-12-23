@@ -1,9 +1,15 @@
+![License](https://img.shields.io/github/license/xdev-software/micro-migration)
 [![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration)](https://central.sonatype.dev/artifact/software.xdev/micro-migration/0.0.4/versions)
-[![Build](https://img.shields.io/github/workflow/status/xdev-software/micro-migration/Check%20Build/main)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
+[![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/micro-migration/checkBuild.yml?branch=develop)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 [![javadoc core](https://javadoc.io/badge2/software.xdev/micro-migration-core/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-core)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6816/badge)](https://bestpractices.coreinfrastructure.org/projects/6816)
+[![Twitter Follow](https://img.shields.io/twitter/follow/XDEVSoftware)](https://twitter.com/XDEVSoftware)
 
 # Micro migration
+Tiny java library to migrate MicroStream datastores. 
+Applies migration scripts on the datastores to keep them up to date.
+
+## Intro
 When you think about default database setup, you probably imagine something like this:
 
 ![Imaginative system layout](./docs/MigrationSequence_1.png "Imaginative system layout")
@@ -38,7 +44,7 @@ Simply add the dependency to your `pom.xml`:
 <dependency>
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-microstream-v7</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 </dependency>
 ```
 
@@ -128,7 +134,7 @@ To use this, you need to add the following dependency to your `pom.xml`:
 <dependency>
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-reflection</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 </dependency>
 ```
 
@@ -147,7 +153,7 @@ then use `micro-migration-microstream-v7`) and exclude the dependent version of 
 <dependency>
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-microstream-v7</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.7</version>
 	<exclusions>
 		<exclusion>
 			<groupId>one.microstream</groupId>

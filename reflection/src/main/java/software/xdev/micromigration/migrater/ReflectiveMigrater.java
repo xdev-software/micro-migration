@@ -1,21 +1,20 @@
 package software.xdev.micromigration.migrater;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Modifier;
-import java.util.TreeSet;
-
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.util.ClasspathHelper;
 import org.reflections.util.ConfigurationBuilder;
 import org.reflections.util.FilterBuilder;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 
-import software.xdev.micromigration.scripts.MigrationScript;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
+import java.util.TreeSet;
 
 /**
  * Contains all the available scripts to migrate the datastore to a certain version.
  * <p>
- * Searches all implementation of {@link MigrationScript} in the specified package
+ * Searches all implementation of {@link VersionAgnosticMigrationScript} in the specified package
  * and it's the sub packages.
  * 
  * @author Johannes Rabauer
@@ -23,10 +22,11 @@ import software.xdev.micromigration.scripts.MigrationScript;
  */
 public class ReflectiveMigrater extends AbstractMigrater
 {
-	private final TreeSet<MigrationScript<?,?>> sortedScripts = new TreeSet<>(MigrationScript.COMPARATOR);
+	private final TreeSet<VersionAgnosticMigrationScript<?,?>> sortedScripts = new TreeSet<>(
+		VersionAgnosticMigrationScript.COMPARATOR);
 	
 	/**
-	 * @param packagePath defines the package in which {@link MigrationScript}s will be searched.
+	 * @param packagePath defines the package in which {@link VersionAgnosticMigrationScript}s will be searched.
 	 * Also searches through all sub packages of <code>packagePath</code>
 	 * @throws ScriptInstantiationException if a class in the given package could not be instantiated
 	 */
@@ -41,12 +41,13 @@ public class ReflectiveMigrater extends AbstractMigrater
 				.filterInputsBy(new FilterBuilder().includePackage(packagePath))
 		);
 		
-		for (Class<? extends MigrationScript> scriptClass : reflections.getSubTypesOf(MigrationScript.class)) 
+		for (Class<? extends VersionAgnosticMigrationScript> scriptClass : reflections.getSubTypesOf(
+			VersionAgnosticMigrationScript.class))
 		{
 			//Only instanciate non abstract classes
 			if(!Modifier.isAbstract(scriptClass.getModifiers()))
 			{
-				MigrationScript<?,?> instanciatedScript = instanciateClass(scriptClass);
+				VersionAgnosticMigrationScript<?,?> instanciatedScript = instanciateClass(scriptClass);
 				checkIfVersionIsAlreadyRegistered(instanciatedScript);
 				this.sortedScripts.add(instanciatedScript);
 			}
@@ -54,7 +55,7 @@ public class ReflectiveMigrater extends AbstractMigrater
 	}
 
 	@SuppressWarnings("rawtypes")
-	private MigrationScript<?,?> instanciateClass(Class<? extends MigrationScript> scriptClass) throws ScriptInstantiationException
+	private VersionAgnosticMigrationScript<?,?> instanciateClass(Class<? extends VersionAgnosticMigrationScript> scriptClass) throws ScriptInstantiationException
 	{
 		try {
 			return scriptClass.getDeclaredConstructor().newInstance();
@@ -71,7 +72,7 @@ public class ReflectiveMigrater extends AbstractMigrater
 	}
 	
 	@Override
-	public TreeSet<MigrationScript<?,?>> getSortedScripts()
+	public TreeSet<VersionAgnosticMigrationScript<?,?>> getSortedScripts()
 	{
 		return this.sortedScripts;
 	}

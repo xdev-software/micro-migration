@@ -1,8 +1,8 @@
 package software.xdev.micromigration.migrater;
 
-import java.util.TreeSet;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 
-import software.xdev.micromigration.scripts.MigrationScript;
+import java.util.TreeSet;
 
 /**
  * Contains all the available scripts to migrate the datastore to a certain version.
@@ -14,16 +14,17 @@ import software.xdev.micromigration.scripts.MigrationScript;
  */
 public class ExplicitMigrater extends AbstractMigrater
 {
-	private final TreeSet<MigrationScript<?,?>> sortedScripts = new TreeSet<>(MigrationScript.COMPARATOR);
+	private final TreeSet<VersionAgnosticMigrationScript<?,?>> sortedScripts = new TreeSet<>(
+		VersionAgnosticMigrationScript.COMPARATOR);
 	
 	/**
 	 * @param scripts are all the scripts that are executed, if the current version is lower than this of the script<br>
 	 * Versions of the scripts must be unique. That means that no version is allowed multiple times in the migrater.
 	 * @throws VersionAlreadyRegisteredException if two scripts have the same version
 	 */
-	public ExplicitMigrater(MigrationScript<?,?> ...scripts) throws VersionAlreadyRegisteredException
+	public ExplicitMigrater(VersionAgnosticMigrationScript<?,?>...scripts) throws VersionAlreadyRegisteredException
 	{
-		for (MigrationScript<?,?> script : scripts)
+		for (VersionAgnosticMigrationScript<?,?> script : scripts)
 		{
 			checkIfVersionIsAlreadyRegistered(script);
 			this.sortedScripts.add(script);
@@ -31,7 +32,7 @@ public class ExplicitMigrater extends AbstractMigrater
 	}
 
 	@Override
-	public TreeSet<MigrationScript<?,?>> getSortedScripts() {
+	public TreeSet<VersionAgnosticMigrationScript<?,?>> getSortedScripts() {
 		return this.sortedScripts;
 	}
 }

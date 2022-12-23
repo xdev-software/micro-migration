@@ -1,10 +1,7 @@
 package software.xdev.micromigration.scripts;
 
-import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticEmbeddedStorageManager;
-
-
 /**
- * Container that holds necessary information for the execution of an {@link MigrationScript}
+ * Container that holds necessary information for the execution of an {@link VersionAgnosticMigrationScript}
  * 
  * @author Johannes Rabauer
  */
@@ -19,12 +16,12 @@ public class Context<T, E>
 	 */
 	public Context(
 		final T                                        migratingObject,
-		final VersionAgnosticEmbeddedStorageManager<E> storageManager
+		final E storageManager
 	) 
 	{
 		super();
 		this.migratingObject = migratingObject;
-		this.storageManager  = storageManager.getNativeStorageManager();
+		this.storageManager  = storageManager;
 	}
 
 	/**

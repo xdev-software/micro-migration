@@ -29,7 +29,6 @@ public class MigrationEmbeddedStorage
 	 * @param migrater which is used as source for the migration scripts
 	 * @return the created storage manager with the given migrater
 	 */
-	@SuppressWarnings("resource")
 	public static final MigrationEmbeddedStorageManager start(MicroMigrater migrater)
 	{
 		Objects.requireNonNull(migrater);

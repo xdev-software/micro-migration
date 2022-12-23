@@ -1,3 +1,7 @@
+## 0.0.7
+* A lot of refactoring of the module structure
+* A migration history is now available and automatically stored
+
 ## 0.0.6
 * Tried a new release-action...again.
 

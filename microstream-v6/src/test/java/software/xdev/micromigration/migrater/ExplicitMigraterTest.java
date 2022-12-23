@@ -1,20 +1,17 @@
 package software.xdev.micromigration.migrater;
 
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.nio.file.Path;
-
-import software.xdev.micromigration.testUtil.MicroMigrationScriptDummy;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
+import software.xdev.micromigration.testUtil.MicroMigrationScriptDummy;
 import software.xdev.micromigration.version.MigrationVersion;
+
+import java.nio.file.Path;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class ExplicitMigraterTest
@@ -58,7 +55,7 @@ class ExplicitMigraterTest
 			storageManager.storeRoot();
 		}
 		final ExplicitMigrater migrater = new ExplicitMigrater(
-			new SimpleTypedMigrationScript<Double, EmbeddedStorageManager>(
+			new SimpleTypedMigrationScript<Double, MigrationEmbeddedStorageManager>(
 				new MigrationVersion(1),
 				(context) -> {
 					context.getStorageManager().setRoot(context.getMigratingObject() + 1);
