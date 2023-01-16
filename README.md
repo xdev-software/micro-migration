@@ -1,9 +1,7 @@
-![License](https://img.shields.io/github/license/xdev-software/micro-migration)
 [![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration)](https://central.sonatype.dev/artifact/software.xdev/micro-migration/0.0.4/versions)
 [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/micro-migration/checkBuild.yml?branch=develop)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 [![javadoc core](https://javadoc.io/badge2/software.xdev/micro-migration-core/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-core)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6816/badge)](https://bestpractices.coreinfrastructure.org/projects/6816)
-[![Twitter Follow](https://img.shields.io/twitter/follow/XDEVSoftware)](https://twitter.com/XDEVSoftware)
 
 # Micro migration
 Tiny java library to migrate MicroStream datastores. 
@@ -168,9 +166,38 @@ then use `micro-migration-microstream-v7`) and exclude the dependent version of 
 ```
 Since there is rarely a breaking change, this works 90% of times.
 
-# Links
+## Releasing
+
+Before releasing:
+
+* Check if the [Check Build](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)-Action was successful.
+* Check the [changelog](CHANGELOG.md)
+
+If the ``develop`` is ready for release, create a pull request to the ``main``-Branch and merge the changes
+
+When the release is finished do the following:
+* Merge the auto-generated PR (with the incremented version number) back into the ``develop``
+* Login to the [Sonatype repository manager](https://s01.oss.sonatype.org/), check the staged libraries, 
+  close the repository and publish it (after a few minutes).
+
+## Developing
+
+### Software Requirements
+You should have the following things installed:
+* Git
+* Java 9
+* Maven
+
+### Recommended setup
+* Install ``IntelliJ`` (Community Edition is sufficient)
+    * Install the following plugins:
+    * Import the project
+    * Ensure that everything is encoded in ``UTF-8``
+    * Ensure that the JDK/Java-Version is correct
+
+## Links
 - [Javadoc](https://javadoc.io/doc/software.xdev/micro-migration-core/latest/index.html)
 - [Maven central repository](https://central.sonatype.dev/artifact/software.xdev/micro-migration/0.0.4/version)
 
-# Contributing
+## Contributing
 We would love your input in any way. More about contributing: [CONTRIBUTING.md](CONTRIBUTING.md)
