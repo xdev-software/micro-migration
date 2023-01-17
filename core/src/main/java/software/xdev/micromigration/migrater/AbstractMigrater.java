@@ -1,11 +1,5 @@
 package software.xdev.micromigration.migrater;
 
-import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
-import software.xdev.micromigration.notification.ScriptExecutionNotificationWithScriptReference;
-import software.xdev.micromigration.scripts.Context;
-import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
-import software.xdev.micromigration.version.MigrationVersion;
-
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,79 +8,86 @@ import java.util.Objects;
 import java.util.TreeSet;
 import java.util.function.Consumer;
 
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
+import software.xdev.micromigration.notification.ScriptExecutionNotificationWithScriptReference;
+import software.xdev.micromigration.scripts.Context;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
+import software.xdev.micromigration.version.MigrationVersion;
+
 
 /**
- * Provides the basic functionality to apply {@link VersionAgnosticMigrationScript}s to
- * a datastore.
+ * Provides the basic functionality to apply {@link VersionAgnosticMigrationScript}s to a datastore.
  *
  * @author Johannes Rabauer
  */
 public abstract class AbstractMigrater implements MicroMigrater
-{	
-	private List<Consumer<ScriptExecutionNotificationWithScriptReference>> notificationConsumers = new ArrayList<>();
+{
+	private final List<Consumer<ScriptExecutionNotificationWithScriptReference>> notificationConsumers =
+		new ArrayList<>();
 	private Clock clock = Clock.systemDefaultZone();
-
-
-	public void registerNotificationConsumer(Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer)
+	
+	@Override
+	public void registerNotificationConsumer(final Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer)
 	{
 		this.notificationConsumers.add(notificationConsumer);
 	}
 	
 	@Override
-	public <E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToNewest(
-		MigrationVersion fromVersion   ,
-		E                storageManager,
-		Object           root
+	public <E extends VersionAgnosticMigrationEmbeddedStorageManager<?, ?>> MigrationVersion migrateToNewest(
+		final MigrationVersion fromVersion,
+		final E storageManager,
+		final Object root
 	)
 	{
 		Objects.requireNonNull(fromVersion);
 		Objects.requireNonNull(storageManager);
 		
-		TreeSet<? extends VersionAgnosticMigrationScript<?,?>> sortedScripts = getSortedScripts();
+		final TreeSet<? extends VersionAgnosticMigrationScript<?, ?>> sortedScripts = this.getSortedScripts();
 		if(sortedScripts.size() > 0)
 		{
-			return migrateToVersion(
-				fromVersion                                 , 
-				getSortedScripts().last().getTargetVersion(),
-				storageManager                              ,
+			return this.migrateToVersion(
+				fromVersion,
+				this.getSortedScripts().last().getTargetVersion(),
+				storageManager,
 				root
 			);
 		}
 		return fromVersion;
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateToVersion
-	(
-		MigrationVersion fromVersion    ,
-		MigrationVersion targetVersion  ,
-		E                storageManager ,
-		Object           objectToMigrate
-	)
+	public <E extends VersionAgnosticMigrationEmbeddedStorageManager<?, ?>> MigrationVersion migrateToVersion
+		(
+			final MigrationVersion fromVersion,
+			final MigrationVersion targetVersion,
+			final E storageManager,
+			final Object objectToMigrate
+		)
 	{
 		Objects.requireNonNull(fromVersion);
 		Objects.requireNonNull(targetVersion);
 		Objects.requireNonNull(storageManager);
 		
 		MigrationVersion updateVersionWhichWasExecuted = fromVersion;
-		for (VersionAgnosticMigrationScript<?,?> script : this.getSortedScripts())
+		for(final VersionAgnosticMigrationScript<?, ?> script : this.getSortedScripts())
 		{
-			VersionAgnosticMigrationScript<?,E> castedScript = (VersionAgnosticMigrationScript<?,E>)script;
+			final VersionAgnosticMigrationScript<?, E> castedScript = (VersionAgnosticMigrationScript<?, E>)script;
 			if(MigrationVersion.COMPARATOR.compare(fromVersion, script.getTargetVersion()) < 0)
 			{
 				if(MigrationVersion.COMPARATOR.compare(script.getTargetVersion(), targetVersion) <= 0)
 				{
 					LocalDateTime startDate = null;
-					MigrationVersion versionBeforeUpdate = updateVersionWhichWasExecuted;
+					final MigrationVersion versionBeforeUpdate = updateVersionWhichWasExecuted;
 					if(!this.notificationConsumers.isEmpty())
 					{
 						startDate = LocalDateTime.now(this.clock);
 					}
-					updateVersionWhichWasExecuted = migrateWithScript(castedScript, storageManager, objectToMigrate);
+					updateVersionWhichWasExecuted =
+						this.migrateWithScript(castedScript, storageManager, objectToMigrate);
 					if(!this.notificationConsumers.isEmpty())
 					{
-						ScriptExecutionNotificationWithScriptReference scriptNotification =
+						final ScriptExecutionNotificationWithScriptReference scriptNotification =
 							new ScriptExecutionNotificationWithScriptReference(
 								script,
 								versionBeforeUpdate,
@@ -104,12 +105,12 @@ public abstract class AbstractMigrater implements MicroMigrater
 	
 	@SuppressWarnings("unchecked")
 	private <T,E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> MigrationVersion migrateWithScript(
-		VersionAgnosticMigrationScript<T,E> script         ,
-		E                                   storageManager ,
-		Object                              objectToMigrate
+		final VersionAgnosticMigrationScript<T, E> script,
+		final E storageManager,
+		final Object objectToMigrate
 	)
 	{
-		T castedObjectToMigrate = (T) objectToMigrate;
+		final T castedObjectToMigrate = (T)objectToMigrate;
 		script.migrate(new Context<>(castedObjectToMigrate, storageManager));
 		return script.getTargetVersion();
 	}
@@ -117,33 +118,38 @@ public abstract class AbstractMigrater implements MicroMigrater
 	/**
 	 * Checks if the given {@link VersionAgnosticMigrationScript} is not already registered in the
 	 * {@link #getSortedScripts()}.
-	 * @throws VersionAlreadyRegisteredException if script is already registered.
+	 *
 	 * @param scriptToCheck It's target version is checked, if it is not already registered.
+	 * @throws VersionAlreadyRegisteredException if script is already registered.
 	 */
-	protected void checkIfVersionIsAlreadyRegistered(VersionAgnosticMigrationScript<?,?> scriptToCheck)
+	protected void checkIfVersionIsAlreadyRegistered(final VersionAgnosticMigrationScript<?, ?> scriptToCheck)
 	{
-		//Check if same version is not already registered
-		for (VersionAgnosticMigrationScript<?,?> alreadyRegisteredScript : this.getSortedScripts())
+		// Check if same version is not already registered
+		for(final VersionAgnosticMigrationScript<?, ?> alreadyRegisteredScript : this.getSortedScripts())
 		{
-			if(MigrationVersion.COMPARATOR.compare(alreadyRegisteredScript.getTargetVersion(), scriptToCheck.getTargetVersion()) == 0)
+			if(MigrationVersion.COMPARATOR.compare(
+				alreadyRegisteredScript.getTargetVersion(),
+				scriptToCheck.getTargetVersion()) == 0)
 			{
-				//Two scripts with the same version are not allowed to get registered.
+				// Two scripts with the same version are not allowed to get registered.
 				throw new VersionAlreadyRegisteredException(
-						alreadyRegisteredScript.getTargetVersion(),
-						alreadyRegisteredScript,
-						scriptToCheck
+					alreadyRegisteredScript.getTargetVersion(),
+					alreadyRegisteredScript,
+					scriptToCheck
 				);
 			}
 		}
 	}
-
+	
 	/**
 	 * Change used clock for notifications from {@link #registerNotificationConsumer(Consumer)}.
+	 *
 	 * @param clock is used when a
-	 * {@link software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference} is created
+	 *              {@link software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference}
+	 *              is created
 	 * @return self
 	 */
-	public AbstractMigrater withClock(Clock clock)
+	public AbstractMigrater withClock(final Clock clock)
 	{
 		this.clock = clock;
 		return this;

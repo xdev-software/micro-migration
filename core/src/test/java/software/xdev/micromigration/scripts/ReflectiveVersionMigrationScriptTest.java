@@ -2,6 +2,7 @@ package software.xdev.micromigration.scripts;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.version.MigrationVersion;
 
@@ -126,7 +127,7 @@ class ReflectiveVersionMigrationScriptTest
 	public static class ReflectiveVersionMigrationScriptDummy extends ReflectiveVersionMigrationScript<Object, VersionAgnosticMigrationEmbeddedStorageManager<Object,Object>>
 	{
 		@Override
-		public void migrate(Context<Object, VersionAgnosticMigrationEmbeddedStorageManager<Object,Object>> context) {
+		public void migrate(final Context<Object, VersionAgnosticMigrationEmbeddedStorageManager<Object,Object>> context) {
 			//Dummy
 		}
 	}

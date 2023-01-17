@@ -1,17 +1,18 @@
 package software.xdev.micromigration.integration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
-
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class MigrationHistoryTest

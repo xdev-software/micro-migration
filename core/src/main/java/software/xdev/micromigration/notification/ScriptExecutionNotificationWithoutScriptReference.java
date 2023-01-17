@@ -18,7 +18,7 @@ import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 public class ScriptExecutionNotificationWithoutScriptReference extends AbstractScriptExecutionNotification
 {
 	private final String executedScriptName;
-
+	
 	/**
 	 * @param originalNotification where the reference to the script is deleted and the class name is extracted.
 	 */
@@ -26,8 +26,8 @@ public class ScriptExecutionNotificationWithoutScriptReference extends AbstractS
 	{
 		super(
 			originalNotification.getSourceVersion(),
-		    originalNotification.getTargetVersion(),
-			originalNotification.getStartDate()    ,
+			originalNotification.getTargetVersion(),
+			originalNotification.getStartDate(),
 			originalNotification.getEndDate()
 		);
 		this.executedScriptName = originalNotification.getExecutedScript().getClass().getSimpleName();

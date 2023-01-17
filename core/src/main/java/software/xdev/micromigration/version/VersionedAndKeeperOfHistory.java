@@ -1,8 +1,8 @@
 package software.xdev.micromigration.version;
 
-import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
-
 import java.util.List;
+
+import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
 
 
 /**

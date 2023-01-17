@@ -1,12 +1,12 @@
 package software.xdev.micromigration.examples.reflective;
 
+import java.util.Date;
+import java.util.logging.Logger;
+
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ReflectiveMigrater;
 import software.xdev.micromigration.migrater.ScriptInstantiationException;
-
-import java.util.Date;
-import java.util.logging.Logger;
 
 
 /**
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class MainReflective
 {
-	public static void main(String[] args) 
+	public static void main(final String[] args)
 	{
 		try {
 			final ReflectiveMigrater migrater = new ReflectiveMigrater("software.xdev.micromigration.examples.reflective.scripts");
@@ -29,7 +29,7 @@ public class MainReflective
 			storageManager.storeRoot();
 			storageManager.shutdown();			
 		} 
-		catch (IllegalArgumentException | SecurityException | ScriptInstantiationException e)
+		catch (final IllegalArgumentException | SecurityException | ScriptInstantiationException e)
 		{
 			throw new Error("Could not initiate migration script", e);
 		}

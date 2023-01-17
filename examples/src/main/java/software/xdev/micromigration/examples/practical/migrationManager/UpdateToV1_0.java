@@ -1,5 +1,7 @@
 package software.xdev.micromigration.examples.practical.migrationManager;
 
+import java.util.logging.Logger;
+
 import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
 import software.xdev.micromigration.examples.practical.v0.Customer;
 import software.xdev.micromigration.examples.practical.v1AndHigher.Address;
@@ -8,8 +10,6 @@ import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.VersionedObject;
-
-import java.util.logging.Logger;
 
 
 public class UpdateToV1_0 implements MigrationScript<VersionedObject<Object>>
@@ -21,17 +21,17 @@ public class UpdateToV1_0 implements MigrationScript<VersionedObject<Object>>
 	}
 
 	@Override
-	public void migrate(Context<VersionedObject<Object>, MigrationEmbeddedStorageManager> context)
+	public void migrate(final Context<VersionedObject<Object>, MigrationEmbeddedStorageManager> context)
 	{
 		Logger.getGlobal().info("Executing Script for v1.0...");
-		VersionedObject<Object> versionedBranch = context.getMigratingObject();
-		BusinessBranch oldBranch =
+		final VersionedObject<Object> versionedBranch = context.getMigratingObject();
+		final BusinessBranch oldBranch =
 				(BusinessBranch) versionedBranch.getObject();
-		software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch newBranch =
+		final software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch newBranch =
 				new software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch();
-		for (Customer oldCustomer : oldBranch.customers)
+		for (final Customer oldCustomer : oldBranch.customers)
 		{
-			software.xdev.micromigration.examples.practical.v1AndHigher.Customer newCustomer =
+			final software.xdev.micromigration.examples.practical.v1AndHigher.Customer newCustomer =
 					new software.xdev.micromigration.examples.practical.v1AndHigher.Customer();
 			newCustomer.name = oldCustomer.name;
 			newCustomer.address = new Address();

@@ -1,5 +1,8 @@
 package software.xdev.micromigration.microstream;
 
+import java.util.Objects;
+import java.util.function.Predicate;
+
 import one.microstream.afs.types.AFile;
 import one.microstream.collections.types.XGettingEnum;
 import one.microstream.persistence.binary.types.Binary;
@@ -21,9 +24,6 @@ import one.microstream.storage.types.StorageRawFileStatistics;
 import one.microstream.storage.types.StorageTypeDictionary;
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticTunnelingEmbeddedStorageManager;
 import software.xdev.micromigration.version.Versioned;
-
-import java.util.Objects;
-import java.util.function.Predicate;
 
 
 /**

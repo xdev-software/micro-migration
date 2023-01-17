@@ -1,9 +1,9 @@
 package software.xdev.micromigration.scripts;
 
+import java.util.Comparator;
+
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.version.MigrationVersion;
-
-import java.util.Comparator;
 
 
 /**

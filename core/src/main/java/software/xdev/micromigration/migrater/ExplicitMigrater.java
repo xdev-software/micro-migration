@@ -1,16 +1,16 @@
 package software.xdev.micromigration.migrater;
 
+import java.util.TreeSet;
+
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 
-import java.util.TreeSet;
 
 /**
  * Contains all the available scripts to migrate the datastore to a certain version.
  * <p>
  * This class needs explicit scripts which are then included in the migration process.
- * 
+ *
  * @author Johannes Rabauer
- * 
  */
 public class ExplicitMigrater extends AbstractMigrater
 {
@@ -22,11 +22,11 @@ public class ExplicitMigrater extends AbstractMigrater
 	 * Versions of the scripts must be unique. That means that no version is allowed multiple times in the migrater.
 	 * @throws VersionAlreadyRegisteredException if two scripts have the same version
 	 */
-	public ExplicitMigrater(VersionAgnosticMigrationScript<?,?>...scripts) throws VersionAlreadyRegisteredException
+	public ExplicitMigrater(final VersionAgnosticMigrationScript<?,?>...scripts) throws VersionAlreadyRegisteredException
 	{
-		for (VersionAgnosticMigrationScript<?,?> script : scripts)
+		for (final VersionAgnosticMigrationScript<?,?> script : scripts)
 		{
-			checkIfVersionIsAlreadyRegistered(script);
+			this.checkIfVersionIsAlreadyRegistered(script);
 			this.sortedScripts.add(script);
 		}
 	}

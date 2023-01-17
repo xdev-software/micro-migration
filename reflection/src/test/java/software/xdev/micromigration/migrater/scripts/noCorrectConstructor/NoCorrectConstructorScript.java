@@ -1,10 +1,10 @@
 package software.xdev.micromigration.migrater.scripts.noCorrectConstructor;
 
+import java.util.logging.Logger;
+
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
-
-import java.util.logging.Logger;
 
 
 public class NoCorrectConstructorScript implements
@@ -12,7 +12,7 @@ public class NoCorrectConstructorScript implements
 {
 	private final String argument;
 	
-	public NoCorrectConstructorScript(String argument)
+	public NoCorrectConstructorScript(final String argument)
 	{
 		this.argument = argument;
 	}
@@ -24,7 +24,7 @@ public class NoCorrectConstructorScript implements
 	}
 
 	@Override
-	public void migrate(Context<Object, MigrationEmbeddedStorageManager> context)
+	public void migrate(final Context<Object, MigrationEmbeddedStorageManager> context)
 	{
 		Logger.getGlobal().info(this.argument);
 	}

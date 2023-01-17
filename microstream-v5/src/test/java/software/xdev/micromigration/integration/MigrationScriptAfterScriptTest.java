@@ -1,10 +1,18 @@
 package software.xdev.micromigration.integration;
 
-import one.microstream.storage.embedded.types.EmbeddedStorage;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
+import one.microstream.storage.embedded.types.EmbeddedStorage;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.microstream.MigrationManager;
@@ -15,17 +23,10 @@ import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.Versioned;
 import software.xdev.micromigration.version.VersionedObject;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 class MigrationScriptAfterScriptTest 
 {
 	@Test
-	void testMigrationWithThreeDifferenMigrater_MigrationEmbeddedStorageManager(@TempDir Path storageFolder) throws IOException 
+	void testMigrationWithThreeDifferenMigrater_MigrationEmbeddedStorageManager(@TempDir final Path storageFolder) throws IOException
 	{
 		//First run without any migration script
 		final ExplicitMigrater firstMigrater = new ExplicitMigrater();
@@ -65,7 +66,7 @@ class MigrationScriptAfterScriptTest
 	}
 	
 	@Test
-	void testMigrationWithScriptExecutionNotification(@TempDir Path storageFolder) throws IOException 
+	void testMigrationWithScriptExecutionNotification(@TempDir final Path storageFolder) throws IOException
 	{
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript = new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1), 
@@ -89,12 +90,12 @@ class MigrationScriptAfterScriptTest
 	}
 	
 	@Test
-	void testMigrationWithThreeDifferenMigrater_StandaloneMicroMigrationManager(@TempDir Path storageFolder) throws IOException 
+	void testMigrationWithThreeDifferenMigrater_StandaloneMicroMigrationManager(@TempDir final Path storageFolder) throws IOException
 	{
 		//First run without any migration script
-		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
+		try(final EmbeddedStorageManager storageManager = this.startEmbeddedStorageManagerWithPath(storageFolder))
 		{
-			VersionedObject<Integer> firstRoot = new VersionedObject<>(0);
+			final VersionedObject<Integer> firstRoot = new VersionedObject<>(0);
 			storageManager.setRoot(firstRoot);
 			storageManager.storeRoot();
 			assertEquals(Integer.valueOf(0), firstRoot.getObject());
@@ -107,7 +108,7 @@ class MigrationScriptAfterScriptTest
 				new MigrationVersion(1), 
 				(context) -> context.getMigratingObject().setObject(1)
 		);
-		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
+		try(final EmbeddedStorageManager storageManager = this.startEmbeddedStorageManagerWithPath(storageFolder))
 		{
 			new MigrationManager(
 				(Versioned) storageManager.root(),
@@ -116,7 +117,7 @@ class MigrationScriptAfterScriptTest
 			)
 			.migrate(storageManager.root());
 			@SuppressWarnings("unchecked")
-			VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
+			final VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
 			assertEquals(Integer.valueOf(1), currentRoot.getObject());
 			assertEquals(new MigrationVersion(1), currentRoot.getVersion());
 		}
@@ -127,7 +128,7 @@ class MigrationScriptAfterScriptTest
 				new MigrationVersion(2), 
 				(context) -> context.getMigratingObject().setObject(2)
 		);
-		try(final EmbeddedStorageManager storageManager = startEmbeddedStorageManagerWithPath(storageFolder))
+		try(final EmbeddedStorageManager storageManager = this.startEmbeddedStorageManagerWithPath(storageFolder))
 		{
 			new MigrationManager(
 				(Versioned) storageManager.root(), 
@@ -136,13 +137,13 @@ class MigrationScriptAfterScriptTest
 			)
 			.migrate(storageManager.root());
 			@SuppressWarnings("unchecked")
-			VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
+			final VersionedObject<Integer> currentRoot = (VersionedObject<Integer>)storageManager.root();
 			assertEquals(Integer.valueOf(2), currentRoot.getObject());
 			assertEquals(new MigrationVersion(2), currentRoot.getVersion());
 		}
 	}
 	
-	private EmbeddedStorageManager startEmbeddedStorageManagerWithPath(Path storageFolder)
+	private EmbeddedStorageManager startEmbeddedStorageManagerWithPath(final Path storageFolder)
 	{
 		return EmbeddedStorage.start(storageFolder);
 	}

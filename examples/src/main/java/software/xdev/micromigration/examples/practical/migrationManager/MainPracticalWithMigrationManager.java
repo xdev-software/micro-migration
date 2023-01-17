@@ -1,13 +1,13 @@
 package software.xdev.micromigration.examples.practical.migrationManager;
 
+import java.util.logging.Logger;
+
 import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
 import software.xdev.micromigration.microstream.MigrationManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.version.VersionedObject;
-
-import java.util.logging.Logger;
 
 
 /**
@@ -28,12 +28,12 @@ public class MainPracticalWithMigrationManager
 	 * Suppressed Warning "unchecked" because it is given, that the correct object is returned.
 	 */
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) 
+	public static void main(final String[] args)
 	{
 		//V0.0
-		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
+		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
-			VersionedObject<BusinessBranch> versionedBranch = new VersionedObject<>(BusinessBranch.createDummyBranch());
+			final VersionedObject<BusinessBranch> versionedBranch = new VersionedObject<>(BusinessBranch.createDummyBranch());
 			storageManager.setRoot(versionedBranch);
 			storageManager.storeRoot();
 			Logger.getGlobal().info(storageManager.root().toString());
@@ -41,10 +41,10 @@ public class MainPracticalWithMigrationManager
 		
 		
 		//V1.0
-		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
+		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
 			final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
-			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
+			final VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV1, storageManager)
 				.migrate(versionedBranch);
 			Logger.getGlobal().info(storageManager.root().toString());
@@ -52,10 +52,10 @@ public class MainPracticalWithMigrationManager
 		
 		
 		//V2.0
-		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
+		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
 			final ExplicitMigrater migraterWithV2 = new ExplicitMigrater(new UpdateToV1_0(), new UpdateToV2_0());
-			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
+			final VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV2, storageManager)
 				.migrate(versionedBranch);
 			Logger.getGlobal().info(storageManager.root().toString());

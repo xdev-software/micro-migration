@@ -1,13 +1,13 @@
 package software.xdev.micromigration.examples.notification;
 
+import java.util.Date;
+import java.util.logging.Logger;
+
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
-
-import java.util.Date;
-import java.util.logging.Logger;
 
 
 /**
@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class MainNotification
 {
-	public static void main(String[] args) 
+	public static void main(final String[] args)
 	{
 		final ExplicitMigrater migrater = new ExplicitMigrater(
 				new MainNotification.UpdateToV1_0()
@@ -46,7 +46,7 @@ public class MainNotification
 		}
 
 		@Override
-		public void migrate(Context<String, MigrationEmbeddedStorageManager> context)
+		public void migrate(final Context<String, MigrationEmbeddedStorageManager> context)
 		{
 			context.getStorageManager().setRoot("Hello World! @ " + new Date() + " Update 1.0");
 		}

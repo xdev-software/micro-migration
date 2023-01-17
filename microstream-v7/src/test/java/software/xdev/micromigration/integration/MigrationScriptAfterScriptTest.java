@@ -1,10 +1,18 @@
 package software.xdev.micromigration.integration;
 
-import one.microstream.storage.embedded.types.EmbeddedStorage;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
+import one.microstream.storage.embedded.types.EmbeddedStorage;
+import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.microstream.MigrationManager;
@@ -14,13 +22,6 @@ import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.Versioned;
 import software.xdev.micromigration.version.VersionedObject;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.util.concurrent.atomic.AtomicBoolean;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MigrationScriptAfterScriptTest 
 {

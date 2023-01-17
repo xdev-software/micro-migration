@@ -1,14 +1,14 @@
 package software.xdev.micromigration.microstream;
 
+import java.nio.file.Path;
+import java.util.Objects;
+
 import one.microstream.afs.nio.types.NioFileSystem;
 import one.microstream.storage.embedded.types.EmbeddedStorageFoundation;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import one.microstream.storage.types.Storage;
 import one.microstream.storage.types.StorageConfiguration;
 import software.xdev.micromigration.migrater.MicroMigrater;
-
-import java.nio.file.Path;
-import java.util.Objects;
 
 
 /**
@@ -29,7 +29,7 @@ public class MigrationEmbeddedStorage
 	 * @param migrater which is used as source for the migration scripts
 	 * @return the created storage manager with the given migrater
 	 */
-	public static final MigrationEmbeddedStorageManager start(MicroMigrater migrater)
+	public static final MigrationEmbeddedStorageManager start(final MicroMigrater migrater)
 	{
 		Objects.requireNonNull(migrater);
 		return new MigrationEmbeddedStorageManager(
@@ -50,8 +50,8 @@ public class MigrationEmbeddedStorage
 	 */
 	@SuppressWarnings("resource")
 	public static final MigrationEmbeddedStorageManager start(
-		Path          storageDirectory,
-		MicroMigrater migrater
+		final Path          storageDirectory,
+		final MicroMigrater migrater
 	)
 	{
 		Objects.requireNonNull(migrater);
@@ -63,9 +63,9 @@ public class MigrationEmbeddedStorage
 		).start();
 	}
 	
-	private static EmbeddedStorageManager createStorageManager(Path storageDirectory)
+	private static EmbeddedStorageManager createStorageManager(final Path storageDirectory)
 	{
-		NioFileSystem fileSystem = NioFileSystem.New();
+		final NioFileSystem fileSystem = NioFileSystem.New();
 		return EmbeddedStorageFoundation.New()
 			.setConfiguration(
 				StorageConfiguration.Builder()

@@ -1,9 +1,9 @@
 package software.xdev.micromigration.notification;
 
+import java.time.LocalDateTime;
+
 import software.xdev.micromigration.migrater.MicroMigrater;
 import software.xdev.micromigration.version.MigrationVersion;
-
-import java.time.LocalDateTime;
 
 
 /**
@@ -25,10 +25,10 @@ public abstract class AbstractScriptExecutionNotification
 	 * @param endDate time when the script has finished
 	 */
 	public AbstractScriptExecutionNotification(
-		MigrationVersion     sourceVersion ,
-		MigrationVersion     targetVersion ,
-		LocalDateTime        startDate     ,
-		LocalDateTime        endDate
+		final MigrationVersion     sourceVersion ,
+		final MigrationVersion     targetVersion ,
+		final LocalDateTime        startDate     ,
+		final LocalDateTime        endDate
 	) 
 	{
 		super();
@@ -43,7 +43,7 @@ public abstract class AbstractScriptExecutionNotification
 	 */
 	public MigrationVersion getSourceVersion() 
 	{
-		return sourceVersion;
+		return this.sourceVersion;
 	}
 
 	/**
@@ -51,7 +51,7 @@ public abstract class AbstractScriptExecutionNotification
 	 */
 	public MigrationVersion getTargetVersion() 
 	{
-		return targetVersion;
+		return this.targetVersion;
 	}
 
 	/**
@@ -59,7 +59,7 @@ public abstract class AbstractScriptExecutionNotification
 	 */
 	public LocalDateTime getStartDate() 
 	{
-		return startDate;
+		return this.startDate;
 	}
 
 	/**
@@ -67,6 +67,6 @@ public abstract class AbstractScriptExecutionNotification
 	 */
 	public LocalDateTime getEndDate() 
 	{
-		return endDate;
+		return this.endDate;
 	}
 }

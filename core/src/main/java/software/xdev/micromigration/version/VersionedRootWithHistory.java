@@ -1,10 +1,10 @@
 package software.xdev.micromigration.version;
 
-import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
 
 
 /**
@@ -21,14 +21,14 @@ public class VersionedRootWithHistory extends VersionedRoot implements Versioned
 	/**
 	 * @param actualRoot which is stored in the datastore and defined by the user
 	 */
-	public VersionedRootWithHistory(Object actualRoot)
+	public VersionedRootWithHistory(final Object actualRoot)
 	{
 		super(actualRoot);
 		this.migrationHistory = new ArrayList<>();
 	}
 
 	@Override
-	public void addExecutedScript(ScriptExecutionNotificationWithoutScriptReference executedScriptInformation)
+	public void addExecutedScript(final ScriptExecutionNotificationWithoutScriptReference executedScriptInformation)
 	{
 		this.migrationHistory.add(Objects.requireNonNull(executedScriptInformation));
 	}

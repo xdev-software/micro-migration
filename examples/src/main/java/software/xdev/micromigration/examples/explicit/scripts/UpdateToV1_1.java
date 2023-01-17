@@ -1,12 +1,12 @@
 package software.xdev.micromigration.examples.explicit.scripts;
 
+import java.util.Date;
+import java.util.logging.Logger;
+
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
-
-import java.util.Date;
-import java.util.logging.Logger;
 
 
 public class UpdateToV1_1 implements MigrationScript<String>
@@ -18,9 +18,9 @@ public class UpdateToV1_1 implements MigrationScript<String>
 	}
 	
 	@Override
-	public void migrate(Context<String, MigrationEmbeddedStorageManager> context)
+	public void migrate(final Context<String, MigrationEmbeddedStorageManager> context)
 	{
-		Logger.getGlobal().info("Update " + getTargetVersion().toString() + " executed.");
+		Logger.getGlobal().info("Update " + this.getTargetVersion().toString() + " executed.");
 		context.getStorageManager().setRoot("Hello World! @ " + new Date() + " Update 1.1");
 	}
 }

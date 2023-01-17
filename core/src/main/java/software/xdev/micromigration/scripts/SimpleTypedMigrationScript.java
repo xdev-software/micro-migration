@@ -1,20 +1,19 @@
 package software.xdev.micromigration.scripts;
 
-import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
-import software.xdev.micromigration.version.MigrationVersion;
-
 import java.util.Objects;
 import java.util.function.Consumer;
 
+import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
+import software.xdev.micromigration.version.MigrationVersion;
+
 
 /**
- * Provides a simple way to create a migration script with the necessary version
- * and {@link Consumer}.
- * 
- * @author Johannes Rabauer
+ * Provides a simple way to create a migration script with the necessary version and {@link Consumer}.
  *
+ * @author Johannes Rabauer
  */
-public class SimpleTypedMigrationScript<T,E extends VersionAgnosticMigrationEmbeddedStorageManager<?,?>> implements VersionAgnosticMigrationScript<T,E>
+public class SimpleTypedMigrationScript<T, E extends VersionAgnosticMigrationEmbeddedStorageManager<?, ?>>
+	implements VersionAgnosticMigrationScript<T, E>
 {
 	private final MigrationVersion version ;
 	private final Consumer<Context<T,E>> consumer;
@@ -41,7 +40,7 @@ public class SimpleTypedMigrationScript<T,E extends VersionAgnosticMigrationEmbe
 	}
 	
 	@Override
-	public void migrate(Context<T,E> context)
+	public void migrate(final Context<T,E> context)
 	{
 		this.consumer.accept(context);
 	}

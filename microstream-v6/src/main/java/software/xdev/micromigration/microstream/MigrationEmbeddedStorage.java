@@ -1,14 +1,14 @@
 package software.xdev.micromigration.microstream;
 
+import java.nio.file.Path;
+import java.util.Objects;
+
 import one.microstream.afs.nio.types.NioFileSystem;
 import one.microstream.storage.embedded.types.EmbeddedStorageFoundation;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
 import one.microstream.storage.types.Storage;
 import one.microstream.storage.types.StorageConfiguration;
 import software.xdev.micromigration.migrater.MicroMigrater;
-
-import java.nio.file.Path;
-import java.util.Objects;
 
 
 /**

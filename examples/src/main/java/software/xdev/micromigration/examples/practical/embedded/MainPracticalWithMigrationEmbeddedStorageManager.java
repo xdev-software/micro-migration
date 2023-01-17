@@ -1,11 +1,11 @@
 package software.xdev.micromigration.examples.practical.embedded;
 
+import java.util.logging.Logger;
+
 import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
-
-import java.util.logging.Logger;
 
 
 /**
@@ -22,11 +22,11 @@ import java.util.logging.Logger;
  */
 public class MainPracticalWithMigrationEmbeddedStorageManager
 {
-	public static void main(String[] args) 
+	public static void main(final String[] args)
 	{
 		//V0.0
 		final ExplicitMigrater emptyMigrater = new ExplicitMigrater();
-		try(MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(emptyMigrater))
+		try(final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(emptyMigrater))
 		{
 			storageManager.setRoot(BusinessBranch.createDummyBranch());
 			storageManager.storeRoot();
@@ -36,7 +36,7 @@ public class MainPracticalWithMigrationEmbeddedStorageManager
 		
 		//V1.0
 		final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
-		try(MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV1))
+		try(final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV1))
 		{
 			Logger.getGlobal().info(storageManager.root().toString());
 		}
@@ -47,7 +47,7 @@ public class MainPracticalWithMigrationEmbeddedStorageManager
 				new UpdateToV1_0(),
 				new UpdateToV2_0()
 		);
-		try(MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV2))
+		try(final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV2))
 		{
 			Logger.getGlobal().info(storageManager.root().toString());
 		}

@@ -3,28 +3,27 @@ package software.xdev.micromigration.version;
 import java.util.Objects;
 
 /**
- * This class is inserted as the root of the MicroStream datastore and contains only the 
- * current version and the actual root object.
- * 
+ * This class is inserted as the root of the MicroStream datastore and contains only the current version and the actual
+ * root object.
+ *
  * @author Johannes Rabauer
- * 
  */
-public class VersionedRoot implements Versioned 
+public class VersionedRoot implements Versioned
 {
 	private MigrationVersion currentVersion;
-	private Object           actualRoot    ;
-
+	private Object actualRoot;
+	
 	/**
 	 * @param actualRoot which is stored in the datastore and defined by the user
 	 */
-	public VersionedRoot(Object actualRoot)
+	public VersionedRoot(final Object actualRoot)
 	{
-		this.actualRoot     = actualRoot             ;
+		this.actualRoot = actualRoot;
 		this.currentVersion = new MigrationVersion(0);
 	}
 	
 	@Override
-	public void setVersion(MigrationVersion version)
+	public void setVersion(final MigrationVersion version)
 	{
 		Objects.requireNonNull(version);
 		this.currentVersion = version;
@@ -35,11 +34,11 @@ public class VersionedRoot implements Versioned
 	{
 		return this.currentVersion;
 	}
-
+	
 	/**
 	 * @param actualRoot which is stored in the datastore and defined by the user
 	 */
-	public void setRoot(Object actualRoot)
+	public void setRoot(final Object actualRoot)
 	{
 		this.actualRoot = actualRoot;
 	}

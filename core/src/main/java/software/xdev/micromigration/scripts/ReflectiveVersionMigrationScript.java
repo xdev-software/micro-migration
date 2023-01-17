@@ -1,9 +1,9 @@
 package software.xdev.micromigration.scripts;
 
+import java.util.ArrayList;
+
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.version.MigrationVersion;
-
-import java.util.ArrayList;
 
 
 /**
@@ -42,7 +42,7 @@ public abstract class ReflectiveVersionMigrationScript<T,E extends VersionAgnost
      */
     public ReflectiveVersionMigrationScript() 
     {
-    	this.version = createTargetVersionFromClassName();
+    	this.version = this.createTargetVersionFromClassName();
 	}
     
     private MigrationVersion createTargetVersionFromClassName()
@@ -67,7 +67,7 @@ public abstract class ReflectiveVersionMigrationScript<T,E extends VersionAgnost
 			}
 			return new MigrationVersion(versionNumbers);	
 		}
-		catch (NumberFormatException e)
+		catch (final NumberFormatException e)
 		{
 			throw new Error(WRONG_FORMAT_ERROR_MESSAGE);			
 		}

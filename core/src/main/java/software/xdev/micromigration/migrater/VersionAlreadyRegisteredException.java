@@ -1,9 +1,9 @@
 package software.xdev.micromigration.migrater;
 
+import java.util.Objects;
+
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
-
-import java.util.Objects;
 
 
 /**
@@ -35,9 +35,9 @@ public class VersionAlreadyRegisteredException extends Error
 	 * which should be registered as well
 	 */
 	public VersionAlreadyRegisteredException(
-		MigrationVersion                    alreadyRegisteredVersion,
-		VersionAgnosticMigrationScript<?,?> alreadyRegisteredScript ,
-		VersionAgnosticMigrationScript<?,?> newScriptToRegister
+		final MigrationVersion alreadyRegisteredVersion,
+		final VersionAgnosticMigrationScript<?, ?> alreadyRegisteredScript,
+		final VersionAgnosticMigrationScript<?, ?> newScriptToRegister
 	) 
 	{
 		super("Version " + alreadyRegisteredVersion.toString() + " is already registered. Versions must be unique within the migrater.");
@@ -51,7 +51,7 @@ public class VersionAlreadyRegisteredException extends Error
 	 */
 	public MigrationVersion getAlreadyRegisteredVersion() 
 	{
-		return alreadyRegisteredVersion;
+		return this.alreadyRegisteredVersion;
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class VersionAlreadyRegisteredException extends Error
 	 */
 	public VersionAgnosticMigrationScript<?,?> getAlreadyRegisteredScript()
 	{
-		return alreadyRegisteredScript;
+		return this.alreadyRegisteredScript;
 	}
 
 	/**
@@ -68,6 +68,6 @@ public class VersionAlreadyRegisteredException extends Error
 	 */
 	public VersionAgnosticMigrationScript<?,?> getNewScriptToRegister()
 	{
-		return newScriptToRegister;
+		return this.newScriptToRegister;
 	}
 }

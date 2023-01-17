@@ -1,14 +1,14 @@
 package software.xdev.micromigration.microstream.versionagnostic;
 
+import java.util.List;
+import java.util.Objects;
+
 import software.xdev.micromigration.migrater.MicroMigrater;
 import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.Versioned;
 import software.xdev.micromigration.version.VersionedRoot;
 import software.xdev.micromigration.version.VersionedRootWithHistory;
-
-import java.util.List;
-import java.util.Objects;
 
 
 /**
@@ -30,21 +30,21 @@ import java.util.Objects;
 public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	implements AutoCloseable
 {
-	private final MicroMigrater migrater     ;
-	private VersionedRootWithHistory versionRoot  ;
-
-	private VersionAgnosticTunnelingEmbeddedStorageManager<E> tunnelingManager;
-
+	private final MicroMigrater migrater;
+	private VersionedRootWithHistory versionRoot;
+	
+	private final VersionAgnosticTunnelingEmbeddedStorageManager<E> tunnelingManager;
+	
 	/**
-	 * @param tunnelingManager which will be used as the underlying storage manager.
-	 * Almost all methods are only rerouted to this native manager.
-	 * Only {@link #start()}, {@link #root()} and {@link #setRoot(Object)} are intercepted
-	 * and a {@link Versioned} is placed between the requests.
-	 * @param migrater which is used as source for the migration scripts
+	 * @param tunnelingManager which will be used as the underlying storage manager. Almost all methods are only
+	 *                         rerouted to this native manager. Only {@link #start()}, {@link #root()} and
+	 *                         {@link #setRoot(Object)} are intercepted and a {@link Versioned} is placed between the
+	 *                         requests.
+	 * @param migrater         which is used as source for the migration scripts
 	 */
 	public VersionAgnosticMigrationEmbeddedStorageManager(
-		VersionAgnosticTunnelingEmbeddedStorageManager<E> tunnelingManager,
-		MicroMigrater                                                    migrater
+		final VersionAgnosticTunnelingEmbeddedStorageManager<E> tunnelingManager,
+		final MicroMigrater migrater
 	)
 	{
 		this.tunnelingManager = Objects.requireNonNull(tunnelingManager);
@@ -79,12 +79,12 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 		{
 			//Build VersionedRootWithHistory around actual root, set by user.
 			this.versionRoot = new VersionedRootWithHistory(this.tunnelingManager.root());
-			this.tunnelingManager.setRoot(versionRoot);
+			this.tunnelingManager.setRoot(this.versionRoot);
 			this.tunnelingManager.storeRoot();
 		}
 		new VersionAgnosticMigrationManager(
 			this.versionRoot,
-			migrater,
+			this.migrater,
 			this
 		)
 		.migrate(this.versionRoot.getRoot());
@@ -105,20 +105,23 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	public Object root() {
 		return this.versionRoot.getRoot();
 	}
-
+	
 	/**
 	 * @return the actual root object
 	 */
-	public List<ScriptExecutionNotificationWithoutScriptReference> getMigrationHistory() {
+	public List<ScriptExecutionNotificationWithoutScriptReference> getMigrationHistory()
+	{
 		return this.versionRoot.getMigrationHistory();
 	}
-
+	
 	/**
 	 * Sets the actual root element (not the versioned root)
+	 *
 	 * @param newRoot to set
 	 * @return the set object
 	 */
-	public Object setRoot(Object newRoot) {
+	public Object setRoot(final Object newRoot)
+	{
 		this.versionRoot.setRoot(newRoot);
 		return newRoot;
 	}
@@ -131,13 +134,15 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 		this.tunnelingManager.store(this.versionRoot);
 		return this.tunnelingManager.store(this.versionRoot.getRoot());
 	}
-
+	
 	/**
 	 * Stores the objectToStore
+	 *
 	 * @param objectToStore which is stored
 	 * @return what EmbeddedStorageManager#store returns
 	 */
-	public long store(Object objectToStore) {
+	public long store(final Object objectToStore)
+	{
 		return this.tunnelingManager.store(objectToStore);
 	}
 
