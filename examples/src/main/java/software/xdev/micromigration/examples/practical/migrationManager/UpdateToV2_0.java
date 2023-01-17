@@ -8,6 +8,8 @@ import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.VersionedObject;
 
+import java.util.logging.Logger;
+
 
 public class UpdateToV2_0 implements MigrationScript<VersionedObject<BusinessBranch>>
 {
@@ -20,7 +22,7 @@ public class UpdateToV2_0 implements MigrationScript<VersionedObject<BusinessBra
 	@Override
 	public void migrate(Context<VersionedObject<BusinessBranch>, MigrationEmbeddedStorageManager> context)
 	{
-		System.out.println("Executing Script for v2.0...");
+		Logger.getGlobal().info("Executing Script for v2.0...");
 		VersionedObject<BusinessBranch> versionedBranch = context.getMigratingObject();
 		final BusinessBranch branch = versionedBranch.getObject();
 		Customer newCustomer = new Customer();
@@ -30,6 +32,6 @@ public class UpdateToV2_0 implements MigrationScript<VersionedObject<BusinessBra
 		newCustomer.address.city = "Phoenix";
 		branch.customers.add(newCustomer);
 		context.getStorageManager().store(branch.customers);
-		System.out.println("Done executing Script for v2.0");
+		Logger.getGlobal().info("Done executing Script for v2.0");
 	}
 }

@@ -6,6 +6,7 @@ import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
+import java.time.Clock;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,8 @@ import java.util.function.Consumer;
 public abstract class AbstractMigrater implements MicroMigrater
 {	
 	private List<Consumer<ScriptExecutionNotificationWithScriptReference>> notificationConsumers = new ArrayList<>();
+	private Clock clock = Clock.systemDefaultZone();
+
 
 	public void registerNotificationConsumer(Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer)
 	{
@@ -78,7 +81,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 					MigrationVersion versionBeforeUpdate = updateVersionWhichWasExecuted;
 					if(!this.notificationConsumers.isEmpty())
 					{
-						startDate = LocalDateTime.now();
+						startDate = LocalDateTime.now(this.clock);
 					}
 					updateVersionWhichWasExecuted = migrateWithScript(castedScript, storageManager, objectToMigrate);
 					if(!this.notificationConsumers.isEmpty())
@@ -89,7 +92,7 @@ public abstract class AbstractMigrater implements MicroMigrater
 								versionBeforeUpdate,
 								updateVersionWhichWasExecuted,
 								startDate,
-								LocalDateTime.now()
+								LocalDateTime.now(this.clock)
 							);
 						this.notificationConsumers.forEach(consumer -> consumer.accept(scriptNotification));
 					}
@@ -132,5 +135,17 @@ public abstract class AbstractMigrater implements MicroMigrater
 				);
 			}
 		}
+	}
+
+	/**
+	 * Change used clock for notifications from {@link #registerNotificationConsumer(Consumer)}.
+	 * @param clock is used when a
+	 * {@link software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference} is created
+	 * @return self
+	 */
+	public AbstractMigrater withClock(Clock clock)
+	{
+		this.clock = clock;
+		return this;
 	}
 }

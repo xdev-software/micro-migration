@@ -8,6 +8,8 @@ import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 
 import java.util.Date;
+import java.util.logging.Logger;
+
 
 /**
  * The most basic usage of micro migration.
@@ -26,7 +28,7 @@ public class MainExplicit
 				new UpdateToV1_1()
 		);
 		final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migrater);
-		System.out.println(storageManager.root());
+		Logger.getGlobal().info(storageManager.root().toString());
 		if(storageManager.root() == null)
 		{
 			storageManager.setRoot("Hello World! @ " + new Date());

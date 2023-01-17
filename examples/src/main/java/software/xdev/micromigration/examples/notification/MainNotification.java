@@ -7,6 +7,7 @@ import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 
 /**
@@ -23,10 +24,10 @@ public class MainNotification
 				new MainNotification.UpdateToV1_0()
 		);
 		migrater.registerNotificationConsumer(
-			scriptExecutionNotification -> System.out.println("Script " + scriptExecutionNotification.getExecutedScript().getClass().getSimpleName() + " executed.")
+			scriptExecutionNotification -> Logger.getGlobal().info("Script " + scriptExecutionNotification.getExecutedScript().getClass().getSimpleName() + " executed.")
 		);
 		final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migrater);
-		System.out.println(storageManager.root());
+		Logger.getGlobal().info(storageManager.root().toString());
 		if(storageManager.root() == null)
 		{
 			storageManager.setRoot("Hello World! @ " + new Date());

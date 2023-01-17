@@ -4,6 +4,8 @@ import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 
+import java.util.logging.Logger;
+
 
 public class NoCorrectConstructorScript implements
 	software.xdev.micromigration.scripts.VersionAgnosticMigrationScript<Object, MigrationEmbeddedStorageManager>
@@ -24,6 +26,6 @@ public class NoCorrectConstructorScript implements
 	@Override
 	public void migrate(Context<Object, MigrationEmbeddedStorageManager> context)
 	{
-		System.out.println(this.argument);
+		Logger.getGlobal().info(this.argument);
 	}
 }

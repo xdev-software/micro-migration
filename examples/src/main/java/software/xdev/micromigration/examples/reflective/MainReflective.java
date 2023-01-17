@@ -6,6 +6,7 @@ import software.xdev.micromigration.migrater.ReflectiveMigrater;
 import software.xdev.micromigration.migrater.ScriptInstantiationException;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 
 /**
@@ -20,7 +21,7 @@ public class MainReflective
 		try {
 			final ReflectiveMigrater migrater = new ReflectiveMigrater("software.xdev.micromigration.examples.reflective.scripts");
 			final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migrater);
-			System.out.println(storageManager.root());
+			Logger.getGlobal().info(storageManager.root().toString());
 			if(storageManager.root() == null)
 			{
 				storageManager.setRoot("Hello World! @ " + new Date());

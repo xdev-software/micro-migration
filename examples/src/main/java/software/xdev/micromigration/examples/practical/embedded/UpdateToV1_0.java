@@ -8,6 +8,8 @@ import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 
+import java.util.logging.Logger;
+
 
 public class UpdateToV1_0 implements MigrationScript<software.xdev.micromigration.examples.practical.v0.BusinessBranch>
 {
@@ -20,7 +22,7 @@ public class UpdateToV1_0 implements MigrationScript<software.xdev.micromigratio
 	@Override
 	public void migrate(Context<software.xdev.micromigration.examples.practical.v0.BusinessBranch, MigrationEmbeddedStorageManager> context)
 	{
-		System.out.println("Executing Script for v1.0...");
+		Logger.getGlobal().info("Executing Script for v1.0...");
 		software.xdev.micromigration.examples.practical.v0.BusinessBranch oldBranch = context.getMigratingObject();
 		BusinessBranch newBranch =
 				new BusinessBranch();
@@ -37,6 +39,6 @@ public class UpdateToV1_0 implements MigrationScript<software.xdev.micromigratio
 		}
 		context.getStorageManager().setRoot(newBranch);
 		context.getStorageManager().storeRoot();
-		System.out.println("Done executing Script for v1.0");
+		Logger.getGlobal().info("Done executing Script for v1.0");
 	}
 }

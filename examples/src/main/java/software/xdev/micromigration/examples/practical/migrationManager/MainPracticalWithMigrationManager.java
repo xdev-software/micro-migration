@@ -7,6 +7,8 @@ import software.xdev.micromigration.microstream.MigrationManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.version.VersionedObject;
 
+import java.util.logging.Logger;
+
 
 /**
  * A practical example of usage in a few steps:
@@ -34,7 +36,7 @@ public class MainPracticalWithMigrationManager
 			VersionedObject<BusinessBranch> versionedBranch = new VersionedObject<>(BusinessBranch.createDummyBranch());
 			storageManager.setRoot(versionedBranch);
 			storageManager.storeRoot();
-			System.out.println(storageManager.root().toString());
+			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
 		
@@ -45,7 +47,7 @@ public class MainPracticalWithMigrationManager
 			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV1, storageManager)
 				.migrate(versionedBranch);
-			System.out.println(storageManager.root().toString());
+			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
 		
@@ -56,7 +58,7 @@ public class MainPracticalWithMigrationManager
 			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV2, storageManager)
 				.migrate(versionedBranch);
-			System.out.println(storageManager.root().toString());
+			Logger.getGlobal().info(storageManager.root().toString());
 		}
 	}
 }

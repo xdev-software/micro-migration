@@ -5,6 +5,8 @@ import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 
+import java.util.logging.Logger;
+
 
 /**
  * A practical example of usage in a few steps:
@@ -28,7 +30,7 @@ public class MainPracticalWithMigrationEmbeddedStorageManager
 		{
 			storageManager.setRoot(BusinessBranch.createDummyBranch());
 			storageManager.storeRoot();
-			System.out.println(storageManager.root().toString());
+			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
 		
@@ -36,7 +38,7 @@ public class MainPracticalWithMigrationEmbeddedStorageManager
 		final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
 		try(MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV1))
 		{
-			System.out.println(storageManager.root().toString());
+			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
 		
@@ -47,7 +49,7 @@ public class MainPracticalWithMigrationEmbeddedStorageManager
 		);
 		try(MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV2))
 		{
-			System.out.println(storageManager.root().toString());
+			Logger.getGlobal().info(storageManager.root().toString());
 		}
 	}
 	
