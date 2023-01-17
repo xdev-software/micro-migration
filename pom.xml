@@ -45,6 +45,7 @@
     but we are using some functionality from Java 9:
     https://docs.microstream.one/manual/intro/system-requirements.html -->
     <java.version>9</java.version>
+    <maven.version>3.8.1</maven.version>
   </properties>
 
   <modules>
@@ -143,6 +144,56 @@
     </pluginManagement>
 
     <plugins>
+      <!-- It's possible to enforce much more. See https://maven.apache.org/enforcer/enforcer-rules/index.html-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <!-- Enforces the usage of the correct Java and Maven version -->
+          <execution>
+            <id>enforce-maven-and-java</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <!-- Use at least the defined Maven version. Higher version is also acceptable. -->
+                <requireMavenVersion>
+                  <version>${maven.version}</version>
+                </requireMavenVersion>
+                <requireJavaVersion>
+                  <version>${java.version}</version>
+                </requireJavaVersion>
+              </rules>
+            </configuration>
+          </execution>
+          <!-- Enforces the UTF-8 coding -->
+          <execution>
+            <id>require-utf-8</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireEncoding>
+                  <encoding>UTF-8</encoding>
+                  <includes>*.java</includes>
+                </requireEncoding>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <!-- Needed for enforcing UTF-8 -->
+          <dependency>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>extra-enforcer-rules</artifactId>
+            <version>1.6.1</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
