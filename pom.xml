@@ -147,6 +147,32 @@
     </pluginManagement>
 
     <plugins>
+
+      <!-- From: https://github.com/gaul/modernizer-maven-plugin
+        --Modernizer Maven Plugin detects uses of legacy APIs which modern Java versions supersede.
+        These modern APIs are often more performant, safer, and idiomatic than the legacy equivalents.
+        For example, Modernizer can detect uses of Vector instead of ArrayList,
+        String.getBytes(String) instead of String.getBytes(Charset), and Guava Objects.equal instead of Java 7 Objects.equals.--
+        Fails if it finds any violations.
+      -->
+      <plugin>
+        <groupId>org.gaul</groupId>
+        <artifactId>modernizer-maven-plugin</artifactId>
+        <version>2.4.0</version>
+        <configuration>
+          <javaVersion>${java.version}</javaVersion>
+        </configuration>
+        <executions>
+          <execution>
+            <id>modernizer</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>modernizer</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
       <!-- It's possible to enforce much more. See https://maven.apache.org/enforcer/enforcer-rules/index.html-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
