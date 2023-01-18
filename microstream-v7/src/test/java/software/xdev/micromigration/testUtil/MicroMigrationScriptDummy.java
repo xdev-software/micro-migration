@@ -20,7 +20,6 @@ import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 public class MicroMigrationScriptDummy implements VersionAgnosticMigrationScript<Object, MigrationEmbeddedStorageManager>
 {
 	private final MigrationVersion version;

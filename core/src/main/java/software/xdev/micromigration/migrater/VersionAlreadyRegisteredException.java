@@ -20,7 +20,6 @@ import java.util.Objects;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 /**
  * Exception that should be used if two scripts with the same version exist.
  * @author Johannes Rabauer

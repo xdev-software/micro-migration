@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 import software.xdev.micromigration.migrater.MicroMigrater;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 /**
  * Contains data about the execution of a script by a {@link MicroMigrater}.
  * 

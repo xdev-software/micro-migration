@@ -24,7 +24,6 @@ import software.xdev.micromigration.microstream.MigrationManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.version.VersionedObject;
 
-
 /**
  * A practical example of usage in a few steps:
  * <ul>

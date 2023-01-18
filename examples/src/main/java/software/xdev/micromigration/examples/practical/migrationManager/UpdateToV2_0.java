@@ -25,7 +25,6 @@ import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.VersionedObject;
 
-
 public class UpdateToV2_0 implements MigrationScript<VersionedObject<BusinessBranch>>
 {
 	@Override

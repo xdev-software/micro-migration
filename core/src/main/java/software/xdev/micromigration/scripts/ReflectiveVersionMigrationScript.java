@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 /**
  * Script which creates the target version of the script through the class name.
  * <p>

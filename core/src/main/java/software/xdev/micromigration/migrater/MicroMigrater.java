@@ -24,7 +24,6 @@ import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 /**
  * Executes all the available scripts to migrate the datastore to a certain version.
  * 

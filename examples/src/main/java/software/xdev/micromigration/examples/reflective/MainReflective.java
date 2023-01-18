@@ -23,7 +23,6 @@ import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ReflectiveMigrater;
 import software.xdev.micromigration.migrater.ScriptInstantiationException;
 
-
 /**
  * Shows the usage of the {@link ReflectiveMigrater}. Very simple.
  *

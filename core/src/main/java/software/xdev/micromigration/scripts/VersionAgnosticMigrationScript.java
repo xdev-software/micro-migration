@@ -20,7 +20,6 @@ import java.util.Comparator;
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticMigrationEmbeddedStorageManager;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 /**
  * Interface for scripts to migrate / update datastores.
  * <p>

@@ -25,7 +25,6 @@ import software.xdev.micromigration.version.Versioned;
 import software.xdev.micromigration.version.VersionedRoot;
 import software.xdev.micromigration.version.VersionedRootWithHistory;
 
-
 /**
  * Wrapper class for the MicroStream {@code one.microstream.storage.embedded.types.EmbeddedStorageManager} interface.
  * <p>

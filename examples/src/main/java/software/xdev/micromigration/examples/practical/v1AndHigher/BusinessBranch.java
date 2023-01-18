@@ -18,7 +18,6 @@ package software.xdev.micromigration.examples.practical.v1AndHigher;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class BusinessBranch 
 {
 	public final List<Customer> customers = new ArrayList<>();

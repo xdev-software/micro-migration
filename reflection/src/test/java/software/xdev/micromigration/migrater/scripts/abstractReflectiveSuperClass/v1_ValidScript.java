@@ -18,7 +18,6 @@ package software.xdev.micromigration.migrater.scripts.abstractReflectiveSuperCla
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
 
-
 public class v1_ValidScript extends AbstractScript
 {
 	@Override

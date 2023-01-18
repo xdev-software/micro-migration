@@ -24,7 +24,6 @@ import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 /**
  * Shows the basic registration of migration notifications
  * ({@link ScriptExecutionNotification}).

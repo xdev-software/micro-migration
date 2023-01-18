@@ -31,7 +31,6 @@ import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 class StoreStuffInMigrationStorageManagerTest
 {	
 	private static class RootClass

@@ -22,7 +22,6 @@ import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
 import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 
-
 /**
  * A practical example of usage in a few steps:
  * <ul>

@@ -19,7 +19,6 @@ import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.ReflectiveVersionMigrationScript;
 
-
 public class v1_ValidScript extends ReflectiveVersionMigrationScript<Object, MigrationEmbeddedStorageManager>
 {
 	@Override

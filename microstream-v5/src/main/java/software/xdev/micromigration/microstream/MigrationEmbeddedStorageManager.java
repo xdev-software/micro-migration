@@ -20,7 +20,6 @@ import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticM
 import software.xdev.micromigration.migrater.MicroMigrater;
 import software.xdev.micromigration.version.Versioned;
 
-
 /**
  * Specific implementation of the {@link VersionAgnosticMigrationEmbeddedStorageManager} for one
  * specific MicroStream version.

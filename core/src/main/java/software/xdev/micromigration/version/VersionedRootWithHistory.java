@@ -21,7 +21,6 @@ import java.util.Objects;
 
 import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
 
-
 /**
  * This class is inserted as the root of the MicroStream datastore and contains only the 
  * current version, the actual root object and the history of executed scripts.

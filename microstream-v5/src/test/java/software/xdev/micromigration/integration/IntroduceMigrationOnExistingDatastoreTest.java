@@ -32,7 +32,6 @@ import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.testUtil.MicroMigrationScriptDummy;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 class IntroduceMigrationOnExistingDatastoreTest
 {
 	final static String ROOT = "OriginalRoot";

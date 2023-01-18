@@ -149,6 +149,28 @@
     <plugins>
 
       <!--
+        Sorts the import-entries of the java-files.
+        Is identical to the IntelliJ-Codestyle but provides some support if IntelliJ is not used.
+      -->
+      <plugin>
+        <groupId>net.revelc.code</groupId>
+        <artifactId>impsort-maven-plugin</artifactId>
+        <version>1.8.0</version>
+        <configuration>
+          <groups>java.,javax.,org.,com.</groups>
+          <staticGroups>java,*</staticGroups>
+        </configuration>
+        <executions>
+          <execution>
+            <id>sort-imports</id>
+            <goals>
+              <goal>sort</goal><!-- runs at process-sources phase by default -->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!--
         From: https://github.com/gaul/modernizer-maven-plugin
           Modernizer Maven Plugin detects uses of legacy APIs which modern Java versions supersede.
           These modern APIs are often more performant, safer, and idiomatic than the legacy equivalents.

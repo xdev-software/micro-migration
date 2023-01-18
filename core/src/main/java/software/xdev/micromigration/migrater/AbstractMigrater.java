@@ -29,7 +29,6 @@ import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 /**
  * Provides the basic functionality to apply {@link VersionAgnosticMigrationScript}s to a datastore.
  *

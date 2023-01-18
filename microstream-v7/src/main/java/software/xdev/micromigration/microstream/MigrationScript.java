@@ -18,7 +18,6 @@ package software.xdev.micromigration.microstream;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 
-
 /**
  * Interface for scripts to migrate / update datastores.
  * <p>

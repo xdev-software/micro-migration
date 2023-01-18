@@ -19,7 +19,6 @@ import java.util.List;
 
 import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
 
-
 /**
  * Interface used by the MigrationManagers for easier versioning of objects
  * and to keep and read the migration history.

@@ -29,7 +29,6 @@ import software.xdev.micromigration.scripts.SimpleTypedMigrationScript;
 import software.xdev.micromigration.testUtil.MicroMigrationScriptDummy;
 import software.xdev.micromigration.version.MigrationVersion;
 
-
 class ExplicitMigraterTest
 {
 	

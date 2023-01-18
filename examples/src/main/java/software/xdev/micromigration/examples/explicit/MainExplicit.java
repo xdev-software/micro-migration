@@ -25,7 +25,6 @@ import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 
-
 /**
  * The most basic usage of micro migration.
  * Here two {@link MigrationScript}s are explicitly registered

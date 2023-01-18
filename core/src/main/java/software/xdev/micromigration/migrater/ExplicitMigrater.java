@@ -19,7 +19,6 @@ import java.util.TreeSet;
 
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 
-
 /**
  * Contains all the available scripts to migrate the datastore to a certain version.
  * <p>

@@ -25,7 +25,6 @@ import one.microstream.storage.types.Storage;
 import one.microstream.storage.types.StorageConfiguration;
 import software.xdev.micromigration.migrater.MicroMigrater;
 
-
 /**
  * Provides static utility calls to create the {@link software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager} for
  * updateable datastores. Basically a wrapper for the utility class {@link one.microstream.storage.embedded.types.EmbeddedStorage}.

@@ -25,7 +25,6 @@ import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.Versioned;
 
-
 /**
  * Specific implementation of the {@link VersionAgnosticMigrationManager} for one
  * specific MicroStream version.

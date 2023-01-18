@@ -24,7 +24,6 @@ import software.xdev.micromigration.migrater.scripts.abstractReflectiveSuperClas
 import software.xdev.micromigration.migrater.scripts.includeSubPackages.subpackage.ValidScriptInSubpackage;
 import software.xdev.micromigration.migrater.scripts.moreClassesIncludingValid.ValidScript;
 
-
 class ReflectiveMigraterTest
 {
 	@Test

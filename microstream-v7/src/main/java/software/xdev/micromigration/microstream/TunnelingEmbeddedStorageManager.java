@@ -40,7 +40,6 @@ import one.microstream.storage.types.StorageTypeDictionary;
 import software.xdev.micromigration.microstream.versionagnostic.VersionAgnosticTunnelingEmbeddedStorageManager;
 import software.xdev.micromigration.version.Versioned;
 
-
 /**
  * Wrapper class for the MicroStream {@code one.microstream.storage.embedded.types.EmbeddedStorageManager} interface.
  * <p>

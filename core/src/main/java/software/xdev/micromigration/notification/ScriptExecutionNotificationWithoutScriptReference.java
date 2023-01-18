@@ -17,7 +17,6 @@ package software.xdev.micromigration.notification;
 
 import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 
-
 /**
  * Same as {@link ScriptExecutionNotificationWithScriptReference} but instead of referencing
  * the {@link VersionAgnosticMigrationScript} directly, only the name of the script is

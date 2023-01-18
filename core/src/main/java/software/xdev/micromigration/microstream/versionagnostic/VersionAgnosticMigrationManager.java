@@ -26,7 +26,6 @@ import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.Versioned;
 import software.xdev.micromigration.version.VersionedAndKeeperOfHistory;
 
-
 /**
  * Manages a given object and keeps the version for it.
  * <p>
