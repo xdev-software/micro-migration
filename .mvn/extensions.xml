@@ -5,3 +5,10 @@
     <version>1.16.2</version>
   </extension>
 </extensions>
+<gradleEnterprise>
+  <buildCache>
+    <local>
+      <enabled>false</enabled>
+    </local>
+  </buildCache>
+</gradleEnterprise>
