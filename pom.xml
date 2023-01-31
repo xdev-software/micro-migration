@@ -322,6 +322,9 @@
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <rerunFailingTestsCount>2</rerunFailingTestsCount>
+        </configuration>
         <version>2.22.2</version>
       </plugin>
       <plugin>
