@@ -324,6 +324,10 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <rerunFailingTestsCount>2</rerunFailingTestsCount>
+          <forkCount>2</forkCount>
+          <reuseForks>true</reuseForks>
+          <parallel>methods</parallel>
+          <useUnlimitedThreads>true</useUnlimitedThreads>
         </configuration>
         <version>2.22.2</version>
       </plugin>
