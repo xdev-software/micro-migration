@@ -3,10 +3,20 @@
     <url>https://richardfichtner.gradle-enterprise.cloud</url>
     <allowUntrusted>true</allowUntrusted>
   </server>
+  <buildCache>
+    <local>
+      <enabled>false</enabled>
+    </local>
+  </buildCache>
   <buildScan>
     <termsOfService>
       <url>https://gradle.com/terms-of-service</url>
       <accept>true</accept>
     </termsOfService>
+    <publish>ALWAYS</publish>
+    <capture>
+      <goalInputFiles>true</goalInputFiles>
+    </capture>
+    <backgroundBuildScanUpload>false</backgroundBuildScanUpload>
   </buildScan>
 </gradleEnterprise>

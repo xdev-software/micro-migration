@@ -4,18 +4,4 @@
     <artifactId>gradle-enterprise-maven-extension</artifactId>
     <version>1.16.2</version>
   </extension>
-</extensions>
-<gradleEnterprise>
-  <buildCache>
-    <local>
-      <enabled>false</enabled>
-    </local>
-  </buildCache>
-  <buildScan>
-    <publish>ALWAYS</publish>
-    <capture>
-      <goalInputFiles>true</goalInputFiles>
-    </capture>
-    <backgroundBuildScanUpload>false</backgroundBuildScanUpload>
-  </buildScan>
-</gradleEnterprise>
+    <extension>
