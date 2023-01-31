@@ -1,0 +1,12 @@
+<gradleEnterprise>
+  <server>
+    <url>https://richardfichtner.gradle-enterprise.cloud</url>
+    <allowUntrusted>true</allowUntrusted>
+  </server>
+  <buildScan>
+    <termsOfService>
+      <url>https://gradle.com/terms-of-service</url>
+      <accept>true</accept>
+    </termsOfService>
+  </buildScan>
+</gradleEnterprise>
