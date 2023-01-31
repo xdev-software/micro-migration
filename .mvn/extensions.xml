@@ -16,5 +16,6 @@
     <capture>
       <goalInputFiles>true</goalInputFiles>
     </capture>
+    <backgroundBuildScanUpload>false</backgroundBuildScanUpload>
   </buildScan>
 </gradleEnterprise>
