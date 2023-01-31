@@ -13,6 +13,7 @@
       <url>https://gradle.com/terms-of-service</url>
       <accept>true</accept>
     </termsOfService>
+    <publishIfAuthenticated>true</publishIfAuthenticated>
     <publish>ALWAYS</publish>
     <capture>
       <goalInputFiles>true</goalInputFiles>
