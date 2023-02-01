@@ -33,7 +33,7 @@ jobs:
         cache: 'maven'
       
     - name: Build with maven
-      run: mvn -B clean verify
+      run: mvn -B clean verify -Dscan.tag.exp3 --no-snapshot-updates
       
     - name: Check for uncommited changes
       run: |
@@ -79,4 +79,4 @@ jobs:
           JRELEASER_GITHUB_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
           JRELEASER_NEXUS2_MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           JRELEASER_NEXUS2_MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-        run: mvn -B -pl !examples -Prelease deploy org.jreleaser:jreleaser-maven-plugin:deploy -Djreleaser.dry.run -DaltDeploymentRepository=local::default::file:./target/staging-deploy
+        run: mvn -B -pl !examples -Prelease deploy org.jreleaser:jreleaser-maven-plugin:deploy -Djreleaser.dry.run -DaltDeploymentRepository=local::default::file:./target/staging-deploy -Dscan.tag.exp3 --no-snapshot-updates
