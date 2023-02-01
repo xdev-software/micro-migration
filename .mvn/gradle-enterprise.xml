@@ -23,5 +23,10 @@
       <goalInputFiles>true</goalInputFiles>
     </capture>
     <backgroundBuildScanUpload>false</backgroundBuildScanUpload>
+    <obfuscation>
+      <username>obfuscated</username>
+      <hostname>obfuscated</hostname>
+      <ipAddresses>#{{'0.0.0.0'}}</ipAddresses>
+    </obfuscation>
   </buildScan>
 </gradleEnterprise>
