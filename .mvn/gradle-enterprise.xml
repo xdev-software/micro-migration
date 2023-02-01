@@ -9,7 +9,7 @@
     </local>
     <remote>
       <enabled>true</enabled>
-      <storeEnabled>true</storeEnabled><
+      <storeEnabled>true</storeEnabled>
     </remote>
   </buildCache>
   <buildScan>
