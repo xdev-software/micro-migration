@@ -4,7 +4,7 @@
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6816/badge)](https://bestpractices.coreinfrastructure.org/projects/6816)
 
 
-# <img src="docs/Logo.png" width="300"  alt="XDEV MicroMigration Logo">
+# <img src="docs/Logo.png" width="400"  alt="XDEV MicroMigration Logo">
 Tiny java library to migrate MicroStream datastores. 
 Applies migration scripts on the datastores to keep them up to date.
 
