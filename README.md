@@ -3,8 +3,8 @@
 [![javadoc core](https://javadoc.io/badge2/software.xdev/micro-migration-core/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-core)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6816/badge)](https://bestpractices.coreinfrastructure.org/projects/6816)
 
-# Micro migration
-![Logo](./docs/Logo.png)
+
+#![Logo](./docs/Logo.png)
 Tiny java library to migrate MicroStream datastores. 
 Applies migration scripts on the datastores to keep them up to date.
 
