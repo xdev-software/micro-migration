@@ -1,4 +1,23 @@
+/*
+ * Copyright © 2021 XDEV Software GmbH (https://xdev.software)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package software.xdev.micromigration.microstream.versionagnostic;
+
+import java.util.Objects;
+import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 import software.xdev.micromigration.migrater.MicroMigrater;
 import software.xdev.micromigration.notification.ScriptExecutionNotificationWithoutScriptReference;
@@ -6,11 +25,6 @@ import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.Versioned;
 import software.xdev.micromigration.version.VersionedAndKeeperOfHistory;
-
-import java.util.Objects;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
 
 /**
  * Manages a given object and keeps the version for it.
@@ -121,9 +135,9 @@ public class VersionAgnosticMigrationManager<T>
 	 * Migrates the given object to the newest possible version, defined by the {@link MicroMigrater}.
 	 * @param objectToMigrate is given to the {@link MicroMigrater} for migrating upon
 	 */
-	public void migrate(Object objectToMigrate)
+	public void migrate(final Object objectToMigrate)
 	{
-		final MigrationVersion versionBeforeUpdate = currentVersionGetter.get();
+		final MigrationVersion versionBeforeUpdate = this.currentVersionGetter.get();
 		// Execute Updates
 		final MigrationVersion versionAfterUpdate = this.migrater.migrateToNewest(
 			versionBeforeUpdate,
@@ -133,8 +147,8 @@ public class VersionAgnosticMigrationManager<T>
 		//Update stored version, if needed
 		if(!versionAfterUpdate.equals(versionBeforeUpdate))
 		{
-			currentVersionSetter.accept(versionAfterUpdate);
-			currentVersionStorer.accept(versionAfterUpdate);
+			this.currentVersionSetter.accept(versionAfterUpdate);
+			this.currentVersionStorer.accept(versionAfterUpdate);
 		}
 	}
 }

@@ -1,4 +1,21 @@
+/*
+ * Copyright © 2021 XDEV Software GmbH (https://xdev.software)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package software.xdev.micromigration.examples.practical.migrationManager;
+
+import java.util.logging.Logger;
 
 import one.microstream.storage.embedded.types.EmbeddedStorage;
 import one.microstream.storage.embedded.types.EmbeddedStorageManager;
@@ -6,7 +23,6 @@ import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
 import software.xdev.micromigration.microstream.MigrationManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.version.VersionedObject;
-
 
 /**
  * A practical example of usage in a few steps:
@@ -26,37 +42,37 @@ public class MainPracticalWithMigrationManager
 	 * Suppressed Warning "unchecked" because it is given, that the correct object is returned.
 	 */
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) 
+	public static void main(final String[] args)
 	{
 		//V0.0
-		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
+		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
-			VersionedObject<BusinessBranch> versionedBranch = new VersionedObject<>(BusinessBranch.createDummyBranch());
+			final VersionedObject<BusinessBranch> versionedBranch = new VersionedObject<>(BusinessBranch.createDummyBranch());
 			storageManager.setRoot(versionedBranch);
 			storageManager.storeRoot();
-			System.out.println(storageManager.root().toString());
+			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
 		
 		//V1.0
-		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
+		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
 			final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
-			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
+			final VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV1, storageManager)
 				.migrate(versionedBranch);
-			System.out.println(storageManager.root().toString());
+			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
 		
 		//V2.0
-		try(EmbeddedStorageManager storageManager = EmbeddedStorage.start())
+		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
 			final ExplicitMigrater migraterWithV2 = new ExplicitMigrater(new UpdateToV1_0(), new UpdateToV2_0());
-			VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
+			final VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV2, storageManager)
 				.migrate(versionedBranch);
-			System.out.println(storageManager.root().toString());
+			Logger.getGlobal().info(storageManager.root().toString());
 		}
 	}
 }

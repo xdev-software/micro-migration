@@ -1,10 +1,24 @@
+/*
+ * Copyright © 2021 XDEV Software GmbH (https://xdev.software)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package software.xdev.micromigration.notification;
-
-import software.xdev.micromigration.migrater.MicroMigrater;
-import software.xdev.micromigration.version.MigrationVersion;
 
 import java.time.LocalDateTime;
 
+import software.xdev.micromigration.migrater.MicroMigrater;
+import software.xdev.micromigration.version.MigrationVersion;
 
 /**
  * Contains data about the execution of a script by a {@link MicroMigrater}.
@@ -25,10 +39,10 @@ public abstract class AbstractScriptExecutionNotification
 	 * @param endDate time when the script has finished
 	 */
 	public AbstractScriptExecutionNotification(
-		MigrationVersion     sourceVersion ,
-		MigrationVersion     targetVersion ,
-		LocalDateTime        startDate     ,
-		LocalDateTime        endDate
+		final MigrationVersion     sourceVersion ,
+		final MigrationVersion     targetVersion ,
+		final LocalDateTime        startDate     ,
+		final LocalDateTime        endDate
 	) 
 	{
 		super();
@@ -43,7 +57,7 @@ public abstract class AbstractScriptExecutionNotification
 	 */
 	public MigrationVersion getSourceVersion() 
 	{
-		return sourceVersion;
+		return this.sourceVersion;
 	}
 
 	/**
@@ -51,7 +65,7 @@ public abstract class AbstractScriptExecutionNotification
 	 */
 	public MigrationVersion getTargetVersion() 
 	{
-		return targetVersion;
+		return this.targetVersion;
 	}
 
 	/**
@@ -59,7 +73,7 @@ public abstract class AbstractScriptExecutionNotification
 	 */
 	public LocalDateTime getStartDate() 
 	{
-		return startDate;
+		return this.startDate;
 	}
 
 	/**
@@ -67,6 +81,6 @@ public abstract class AbstractScriptExecutionNotification
 	 */
 	public LocalDateTime getEndDate() 
 	{
-		return endDate;
+		return this.endDate;
 	}
 }

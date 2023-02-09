@@ -1,10 +1,24 @@
+/*
+ * Copyright © 2021 XDEV Software GmbH (https://xdev.software)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package software.xdev.micromigration.migrater;
-
-import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
-import software.xdev.micromigration.version.MigrationVersion;
 
 import java.util.Objects;
 
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
+import software.xdev.micromigration.version.MigrationVersion;
 
 /**
  * Exception that should be used if two scripts with the same version exist.
@@ -35,9 +49,9 @@ public class VersionAlreadyRegisteredException extends Error
 	 * which should be registered as well
 	 */
 	public VersionAlreadyRegisteredException(
-		MigrationVersion                    alreadyRegisteredVersion,
-		VersionAgnosticMigrationScript<?,?> alreadyRegisteredScript ,
-		VersionAgnosticMigrationScript<?,?> newScriptToRegister
+		final MigrationVersion alreadyRegisteredVersion,
+		final VersionAgnosticMigrationScript<?, ?> alreadyRegisteredScript,
+		final VersionAgnosticMigrationScript<?, ?> newScriptToRegister
 	) 
 	{
 		super("Version " + alreadyRegisteredVersion.toString() + " is already registered. Versions must be unique within the migrater.");
@@ -51,7 +65,7 @@ public class VersionAlreadyRegisteredException extends Error
 	 */
 	public MigrationVersion getAlreadyRegisteredVersion() 
 	{
-		return alreadyRegisteredVersion;
+		return this.alreadyRegisteredVersion;
 	}
 
 	/**
@@ -59,7 +73,7 @@ public class VersionAlreadyRegisteredException extends Error
 	 */
 	public VersionAgnosticMigrationScript<?,?> getAlreadyRegisteredScript()
 	{
-		return alreadyRegisteredScript;
+		return this.alreadyRegisteredScript;
 	}
 
 	/**
@@ -68,6 +82,6 @@ public class VersionAlreadyRegisteredException extends Error
 	 */
 	public VersionAgnosticMigrationScript<?,?> getNewScriptToRegister()
 	{
-		return newScriptToRegister;
+		return this.newScriptToRegister;
 	}
 }
