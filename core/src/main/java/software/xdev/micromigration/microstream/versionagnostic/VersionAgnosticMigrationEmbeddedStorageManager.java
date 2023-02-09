@@ -46,7 +46,6 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 {
 	private final MicroMigrater migrater;
 	private VersionedRootWithHistory versionRoot;
-	
 	private final VersionAgnosticTunnelingEmbeddedStorageManager<E> tunnelingManager;
 	
 	/**
@@ -64,7 +63,15 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 		this.tunnelingManager = Objects.requireNonNull(tunnelingManager);
 		this.migrater = Objects.requireNonNull(migrater);
 	}
-
+	
+	/**
+	 * @return the native MicroStream EmbeddedStorageManager
+	 */
+	public E getNativeStorageManager()
+	{
+		return this.getTunnelingManager().getNativeStorageManager();
+	}
+	
 	/**
 	 * @return the used {@link VersionAgnosticTunnelingEmbeddedStorageManager}
 	 */
@@ -72,7 +79,7 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	{
 		return this.tunnelingManager;
 	}
-
+	
 	/**
 	 * Checks if the root object is of the instance of {@link Versioned}.
 	 * If it is not, the root will be replaced with the versioned root and the actual root object

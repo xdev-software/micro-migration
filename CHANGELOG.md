@@ -1,3 +1,6 @@
+## 0.0.8
+* Access to the native embedded manager is now possible in the scripts (see ``VersionAgnosticMigrationEmbeddedStorageManager#getNativeStorageManager``)
+
 ## 0.0.7
 * A lot of refactoring of the module structure
 * A migration history is now available and automatically stored
