@@ -1,4 +1,4 @@
-[![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration)](https://central.sonatype.dev/artifact/software.xdev/micro-migration/0.0.4/versions)
+[![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration)](https://central.sonatype.com/artifact/software.xdev/micro-migration/0.0.4/versions)
 [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/micro-migration/checkBuild.yml?branch=develop)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 [![javadoc core](https://javadoc.io/badge2/software.xdev/micro-migration-core/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-core)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6816/badge)](https://bestpractices.coreinfrastructure.org/projects/6816)
@@ -39,11 +39,13 @@ the version, suited to the current code.
 ### Maven
 
 Simply add the dependency to your `pom.xml`:
+
 ```xml
+
 <dependency>
-	<groupId>software.xdev</groupId>
-	<artifactId>micro-migration-microstream-v7</artifactId>
-	<version>0.0.7</version>
+    <groupId>software.xdev</groupId>
+    <artifactId>micro-migration-microstream-v7</artifactId>
+    <version>0.0.8</version>
 </dependency>
 ```
 
@@ -129,11 +131,13 @@ final ReflectiveMigrater migrater = new ReflectiveMigrater("software.xdev.microm
 Since the `ReflectiveMigrater` uses the [Reflections library](https://github.com/ronmamo/reflections) it is extracted to its [own module](https://github.com/xdev-software/micro-migration/tree/main/reflection).
 
 To use this, you need to add the following dependency to your `pom.xml`:
+
 ```xml
+
 <dependency>
-	<groupId>software.xdev</groupId>
-	<artifactId>micro-migration-reflection</artifactId>
-	<version>0.0.7</version>
+    <groupId>software.xdev</groupId>
+    <artifactId>micro-migration-reflection</artifactId>
+    <version>0.0.8</version>
 </dependency>
 ```
 
@@ -151,9 +155,9 @@ then use `micro-migration-microstream-v7`) and exclude the dependent version of 
 ```xml
 <dependency>
 	<groupId>software.xdev</groupId>
-	<artifactId>micro-migration-microstream-v7</artifactId>
-	<version>0.0.7</version>
-	<exclusions>
+    <artifactId>micro-migration-microstream-v7</artifactId>
+    <version>0.0.8</version>
+    <exclusions>
 		<exclusion>
 			<groupId>one.microstream</groupId>
 			<artifactId>microstream-storage-embedded</artifactId>
