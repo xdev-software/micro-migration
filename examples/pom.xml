@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-examples</artifactId>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>0.0.10-SNAPSHOT</version>
     <name>MicroMigration-Examples</name>
     <description>Examples for the MicroMigration-Library with MicroStream v7</description>
 
     <parent>
         <groupId>software.xdev</groupId>
-        <version>0.0.9-SNAPSHOT</version>
+        <version>0.0.10-SNAPSHOT</version>
         <artifactId>micro-migration</artifactId>
     </parent>
 
