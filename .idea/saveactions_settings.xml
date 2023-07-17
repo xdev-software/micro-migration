@@ -5,7 +5,6 @@
       <set>
         <option value="activate" />
         <option value="organizeImports" />
-        <option value="reformatChangedCode" />
         <option value="fieldCanBeFinal" />
         <option value="localCanBeFinal" />
         <option value="localCanBeFinalExceptImplicit" />
