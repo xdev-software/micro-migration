@@ -1,3 +1,6 @@
+## 0.0.9
+* Added support for MicroStream v8
+
 ## 0.0.8
 * Access to the native embedded manager is now possible in the scripts (see ``VersionAgnosticMigrationEmbeddedStorageManager#getNativeStorageManager``)
 
