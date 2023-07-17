@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
-    <artifactId>micro-migration-microstream-v6</artifactId>
+    <artifactId>micro-migration-microstream-v8</artifactId>
     <version>0.0.9-SNAPSHOT</version>
-    <name>MicroMigration-for-MicroStreamV6</name>
-    <description>Provides the micro migration support for MicroStream version 6</description>
+    <name>MicroMigration-for-MicroStreamV8</name>
+    <description>Provides the micro migration support for MicroStream version 8</description>
 
     <properties>
-        <microstream.version>06.01.00-MS-GA</microstream.version>
+        <microstream.version>08.01.01-MS-GA</microstream.version>
     </properties>
 
     <parent>

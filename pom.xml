@@ -58,6 +58,7 @@
     <module>microstream-v5</module>
     <module>microstream-v6</module>
     <module>microstream-v7</module>
+    <module>microstream-v8</module>
   </modules>
 
   <dependencies>
@@ -89,7 +90,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.4.1</version>
+          <version>3.5.0</version>
           <configuration>
             <source>${java.version}</source>
             <encoding>UTF-8</encoding>
@@ -143,6 +144,16 @@
             </jreleaser>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.11.0</version>
+          <configuration>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <encoding>UTF-8</encoding>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -181,7 +192,7 @@
       <plugin>
         <groupId>org.gaul</groupId>
         <artifactId>modernizer-maven-plugin</artifactId>
-        <version>2.5.0</version>
+        <version>2.6.0</version>
         <configuration>
           <javaVersion>${java.version}</javaVersion>
         </configuration>
@@ -200,7 +211,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.3.0</version>
         <executions>
           <!-- Enforces the usage of the correct Java and Maven version -->
           <execution>
@@ -284,12 +295,12 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.1.2</version>
+        <version>3.2.2</version>
         <dependencies>
           <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>10.6.0</version>
+            <version>10.9.3</version>
           </dependency>
         </dependencies>
         <configuration>
@@ -313,12 +324,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-          <encoding>UTF-8</encoding>
-        </configuration>
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
