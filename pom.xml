@@ -58,6 +58,7 @@
     <module>microstream-v5</module>
     <module>microstream-v6</module>
     <module>microstream-v7</module>
+    <module>microstream-v8</module>
   </modules>
 
   <dependencies>

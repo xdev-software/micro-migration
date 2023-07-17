@@ -69,7 +69,7 @@ jobs:
           ```XML
           <dependency>
              <groupId>software.xdev</groupId>
-             <artifactId>micro-migration-microstream-v7</artifactId>
+             <artifactId>micro-migration-microstream-v8</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```

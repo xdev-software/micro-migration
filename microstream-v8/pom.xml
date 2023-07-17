@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>software.xdev</groupId>
+    <artifactId>micro-migration-microstream-v8</artifactId>
+    <version>0.0.9-SNAPSHOT</version>
+    <name>MicroMigration-for-MicroStreamV8</name>
+    <description>Provides the micro migration support for MicroStream version 8</description>
+
+    <properties>
+        <microstream.version>08.01.01-MS-GA</microstream.version>
+    </properties>
+
+    <parent>
+        <groupId>software.xdev</groupId>
+        <artifactId>micro-migration</artifactId>
+        <version>0.0.9-SNAPSHOT</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                    <!--
+                        To be more transparent, we define the microstream-AnnotationProcessor here.
+                        See https://maven.apache.org/plugins/maven-compiler-plugin/compile-mojo.html#annotationProcessorPaths
+                        Also see https://github.com/microstream-one/microstream/blob/8213b31b893cb291895d7f39619a6d521b23354b/base/src/main/java/one/microstream/wrapping/codegen/WrapperProcessor.java
+                        Also see https://github.com/microstream-one/microstream/blob/c6ca06d3cc2a24f3f06969bf39e948ae5154ec91/base/src/main/resources/META-INF/services/javax.annotation.processing.Processor
+                    -->
+                    <annotationProcessorPaths>
+                        <annotationProcessorPath>
+                            <groupId>one.microstream</groupId>
+                            <artifactId>microstream-base</artifactId>
+                            <version>${microstream.version}</version>
+                        </annotationProcessorPath>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>software.xdev</groupId>
+            <artifactId>micro-migration-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>one.microstream</groupId>
+            <artifactId>microstream-storage-embedded</artifactId>
+            <version>${microstream.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>one.microstream</groupId>
+            <artifactId>microstream-configuration</artifactId>
+            <version>${microstream.version}</version>
+        </dependency>
+    </dependencies>
+</project>
