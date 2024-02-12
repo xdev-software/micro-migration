@@ -16,6 +16,6 @@ Simply add the dependency to your `pom.xml`:
 <dependency>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-reflection</artifactId>
-    <version>0.0.2</version>
+    <version>1.0.0</version>
 </dependency>
 ```

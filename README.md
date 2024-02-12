@@ -5,7 +5,7 @@
 
 
 # <img src="docs/Logo.png" width="400"  alt="XDEV MicroMigration Logo">
-Tiny java library to migrate MicroStream datastores. 
+Tiny java library to migrate MicroStream and EclipseStore datastores. 
 Applies migration scripts on the datastores to keep them up to date.
 
 ## Intro
@@ -13,12 +13,12 @@ When you think about default database setup, you probably imagine something like
 
 ![Imaginative system layout](./docs/MigrationSequence_1.png "Imaginative system layout")
 
-Yet in reality most workflows involve different systems like test systems and prodution systems. 
+Yet in reality most workflows involve different systems like test systems and production systems. 
 In code this workflow is represented with version-control systems and different branches.
 
 ![Code workflow](./docs/MigrationSequence_2.png "Code workflow")
 
-For this code workflow to behave correctly, for each system a seperate datastore is needed.
+For this code workflow to behave correctly, for each system a separate datastore is needed.
 To keep these datastores to represent the correspondend data for the code is a hassle.
 
 ![Code workflow with datastore](./docs/MigrationSequence_3.png "Code workflow with datastore")
@@ -27,9 +27,9 @@ That's why migration frameworks like [Flyway](https://flywaydb.org) and [Liquiba
 Unfortunately both these frameworks are designed to support any type of SQL databases but no NoSQL
 databases like [MicroStream](https://microstream.one/). This led to the creation of this library.
 
-This library delivers an easy concept to keep your MicroStream datastore versioned
+This library delivers an easy concept to keep your MicroStream / EclipseStore datastore versioned
 with migration scripts written in plain java.
-It's easy to create code, that automatically brings an datastore with an older version to
+It's easy to create code, that automatically brings a datastore with an older version to
 the version, suited to the current code.
 
 ![Migrate datastore to new version](./docs/MigrationSequence_4.png "Migrate datastore to new version")
@@ -44,8 +44,8 @@ Simply add the dependency to your `pom.xml`:
 
 <dependency>
     <groupId>software.xdev</groupId>
-    <artifactId>micro-migration-microstream-v8</artifactId>
-    <version>0.0.9</version>
+    <artifactId>micro-migration-eclipse-store-v1</artifactId>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -53,7 +53,7 @@ Simply add the dependency to your `pom.xml`:
 There are two possible usages with the Micro migration library:
 
 The **first**, easier approach is to use the `MigrationEmbeddedStorageManager`.
-It can be used on a brand new datastore or introduced later, after a MicroStream datastore is already in use.
+It can be used on a brand new datastore or introduced later, after a MicroStream/EclipseStore datastore is already in use.
 Only the storage manager (`MigrationEmbeddedStorageManager`) knows about the versioning. 
 The rest of application does not know about the version and can have no regards about it.
 
@@ -137,38 +137,43 @@ To use this, you need to add the following dependency to your `pom.xml`:
 <dependency>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-reflection</artifactId>
-    <version>0.0.9</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
-## Supported MicroStream versions
+## Supported MicroStream / EclipseStore versions
 
-Micro migration currently supports the following MicroStream versions:
+Micro migration currently supports the following MicroStream / EclipseStore versions:
+
 | MicroStream Version | Micro migration artifact Id |
 | --- | --- |
-| [05.00.02-MS-GA](https://central.sonatype.dev/artifact/one.microstream/microstream-storage/05.00.02-MS-GA) | micro-migration-microstream-v5 |
-| [06.01.00-MS-GA](https://central.sonatype.dev/artifact/one.microstream/microstream-storage/06.01.00-MS-GA) | micro-migration-microstream-v6 |
-| [07.01.00-MS-GA](https://central.sonatype.dev/artifact/one.microstream/microstream-storage/07.01.00-MS-GA) | micro-migration-microstream-v7 |
-| [08.01.01-MS-GA](https://central.sonatype.dev/artifact/one.microstream/microstream-storage/08.01.01-MS-GA) | micro-migration-microstream-v8 |
+| [05.00.02-MS-GA](https://central.sonatype.com/artifact/one.microstream/microstream-storage/05.00.02-MS-GA) | micro-migration-microstream-v5 |
+| [06.01.00-MS-GA](https://central.sonatype.com/artifact/one.microstream/microstream-storage/06.01.00-MS-GA) | micro-migration-microstream-v6 |
+| [07.01.00-MS-GA](https://central.sonatype.com/artifact/one.microstream/microstream-storage/07.01.00-MS-GA) | micro-migration-microstream-v7 |
+| [08.01.01-MS-GA](https://central.sonatype.com/artifact/one.microstream/microstream-storage/08.01.01-MS-GA) | micro-migration-microstream-v8 |
+
+| EclipseStore Version                                                                                       | Micro migration artifact Id      |
+|------------------------------------------------------------------------------------------------------------|----------------------------------|
+| [1.1.0](https://central.sonatype.com/artifact/org.eclipse.store/storage/1.1.0) | micro-migration-eclipse-store-v1 |
 
 If you are using a different, not listed version of MicroStream, this shouldn't be a problem.
 Usually you can simply use the closest Micro migration version (f.e. you are using MicroStream `08.00.00-MS-GA`,
 then use `micro-migration-microstream-v8`) and exclude the dependent version of MicroStream vom Micro migration:
 ```xml
 <dependency>
-	<groupId>software.xdev</groupId>
-    <artifactId>micro-migration-microstream-v8</artifactId>
-    <version>0.0.9</version>
+    <groupId>software.xdev</groupId>
+    <artifactId>micro-migration-eclipse-store-v1</artifactId>
+    <version>1.0.0</version>
     <exclusions>
-		<exclusion>
-			<groupId>one.microstream</groupId>
-			<artifactId>microstream-storage-embedded</artifactId>
-		</exclusion>
-		<exclusion>
-			<groupId>one.microstream</groupId>
-			<artifactId>microstream-configuration</artifactId>
-		</exclusion>
-	</exclusions>
+        <exclusion>
+            <groupId>org.eclipse.store</groupId>
+            <artifactId>storage-embedded</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>org.eclipse.store</groupId>
+            <artifactId>storage-embedded-configuration</artifactId>
+        </exclusion>
+    </exclusions>
 </dependency>
 ```
 Since there is rarely a breaking change, this works 90% of times.
