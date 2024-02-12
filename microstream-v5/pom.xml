@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-microstream-v5</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>MicroMigration-for-MicroStreamV5</name>
     <description>Provides the micro migration support for MicroStream version 5</description>
     <url>https://github.com/xdev-software/micro-migration</url>
@@ -16,7 +16,7 @@
     <parent>
         <groupId>software.xdev</groupId>
         <artifactId>micro-migration</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <build>
