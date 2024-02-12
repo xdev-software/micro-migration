@@ -25,7 +25,7 @@ To keep these datastores to represent the correspondend data for the code is a h
 
 That's why migration frameworks like [Flyway](https://flywaydb.org) and [Liquibase](https://www.liquibase.org/) exist.
 Unfortunately both these frameworks are designed to support any type of SQL databases but no NoSQL
-databases like [MicroStream](https://microstream.one/). This led to the creation of this library.
+databases like [MicroStream](https://microstream.one/) / [EclipseStore](https://eclipsestore.io/). This led to the creation of this library.
 
 This library delivers an easy concept to keep your MicroStream / EclipseStore datastore versioned
 with migration scripts written in plain java.
@@ -90,7 +90,7 @@ public class UpdateToV1_0 implements MigrationScript<Object>
 
 ### MigrationManager
 Although the approach with the `MigrationEmbeddedStorageManager` is pretty easy to handle, it is intrusive
-in the way, that it replaces the root entry point of the MicroStream datastore and inserts its own `VersionedRoot` as root. Some users might find this too entrusive.
+in the way, that it replaces the root entry point of the MicroStream/EclipseStore datastore and inserts its own `VersionedRoot` as root. Some users might find this too entrusive.
 
 That's why a second approach can be used, where the `MigrationManager` is used. This class is also used internally by
 the `MigrationEmbeddedStorageManager`. 
@@ -156,7 +156,7 @@ Micro migration currently supports the following MicroStream / EclipseStore vers
 |------------------------------------------------------------------------------------------------------------|----------------------------------|
 | [1.1.0](https://central.sonatype.com/artifact/org.eclipse.store/storage/1.1.0) | micro-migration-eclipse-store-v1 |
 
-If you are using a different, not listed version of MicroStream, this shouldn't be a problem.
+If you are using a different, not listed version of MicroStream/EclipseStore, this shouldn't be a problem.
 Usually you can simply use the closest Micro migration version (f.e. you are using MicroStream `08.00.00-MS-GA`,
 then use `micro-migration-microstream-v8`) and exclude the dependent version of MicroStream vom Micro migration:
 ```xml
