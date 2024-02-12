@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>software.xdev</groupId>
-            <artifactId>micro-migration-microstream-v8</artifactId>
+            <artifactId>micro-migration-eclipse-store-v1</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
