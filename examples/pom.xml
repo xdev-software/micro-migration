@@ -4,14 +4,14 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-examples</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>MicroMigration-Examples</name>
     <description>Examples for the MicroMigration-Library with EclipseStore</description>
     <url>https://github.com/xdev-software/micro-migration</url>
 
     <parent>
         <groupId>software.xdev</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.1-SNAPSHOT</version>
         <artifactId>micro-migration</artifactId>
     </parent>
 
