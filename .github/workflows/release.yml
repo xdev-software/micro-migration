@@ -99,6 +99,7 @@ jobs:
           JRELEASER_GPG_SECRET_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           JRELEASER_NEXUS2_MAVEN_CENTRAL_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
           JRELEASER_NEXUS2_MAVEN_CENTRAL_PASSWORD: ${{ secrets.S01_OSS_SONATYPE_MAVEN_TOKEN }}
+          JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: mvn -B -pl !examples -Prelease deploy org.jreleaser:jreleaser-maven-plugin:deploy -DaltDeploymentRepository=local::default::file:./target/staging-deploy
   after_release:
     runs-on: ubuntu-latest

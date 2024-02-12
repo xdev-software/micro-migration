@@ -25,4 +25,5 @@ jobs:
           JRELEASER_NEXUS2_MAVEN_CENTRAL_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
           JRELEASER_NEXUS2_MAVEN_CENTRAL_PASSWORD: ${{ secrets.S01_OSS_SONATYPE_MAVEN_TOKEN }}
           JRELEASER_NEXUS2_MAVEN_CENTRAL_SNAPSHOT_URL: https://s01.oss.sonatype.org/content/repositories/snapshots/
+          JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: mvn -B -pl !examples -Prelease deploy org.jreleaser:jreleaser-maven-plugin:deploy -Djreleaser.dry.run -DaltDeploymentRepository=local::default::file:./target/staging-deploy
