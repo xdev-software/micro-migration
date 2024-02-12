@@ -18,8 +18,8 @@ package software.xdev.micromigration.examples.reflective;
 import java.util.Date;
 import java.util.logging.Logger;
 
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
+import software.xdev.micromigration.eclipse.store.MigrationEmbeddedStorage;
+import software.xdev.micromigration.eclipse.store.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ReflectiveMigrater;
 import software.xdev.micromigration.migrater.ScriptInstantiationException;
 

@@ -17,19 +17,19 @@ package software.xdev.micromigration.examples.practical.embedded;
 
 import java.util.logging.Logger;
 
+import software.xdev.micromigration.eclipse.store.MigrationEmbeddedStorageManager;
+import software.xdev.micromigration.eclipse.store.MigrationScript;
 import software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch;
 import software.xdev.micromigration.examples.practical.v1AndHigher.Customer;
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.microstream.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 
 public class UpdateToV2_0 implements MigrationScript<BusinessBranch>
 {
 	@Override
-	public MigrationVersion getTargetVersion() 
+	public MigrationVersion getTargetVersion()
 	{
-		return new MigrationVersion(2,0);
+		return new MigrationVersion(2, 0);
 	}
 	
 	@Override

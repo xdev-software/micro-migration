@@ -4,7 +4,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <version>0.0.10-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <groupId>software.xdev</groupId>
   <artifactId>micro-migration</artifactId>
   <name>MicroMigration</name>
@@ -59,19 +59,20 @@
     <module>microstream-v6</module>
     <module>microstream-v7</module>
     <module>microstream-v8</module>
+    <module>eclipse-store-v1</module>
   </modules>
 
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>5.9.2</version>
+      <version>5.10.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.9.2</version>
+      <version>5.10.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -82,7 +83,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.3.1</version>
           <configuration>
             <encoding>UTF-8</encoding>
           </configuration>
@@ -108,7 +109,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.2.1</version>
+          <version>3.3.0</version>
           <executions>
             <execution>
               <id>attach-source</id>
@@ -121,7 +122,7 @@
         <plugin>
           <groupId>org.jreleaser</groupId>
           <artifactId>jreleaser-maven-plugin</artifactId>
-          <version>1.4.0</version>
+          <version>1.8.0</version>
           <configuration>
             <jreleaser>
               <signing>
@@ -166,7 +167,7 @@
       <plugin>
         <groupId>net.revelc.code</groupId>
         <artifactId>impsort-maven-plugin</artifactId>
-        <version>1.8.0</version>
+        <version>1.9.0</version>
         <configuration>
           <groups>java.,javax.,org.,com.</groups>
           <staticGroups>java,*</staticGroups>
@@ -252,7 +253,7 @@
           <dependency>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>extra-enforcer-rules</artifactId>
-            <version>1.6.1</version>
+            <version>1.7.0</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -264,7 +265,7 @@
       <plugin>
         <groupId>de.thetaphi</groupId>
         <artifactId>forbiddenapis</artifactId>
-        <version>3.4</version>
+        <version>3.6</version>
         <configuration>
           <bundledSignatures>
             <!-- This will automatically choose the right signatures based on 'maven.compiler.target': -->
@@ -295,7 +296,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.2.2</version>
+        <version>3.3.0</version>
         <dependencies>
           <dependency>
             <groupId>com.puppycrawl.tools</groupId>
@@ -327,7 +328,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>3.1.2</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -346,7 +347,7 @@
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
-        <version>4.1</version>
+        <version>4.3</version>
         <configuration>
           <properties>
             <email>${project.organization.url}</email>

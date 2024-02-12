@@ -60,7 +60,7 @@ public class ReflectiveMigrater extends AbstractMigrater
 		for(final Class<? extends VersionAgnosticMigrationScript> scriptClass : reflections.getSubTypesOf(
 			VersionAgnosticMigrationScript.class))
 		{
-			// Only instanciate non abstract classes
+			// Only instanciate non-abstract classes
 			if(!Modifier.isAbstract(scriptClass.getModifiers()))
 			{
 				final VersionAgnosticMigrationScript<?, ?> instanciatedScript = this.instanciateClass(scriptClass);

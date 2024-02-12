@@ -17,9 +17,9 @@ package software.xdev.micromigration.examples.practical.embedded;
 
 import java.util.logging.Logger;
 
+import software.xdev.micromigration.eclipse.store.MigrationEmbeddedStorage;
+import software.xdev.micromigration.eclipse.store.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorage;
-import software.xdev.micromigration.microstream.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 
 /**
@@ -31,14 +31,14 @@ import software.xdev.micromigration.migrater.ExplicitMigrater;
  * <li> v2.0: A new customer is added through the {@link UpdateToV2_0} script.
  * </ul>
  * The storage is restarted after every update to simulate a complete lifecycle of the datastore.
- * @author Johannes Rabauer
  *
+ * @author Johannes Rabauer
  */
 public class MainPracticalWithMigrationEmbeddedStorageManager
 {
 	public static void main(final String[] args)
 	{
-		//V0.0
+		// V0.0
 		final ExplicitMigrater emptyMigrater = new ExplicitMigrater();
 		try(final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(emptyMigrater))
 		{
@@ -47,19 +47,17 @@ public class MainPracticalWithMigrationEmbeddedStorageManager
 			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
-		
-		//V1.0
+		// V1.0
 		final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
 		try(final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV1))
 		{
 			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
-		
-		//V2.0
+		// V2.0
 		final ExplicitMigrater migraterWithV2 = new ExplicitMigrater(
-				new UpdateToV1_0(),
-				new UpdateToV2_0()
+			new UpdateToV1_0(),
+			new UpdateToV2_0()
 		);
 		try(final MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migraterWithV2))
 		{
@@ -67,5 +65,4 @@ public class MainPracticalWithMigrationEmbeddedStorageManager
 		}
 	}
 	
-
 }

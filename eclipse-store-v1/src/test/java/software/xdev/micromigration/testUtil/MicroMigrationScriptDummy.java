@@ -13,28 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.micromigration.examples.reflective.scripts;
-
-import java.util.Date;
-import java.util.logging.Logger;
+package software.xdev.micromigration.testUtil;
 
 import software.xdev.micromigration.eclipse.store.MigrationEmbeddedStorageManager;
-import software.xdev.micromigration.eclipse.store.MigrationScript;
 import software.xdev.micromigration.scripts.Context;
+import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
 import software.xdev.micromigration.version.MigrationVersion;
 
-public class UpdateToV1_0 implements MigrationScript<String>
+public class MicroMigrationScriptDummy implements VersionAgnosticMigrationScript<Object, MigrationEmbeddedStorageManager>
 {
+	private final MigrationVersion version;
+	
+	public MicroMigrationScriptDummy(final MigrationVersion version)
+	{
+		this.version = version;
+	}
+
 	@Override
 	public MigrationVersion getTargetVersion()
 	{
-		return new MigrationVersion(1, 0);
+		return this.version;
 	}
-	
+
 	@Override
-	public void migrate(final Context<String, MigrationEmbeddedStorageManager> context)
-	{
-		Logger.getGlobal().info("Update " + this.getTargetVersion().toString() + " executed.");
-		context.getStorageManager().setRoot("Hello World! @ " + new Date() + " Update 1.0");
+	public void migrate(final Context<Object, MigrationEmbeddedStorageManager> context) {
+		// Don't do anything.
 	}
 }

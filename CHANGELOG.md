@@ -1,3 +1,7 @@
+## 1.0.0
+* Added support for EclipseStore v1
+* Updated plenty of libraries
+
 ## 0.0.9
 * Added support for MicroStream v8
 

@@ -17,10 +17,11 @@ package software.xdev.micromigration.examples.practical.migrationManager;
 
 import java.util.logging.Logger;
 
-import one.microstream.storage.embedded.types.EmbeddedStorage;
-import one.microstream.storage.embedded.types.EmbeddedStorageManager;
+import org.eclipse.store.storage.embedded.types.EmbeddedStorage;
+import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
+
+import software.xdev.micromigration.eclipse.store.MigrationManager;
 import software.xdev.micromigration.examples.practical.v0.BusinessBranch;
-import software.xdev.micromigration.microstream.MigrationManager;
 import software.xdev.micromigration.migrater.ExplicitMigrater;
 import software.xdev.micromigration.version.VersionedObject;
 
@@ -28,15 +29,16 @@ import software.xdev.micromigration.version.VersionedObject;
  * A practical example of usage in a few steps:
  * <ul>
  * <li> v0.0: Storage is created without any updates. Only stores a new {@link BusinessBranch}
- * <li> v1.0: The BusinessBranch has a new implementation {@link software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch}.
+ * <li> v1.0: The BusinessBranch has a new implementation
+ * {@link software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch}.
  * The old branch is converted to the new implementation through the {@link UpdateToV1_0} script.
  * <li> v2.0: A new customer is added through the {@link UpdateToV2_0} script.
  * </ul>
  * The storage is restarted after every update to simulate a complete lifecycle of the datastore.
- * @author Johannes Rabauer
  *
+ * @author Johannes Rabauer
  */
-public class MainPracticalWithMigrationManager 
+public class MainPracticalWithMigrationManager
 {
 	/**
 	 * Suppressed Warning "unchecked" because it is given, that the correct object is returned.
@@ -44,32 +46,33 @@ public class MainPracticalWithMigrationManager
 	@SuppressWarnings("unchecked")
 	public static void main(final String[] args)
 	{
-		//V0.0
+		// V0.0
 		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
-			final VersionedObject<BusinessBranch> versionedBranch = new VersionedObject<>(BusinessBranch.createDummyBranch());
+			final VersionedObject<BusinessBranch> versionedBranch =
+				new VersionedObject<>(BusinessBranch.createDummyBranch());
 			storageManager.setRoot(versionedBranch);
 			storageManager.storeRoot();
 			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
-		
-		//V1.0
+		// V1.0
 		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
 			final ExplicitMigrater migraterWithV1 = new ExplicitMigrater(new UpdateToV1_0());
-			final VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
+			final VersionedObject<BusinessBranch> versionedBranch =
+				(VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV1, storageManager)
 				.migrate(versionedBranch);
 			Logger.getGlobal().info(storageManager.root().toString());
 		}
 		
-		
-		//V2.0
+		// V2.0
 		try(final EmbeddedStorageManager storageManager = EmbeddedStorage.start())
 		{
 			final ExplicitMigrater migraterWithV2 = new ExplicitMigrater(new UpdateToV1_0(), new UpdateToV2_0());
-			final VersionedObject<BusinessBranch> versionedBranch = (VersionedObject<BusinessBranch>)storageManager.root();
+			final VersionedObject<BusinessBranch> versionedBranch =
+				(VersionedObject<BusinessBranch>)storageManager.root();
 			new MigrationManager(versionedBranch, migraterWithV2, storageManager)
 				.migrate(versionedBranch);
 			Logger.getGlobal().info(storageManager.root().toString());
