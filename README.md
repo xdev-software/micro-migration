@@ -1,4 +1,4 @@
-[![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration)](https://central.sonatype.com/artifact/software.xdev/micro-migration/0.0.4/versions)
+[![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration)](https://central.sonatype.com/artifact/software.xdev/micro-migration/)
 [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/micro-migration/checkBuild.yml?branch=develop)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 [![javadoc core](https://javadoc.io/badge2/software.xdev/micro-migration-core/javadoc.svg)](https://javadoc.io/doc/software.xdev/micro-migration-core)
 [![OpenSSF Best Practices](https://bestpractices.coreinfrastructure.org/projects/6816/badge)](https://bestpractices.coreinfrastructure.org/projects/6816)
