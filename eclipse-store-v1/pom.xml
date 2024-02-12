@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>software.xdev</groupId>
     <artifactId>micro-migration-eclipse-store-v1</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>MicroMigration-for-EclipseStoreV1</name>
     <description>Provides the micro migration support for EclipseStore version 1</description>
     <url>https://github.com/xdev-software/micro-migration</url>
@@ -16,7 +16,7 @@
     <parent>
         <groupId>software.xdev</groupId>
         <artifactId>micro-migration</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <build>
