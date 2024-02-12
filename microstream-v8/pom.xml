@@ -7,6 +7,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>MicroMigration-for-MicroStreamV8</name>
     <description>Provides the micro migration support for MicroStream version 8</description>
+    <url>https://github.com/xdev-software/micro-migration</url>
 
     <properties>
         <microstream.version>08.01.01-MS-GA</microstream.version>
