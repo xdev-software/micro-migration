@@ -5,12 +5,11 @@
     {
       "description": "Ignore MicroStream < 8",
       "matchPackagePatterns": [
-        "^one.microstream:*"
+        "^one.microstream"
       ],
       "datasources": [
         "maven"
       ],
-      "matchCurrentVersion": "<8",
       "enabled": false
     }
   ]
