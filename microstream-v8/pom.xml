@@ -10,7 +10,7 @@
     <url>https://github.com/xdev-software/micro-migration</url>
 
     <properties>
-        <microstream.version>08.01.01-MS-GA</microstream.version>
+        <microstream.version>08.01.02-MS-GA</microstream.version>
     </properties>
 
     <parent>
