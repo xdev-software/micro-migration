@@ -3,13 +3,15 @@
   "rebaseWhen": "behind-base-branch",
   "packageRules": [
     {
-      "description": "Ignore MicroStream < 8",
+      "description": "Ignore MicroStream != 8",
       "matchPackagePatterns": [
         "^one.microstream"
       ],
       "datasources": [
         "maven"
       ],
+      // matchCurrentVersion does not work as MicroStream doesn't use SEMVER
+      "matchCurrentValue": "!/^08\\./",
       "enabled": false
     }
   ]
