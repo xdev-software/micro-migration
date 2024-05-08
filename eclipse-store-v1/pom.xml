@@ -10,7 +10,7 @@
     <url>https://github.com/xdev-software/micro-migration</url>
 
     <properties>
-        <org.eclipse.store.version>1.3.1</org.eclipse.store.version>
+        <org.eclipse.store.version>1.3.2</org.eclipse.store.version>
     </properties>
 
     <parent>
