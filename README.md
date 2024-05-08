@@ -45,7 +45,7 @@ A simple example where scripts need to be registered in the `ExplicitMigrater`:
 public static void main(String[] args){
 	ExplicitMigrater migrater = new ExplicitMigrater(new UpdateToV1_0());
 	MigrationEmbeddedStorageManager storageManager = MigrationEmbeddedStorage.start(migrater);
-	//Do some business logic
+	// Do some business logic
 	storageManager.shutdown();
 }
 ```
@@ -62,7 +62,7 @@ public class UpdateToV1_0 implements MigrationScript<Object>
 	
 	@Override
 	public void migrate(Context<String, EmbeddedStorageManager> context){
-		//Logic of the update
+		// Logic of the update
 		context.getStorageManager().setRoot("Update 1.0");
 	}
 }
@@ -79,7 +79,7 @@ public static void main(String[] args){
 	EmbeddedStorageManager storageManager = EmbeddedStorage.start();
 		VersionedObject<Object> versionedRoot =(VersionedObject<Object>)storageManager.root();
 		new MigrationManager(versionedRoot, migrater, storageManager).migrate(versionedBranch);
-	//Do some business logic
+	// Do some business logic
 	storageManager.shutdown();
 }
 ```
