@@ -27,22 +27,20 @@ You should have the following things installed:
   * Install the following plugins:
     * [Save Actions](https://plugins.jetbrains.com/plugin/22113) - Provides save actions, like running the formatter or adding ``final`` to fields
     * [SonarLint](https://plugins.jetbrains.com/plugin/7973-sonarlint) - CodeStyle/CodeAnalysis
+      * You may consider disabling telemetry in the settings under ``Tools > Sonarlint -> About``
     * [Checkstyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) - CodeStyle/CodeAnalysis
   * Import the project
   * Ensure that everything is encoded in ``UTF-8``
   * Ensure that the JDK/Java-Version is correct
 
 
-## Releasing
+## Releasing [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/micro-migration/release.yml?branch=master)](https://github.com/xdev-software/micro-migration/actions/workflows/release.yml)
 
 Before releasing:
-
-* Check if the [Check Build](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)-Action was successful.
+* Consider doing a [test-deployment](https://github.com/xdev-software/micro-migration/actions/workflows/test-deploy.yml?query=branch%3Adevelop) before actually releasing.
 * Check the [changelog](CHANGELOG.md)
 
-If the ``develop`` is ready for release, create a pull request to the ``main``-Branch and merge the changes
+If the ``develop`` is ready for release, create a pull request to the ``master``-Branch and merge the changes
 
 When the release is finished do the following:
 * Merge the auto-generated PR (with the incremented version number) back into the ``develop``
-* Login to the [Sonatype repository manager](https://s01.oss.sonatype.org/), check the staged libraries, 
-  close the repository and publish it (after a few minutes).
