@@ -1,7 +1,8 @@
-name: Publish package to the Maven Central Repository
+name: Release
+
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 env:
   PRIMARY_MAVEN_MODULE: ${{ github.event.repository.name }}
@@ -11,24 +12,44 @@ permissions:
   pull-requests: write
 
 jobs:
-  check_build:
+  check_code: # Validates the code
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-          cache: 'maven'
-      - name: Build with Maven
-        run: mvn -B clean verify
+    - uses: actions/checkout@v4
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'maven'
+      
+    - name: Build with Maven
+      run: ./mvnw -B clean package
+      
+    - name: Check for uncommited changes
+      run: |
+        if [[ "$(git status --porcelain)" != "" ]]; then
+          echo ----------------------------------------
+          echo git status
+          echo ----------------------------------------
+          git status
+          echo ----------------------------------------
+          echo git diff
+          echo ----------------------------------------
+          git diff
+          echo ----------------------------------------
+          echo Troubleshooting
+          echo ----------------------------------------
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && ./mvnw -B clean package"
+          exit 1
+        fi
+
   prepare_release:
     runs-on: ubuntu-latest
-    needs: [check_build]
+    needs: [check_code]
     outputs:
-      upload_url: ${{ steps.create_draft.outputs.upload_url }}
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
     steps:
     - uses: actions/checkout@v4
       
@@ -36,14 +57,25 @@ jobs:
       run: |
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
-        
+  
     - name: Un-SNAP 
-      run: mvn -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false
+      run: |
+        mvnwPath=$(readlink -f ./mvnw)
+        modules=("") # root
+        modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
+        for i in "${modules[@]}"
+        do
+            echo "Processing $i/pom.xml"
+            (cd "$i" && $mvnwPath -B versions:set -DremoveSnapshot -DgenerateBackupPoms=false)
+        done
   
     - name: Get version
       id: version
       run: |
-       echo "release=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_OUTPUT
+        version=$(../mvnw help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "release=$version" >> $GITHUB_OUTPUT
+        echo "releasenumber=${version//[!0-9]/}" >> $GITHUB_OUTPUT
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
   
     - name: Commit and Push
       run: |
@@ -59,7 +91,7 @@ jobs:
       with:
         tag_name: v${{ steps.version.outputs.release }}
         release_name: v${{ steps.version.outputs.release }}
-        commitish: main
+        commitish: master
         body: |
           ## [Changelog](https://github.com/xdev-software/${{ env.PRIMARY_MAVEN_MODULE }}/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }})
           See [Changelog#v${{ steps.version.outputs.release }}](https://github.com/xdev-software/${{ env.PRIMARY_MAVEN_MODULE }}/blob/develop/CHANGELOG.md#${{ steps.version.outputs.releasenumber }}) for more information.
@@ -69,38 +101,71 @@ jobs:
           ```XML
           <dependency>
              <groupId>software.xdev</groupId>
-             <artifactId>micro-migration-eclipse-store-v1</artifactId>
+             <artifactId>${{ env.PRIMARY_MAVEN_MODULE }}</artifactId>
              <version>${{ steps.version.outputs.release }}</version>
           </dependency>
           ```
-  publish_central:
+
+  publish_central: # Publish the code to central
     runs-on: ubuntu-latest
     needs: [prepare_release]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        # This might seem strange, but in order to see the Version update from the previous step,
-        # we must pull this change from git.
-      - name: Init Git and pull
-        run: |
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
-          git pull
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-          cache: 'maven'
-      - name: Publish
-        env:
-          JRELEASER_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
-          JRELEASER_GPG_PUBLIC_KEY: ${{ secrets.MAVEN_GPG_PUBLIC_KEY }}
-          JRELEASER_GPG_SECRET_KEY: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          JRELEASER_NEXUS2_MAVEN_CENTRAL_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
-          JRELEASER_NEXUS2_MAVEN_CENTRAL_PASSWORD: ${{ secrets.S01_OSS_SONATYPE_MAVEN_TOKEN }}
-          JRELEASER_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: mvn -B -pl !examples -Prelease deploy org.jreleaser:jreleaser-maven-plugin:deploy -DaltDeploymentRepository=local::default::file:./target/staging-deploy
+    - uses: actions/checkout@v4
+    
+    - name: Init Git and pull
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git pull
+    
+    - name: Set up JDK Apache Maven Central
+      uses: actions/setup-java@v4
+      with: # running setup-java again overwrites the settings.xml
+        java-version: '17'
+        distribution: 'temurin'
+        server-id: ossrh
+        server-username: MAVEN_CENTRAL_USERNAME
+        server-password: MAVEN_CENTRAL_TOKEN
+        gpg-passphrase: MAVEN_GPG_PASSPHRASE
+        gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+
+    - name: Publish to Apache Maven Central
+      run: ../mvnw -B deploy -Possrh
+      env:
+        MAVEN_CENTRAL_USERNAME: ${{ secrets.S01_OSS_SONATYPE_MAVEN_USERNAME }}
+        MAVEN_CENTRAL_TOKEN: ${{ secrets.S01_OSS_SONATYPE_MAVEN_TOKEN }}
+        MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+
+  publish-pages:
+    runs-on: ubuntu-latest
+    needs: [prepare_release]
+    steps:
+    - uses: actions/checkout@v4
+      
+    - name: Init Git and pull
+      run: |
+        git config --global user.email "actions@github.com"
+        git config --global user.name "GitHub Actions"
+        git pull
+
+    - name: Setup - Java
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: 'maven'
+
+    - name: Build site
+      run: ../mvnw -B site
+      working-directory: ${{ env.PRIMARY_MAVEN_MODULE }}
+
+    - name: Deploy to Github pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./${{ env.PRIMARY_MAVEN_MODULE }}/target/site
+
   after_release:
     runs-on: ubuntu-latest
     needs: [publish_central]
@@ -112,10 +177,18 @@ jobs:
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git pull
-        
-    - name: Inc Version and SNAP root
-      run: mvn -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true
-       
+
+    - name: Inc Version and SNAP 
+      run: |
+        mvnwPath=$(readlink -f ./mvnw)
+        modules=("") # root
+        modules+=($(grep -ozP '(?<=module>)[^<]+' 'pom.xml' | tr -d '\0'))
+        for i in "${modules[@]}"
+        do
+            echo "Processing $i/pom.xml"
+            (cd "$i" && $mvnwPath -B build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} -DgenerateBackupPoms=false -DnextSnapshot=true)
+        done
+
     - name: Git Commit and Push
       run: |
         git add -A
@@ -123,9 +196,12 @@ jobs:
         git push origin
     
     - name: pull-request
-      uses: repo-sync/pull-request@v2
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        destination_branch: "develop"
-        pr_title: "Sync back"
-        pr_body: "An automated PR to sync changes back"
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        gh_pr_up() { 
+          gh pr create "$@" || gh pr edit "$@" 
+        }
+        gh_pr_up -B "develop" \
+          --title "Sync back" \
+          --body "An automated PR to sync changes back"
