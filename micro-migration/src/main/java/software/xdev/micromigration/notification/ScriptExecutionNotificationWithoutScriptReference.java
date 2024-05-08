@@ -34,7 +34,8 @@ public class ScriptExecutionNotificationWithoutScriptReference extends AbstractS
 	/**
 	 * @param originalNotification where the reference to the script is deleted and the class name is extracted.
 	 */
-	public ScriptExecutionNotificationWithoutScriptReference(final ScriptExecutionNotificationWithScriptReference originalNotification)
+	public ScriptExecutionNotificationWithoutScriptReference(
+		final ScriptExecutionNotificationWithScriptReference originalNotification)
 	{
 		super(
 			originalNotification.getSourceVersion(),

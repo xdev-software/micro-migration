@@ -61,7 +61,8 @@ class ReflectiveMigraterTest
 			migrater.getSortedScripts().first().getClass()
 		);
 		assertEquals(
-			software.xdev.micromigration.migrater.reflection.scripts.includeSubPackages.subpackage.ValidScriptInSubpackage.class,
+			software.xdev.micromigration.migrater.reflection.scripts.includeSubPackages.subpackage
+				.ValidScriptInSubpackage.class,
 			migrater.getSortedScripts().last().getClass()
 		);
 	}

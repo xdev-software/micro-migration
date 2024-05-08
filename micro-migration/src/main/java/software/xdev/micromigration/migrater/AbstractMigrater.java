@@ -40,7 +40,8 @@ public abstract class AbstractMigrater implements MicroMigrater
 	private Clock clock = Clock.systemDefaultZone();
 	
 	@Override
-	public void registerNotificationConsumer(final Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer)
+	public void registerNotificationConsumer(
+		final Consumer<ScriptExecutionNotificationWithScriptReference> notificationConsumer)
 	{
 		this.notificationConsumers.add(notificationConsumer);
 	}

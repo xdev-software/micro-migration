@@ -27,6 +27,7 @@ import software.xdev.micromigration.migrater.reflection.ScriptInstantiationExcep
 /**
  * Shows the usage of the {@link ReflectiveMigrater}. Very simple.
  */
+@SuppressWarnings("java:S2629")
 public final class MainReflective
 {
 	public static void main(final String[] args)

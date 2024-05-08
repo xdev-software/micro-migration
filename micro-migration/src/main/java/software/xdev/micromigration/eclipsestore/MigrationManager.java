@@ -36,7 +36,7 @@ public class MigrationManager extends VersionAgnosticMigrationManager<EmbeddedSt
 {
 	/**
 	 * Much more complicated constructor than
-	 * {@link MigrationManager(Versioned, MicroMigrater, EmbeddedStorageManager)}.
+	 * {@link MigrationManager#MigrationManager(Versioned, MicroMigrater, EmbeddedStorageManager)}
 	 *
 	 * @param currentVersionGetter which supplies the current version of the object to update.
 	 * @param currentVersionSetter which sets the new version of the object in some membervariable. This Consumer is

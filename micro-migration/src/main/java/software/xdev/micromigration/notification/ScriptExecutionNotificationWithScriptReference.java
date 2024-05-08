@@ -56,6 +56,7 @@ public class ScriptExecutionNotificationWithScriptReference extends AbstractScri
 	/**
 	 * @return the script that was executed
 	 */
+	@SuppressWarnings("java:S1452")
 	public VersionAgnosticMigrationScript<?, ?> getExecutedScript()
 	{
 		return this.executedScript;

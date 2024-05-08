@@ -29,6 +29,7 @@ import software.xdev.micromigration.version.MigrationVersion;
 /**
  * Shows the basic registration of migration notifications ({@link ScriptExecutionNotification}).
  */
+@SuppressWarnings("java:S2629")
 public final class MainNotification
 {
 	public static void main(final String[] args)

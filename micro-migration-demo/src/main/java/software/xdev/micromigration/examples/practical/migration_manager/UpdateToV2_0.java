@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.micromigration.examples.practical.migrationManager;
+package software.xdev.micromigration.examples.practical.migration_manager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import software.xdev.micromigration.eclipsestore.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.eclipsestore.MigrationScript;
-import software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch;
-import software.xdev.micromigration.examples.practical.v1AndHigher.Customer;
+import software.xdev.micromigration.examples.practical.v1_and_higher.BusinessBranch;
+import software.xdev.micromigration.examples.practical.v1_and_higher.Customer;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 import software.xdev.micromigration.version.VersionedObject;

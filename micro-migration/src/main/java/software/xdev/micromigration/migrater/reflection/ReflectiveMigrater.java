@@ -43,6 +43,8 @@ import software.xdev.micromigration.scripts.VersionAgnosticMigrationScript;
  */
 public class ReflectiveMigrater extends AbstractMigrater
 {
+	private static final String CLASS_EXTENSION = ".class";
+	
 	private final TreeSet<VersionAgnosticMigrationScript<?, ?>> sortedScripts = new TreeSet<>(
 		VersionAgnosticMigrationScript.COMPARATOR);
 	
@@ -147,10 +149,11 @@ public class ReflectiveMigrater extends AbstractMigrater
 				assert !file.getName().contains(".");
 				classes.addAll(findClasses(file, packageName + "." + file.getName()));
 			}
-			else if(file.getName().endsWith(".class"))
+			else if(file.getName().endsWith(CLASS_EXTENSION))
 			{
 				classes.add(Class.forName(
-					packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
+					packageName + '.' + file.getName()
+						.substring(0, file.getName().length() - CLASS_EXTENSION.length())));
 			}
 		}
 		return classes;

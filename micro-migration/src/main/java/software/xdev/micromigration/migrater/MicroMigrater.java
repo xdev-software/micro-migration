@@ -34,6 +34,7 @@ public interface MicroMigrater
 	 * @return all the contained {@link VersionAgnosticMigrationScript}s, sorted by their {@link MigrationVersion}
 	 * ascending.
 	 */
+	@SuppressWarnings("java:S1452")
 	TreeSet<? extends VersionAgnosticMigrationScript<?, ?>> getSortedScripts();
 	
 	/**

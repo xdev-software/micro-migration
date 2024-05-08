@@ -170,7 +170,8 @@ class ReflectiveVersionMigrationScriptTest
 		Object>>
 	{
 		@Override
-		public void migrate(final Context<Object, VersionAgnosticMigrationEmbeddedStorageManager<Object, Object>> context)
+		public void migrate(
+			final Context<Object, VersionAgnosticMigrationEmbeddedStorageManager<Object, Object>> context)
 		{
 			// Dummy
 		}

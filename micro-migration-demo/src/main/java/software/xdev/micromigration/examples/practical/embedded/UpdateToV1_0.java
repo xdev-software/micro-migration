@@ -19,9 +19,9 @@ import java.util.logging.Logger;
 
 import software.xdev.micromigration.eclipsestore.MigrationEmbeddedStorageManager;
 import software.xdev.micromigration.eclipsestore.MigrationScript;
-import software.xdev.micromigration.examples.practical.v1AndHigher.Address;
-import software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch;
-import software.xdev.micromigration.examples.practical.v1AndHigher.Customer;
+import software.xdev.micromigration.examples.practical.v1_and_higher.Address;
+import software.xdev.micromigration.examples.practical.v1_and_higher.BusinessBranch;
+import software.xdev.micromigration.examples.practical.v1_and_higher.Customer;
 import software.xdev.micromigration.scripts.Context;
 import software.xdev.micromigration.version.MigrationVersion;
 

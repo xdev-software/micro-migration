@@ -52,7 +52,7 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	 *                         requests.
 	 * @param migrater         which is used as source for the migration scripts
 	 */
-	public VersionAgnosticMigrationEmbeddedStorageManager(
+	protected VersionAgnosticMigrationEmbeddedStorageManager(
 		final VersionAgnosticTunnelingEmbeddedStorageManager<E> tunnelingManager,
 		final MicroMigrater migrater
 	)
@@ -86,12 +86,13 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	 *
 	 * @return itself
 	 */
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	public T start()
 	{
 		this.tunnelingManager.start();
-		if(this.tunnelingManager.root() instanceof VersionedRootWithHistory)
+		if(this.tunnelingManager.root() instanceof final VersionedRootWithHistory versionedRootWithHistory)
 		{
-			this.versionRoot = (VersionedRootWithHistory)this.tunnelingManager.root();
+			this.versionRoot = versionedRootWithHistory;
 		}
 		else
 		{
@@ -104,8 +105,7 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 			this.versionRoot,
 			this.migrater,
 			this
-		)
-			.migrate(this.versionRoot.getRoot());
+		).migrate(this.versionRoot.getRoot());
 		return (T)this;
 	}
 	

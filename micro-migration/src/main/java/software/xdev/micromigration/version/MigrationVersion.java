@@ -113,6 +113,6 @@ public class MigrationVersion
 	/**
 	 * Provides a {@link Comparator} that compares the {@link #getVersions()} of the given versions
 	 */
-	public static Comparator<MigrationVersion> COMPARATOR =
-		Comparator.comparing(MigrationVersion::getVersions, (o1, o2) -> Arrays.compare(o1, o2));
+	public static final Comparator<MigrationVersion> COMPARATOR =
+		Comparator.comparing(MigrationVersion::getVersions, Arrays::compare);
 }

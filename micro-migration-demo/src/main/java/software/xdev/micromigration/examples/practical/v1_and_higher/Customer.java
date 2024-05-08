@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.micromigration.examples.practical.v1AndHigher;
+package software.xdev.micromigration.examples.practical.v1_and_higher;
 
-public class Address
+@SuppressWarnings({"checkstyle:VisibilityModifier", "java:S1104"})
+public class Customer
 {
-	public int number;
-	public String street;
-	public String city;
+	public String name;
+	public Address address = new Address();
 }

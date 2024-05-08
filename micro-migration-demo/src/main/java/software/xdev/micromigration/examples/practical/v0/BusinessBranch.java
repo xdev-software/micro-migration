@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+@SuppressWarnings("checkstyle:VisibilityModifier")
 public class BusinessBranch
 {
 	public final List<Customer> customers = new ArrayList<>();

@@ -43,6 +43,7 @@ public final class MigrationEmbeddedStorage
 	 * @param migrater which is used as source for the migration scripts
 	 * @return the created storage manager with the given migrater
 	 */
+	@SuppressWarnings("java:S2095")
 	public static MigrationEmbeddedStorageManager start(final MicroMigrater migrater)
 	{
 		Objects.requireNonNull(migrater);
@@ -62,6 +63,7 @@ public final class MigrationEmbeddedStorage
 	 * @param migrater         which is used as source for the migration scripts
 	 * @return the created storage manager with the given migrater
 	 */
+	@SuppressWarnings("java:S2095")
 	public static MigrationEmbeddedStorageManager start(
 		final Path storageDirectory,
 		final MicroMigrater migrater

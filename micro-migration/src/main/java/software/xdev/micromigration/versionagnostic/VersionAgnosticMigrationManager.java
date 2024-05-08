@@ -46,8 +46,8 @@ public class VersionAgnosticMigrationManager<T>
 	
 	/**
 	 * Much more complicated constructor than
-	 * {@link VersionAgnosticMigrationManager(Versioned, MicroMigrater,
-	 * VersionAgnosticMigrationEmbeddedStorageManager)}.
+	 * {@link VersionAgnosticMigrationManager#VersionAgnosticMigrationManager(Versioned, MicroMigrater,
+	 * VersionAgnosticMigrationEmbeddedStorageManager)}
 	 *
 	 * @param currentVersionGetter which supplies the current version of the object to update.
 	 * @param currentVersionSetter which sets the new version of the object in some membervariable. This Consumer is

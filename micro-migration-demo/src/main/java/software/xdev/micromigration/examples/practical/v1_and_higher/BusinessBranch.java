@@ -13,13 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.micromigration.examples.practical.v1AndHigher;
+package software.xdev.micromigration.examples.practical.v1_and_higher;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 
+@SuppressWarnings("checkstyle:VisibilityModifier")
 public class BusinessBranch
 {
 	public final List<Customer> customers = new ArrayList<>();

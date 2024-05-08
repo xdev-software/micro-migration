@@ -44,7 +44,7 @@ import software.xdev.micromigration.version.VersionedObject;
 class MigrationScriptAfterScriptTest
 {
 	@Test
-	void checkMigrationWithThreeDifferentMigrater_MigrationEmbeddedStorageManager(@TempDir final Path storageFolder)
+	void checkMigrationWithThreeDifferentMigraterMigrationEmbeddedStorageManager(@TempDir final Path storageFolder)
 	{
 		// First run without any migration script
 		final ExplicitMigrater firstMigrater = new ExplicitMigrater();

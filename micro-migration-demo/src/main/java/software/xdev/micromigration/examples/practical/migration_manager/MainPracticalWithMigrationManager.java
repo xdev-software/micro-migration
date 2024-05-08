@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package software.xdev.micromigration.examples.practical.migrationManager;
+package software.xdev.micromigration.examples.practical.migration_manager;
 
 import org.eclipse.store.storage.embedded.types.EmbeddedStorage;
 import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
@@ -31,12 +31,13 @@ import software.xdev.micromigration.version.VersionedObject;
  * <ul>
  * <li> v0.0: Storage is created without any updates. Only stores a new {@link BusinessBranch}
  * <li> v1.0: The BusinessBranch has a new implementation
- * {@link software.xdev.micromigration.examples.practical.v1AndHigher.BusinessBranch}.
+ * {@link software.xdev.micromigration.examples.practical.v1_and_higher.BusinessBranch}.
  * The old branch is converted to the new implementation through the {@link UpdateToV1_0} script.
  * <li> v2.0: A new customer is added through the {@link UpdateToV2_0} script.
  * </ul>
  * The storage is restarted after every update to simulate a complete lifecycle of the datastore.
  */
+@SuppressWarnings("java:S2629")
 public final class MainPracticalWithMigrationManager
 {
 	private static final Logger LOG = LoggerFactory.getLogger(MainPracticalWithMigrationManager.class);

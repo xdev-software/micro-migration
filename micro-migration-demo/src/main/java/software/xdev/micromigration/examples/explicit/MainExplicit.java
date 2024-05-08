@@ -31,6 +31,7 @@ import software.xdev.micromigration.migrater.ExplicitMigrater;
  * The most basic usage of micro migration. Here two {@link MigrationScript}s are explicitly registered and subsequently
  * executed. Easy.
  */
+@SuppressWarnings("java:S2629")
 public final class MainExplicit
 {
 	private static final Logger LOG = LoggerFactory.getLogger(MainExplicit.class);

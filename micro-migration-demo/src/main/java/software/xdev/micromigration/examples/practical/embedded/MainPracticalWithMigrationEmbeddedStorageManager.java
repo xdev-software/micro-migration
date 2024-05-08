@@ -34,6 +34,7 @@ import software.xdev.micromigration.migrater.ExplicitMigrater;
  * </ul>
  * The storage is restarted after every update to simulate a complete lifecycle of the datastore.
  */
+@SuppressWarnings("java:S2629")
 public final class MainPracticalWithMigrationEmbeddedStorageManager
 {
 	private static final Logger LOG = LoggerFactory.getLogger(MainPracticalWithMigrationEmbeddedStorageManager.class);

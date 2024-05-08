@@ -24,6 +24,7 @@ import software.xdev.micromigration.version.MigrationVersion;
 /**
  * Exception that should be used if two scripts with the same version exist.
  */
+@SuppressWarnings({"java:S1948", "java:S1452"})
 public class VersionAlreadyRegisteredException extends RuntimeException
 {
 	/**
