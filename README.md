@@ -2,8 +2,8 @@
 [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/micro-migration/checkBuild.yml?branch=develop)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xdev-software_micro-migration&metric=alert_status)](https://sonarcloud.io/dashboard?id=xdev-software_micro-migration)
 
-# <img src="assets/Logo.png" width="400"  alt="XDEV MicroMigration Logo">
-Tiny java library to migrate EclipseStore datastores. 
+# <img src="assets/Logo.png" width="400" alt="XDEV MicroMigration Logo">
+Tiny java library to migrate [EclipseStore](https://github.com/eclipse-store/store) datastores. 
 Applies migration scripts on the datastores to keep them up to date.
 
 ## Intro
@@ -113,8 +113,8 @@ final ReflectiveMigrater migrater = new ReflectiveMigrater("software.xdev.microm
 ### Compatibility
 | Eclipse Store version | micro-migration version |
 | --- | --- |
-| Eclipse Store 1+ | ``2+`` |
-| MicroStream 5-8<br/>Eclipse Store 1+ | ``1`` |
+| [EclipseStore](https://github.com/eclipse-store/store) 1+ | ``2+`` |
+| [MicroStream](https://github.com/microstream-one/microstream) 5-8<br/>EclipseStore 1.1 | ``1.x`` |
 
 ## Support
 If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services/support).
