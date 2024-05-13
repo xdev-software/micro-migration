@@ -1,3 +1,11 @@
+## 2.0.0
+_Major refactoring_
+* Consolidated all previous modules into a single one
+* Dropped support for MicroStream as EclipseStore is it's successor
+* Refactored and adjusted code accordingly
+* Slimed down dependencies
+* Minimal required Java version: 17
+
 ## 1.0.0
 * Added support for EclipseStore v1
 * Updated plenty of libraries

@@ -1,47 +1,46 @@
-# Contributing to Micro migration
+## Contributing
 
-We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+We would absolutely love to get the community involved, and we welcome any form of contributions – comments and questions on different communication channels, issues and pull request and anything that you build and share using our components.
 
-- **Reporting a bug**:  File issues on GitHub.
-- **Send pull requests**: If you want to contribute code, check out the development instructions below.
-- **Discussing the current state of the code**
-- **Submitting a fix**
-- **Proposing new features**
-- **Becoming a maintainer**
+### Communication channels
+* Communication is primarily done using issues.
+* If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services/support).
+* As a last resort measure or on otherwise important matter you may also [contact us directly](https://xdev.software/en/about-us/contact).
 
-We encourage you to read the [contribution instructions by GitHub](https://guides.github.com/activities/contributing-to-open-source/#contributing) also.
+### Ways to help
+* **Report bugs**<br/>Create an issue or send a pull request
+* **Send pull requests**<br/>If you want to contribute code, check out the development instructions below.
+  * However when contributing new features, please first discuss the change you wish to make via issue with the owners of this repository before making a change. Otherwise your work might be rejected and your effort was pointless.
 
-## We Develop with Github
+We also encourage you to read the [contribution instructions by GitHub](https://docs.github.com/en/get-started/quickstart/contributing-to-projects).
 
-We use GitHub to host code, to track issues and feature requests, as well as accept pull requests.
+## Developing
 
-## All Code Changes Happen Through Pull Requests
+### Software Requirements
+You should have the following things installed:
+* Git
+* Java 21 - should be as unmodified as possible (Recommended: [Eclipse Adoptium](https://adoptium.net/temurin/releases/))
+* Maven (Note that the [Maven Wrapper](https://maven.apache.org/wrapper/) is shipped with the repo)
 
-Pull requests are the best way to propose changes to the codebase. We actively welcome your pull requests:
+### Recommended setup
+* Install ``IntelliJ`` (Community Edition is sufficient)
+  * Install the following plugins:
+    * [Save Actions](https://plugins.jetbrains.com/plugin/22113) - Provides save actions, like running the formatter or adding ``final`` to fields
+    * [SonarLint](https://plugins.jetbrains.com/plugin/7973-sonarlint) - CodeStyle/CodeAnalysis
+      * You may consider disabling telemetry in the settings under ``Tools > Sonarlint -> About``
+    * [Checkstyle-IDEA](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) - CodeStyle/CodeAnalysis
+  * Import the project
+  * Ensure that everything is encoded in ``UTF-8``
+  * Ensure that the JDK/Java-Version is correct
 
-1. Fork the repo and create your branch from `main`.
-2. If you've added code that should be tested, add tests.
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes.
-5. Issue that pull request!
 
-## Any contributions you make will be under the Apache-2.0 license
+## Releasing [![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/micro-migration/release.yml?branch=master)](https://github.com/xdev-software/micro-migration/actions/workflows/release.yml)
 
-In short, when you submit code changes, your submissions are understood to be under the same [Apache-2.0 license](https://github.com/xdev-software/micro-migration/blob/main/LICENSE) that covers the project. Feel free to contact the maintainers if that's a concern.
+Before releasing:
+* Consider doing a [test-deployment](https://github.com/xdev-software/micro-migration/actions/workflows/test-deploy.yml?query=branch%3Adevelop) before actually releasing.
+* Check the [changelog](CHANGELOG.md)
 
-## Report bugs using Github's [issues](https://github.com/xdev-software/micro-migration/issues)
+If the ``develop`` is ready for release, create a pull request to the ``master``-Branch and merge the changes
 
-We use GitHub issues to track public bugs. Report a bug by opening a new issue, it's that easy!
-
-### Get in touch with the team
-
-Twitter: https://twitter.com/xdevsoftware
-Mail: opensource@xdev-software.de
-
-## License
-
-By contributing, you agree that your contributions will be licensed under its Apache-2.0 license.
-
-## Code of Conduct
-
-Please follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+When the release is finished do the following:
+* Merge the auto-generated PR (with the incremented version number) back into the ``develop``
