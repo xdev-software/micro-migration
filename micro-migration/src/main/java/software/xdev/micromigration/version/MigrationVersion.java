@@ -21,7 +21,7 @@ import java.util.List;
 
 
 /**
- * Defines one version of the MicroStream datastore.
+ * Defines one version of the EclipseStore datastore.
  */
 public class MigrationVersion
 {

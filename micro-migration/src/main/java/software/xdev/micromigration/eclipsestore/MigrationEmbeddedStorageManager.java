@@ -23,8 +23,7 @@ import software.xdev.micromigration.versionagnostic.VersionAgnosticMigrationEmbe
 
 
 /**
- * Specific implementation of the {@link VersionAgnosticMigrationEmbeddedStorageManager} for one specific MicroStream
- * version.
+ * Specific implementation of the {@link VersionAgnosticMigrationEmbeddedStorageManager} for one specific version.
  * @see VersionAgnosticMigrationEmbeddedStorageManager
  */
 public class MigrationEmbeddedStorageManager

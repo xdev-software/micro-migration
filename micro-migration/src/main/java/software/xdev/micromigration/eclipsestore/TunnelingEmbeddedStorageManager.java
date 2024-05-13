@@ -43,7 +43,7 @@ import software.xdev.micromigration.versionagnostic.VersionAgnosticTunnelingEmbe
 
 
 /**
- * Wrapper class for the MicroStream {@link EmbeddedStorageManager} interface.
+ * Wrapper class for the {@link EmbeddedStorageManager} interface.
  * <p>
  * It simply relays all the commands to the contained {@link EmbeddedStorageManager}.
  * @see VersionAgnosticTunnelingEmbeddedStorageManager
@@ -54,7 +54,7 @@ public class TunnelingEmbeddedStorageManager
 	VersionAgnosticTunnelingEmbeddedStorageManager<EmbeddedStorageManager>
 {
 	/**
-	 * The underlying, actual MicroStream EmbeddedStorageManager
+	 * The underlying, actual EmbeddedStorageManager
 	 */
 	protected final EmbeddedStorageManager nativeManager;
 	

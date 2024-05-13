@@ -22,9 +22,9 @@ To keep these datastores to represent the correspondend data for the code is a h
 ![Code workflow with datastore](./assets/MigrationSequence_3.png "Code workflow with datastore")
 
 That's why migration frameworks like [Flyway](https://flywaydb.org) and [Liquibase](https://www.liquibase.org/) exist.
-Unfortunately both these frameworks are designed to support any type of SQL databases but no NoSQL databases like [MicroStream](https://microstream.one/) / [EclipseStore](https://eclipsestore.io/). This led to the creation of this library.
+Unfortunately both these frameworks are designed to support any type of SQL databases but no NoSQL databases like [EclipseStore](https://eclipsestore.io/). This led to the creation of this library.
 
-This library delivers an easy concept to keep your MicroStream / EclipseStore datastore versioned with migration scripts written in plain java.
+This library delivers an easy concept to keep your EclipseStore datastore versioned with migration scripts written in plain java.
 It's easy to create code, that automatically brings a datastore with an older version to the version, suited to the current code.
 
 ![Migrate datastore to new version](./assets/MigrationSequence_4.png "Migrate datastore to new version")
@@ -33,7 +33,7 @@ It's easy to create code, that automatically brings a datastore with an older ve
 There are two possible usages with the Micro migration library:
 
 The **first**, easier approach is to use the `MigrationEmbeddedStorageManager`.
-It can be used on a brand new datastore or introduced later, after a MicroStream/EclipseStore datastore is already in use.
+It can be used on a brand new datastore or introduced later, after a EclipseStore datastore is already in use.
 Only the storage manager (`MigrationEmbeddedStorageManager`) knows about the versioning. 
 The rest of application does not know about the version and can have no regards about it.
 
@@ -69,7 +69,7 @@ public class UpdateToV1_0 implements MigrationScript<Object>
 ```
 
 ### MigrationManager
-Although the approach with the `MigrationEmbeddedStorageManager` is pretty easy to handle, it is intrusive in the way, that it replaces the root entry point of the MicroStream/EclipseStore datastore and inserts its own `VersionedRoot` as root. Some users might find this too entrusive.
+Although the approach with the `MigrationEmbeddedStorageManager` is pretty easy to handle, it is intrusive in the way, that it replaces the root entry point of the EclipseStore datastore and inserts its own `VersionedRoot` as root. Some users might find this too entrusive.
 
 That's why a second approach can be used, where the `MigrationManager` is used. This class is also used internally by the `MigrationEmbeddedStorageManager`. 
 

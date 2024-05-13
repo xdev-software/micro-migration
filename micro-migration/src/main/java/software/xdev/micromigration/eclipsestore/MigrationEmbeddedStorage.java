@@ -35,7 +35,7 @@ import software.xdev.micromigration.migrater.MicroMigrater;
 public final class MigrationEmbeddedStorage
 {
 	/**
-	 * Creates a {@link MigrationEmbeddedStorageManager} with the given {@link MicroMigrater}. Uses the MicroStream
+	 * Creates a {@link MigrationEmbeddedStorageManager} with the given {@link MicroMigrater}. Uses the
 	 * {@link EmbeddedStorageFoundation#New()} configuration for the actual {@link EmbeddedStorageManager}.
 	 * <p>Warning "resource" is suppressed because it is used and closed in the
 	 * {@link MigrationEmbeddedStorageManager}.
@@ -54,7 +54,7 @@ public final class MigrationEmbeddedStorage
 	}
 	
 	/**
-	 * Creates a {@link MigrationEmbeddedStorageManager} with the given {@link MicroMigrater}. Uses the MicroStream
+	 * Creates a {@link MigrationEmbeddedStorageManager} with the given {@link MicroMigrater}. Uses the
 	 * {@link EmbeddedStorageFoundation#New()} configuration for the actual {@link EmbeddedStorageManager}.
 	 * <p>Warning "resource" is suppressed because it is used and closed in the
 	 * {@link MigrationEmbeddedStorageManager}.

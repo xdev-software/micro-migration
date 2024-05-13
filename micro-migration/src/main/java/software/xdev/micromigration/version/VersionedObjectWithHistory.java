@@ -23,7 +23,7 @@ import software.xdev.micromigration.notification.ScriptExecutionNotificationWith
 
 
 /**
- * This class is inserted as the root of the MicroStream datastore and contains only the current version, the actual
+ * This class is inserted as the root of the datastore and contains only the current version, the actual
  * root object and the history of executed scripts.
  */
 public class VersionedObjectWithHistory extends VersionedObject implements VersionedAndKeeperOfHistory

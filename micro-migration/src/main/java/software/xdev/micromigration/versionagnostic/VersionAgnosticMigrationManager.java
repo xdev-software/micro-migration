@@ -30,11 +30,13 @@ import software.xdev.micromigration.version.VersionedAndKeeperOfHistory;
 /**
  * Manages a given object and keeps the version for it.
  * <p>
- * Can be used to keep the version of the MicroStream-Root-Object and therefor keep the whole datastore versioned.
+ * Can be used to keep the version of the Root-Object and therefor keep the whole datastore versioned.
+ * </p>
  * <p>
- * {@code VersionAgnostic} because it should be independent from the actual MicroStream implementation used.
+ * {@code VersionAgnostic} because it should be independent of the actual implementation used.
+ * </p>
  *
- * @param <T> The actually used MicroStream EmbeddedStorageManager
+ * @param <T> The actually used EmbeddedStorageManager
  */
 public class VersionAgnosticMigrationManager<T>
 {

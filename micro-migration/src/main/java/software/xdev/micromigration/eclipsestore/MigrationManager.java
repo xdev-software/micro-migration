@@ -28,7 +28,7 @@ import software.xdev.micromigration.versionagnostic.VersionAgnosticMigrationMana
 
 
 /**
- * Specific implementation of the {@link VersionAgnosticMigrationManager} for one specific MicroStream version.
+ * Specific implementation of the {@link VersionAgnosticMigrationManager}.
  *
  * @see VersionAgnosticMigrationManager
  */

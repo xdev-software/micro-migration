@@ -27,16 +27,16 @@ import software.xdev.micromigration.version.VersionedRootWithHistory;
 
 
 /**
- * Wrapper class for the MicroStream {@code one.microstream.storage.embedded.types.EmbeddedStorageManager} interface.
+ * Wrapper class for the {@link org.eclipse.store.storage.embedded.types.EmbeddedStorageManager} interface.
  * <p>
  * Basically it intercepts storing the root object and places a {@link Versioned} in front of it. This means the root
  * object of the datastore is then versioned.<br> Internally uses the {@link VersionAgnosticMigrationManager} to do the
  * actual migration.
  * <p>
- * {@code VersionAgnostic} because it should be independent from the actual MicroStream implementation used.
+ * {@code VersionAgnostic} because it should be independent of the actual implementation used.
  *
  * @param <T> class of itself to be able to return the actual class and not just a generic class
- * @param <E> The actually used MicroStream EmbeddedStorageManager
+ * @param <E> The actually used EmbeddedStorageManager
  */
 public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	implements AutoCloseable
@@ -62,7 +62,7 @@ public abstract class VersionAgnosticMigrationEmbeddedStorageManager<T, E>
 	}
 	
 	/**
-	 * @return the native MicroStream EmbeddedStorageManager
+	 * @return the native EmbeddedStorageManager
 	 */
 	public E getNativeStorageManager()
 	{
