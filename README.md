@@ -1,5 +1,5 @@
 [![Latest version](https://img.shields.io/maven-central/v/software.xdev/micro-migration?logo=apache%20maven)](https://mvnrepository.com/artifact/software.xdev/micro-migration)
-[![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/micro-migration/checkBuild.yml?branch=develop)](https://github.com/xdev-software/micro-migration/actions/workflows/checkBuild.yml?query=branch%3Adevelop)
+[![Build](https://img.shields.io/github/actions/workflow/status/xdev-software/micro-migration/check-build.yml?branch=develop)](https://github.com/xdev-software/micro-migration/actions/workflows/check-build.yml?query=branch%3Adevelop)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=xdev-software_micro-migration&metric=alert_status)](https://sonarcloud.io/dashboard?id=xdev-software_micro-migration)
 
 # <img src="assets/Logo.png" width="400" alt="XDEV MicroMigration Logo">
