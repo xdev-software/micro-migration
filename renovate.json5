@@ -11,6 +11,14 @@
         "maven"
       ],
       "groupName": "org.eclipse.store"
+    },
+    {
+      "description": "Ignore project internal dependencies",
+      "packagePattern": "^software.xdev:micro-migration",
+      "datasources": [
+        "maven"
+      ],
+      "enabled": false
     }
   ]
 }
