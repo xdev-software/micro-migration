@@ -26,7 +26,6 @@ import org.eclipse.serializer.persistence.types.PersistenceManager;
 import org.eclipse.serializer.persistence.types.PersistenceRootsView;
 import org.eclipse.serializer.persistence.types.PersistenceTypeDictionaryExporter;
 import org.eclipse.store.storage.embedded.types.EmbeddedStorageManager;
-import org.eclipse.store.storage.exceptions.StorageException;
 import org.eclipse.store.storage.types.Database;
 import org.eclipse.store.storage.types.StorageConfiguration;
 import org.eclipse.store.storage.types.StorageConnection;
@@ -159,7 +158,7 @@ public class TunnelingEmbeddedStorageManager
 	 * {@link EmbeddedStorageManager#close()}
 	 */
 	@Override
-	public void close() throws StorageException
+	public void close()
 	{
 		this.nativeManager.close();
 	}
