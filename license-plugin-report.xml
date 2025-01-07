@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<licensePluginReport goal="FORMAT" timestamp="1736240113275">
-    <module artifactId="micro-migration" groupId="software.xdev" version="3.0.0"/>
+<licensePluginReport goal="FORMAT" timestamp="1736250220060">
+    <module artifactId="micro-migration" groupId="software.xdev" version="3.0.1"/>
     <files>
         <file path="src/main/java/software/xdev/micromigration/eclipsestore/MigrationEmbeddedStorage.java" result="NOOP"/>
         <file path="src/main/java/software/xdev/micromigration/eclipsestore/MigrationEmbeddedStorageManager.java" result="NOOP"/>
