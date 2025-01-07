@@ -1,6 +1,7 @@
 ## 3.0.0
 
 * Added support for EclipseStore v2
+* Having an empty version for the first migration-script is now allowed
 
 ## 2.0.0
 _Major refactoring_

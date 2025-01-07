@@ -53,7 +53,6 @@ public abstract class AbstractMigrater implements MicroMigrater
 		final Object root
 	)
 	{
-		Objects.requireNonNull(fromVersion);
 		Objects.requireNonNull(storageManager);
 		
 		final TreeSet<? extends VersionAgnosticMigrationScript<?, ?>> sortedScripts = this.getSortedScripts();
@@ -78,7 +77,6 @@ public abstract class AbstractMigrater implements MicroMigrater
 		final Object objectToMigrate
 	)
 	{
-		Objects.requireNonNull(fromVersion);
 		Objects.requireNonNull(targetVersion);
 		Objects.requireNonNull(storageManager);
 		
