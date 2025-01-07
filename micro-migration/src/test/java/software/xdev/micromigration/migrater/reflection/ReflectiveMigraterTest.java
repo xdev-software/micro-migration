@@ -26,7 +26,7 @@ import software.xdev.micromigration.migrater.reflection.scripts.abstractReflecti
 class ReflectiveMigraterTest
 {
 	@Test
-	void testValidScript() throws ScriptInstantiationException
+	void testValidScript()
 	{
 		final ReflectiveMigrater migrater =
 			new ReflectiveMigrater("software.xdev.micromigration.migrater.reflection.scripts.valid");
@@ -38,7 +38,7 @@ class ReflectiveMigraterTest
 	}
 	
 	@Test
-	void testValidScriptWithIrrelevantClasses() throws ScriptInstantiationException
+	void testValidScriptWithIrrelevantClasses()
 	{
 		final ReflectiveMigrater migrater =
 			new ReflectiveMigrater("software.xdev.micromigration.migrater.reflection.scripts"
@@ -51,7 +51,7 @@ class ReflectiveMigraterTest
 	}
 	
 	@Test
-	void testValidScriptWithSubpackages() throws ScriptInstantiationException
+	void testValidScriptWithSubpackages()
 	{
 		final ReflectiveMigrater migrater =
 			new ReflectiveMigrater("software.xdev.micromigration.migrater.reflection.scripts.includeSubPackages");
@@ -68,7 +68,7 @@ class ReflectiveMigraterTest
 	}
 	
 	@Test
-	void testPackageWithNoScript() throws ScriptInstantiationException
+	void testPackageWithNoScript()
 	{
 		final ReflectiveMigrater migrater =
 			new ReflectiveMigrater("software.xdev.micromigration.migrater.reflection.scripts.packageNotExisting");
@@ -76,7 +76,7 @@ class ReflectiveMigraterTest
 	}
 	
 	@Test
-	void testExceptionThrowingScript() throws ScriptInstantiationException
+	void testExceptionThrowingScript()
 	{
 		Assertions.assertThrows(ScriptInstantiationException.class, () -> {
 			new ReflectiveMigrater("software.xdev.micromigration.migrater.reflection.scripts.exceptionThrowing");
@@ -84,7 +84,7 @@ class ReflectiveMigraterTest
 	}
 	
 	@Test
-	void testErrorThrowingScript() throws ScriptInstantiationException
+	void testErrorThrowingScript()
 	{
 		Assertions.assertThrows(ScriptInstantiationException.class, () -> {
 			new ReflectiveMigrater("software.xdev.micromigration.migrater.reflection.scripts.errorThrowing");
@@ -92,7 +92,7 @@ class ReflectiveMigraterTest
 	}
 	
 	@Test
-	void testNoCorrectConstructor() throws ScriptInstantiationException
+	void testNoCorrectConstructor()
 	{
 		Assertions.assertThrows(ScriptInstantiationException.class, () -> {
 			new ReflectiveMigrater("software.xdev.micromigration.migrater.reflection.scripts.noCorrectConstructor");
@@ -100,7 +100,7 @@ class ReflectiveMigraterTest
 	}
 	
 	@Test
-	void testAbstractSuperClass() throws ScriptInstantiationException
+	void testAbstractSuperClass()
 	{
 		final ReflectiveMigrater migrater =
 			new ReflectiveMigrater("software.xdev.micromigration.migrater.reflection.scripts.abstractSuperClass");
@@ -112,7 +112,7 @@ class ReflectiveMigraterTest
 	}
 	
 	@Test
-	void testReflectiveVersion() throws ScriptInstantiationException
+	void testReflectiveVersion()
 	{
 		final ReflectiveMigrater migrater =
 			new ReflectiveMigrater("software.xdev.micromigration.migrater.reflection.scripts.reflectiveVersion");
@@ -124,7 +124,7 @@ class ReflectiveMigraterTest
 	}
 	
 	@Test
-	void testReflectiveSuperClass() throws ScriptInstantiationException
+	void testReflectiveSuperClass()
 	{
 		final ReflectiveMigrater migrater =
 			new ReflectiveMigrater(

@@ -76,7 +76,7 @@ public class MigrationVersion
 		final StringBuilder sb = new StringBuilder("v");
 		for(final int version : this.versions)
 		{
-			sb.append(version).append(".");
+			sb.append(version).append('.');
 		}
 		sb.deleteCharAt(sb.length() - 1);
 		return sb.toString();

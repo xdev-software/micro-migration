@@ -37,8 +37,8 @@ public class ExplicitMigrater extends AbstractMigrater
 	 *                the migrater.
 	 * @throws VersionAlreadyRegisteredException if two scripts have the same version
 	 */
+	@SuppressWarnings("PMD.UseArraysAsList")
 	public ExplicitMigrater(final VersionAgnosticMigrationScript<?, ?>... scripts)
-		throws VersionAlreadyRegisteredException
 	{
 		for(final VersionAgnosticMigrationScript<?, ?> script : scripts)
 		{

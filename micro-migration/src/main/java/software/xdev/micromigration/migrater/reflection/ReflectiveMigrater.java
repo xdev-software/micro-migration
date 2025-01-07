@@ -54,7 +54,7 @@ public class ReflectiveMigrater extends AbstractMigrater
 	 * @throws ScriptInstantiationException if a class in the given package could not be instantiated
 	 */
 	@SuppressWarnings("unchecked")
-	public ReflectiveMigrater(final String packagePath) throws ScriptInstantiationException
+	public ReflectiveMigrater(final String packagePath)
 	{
 		getClasses(packagePath)
 			.stream()
@@ -71,7 +71,6 @@ public class ReflectiveMigrater extends AbstractMigrater
 	@SuppressWarnings("rawtypes")
 	private VersionAgnosticMigrationScript<?, ?> instantiateClass(
 		final Class<? extends VersionAgnosticMigrationScript> scriptClass)
-		throws ScriptInstantiationException
 	{
 		try
 		{

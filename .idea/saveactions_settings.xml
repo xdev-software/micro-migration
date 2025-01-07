@@ -4,11 +4,11 @@
     <option name="actions">
       <set>
         <option value="activate" />
+        <option value="activateOnBatch" />
         <option value="organizeImports" />
         <option value="reformatChangedCode" />
         <option value="fieldCanBeFinal" />
         <option value="localCanBeFinal" />
-        <option value="localCanBeFinalExceptImplicit" />
         <option value="unqualifiedFieldAccess" />
         <option value="unqualifiedMethodAccess" />
         <option value="missingOverrideAnnotation" />

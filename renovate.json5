@@ -11,6 +11,24 @@
         "maven"
       ],
       "groupName": "org.eclipse.store"
+    },
+    {
+      "description": "Ignore project internal dependencies",
+      "packagePattern": "^software.xdev:micro-migration",
+      "datasources": [
+        "maven"
+      ],
+      "enabled": false
+    },
+    {
+      "description": "Group net.sourceforge.pmd",
+      "matchPackagePatterns": [
+        "^net.sourceforge.pmd"
+      ],
+      "datasources": [
+        "maven"
+      ],
+      "groupName": "net.sourceforge.pmd"
     }
   ]
 }
