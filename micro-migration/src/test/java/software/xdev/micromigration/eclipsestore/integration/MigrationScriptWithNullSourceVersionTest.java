@@ -88,6 +88,32 @@ class MigrationScriptWithNullSourceVersionTest
 		}
 	}
 	
+	@Test
+	void updateWithNoScripts(@TempDir final Path storageFolder)
+	{
+		// First run without any migration script
+		try(final EmbeddedStorageManager storageManager = this.startEmbeddedStorageManagerWithPath(storageFolder))
+		{
+			final EmptyVersionedRoot firstRoot = new EmptyVersionedRoot();
+			storageManager.setRoot(firstRoot);
+			storageManager.storeRoot();
+			assertNull(firstRoot.getVersion());
+		}
+		
+		try(final EmbeddedStorageManager storageManager = this.startEmbeddedStorageManagerWithPath(storageFolder))
+		{
+			new MigrationManager(
+				(Versioned)storageManager.root(),
+				new ExplicitMigrater(),
+				storageManager
+			)
+				.migrate(storageManager.root());
+			@SuppressWarnings("unchecked")
+			final EmptyVersionedRoot currentRoot = (EmptyVersionedRoot)storageManager.root();
+			assertNull(currentRoot.getVersion());
+		}
+	}
+	
 	private EmbeddedStorageManager startEmbeddedStorageManagerWithPath(final Path storageFolder)
 	{
 		return EmbeddedStorage.start(storageFolder);

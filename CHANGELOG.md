@@ -1,3 +1,7 @@
+## 3.0.1
+
+* Fix for ExplicitMigrater without any scripts
+
 ## 3.0.0
 
 * Added support for EclipseStore v2

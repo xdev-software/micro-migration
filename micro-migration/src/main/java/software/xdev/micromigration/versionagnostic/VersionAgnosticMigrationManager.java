@@ -154,7 +154,7 @@ public class VersionAgnosticMigrationManager<T>
 			objectToMigrate
 		);
 		// Update stored version, if needed
-		if(!versionAfterUpdate.equals(versionBeforeUpdate))
+		if(versionAfterUpdate != null && !versionAfterUpdate.equals(versionBeforeUpdate))
 		{
 			this.currentVersionSetter.accept(versionAfterUpdate);
 			this.currentVersionStorer.accept(versionAfterUpdate);
