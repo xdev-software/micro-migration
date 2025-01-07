@@ -1,3 +1,7 @@
+## 3.0.0
+
+* Added support for EclipseStore v2
+
 ## 2.0.0
 _Major refactoring_
 * Consolidated all previous modules into a single one
