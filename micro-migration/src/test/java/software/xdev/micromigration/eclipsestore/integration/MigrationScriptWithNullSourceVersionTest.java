@@ -39,7 +39,7 @@ class MigrationScriptWithNullSourceVersionTest
 {
 	public static class EmptyVersionedRoot implements Versioned
 	{
-		public MigrationVersion version;
+		private MigrationVersion version;
 		
 		@Override
 		public void setVersion(final MigrationVersion version)
