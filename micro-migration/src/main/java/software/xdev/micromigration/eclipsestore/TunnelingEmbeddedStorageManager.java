@@ -17,6 +17,7 @@ package software.xdev.micromigration.eclipsestore;
 
 import java.nio.ByteBuffer;
 import java.util.Objects;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import org.eclipse.serializer.afs.types.AFile;
@@ -414,5 +415,35 @@ public class TunnelingEmbeddedStorageManager
 	public void issueTransactionsLogCleanup()
 	{
 		this.nativeManager.issueTransactionsLogCleanup();
+	}
+	
+	@Override
+	public int markUsedFor(final Object instance)
+	{
+		return this.nativeManager.markUsedFor(instance);
+	}
+	
+	@Override
+	public int unmarkUsedFor(final Object instance)
+	{
+		return this.nativeManager.unmarkUsedFor(instance);
+	}
+	
+	@Override
+	public boolean isUsed()
+	{
+		return this.nativeManager.isUsed();
+	}
+	
+	@Override
+	public int markUnused()
+	{
+		return this.nativeManager.markUnused();
+	}
+	
+	@Override
+	public void accessUsageMarks(final Consumer<? super XGettingEnum<Object>> logic)
+	{
+		this.nativeManager.accessUsageMarks(logic);
 	}
 }
