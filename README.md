@@ -111,10 +111,12 @@ final ReflectiveMigrater migrater = new ReflectiveMigrater("software.xdev.microm
 [Installation guide for the latest release](https://github.com/xdev-software/micro-migration/releases/latest#Installation)
 
 ### Compatibility
-| Eclipse Store version | micro-migration version |
-| --- | --- |
-| [EclipseStore](https://github.com/eclipse-store/store) 1+ | ``2+`` |
-| [MicroStream](https://github.com/microstream-one/microstream) 5-8<br/>EclipseStore 1.1 | ``1.x`` |
+
+| Eclipse Store version                                             | micro-migration version |
+|-------------------------------------------------------------------|-------------------------|
+| [EclipseStore](https://github.com/eclipse-store/store) 2+         | ``3+``                  |
+| [EclipseStore](https://github.com/eclipse-store/store) 1+         | ``2.x``                 |
+| [MicroStream](https://github.com/microstream-one/microstream) 5-8 | ``1.x``                 |
 
 ## Support
 If you need support as soon as possible and you can't wait for any pull request, feel free to use [our support](https://xdev.software/en/services/support).
