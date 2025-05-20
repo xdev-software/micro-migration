@@ -40,12 +40,12 @@ class MultipleScriptsTest
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> context.getStorageManager().setRoot(1)
+				context -> context.getStorageManager().setRoot(1)
 			);
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2),
-				(context) -> context.getStorageManager().setRoot(2)
+				context -> context.getStorageManager().setRoot(2)
 			);
 		final ExplicitMigrater migrater = new ExplicitMigrater(firstScript, secondScript);
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(
@@ -63,12 +63,12 @@ class MultipleScriptsTest
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> context.getStorageManager().setRoot(1)
+				context -> context.getStorageManager().setRoot(1)
 			);
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> context.getStorageManager().setRoot(2)
+				context -> context.getStorageManager().setRoot(2)
 			);
 		Assertions.assertThrows(VersionAlreadyRegisteredException.class, () ->
 			new ExplicitMigrater(firstScript, secondScript)
@@ -81,17 +81,17 @@ class MultipleScriptsTest
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> context.getStorageManager().setRoot(1)
+				context -> context.getStorageManager().setRoot(1)
 			);
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2),
-				(context) -> context.getStorageManager().setRoot(2)
+				context -> context.getStorageManager().setRoot(2)
 			);
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> thirdScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> context.getStorageManager().setRoot(3)
+				context -> context.getStorageManager().setRoot(3)
 			);
 		Assertions.assertThrows(VersionAlreadyRegisteredException.class, () ->
 			new ExplicitMigrater(firstScript, secondScript, thirdScript)

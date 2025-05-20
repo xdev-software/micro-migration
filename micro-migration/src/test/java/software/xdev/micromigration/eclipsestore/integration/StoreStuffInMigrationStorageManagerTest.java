@@ -50,7 +50,7 @@ class StoreStuffInMigrationStorageManagerTest
 		final VersionAgnosticMigrationScript<Object, MigrationEmbeddedStorageManager> script =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> {
+				context -> {
 				}
 			);
 		final ExplicitMigrater migrater = new ExplicitMigrater(script);
@@ -61,7 +61,7 @@ class StoreStuffInMigrationStorageManagerTest
 		{
 			migrationStorageManager.setRoot(new RootClass());
 			migrationStorageManager.storeRoot();
-			final RootClass storedRoot = ((RootClass)migrationStorageManager.root());
+			final RootClass storedRoot = (RootClass)migrationStorageManager.root();
 			assertEquals(0, storedRoot.child.i);
 			((RootClass)migrationStorageManager.root()).child.i = 1;
 			migrationStorageManager.store(storedRoot.child);
@@ -72,7 +72,7 @@ class StoreStuffInMigrationStorageManagerTest
 			storageFolder,
 			migrater))
 		{
-			final RootClass storedRoot = ((RootClass)migrationStorageManager.root());
+			final RootClass storedRoot = (RootClass)migrationStorageManager.root();
 			assertNotNull(storedRoot);
 			assertEquals(1, storedRoot.child.i);
 		}

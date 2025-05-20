@@ -70,7 +70,7 @@ class MigrationScriptWithNullSourceVersionTest
 		final VersionAgnosticMigrationScript<VersionedObject<Integer>, MigrationEmbeddedStorageManager> firstScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> {
+				context -> {
 				}
 			);
 		
@@ -82,7 +82,6 @@ class MigrationScriptWithNullSourceVersionTest
 				storageManager
 			)
 				.migrate(storageManager.root());
-			@SuppressWarnings("unchecked")
 			final EmptyVersionedRoot currentRoot = (EmptyVersionedRoot)storageManager.root();
 			assertEquals(new MigrationVersion(1), currentRoot.getVersion());
 		}
@@ -108,7 +107,6 @@ class MigrationScriptWithNullSourceVersionTest
 				storageManager
 			)
 				.migrate(storageManager.root());
-			@SuppressWarnings("unchecked")
 			final EmptyVersionedRoot currentRoot = (EmptyVersionedRoot)storageManager.root();
 			assertNull(currentRoot.getVersion());
 		}
