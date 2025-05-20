@@ -6,7 +6,7 @@
 
 	<groupId>software.xdev</groupId>
 	<artifactId>micro-migration-root</artifactId>
-	<version>3.0.2-SNAPSHOT</version>
+	<version>3.0.2</version>
 	<packaging>pom</packaging>
 
 	<organization>
