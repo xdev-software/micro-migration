@@ -76,7 +76,7 @@ class ExplicitMigraterTest
 		final ExplicitMigrater migrater = new ExplicitMigrater(
 			new SimpleTypedMigrationScript<Double, MigrationEmbeddedStorageManager>(
 				new MigrationVersion(1),
-				(context) -> context.getStorageManager().setRoot(context.getMigratingObject() + 1)
+				context -> context.getStorageManager().setRoot(context.getMigratingObject() + 1)
 			)
 		);
 		Assertions.assertThrows(

@@ -62,7 +62,7 @@ class MigrationScriptAfterScriptTest
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> context.getStorageManager().setRoot(1)
+				context -> context.getStorageManager().setRoot(1)
 			);
 		final ExplicitMigrater secondMigrater = new ExplicitMigrater(firstScript);
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(
@@ -77,7 +77,7 @@ class MigrationScriptAfterScriptTest
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> secondScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2),
-				(context) -> context.getStorageManager().setRoot(2)
+				context -> context.getStorageManager().setRoot(2)
 			);
 		final ExplicitMigrater thirdMigrater = new ExplicitMigrater(firstScript, secondScript);
 		try(final MigrationEmbeddedStorageManager migrationStorageManager = MigrationEmbeddedStorage.start(
@@ -97,7 +97,7 @@ class MigrationScriptAfterScriptTest
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) ->
+				context ->
 				{
 					context.getStorageManager().setRoot(firstList);
 					firstList.add("1");
@@ -122,7 +122,7 @@ class MigrationScriptAfterScriptTest
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> context.getStorageManager().setRoot(1)
+				context -> context.getStorageManager().setRoot(1)
 			);
 		final ExplicitMigrater migrater = new ExplicitMigrater(firstScript);
 		final AtomicBoolean notificationReceived = new AtomicBoolean(false);
@@ -158,7 +158,7 @@ class MigrationScriptAfterScriptTest
 		final VersionAgnosticMigrationScript<VersionedObject<Integer>, MigrationEmbeddedStorageManager> firstScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
-				(context) -> context.getMigratingObject().setObject(1)
+				context -> context.getMigratingObject().setObject(1)
 			);
 		try(final EmbeddedStorageManager storageManager = this.startEmbeddedStorageManagerWithPath(storageFolder))
 		{
@@ -178,7 +178,7 @@ class MigrationScriptAfterScriptTest
 		final VersionAgnosticMigrationScript<VersionedObject<Integer>, MigrationEmbeddedStorageManager> secondScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(2),
-				(context) -> context.getMigratingObject().setObject(2)
+				context -> context.getMigratingObject().setObject(2)
 			);
 		try(final EmbeddedStorageManager storageManager = this.startEmbeddedStorageManagerWithPath(storageFolder))
 		{
