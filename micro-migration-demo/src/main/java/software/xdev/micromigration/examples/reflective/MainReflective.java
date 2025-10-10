@@ -15,7 +15,7 @@
  */
 package software.xdev.micromigration.examples.reflective;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import software.xdev.micromigration.eclipsestore.MigrationEmbeddedStorage;
@@ -40,7 +40,7 @@ public final class MainReflective
 			Logger.getGlobal().info(storageManager.root().toString());
 			if(storageManager.root() == null)
 			{
-				storageManager.setRoot("Hello World! @ " + new Date());
+				storageManager.setRoot("Hello World! @ " + LocalDateTime.now());
 			}
 			storageManager.storeRoot();
 			storageManager.shutdown();

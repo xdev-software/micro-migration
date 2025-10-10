@@ -15,7 +15,7 @@
  */
 package software.xdev.micromigration.examples.notification;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 import software.xdev.micromigration.eclipsestore.MigrationEmbeddedStorage;
@@ -46,7 +46,7 @@ public final class MainNotification
 		Logger.getGlobal().info(storageManager.root().toString());
 		if(storageManager.root() == null)
 		{
-			storageManager.setRoot("Hello World! @ " + new Date());
+			storageManager.setRoot("Hello World! @ " + LocalDateTime.now());
 		}
 		storageManager.storeRoot();
 		storageManager.shutdown();
@@ -64,7 +64,7 @@ public final class MainNotification
 		@Override
 		public void migrate(final Context<String, MigrationEmbeddedStorageManager> context)
 		{
-			context.getStorageManager().setRoot("Hello World! @ " + new Date() + " Update 1.0");
+			context.getStorageManager().setRoot("Hello World! @ " + LocalDateTime.now() + " Update 1.0");
 		}
 	}
 	

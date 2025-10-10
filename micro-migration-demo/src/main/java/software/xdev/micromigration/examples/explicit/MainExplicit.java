@@ -15,7 +15,7 @@
  */
 package software.xdev.micromigration.examples.explicit;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +46,7 @@ public final class MainExplicit
 		LOG.info(storageManager.root().toString());
 		if(storageManager.root() == null)
 		{
-			storageManager.setRoot("Hello World! @ " + new Date());
+			storageManager.setRoot("Hello World! @ " + LocalDateTime.now());
 		}
 		storageManager.storeRoot();
 		storageManager.shutdown();

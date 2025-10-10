@@ -15,7 +15,7 @@
  */
 package software.xdev.micromigration.examples.explicit.scripts;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,6 +41,6 @@ public class UpdateToV1_0 implements MigrationScript<String>
 	public void migrate(final Context<String, MigrationEmbeddedStorageManager> context)
 	{
 		LOG.info("Update {} executed", this.getTargetVersion());
-		context.getStorageManager().setRoot("Hello World! @ " + new Date() + " Update 1.0");
+		context.getStorageManager().setRoot("Hello World! @ " + LocalDateTime.now() + " Update 1.0");
 	}
 }
