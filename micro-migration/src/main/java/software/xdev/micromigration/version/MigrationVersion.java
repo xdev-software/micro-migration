@@ -18,6 +18,7 @@ package software.xdev.micromigration.version;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 /**
@@ -53,12 +54,9 @@ public class MigrationVersion
 		}
 		else
 		{
-			final int[] versionsAsArray = new int[versionsAsList.size()];
-			for(int i = 0; i < versionsAsArray.length; i++)
-			{
-				versionsAsArray[i] = versionsAsList.get(i);
-			}
-			this.versions = versionsAsArray;
+			this.versions = versionsAsList.stream()
+				.mapToInt(i -> i)
+				.toArray();
 		}
 	}
 	
@@ -73,13 +71,9 @@ public class MigrationVersion
 	@Override
 	public String toString()
 	{
-		final StringBuilder sb = new StringBuilder("v");
-		for(final int version : this.versions)
-		{
-			sb.append(version).append('.');
-		}
-		sb.deleteCharAt(sb.length() - 1);
-		return sb.toString();
+		return "v" + Arrays.stream(this.versions)
+			.mapToObj(String::valueOf)
+			.collect(Collectors.joining("."));
 	}
 	
 	@Override
