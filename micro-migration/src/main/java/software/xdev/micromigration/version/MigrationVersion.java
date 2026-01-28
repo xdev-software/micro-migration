@@ -44,17 +44,17 @@ public class MigrationVersion
 	}
 	
 	/**
-	 * @param versionsAsList as integers. For example 1.0.2 would be a list of [1,0,2]
+	 * @param versions as integers. For example 1.0.2 would be a list of [1,0,2]
 	 */
-	public MigrationVersion(final List<Integer> versionsAsList)
+	public MigrationVersion(final List<Integer> versions)
 	{
-		if(versionsAsList == null || versionsAsList.isEmpty())
+		if(versions == null || versions.isEmpty())
 		{
 			this.versions = new int[]{0};
 		}
 		else
 		{
-			this.versions = versionsAsList.stream()
+			this.versions = versions.stream()
 				.mapToInt(i -> i)
 				.toArray();
 		}

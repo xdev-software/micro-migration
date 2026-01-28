@@ -92,17 +92,17 @@ class MigrationScriptAfterScriptTest
 	@Test
 	void checkMigrationAndUseStorer(@TempDir final Path storageFolder)
 	{
-		final List<String> firstList = new ArrayList<>();
+		final List<String> initialRoot = new ArrayList<>();
 		// Run with one migration script
 		final VersionAgnosticMigrationScript<Integer, MigrationEmbeddedStorageManager> firstScript =
 			new SimpleTypedMigrationScript<>(
 				new MigrationVersion(1),
 				context ->
 				{
-					context.getStorageManager().setRoot(firstList);
-					firstList.add("1");
+					context.getStorageManager().setRoot(initialRoot);
+					initialRoot.add("1");
 					final Storer storer = context.getStorageManager().getNativeStorageManager().createStorer();
-					storer.store(firstList);
+					storer.store(initialRoot);
 					storer.commit();
 				}
 			);
