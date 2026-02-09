@@ -3,8 +3,18 @@
   "rebaseWhen": "behind-base-branch",
   "packageRules": [
     {
+      "description": "Group Eclipse Store",
+      "matchPackagePatterns": [
+        "^org.eclipse.store"
+      ],
+      "datasources": [
+        "maven"
+      ],
+      "groupName": "org.eclipse.store"
+    },
+    {
       "description": "Ignore project internal dependencies",
-      "packagePattern": "^software.xdev:template-placeholder",
+      "packagePattern": "^software.xdev:micro-migration",
       "datasources": [
         "maven"
       ],
