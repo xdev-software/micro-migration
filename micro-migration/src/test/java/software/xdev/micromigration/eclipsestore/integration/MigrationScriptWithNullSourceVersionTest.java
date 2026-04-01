@@ -37,7 +37,7 @@ import software.xdev.micromigration.version.VersionedObject;
 
 class MigrationScriptWithNullSourceVersionTest
 {
-	public static class EmptyVersionedRoot implements Versioned
+	static class EmptyVersionedRoot implements Versioned
 	{
 		private MigrationVersion version;
 		

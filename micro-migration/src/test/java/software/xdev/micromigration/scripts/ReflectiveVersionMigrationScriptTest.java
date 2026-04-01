@@ -25,7 +25,7 @@ import software.xdev.micromigration.versionagnostic.VersionAgnosticMigrationEmbe
 @SuppressWarnings({"checkstyle:TypeName", "checkstyle:MethodName"})
 class ReflectiveVersionMigrationScriptTest
 {
-	public static class v1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -35,7 +35,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertEquals(new MigrationVersion(1), new v1_CorrectClassName().getTargetVersion());
 	}
 	
-	public static class v1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -45,7 +45,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertEquals(new MigrationVersion(1, 1), new v1_1_CorrectClassName().getTargetVersion());
 	}
 	
-	public static class v1_1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v1_1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -55,7 +55,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertEquals(new MigrationVersion(1, 1, 1), new v1_1_1_CorrectClassName().getTargetVersion());
 	}
 	
-	public static class v10_1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v10_1_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -65,7 +65,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertEquals(new MigrationVersion(10, 1, 1), new v10_1_1_CorrectClassName().getTargetVersion());
 	}
 	
-	public static class v10_10_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v10_10_1_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -75,7 +75,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertEquals(new MigrationVersion(10, 10, 1), new v10_10_1_CorrectClassName().getTargetVersion());
 	}
 	
-	public static class v10_10_10_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v10_10_10_CorrectClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -85,7 +85,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertEquals(new MigrationVersion(10, 10, 10), new v10_10_10_CorrectClassName().getTargetVersion());
 	}
 	
-	public static class a1_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
+	static class a1_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -95,7 +95,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertThrows(IllegalArgumentException.class, a1_InvalidClassName::new);
 	}
 	
-	public static class foo1_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
+	static class foo1_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -105,7 +105,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertThrows(IllegalArgumentException.class, foo1_InvalidClassName::new);
 	}
 	
-	public static class InvalidClassName extends ReflectiveVersionMigrationScriptDummy
+	static class InvalidClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -115,7 +115,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertThrows(IllegalArgumentException.class, InvalidClassName::new);
 	}
 	
-	public static class InvalidClassName_v1 extends ReflectiveVersionMigrationScriptDummy
+	static class InvalidClassName_v1 extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -125,7 +125,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertThrows(IllegalArgumentException.class, InvalidClassName_v1::new);
 	}
 	
-	public static class v1_k_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v1_k_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -135,7 +135,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertThrows(IllegalArgumentException.class, v1_k_InvalidClassName::new);
 	}
 	
-	public static class v1_k_2_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v1_k_2_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -145,7 +145,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertThrows(IllegalArgumentException.class, v1_k_2_InvalidClassName::new);
 	}
 	
-	public static class v2147483648_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v2147483648_InvalidClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -155,7 +155,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertThrows(IllegalArgumentException.class, v2147483648_InvalidClassName::new);
 	}
 	
-	public static class v___InvalidClassName extends ReflectiveVersionMigrationScriptDummy
+	static class v___InvalidClassName extends ReflectiveVersionMigrationScriptDummy
 	{
 	}
 	
@@ -165,7 +165,7 @@ class ReflectiveVersionMigrationScriptTest
 		Assertions.assertThrows(IllegalArgumentException.class, v___InvalidClassName::new);
 	}
 	
-	public static class ReflectiveVersionMigrationScriptDummy
+	static class ReflectiveVersionMigrationScriptDummy
 		extends ReflectiveVersionMigrationScript<Object, VersionAgnosticMigrationEmbeddedStorageManager<Object,
 		Object>>
 	{
