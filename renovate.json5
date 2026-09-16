@@ -9,8 +9,7 @@
       ],
       "datasources": [
         "maven"
-      ],
-      "groupName": "org.eclipse.store"
+      ]
     },
     {
       "description": "Ignore project internal dependencies",
@@ -29,6 +28,15 @@
         "maven"
       ],
       "groupName": "net.sourceforge.pmd"
+    },
+    {
+      "description": "Group Eclipse Store",
+      "matchPackagePatterns": [
+        "^org.eclipse.store"
+      ],
+      "datasources": [
+        "maven"
+      ]
     }
   ]
 }
